@@ -1,0 +1,57 @@
+{
+  "recordedAt": "2026-11-02T12:48:04.693070+00:00",
+  "version": "0.1.36",
+  "backendFull": {
+    "passed": 157,
+    "ignored": 7,
+    "failed": 0,
+    "note": "Before final duplicate-guide and byte-bound changes; focused suite below tests those changes."
+  },
+  "obsidianFinalFocused": {
+    "passed": 12,
+    "failed": 0,
+    "includesConfiguredVaultTests": true,
+    "mixedContextTextBytes": 50596,
+    "mixedNotes": 71
+  },
+  "frontend": {
+    "typecheck": "passed",
+    "fullSuitePassed": 323,
+    "fullSuiteTimeouts": 2,
+    "fullSuiteTotal": 325,
+    "rerunPassed": 3,
+    "rerunFailed": 0,
+    "rerunCommand": "vitest run src/app/App.test.tsx src/features/gfx/GfxPage.test.tsx -t 'shows one live Studio|retains saved versions when startup history' --maxWorkers=1"
+  },
+  "vault": {
+    "notes": 133,
+    "internalLinks": 560,
+    "bundledSkills": 25,
+    "learnedSkills": 7,
+    "observations": 29,
+    "errors": []
+  },
+  "externalInferenceThisTurn": false,
+  "robloxWritesThisTurn": false,
+  "image3dQualityReevaluated": false,
+  "nativeObsidian": {
+    "application": "/Applications/Obsidian.app",
+    "window": "Otak ForgeKit - ForgeKit Studio Vault - Obsidian 1.14.5",
+    "canvasVisible": true,
+    "nodes": [
+      "Otak Pengetahuan ForgeKit",
+      "Produksi Adaptif",
+      "Pengembangan ForgeKit",
+      "Diagnosis Image to 3D",
+      "Pembelajaran Otomatis",
+      "Quality Gate"
+    ]
+  },
+  "nativeForgeKit": {
+    "version": "0.1.36",
+    "installed": "/Applications/ForgeKit Studio.app",
+    "visibleStatus": "Obsidian terhubung \u00b7 25 skill \u00b7 7 panduan pembelajaran \u00b7 Belajar otomatis aktif",
+    "learningErrorVisible": false
+  },
+  "installationVerified": true
+}

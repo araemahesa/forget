@@ -1,0 +1,114 @@
+{
+  "ok": true,
+  "sourceAccess": "SQLite read-only backup; migration only on isolated target copy",
+  "fromSchema": 15,
+  "toSchema": 15,
+  "preservedTables": {
+    "workspace": {
+      "rows": 1,
+      "sha256": "453878a574e0fed03faffe22ea95b56b75608b83f8e68f22ad847830b1a25932"
+    },
+    "collection_item": {
+      "rows": 1,
+      "sha256": "296ed72dffe75d8637ba9712fcefd6620e9f7b84732b162167e8545fca62e6a2"
+    },
+    "gfx_version": {
+      "rows": 4,
+      "sha256": "cb71477dadbd87e36910f857c0517c2b674da75e3423955b7bba8ff74547cce5"
+    },
+    "artifact": {
+      "rows": 8,
+      "sha256": "ea0f3f28f9aba94b84f0507386f76d176ecdb6015b234d02d0e7314dc6ba0c37"
+    },
+    "task_input": {
+      "rows": 4,
+      "sha256": "c75ecc8193c9beb7874c5e57cf1d428729d436ac80764133a2c580d9ee01ce6b"
+    },
+    "editor_draft": {
+      "rows": 1,
+      "sha256": "08b6588f9425c40c17558ac9b4c8ade9ddde8e30ead08dea7b6164e13243fcfb"
+    },
+    "sfx_version": {
+      "rows": 1,
+      "sha256": "ced700a489c788ce646953b22c427c0de8118a7ba6826bcc31f6bd5eccc4437b"
+    },
+    "image_version": {
+      "rows": 1,
+      "sha256": "b291d48c5406e7ed31519e1318a7c2a81e26cb89839ec5bd057dc962d4d7dac2"
+    },
+    "image_artifact": {
+      "rows": 2,
+      "sha256": "7182b16076ed786ffc6ba82ba01fa050ef037368c3dfac82302aef748c3f6afb"
+    },
+    "creator_draft": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "library_visibility": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "ai_provider_profile": {
+      "rows": 2,
+      "sha256": "6c7242e851591b04c67171d5c521ca2ff528ecb7e336f7eb52765fd6dea20883"
+    },
+    "chat_thread": {
+      "rows": 14,
+      "sha256": "e777a3a9e538103b39409dc52360dd6ef8fea44fe6513d6ee0144b600e37b19e"
+    },
+    "chat_message": {
+      "rows": 32,
+      "sha256": "5ba502d1a97fe2de731efb59791d73a7322f5daf15a2623977a2b5aba80bd152"
+    },
+    "mcp_connector_config": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "chat_turn": {
+      "rows": 17,
+      "sha256": "611282b5a23e2babf49e54e2f4eba4ab31fa267a25a7d8f18e0d838ba5c0de8d"
+    },
+    "context_snapshot": {
+      "rows": 13,
+      "sha256": "e624cc6229d60d438f1a25f59e07f42cbc409a11f8935317ce72b4bb47d75b1c"
+    },
+    "tool_receipt": {
+      "rows": 5,
+      "sha256": "c5fc1414e6c9f47e5ba0f338917f3e7acbde29ff5e775260fb6f5b1e0cded2d5"
+    },
+    "connection_profile": {
+      "rows": 2,
+      "sha256": "3922e5cc7588d64c051d66fd7faf4d71ef78db7a225c532b5af2bd980bc4979a"
+    },
+    "router_connection": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "fallback_policy": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "connection_verification": {
+      "rows": 2,
+      "sha256": "087039ec1921369c2674ac9db15a5e881b6a9af69d9da37db95339426194c706"
+    },
+    "connection_cooldown": {
+      "rows": 1,
+      "sha256": "3836dff8cd13f611ab9924462310aff8200952e6d7d5ce0a2a291c2e5d6f73ae"
+    },
+    "creative_version": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "creative_export": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "ai_checkpoint": {
+      "rows": 9,
+      "sha256": "dd0d2fcb09cdc3da7bfa7134d04ed8477ac9f470286acbe0dba8bb34a44636a4"
+    }
+  },
+  "preMigrationSnapshotVerified": false,
+  "taskReconciliation": "Active task/attempt status and unverified connection metadata may be reset; excluded from immutable hashes"
+}

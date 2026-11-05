@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-obsidian-status"
+description = "Enables the obsidian_status command without any pre-configured scope."
+commands.allow = ["obsidian_status"]
+
+[[permission]]
+identifier = "deny-obsidian-status"
+description = "Denies the obsidian_status command without any pre-configured scope."
+commands.deny = ["obsidian_status"]

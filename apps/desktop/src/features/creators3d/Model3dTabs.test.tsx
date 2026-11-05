@@ -1,0 +1,47 @@
+import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
+import { afterEach, beforeEach, expect, it, vi } from 'vitest';
+import { useEffect, useState } from 'react';
+import { call } from '../../services/tauri';
+const saved = { id: 'saved-model', document: { kind: 'model3d', recipe: { name: 'Hiu merah' } }, createdAt: '1793541237212' };
+vi.mock('../../services/tauri', () => ({ call: vi.fn() }));
+vi.mock('../create/useCreativeTask', () => ({ validateCreativeVersion: (value: unknown) => value }));
+vi.mock('../shared/BlenderConnection', () => ({ BlenderConnection: () => null }));
+vi.mock('./Model3dEditor', () => ({ Model3dEditor: ({ id, initialVersionId, active, onStateChange }: { id: string; initialVersionId?: string; active: boolean; onStateChange: (state: unknown) => void }) => {
+  const [draft, setDraft] = useState('');
+  const [busy, setBusy] = useState(false);
+  useEffect(() => { onStateChange({ name: initialVersionId ? 'Hiu merah' : undefined, versionId: initialVersionId, busy }); }, [initialVersionId, busy, onStateChange]);
+  return <div hidden={!active}><input aria-label="Draft model" value={draft} onChange={event => setDraft(event.target.value)} /><button onClick={() => setBusy(!busy)}>Toggle job</button><span>{initialVersionId ?? 'Kosong'}</span><small>{id}</small></div>;
+} }));
+import { Model3dPage } from './Model3dPage';
+beforeEach(() => { localStorage.clear(); vi.mocked(call).mockResolvedValue([saved]); });
+afterEach(cleanup);
+it('creates independent drafts, switches tabs, and prevents closing a running job', async () => {
+  render(<Model3dPage mode="procedural" />);
+  fireEvent.change(screen.getByLabelText('Draft model'), { target: { value: 'Prompt pertama' } });
+  fireEvent.click(screen.getByRole('button', { name: 'Tab Model 3D baru' }));
+  const activeInput = () => screen.getAllByLabelText('Draft model').find(input => !(input.closest('[hidden]'))) as HTMLInputElement;
+  expect(activeInput().value).toBe('');
+  fireEvent.change(activeInput(), { target: { value: 'Prompt kedua' } });
+  fireEvent.click(screen.getByRole('tab', { name: 'Model 3D' }));
+  expect(activeInput().value).toBe('Prompt pertama');
+  fireEvent.click(screen.getByRole('tab', { name: 'Model baru' }));
+  expect(activeInput().value).toBe('Prompt kedua');
+  fireEvent.click(screen.getAllByText('Toggle job').find(button => !button.closest('[hidden]'))!);
+  await waitFor(() => expect(screen.getByRole('button', { name: 'Tutup tab Model baru' })).toBeDisabled());
+  fireEvent.click(screen.getByRole('tab', { name: 'Model 3D' }));
+  expect(screen.getByRole('tab', { name: /Model baru/ })).toBeInTheDocument();
+});
+it('opens persisted history in a tab and reuses the same tab without deleting the artifact', async () => {
+  const { unmount } = render(<Model3dPage mode="procedural" />);
+  fireEvent.click(screen.getByRole('button', { name: 'Riwayat' }));
+  fireEvent.click(await within(screen.getByRole('region', { name: 'Riwayat Model 3D' })).findByRole('button', { name: /Hiu merah/ }));
+  expect(screen.getByRole('tab', { name: 'Hiu merah' })).toHaveAttribute('aria-selected', 'true');
+  fireEvent.click(screen.getByRole('button', { name: 'Riwayat' }));
+  fireEvent.click(await within(screen.getByRole('region', { name: 'Riwayat Model 3D' })).findByRole('button', { name: /Hiu merah/ }));
+  expect(screen.getAllByRole('tab')).toHaveLength(2);
+  unmount(); render(<Model3dPage mode="procedural" />);
+  expect(screen.getByRole('tab', { name: 'Hiu merah' })).toHaveAttribute('aria-selected', 'true');
+  fireEvent.click(screen.getByRole('button', { name: 'Tutup tab Hiu merah' }));
+  expect(screen.getAllByRole('tab')).toHaveLength(1);
+  expect(vi.mocked(call).mock.calls.every(([command]) => command === 'list_creative_versions')).toBe(true);
+});

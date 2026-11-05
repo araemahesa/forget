@@ -1,0 +1,1246 @@
+{
+  "startedAt": "2026-11-01T20:37:19+0700",
+  "kept": {
+    "path": "/Applications/ForgeKit Studio.app",
+    "version": "0.1.29",
+    "executableSha256": "a1ee366ec26069bffba7f86c355f6f76b0692688043960384049fa2b31003a33",
+    "signature": "verified"
+  },
+  "dataBefore": {
+    "tables": {
+      "chat_thread": {
+        "count": 14,
+        "sha256": "34ab7781e380ca98ddc06bfae085ac306686ddf6f47f6627b917ebcf454ac85e"
+      },
+      "chat_message": {
+        "count": 35,
+        "sha256": "8633fe3ed3c548e6f03300b0a116f8d4863f261a3f6964b673c45e56fc5af68a"
+      },
+      "gfx_version": {
+        "count": 4,
+        "sha256": "02297e3ef75c8a2dab7383e175f3d132fa3e0dea6a64a35c7f0bad2395ed91c4"
+      },
+      "sfx_version": {
+        "count": 1,
+        "sha256": "c32cdc8769a869f44cae2c303198f14b86ae5c4843c76793db0ab0285fea5433"
+      },
+      "image_version": {
+        "count": 1,
+        "sha256": "a9d18e98c777592cfc5888d59e5a483b87861667c811ce7decf620a24a6b5a3f"
+      },
+      "creative_version": {
+        "count": 2,
+        "sha256": "f87d9bd3167156fcfac2d0cdd55eb4800906b8962c4d9244778ce22a2e97007e"
+      }
+    },
+    "integrity": "ok"
+  },
+  "moved": [
+    {
+      "path": "/Users/ariardianto/Documents/ForgeKIT/CODE/.forgekit-rebuild/build/apps/desktop/src-tauri/target/release/bundle/macos/ForgeKit Studio.app",
+      "version": "0.1.23",
+      "executable": "forgekit-desktop",
+      "modified": 1793421178.3958085,
+      "keep": false,
+      "executableSha256": "1cbd8477c81122814135d78cbc32576cfcf1ca0e522d61299ca0a67b5401d53b",
+      "inode": 184451764,
+      "trashPath": "/Users/ariardianto/.Trash/ForgeKit Studio.app",
+      "trashOutput": "# Moved \"/Users/ariardianto/Documents/ForgeKIT/CODE/.forgekit-rebuild/build/apps/desktop/src-tauri/target/release/bundle/macos/ForgeKit Studio.app\" to \"/Users/ariardianto/.Trash/ForgeKit Studio.app\"",
+      "presentInTrashAtFinalCheck": false
+    },
+    {
+      "path": "/Users/ariardianto/Documents/ForgeKIT/CODE/apps/desktop/src-tauri/target/release/bundle/macos/ForgeKit Studio.app",
+      "version": "0.1.29",
+      "executable": "forgekit-desktop",
+      "modified": 1793539618.4084492,
+      "keep": false,
+      "executableSha256": "a1ee366ec26069bffba7f86c355f6f76b0692688043960384049fa2b31003a33",
+      "inode": 185032873,
+      "trashPath": "/Users/ariardianto/.Trash/ForgeKit Studio 20-37-23-095.app",
+      "trashOutput": "# Moved \"/Users/ariardianto/Documents/ForgeKIT/CODE/apps/desktop/src-tauri/target/release/bundle/macos/ForgeKit Studio.app\" to \"/Users/ariardianto/.Trash/ForgeKit Studio 20-37-23-095.app\"",
+      "presentInTrashAtFinalCheck": false
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-10-31-continuation-1793416727359715000/ForgeKit Studio 0.1.19.app",
+      "version": "0.1.19",
+      "executable": "forgekit-desktop",
+      "modified": 1793371507.1797588,
+      "keep": false,
+      "executableSha256": "06ac35606434f5de2df9cc56e09725a56e2883f894bfc332faec0c32ac477fba",
+      "inode": 183745305,
+      "trashPath": "/Users/ariardianto/.Trash/ForgeKit Studio 0.1.19.app",
+      "trashOutput": "# Moved \"/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-10-31-continuation-1793416727359715000/ForgeKit Studio 0.1.19.app\" to \"/Users/ariardianto/.Trash/ForgeKit Studio 0.1.19.app\"",
+      "presentInTrashAtFinalCheck": false
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-10-31-explorer-card-1793419981120959000/ForgeKit Studio 0.1.21.app",
+      "version": "0.1.21",
+      "executable": "forgekit-desktop",
+      "modified": 1793419337.22806,
+      "keep": false,
+      "executableSha256": "138636fcf39f54098166b2130546394fb28f2fe7e3aa9d39fbcb23a12799692f",
+      "inode": 184415816,
+      "trashPath": "/Users/ariardianto/.Trash/ForgeKit Studio 0.1.21.app",
+      "trashOutput": "# Moved \"/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-10-31-explorer-card-1793419981120959000/ForgeKit Studio 0.1.21.app\" to \"/Users/ariardianto/.Trash/ForgeKit Studio 0.1.21.app\"",
+      "presentInTrashAtFinalCheck": false
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-10-31-layout-1793419266011854000/ForgeKit Studio 0.1.20.app",
+      "version": "0.1.20",
+      "executable": "forgekit-desktop",
+      "modified": 1793416753.7533855,
+      "keep": false,
+      "executableSha256": "38839497bd13925ae5bb51a56ab1347f95d841be4e5782922d2de82851edb669",
+      "inode": 184380562,
+      "trashPath": "/Users/ariardianto/.Trash/ForgeKit Studio 0.1.20.app",
+      "trashOutput": "# Moved \"/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-10-31-layout-1793419266011854000/ForgeKit Studio 0.1.20.app\" to \"/Users/ariardianto/.Trash/ForgeKit Studio 0.1.20.app\"",
+      "presentInTrashAtFinalCheck": false
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-10-31-settings-1793421117886887000/ForgeKit Studio 0.1.22.app",
+      "version": "0.1.22",
+      "executable": "forgekit-desktop",
+      "modified": 1793420029.572225,
+      "keep": false,
+      "executableSha256": "5fb4563899f442f4a9421dfa54ddd9c98a4f0ff66e17877ca24611bf75193a1f",
+      "inode": 184441499,
+      "trashPath": "/Users/ariardianto/.Trash/ForgeKit Studio 0.1.22.app",
+      "trashOutput": "# Moved \"/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-10-31-settings-1793421117886887000/ForgeKit Studio 0.1.22.app\" to \"/Users/ariardianto/.Trash/ForgeKit Studio 0.1.22.app\"",
+      "presentInTrashAtFinalCheck": false
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-blender-preview-studio-install-1793539197919228000/ForgeKit Studio 0.1.28.app",
+      "version": "0.1.28",
+      "executable": "forgekit-desktop",
+      "modified": 1793534690.2811236,
+      "keep": false,
+      "executableSha256": "d5f19889583dd852893b9f7a42b9a53db5174e3ff1ca305b70d244039b541fd4",
+      "inode": 184986690,
+      "trashPath": "/Users/ariardianto/.Trash/ForgeKit Studio 0.1.28.app",
+      "trashOutput": "# Moved \"/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-blender-preview-studio-install-1793539197919228000/ForgeKit Studio 0.1.28.app\" to \"/Users/ariardianto/.Trash/ForgeKit Studio 0.1.28.app\"",
+      "presentInTrashAtFinalCheck": false
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-blender-preview-studio-install-1793539759120402000/ForgeKit Studio 0.1.29.app",
+      "version": "0.1.29",
+      "executable": "forgekit-desktop",
+      "modified": 1793539036.9620376,
+      "keep": false,
+      "executableSha256": "f3a4153f0cad206c049be6cd3a6e3ff8cff15ab440bb86177b5a63b8207003f0",
+      "inode": 185030698,
+      "trashPath": "/Users/ariardianto/.Trash/ForgeKit Studio 0.1.29.app",
+      "trashOutput": "# Moved \"/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-blender-preview-studio-install-1793539759120402000/ForgeKit Studio 0.1.29.app\" to \"/Users/ariardianto/.Trash/ForgeKit Studio 0.1.29.app\"",
+      "presentInTrashAtFinalCheck": false
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-general-guides-install-1793530160238870000/ForgeKit Studio 0.1.25.app",
+      "version": "0.1.25",
+      "executable": "forgekit-desktop",
+      "modified": 1793528860.654019,
+      "keep": false,
+      "executableSha256": "4f78ed597a38eed1b23cbec9915a3883e6296b63dc8a45206334c4ec5d35b66d",
+      "inode": 184905219,
+      "trashPath": "/Users/ariardianto/.Trash/ForgeKit Studio 0.1.25.app",
+      "trashOutput": "# Moved \"/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-general-guides-install-1793530160238870000/ForgeKit Studio 0.1.25.app\" to \"/Users/ariardianto/.Trash/ForgeKit Studio 0.1.25.app\"",
+      "presentInTrashAtFinalCheck": false
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-model3d-quality-install-1793532486810993000/ForgeKit Studio 0.1.26.app",
+      "version": "0.1.26",
+      "executable": "forgekit-desktop",
+      "modified": 1793530122.819336,
+      "keep": false,
+      "executableSha256": "0fbca95e81b4c04095de9b92c650c398f0e4d3cb7ab36d895f08ff9d33e99d3e",
+      "inode": 184926378,
+      "trashPath": "/Users/ariardianto/.Trash/ForgeKit Studio 0.1.26.app",
+      "trashOutput": "# Moved \"/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-model3d-quality-install-1793532486810993000/ForgeKit Studio 0.1.26.app\" to \"/Users/ariardianto/.Trash/ForgeKit Studio 0.1.26.app\"",
+      "presentInTrashAtFinalCheck": false
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-obsidian-1793517525714488000/ForgeKit Studio 0.1.23.app",
+      "version": "0.1.23",
+      "executable": "forgekit-desktop",
+      "modified": 1793421178.3958085,
+      "keep": false,
+      "executableSha256": "1cbd8477c81122814135d78cbc32576cfcf1ca0e522d61299ca0a67b5401d53b",
+      "inode": 184452418,
+      "trashPath": "/Users/ariardianto/.Trash/ForgeKit Studio 0.1.23.app",
+      "trashOutput": "# Moved \"/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-obsidian-1793517525714488000/ForgeKit Studio 0.1.23.app\" to \"/Users/ariardianto/.Trash/ForgeKit Studio 0.1.23.app\"",
+      "presentInTrashAtFinalCheck": false
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-obsidian-1793517525714488000/candidate-before-editors.app",
+      "version": "0.1.24",
+      "executable": "forgekit-desktop",
+      "modified": 1793518699.7978492,
+      "keep": false,
+      "executableSha256": "0662ff14a00ab4931c2574f72113d59989a8fad6f4f0b073c18db82f979ebf07",
+      "inode": 184811628,
+      "trashPath": "/Users/ariardianto/.Trash/candidate-before-editors.app",
+      "trashOutput": "# Moved \"/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-obsidian-1793517525714488000/candidate-before-editors.app\" to \"/Users/ariardianto/.Trash/candidate-before-editors.app\"",
+      "presentInTrashAtFinalCheck": false
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-obsidian-1793517525714488000/candidate-before-ipc.app",
+      "version": "0.1.24",
+      "executable": "forgekit-desktop",
+      "modified": 1793517633.946779,
+      "keep": false,
+      "executableSha256": "07e2c2ba88b64b080210dbd1f3ecaa92f8cb4a07a6e2aa5d441994cf83a222bb",
+      "inode": 184807131,
+      "trashPath": "/Users/ariardianto/.Trash/candidate-before-ipc.app",
+      "trashOutput": "# Moved \"/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-obsidian-1793517525714488000/candidate-before-ipc.app\" to \"/Users/ariardianto/.Trash/candidate-before-ipc.app\"",
+      "presentInTrashAtFinalCheck": false
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-partial-review-1793528607764955000/ForgeKit Studio 0.1.24.app",
+      "version": "0.1.24",
+      "executable": "forgekit-desktop",
+      "modified": 1793519196.724847,
+      "keep": false,
+      "executableSha256": "b53765fc511ae678f90e5140474d59a7fda4c3b783e0a83e8cc94fa340cade4d",
+      "inode": 184817792,
+      "trashPath": "/Users/ariardianto/.Trash/ForgeKit Studio 0.1.24.app",
+      "trashOutput": "# Moved \"/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-partial-review-1793528607764955000/ForgeKit Studio 0.1.24.app\" to \"/Users/ariardianto/.Trash/ForgeKit Studio 0.1.24.app\"",
+      "presentInTrashAtFinalCheck": false
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-partial-review-1793528879001240000/ForgeKit Studio 0.1.25.app",
+      "version": "0.1.25",
+      "executable": "forgekit-desktop",
+      "modified": 1793528548.1555848,
+      "keep": false,
+      "executableSha256": "76ff5bff6a0eb59bd0050430b0ebe9c4d6afc470ac9e21ea95bb3c1fe3e8e1a4",
+      "inode": 184900687,
+      "trashPath": "/Users/ariardianto/.Trash/ForgeKit Studio 0.1.25 20-37-23-886.app",
+      "trashOutput": "# Moved \"/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-partial-review-1793528879001240000/ForgeKit Studio 0.1.25.app\" to \"/Users/ariardianto/.Trash/ForgeKit Studio 0.1.25 20-37-23-886.app\"",
+      "presentInTrashAtFinalCheck": false
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-reference-blender-install-1793534971732459000/ForgeKit Studio 0.1.27.app",
+      "version": "0.1.27",
+      "executable": "forgekit-desktop",
+      "modified": 1793532376.1171556,
+      "keep": false,
+      "executableSha256": "6f67d3f4a2dbbc47970bc8c3cfea7eb0d859d979269966ff25d839fd80ae3547",
+      "inode": 184958623,
+      "trashPath": "/Users/ariardianto/.Trash/ForgeKit Studio 0.1.27.app",
+      "trashOutput": "# Moved \"/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-reference-blender-install-1793534971732459000/ForgeKit Studio 0.1.27.app\" to \"/Users/ariardianto/.Trash/ForgeKit Studio 0.1.27.app\"",
+      "presentInTrashAtFinalCheck": false
+    }
+  ],
+  "unregistered": [
+    {
+      "path": "/Volumes/dmg.BAtcm5/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.KN5ySv/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.GvdRPa/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.FNoRby/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.4XBpK9/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.BB4hlI/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.GrUb2M/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.ahdirT/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.fQ2fJW/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.ZMm44z/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.uPEaJI/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.65KZp1/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.nL2wrC/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.hs7b09/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.dCt7Cy/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.eI6Dts/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.LQB4GQ/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.9KW4gi/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.1aG7Kp/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.X5fjfu/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.5rQeAv/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.1esL52/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.E5Zh1S/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.PuChLA/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.2VEGqX/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.4Tbulv/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.8flxIa/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.do2BQC/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.n2Ie6H/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.8S3YD8/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.QSbYH1/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.gZxdAq/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.wTjlhR/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.BSC6Pi/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.lxwn1M/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.UBMcG8/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.QKcyhC/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.dgiKIA/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.x62eRJ/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.KP1Wgs/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.72CcD4/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-10-31-continuation-1793416727359715000/ForgeKit Studio 0.1.19.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.jERm9I/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-10-31-layout-1793419266011854000/ForgeKit Studio 0.1.20.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.ZCu9pA/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-10-31-explorer-card-1793419981120959000/ForgeKit Studio 0.1.21.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Users/ariardianto/Documents/ForgeKIT/CODE/.forgekit-rebuild/build/apps/desktop/src-tauri/target/release/bundle/macos/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.DdYqAA/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-10-31-settings-1793421117886887000/ForgeKit Studio 0.1.22.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-obsidian-1793517525714488000/ForgeKit Studio 0.1.23.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-obsidian-1793517525714488000/candidate-before-ipc.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-obsidian-1793517525714488000/candidate-before-editors.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.x24GVf/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.EQWyrH/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.m5XGDX/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.XsXu42/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-partial-review-1793528607764955000/ForgeKit Studio 0.1.24.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-partial-review-1793528879001240000/ForgeKit Studio 0.1.25.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-general-guides-install-1793530160238870000/ForgeKit Studio 0.1.25.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-model3d-quality-install-1793532486810993000/ForgeKit Studio 0.1.26.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.zDCSHi/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-reference-blender-install-1793534971732459000/ForgeKit Studio 0.1.27.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-blender-preview-studio-install-1793539197919228000/ForgeKit Studio 0.1.28.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.dHTEfG/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Users/ariardianto/Documents/ForgeKIT/CODE/apps/desktop/src-tauri/target/release/bundle/macos/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-blender-preview-studio-install-1793539759120402000/ForgeKit Studio 0.1.29.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.QZ5jox/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.WkWj9H/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.K1F4he/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.jLx1gF/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.vMfuXh/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.0geeye/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.t0Gah8/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.DMkNG2/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.O6SNAi/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Users/ariardianto/Documents/Codex/2026-10-28/https-chatgpt-com-s-cx-6ae17a5323b88191b2592bae190e0bbd/outputs/ForgeKit/CODE/apps/desktop/src-tauri/target/debug/bundle/macos/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.HnUbzz/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.f59WzA/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.2hjzU2/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.iZyYSZ/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.juiXw5/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.g2q1HU/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.4AyVFB/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.cnURhT/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.62y8ID/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.ZmHZmK/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.4sBAsI/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.pbioBP/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.n6FQ3p/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.R6PN8Q/ForgeKit Studio.app",
+      "returncode": 0
+    },
+    {
+      "path": "/Volumes/dmg.eJQvGg/ForgeKit Studio.app",
+      "returncode": 0
+    }
+  ],
+  "databaseBackupsPreservedCount": 24,
+  "planned": [
+    {
+      "path": "/Users/ariardianto/Documents/ForgeKIT/CODE/.forgekit-rebuild/build/apps/desktop/src-tauri/target/release/bundle/macos/ForgeKit Studio.app",
+      "version": "0.1.23",
+      "executable": "forgekit-desktop",
+      "modified": 1793421178.3958085,
+      "keep": false,
+      "executableSha256": "1cbd8477c81122814135d78cbc32576cfcf1ca0e522d61299ca0a67b5401d53b",
+      "inode": 184451764
+    },
+    {
+      "path": "/Users/ariardianto/Documents/ForgeKIT/CODE/apps/desktop/src-tauri/target/release/bundle/macos/ForgeKit Studio.app",
+      "version": "0.1.29",
+      "executable": "forgekit-desktop",
+      "modified": 1793539618.4084492,
+      "keep": false,
+      "executableSha256": "a1ee366ec26069bffba7f86c355f6f76b0692688043960384049fa2b31003a33",
+      "inode": 185032873
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-10-31-continuation-1793416727359715000/ForgeKit Studio 0.1.19.app",
+      "version": "0.1.19",
+      "executable": "forgekit-desktop",
+      "modified": 1793371507.1797588,
+      "keep": false,
+      "executableSha256": "06ac35606434f5de2df9cc56e09725a56e2883f894bfc332faec0c32ac477fba",
+      "inode": 183745305
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-10-31-explorer-card-1793419981120959000/ForgeKit Studio 0.1.21.app",
+      "version": "0.1.21",
+      "executable": "forgekit-desktop",
+      "modified": 1793419337.22806,
+      "keep": false,
+      "executableSha256": "138636fcf39f54098166b2130546394fb28f2fe7e3aa9d39fbcb23a12799692f",
+      "inode": 184415816
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-10-31-layout-1793419266011854000/ForgeKit Studio 0.1.20.app",
+      "version": "0.1.20",
+      "executable": "forgekit-desktop",
+      "modified": 1793416753.7533855,
+      "keep": false,
+      "executableSha256": "38839497bd13925ae5bb51a56ab1347f95d841be4e5782922d2de82851edb669",
+      "inode": 184380562
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-10-31-settings-1793421117886887000/ForgeKit Studio 0.1.22.app",
+      "version": "0.1.22",
+      "executable": "forgekit-desktop",
+      "modified": 1793420029.572225,
+      "keep": false,
+      "executableSha256": "5fb4563899f442f4a9421dfa54ddd9c98a4f0ff66e17877ca24611bf75193a1f",
+      "inode": 184441499
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-blender-preview-studio-install-1793539197919228000/ForgeKit Studio 0.1.28.app",
+      "version": "0.1.28",
+      "executable": "forgekit-desktop",
+      "modified": 1793534690.2811236,
+      "keep": false,
+      "executableSha256": "d5f19889583dd852893b9f7a42b9a53db5174e3ff1ca305b70d244039b541fd4",
+      "inode": 184986690
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-blender-preview-studio-install-1793539759120402000/ForgeKit Studio 0.1.29.app",
+      "version": "0.1.29",
+      "executable": "forgekit-desktop",
+      "modified": 1793539036.9620376,
+      "keep": false,
+      "executableSha256": "f3a4153f0cad206c049be6cd3a6e3ff8cff15ab440bb86177b5a63b8207003f0",
+      "inode": 185030698
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-general-guides-install-1793530160238870000/ForgeKit Studio 0.1.25.app",
+      "version": "0.1.25",
+      "executable": "forgekit-desktop",
+      "modified": 1793528860.654019,
+      "keep": false,
+      "executableSha256": "4f78ed597a38eed1b23cbec9915a3883e6296b63dc8a45206334c4ec5d35b66d",
+      "inode": 184905219
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-model3d-quality-install-1793532486810993000/ForgeKit Studio 0.1.26.app",
+      "version": "0.1.26",
+      "executable": "forgekit-desktop",
+      "modified": 1793530122.819336,
+      "keep": false,
+      "executableSha256": "0fbca95e81b4c04095de9b92c650c398f0e4d3cb7ab36d895f08ff9d33e99d3e",
+      "inode": 184926378
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-obsidian-1793517525714488000/ForgeKit Studio 0.1.23.app",
+      "version": "0.1.23",
+      "executable": "forgekit-desktop",
+      "modified": 1793421178.3958085,
+      "keep": false,
+      "executableSha256": "1cbd8477c81122814135d78cbc32576cfcf1ca0e522d61299ca0a67b5401d53b",
+      "inode": 184452418
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-obsidian-1793517525714488000/candidate-before-editors.app",
+      "version": "0.1.24",
+      "executable": "forgekit-desktop",
+      "modified": 1793518699.7978492,
+      "keep": false,
+      "executableSha256": "0662ff14a00ab4931c2574f72113d59989a8fad6f4f0b073c18db82f979ebf07",
+      "inode": 184811628
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-obsidian-1793517525714488000/candidate-before-ipc.app",
+      "version": "0.1.24",
+      "executable": "forgekit-desktop",
+      "modified": 1793517633.946779,
+      "keep": false,
+      "executableSha256": "07e2c2ba88b64b080210dbd1f3ecaa92f8cb4a07a6e2aa5d441994cf83a222bb",
+      "inode": 184807131
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-partial-review-1793528607764955000/ForgeKit Studio 0.1.24.app",
+      "version": "0.1.24",
+      "executable": "forgekit-desktop",
+      "modified": 1793519196.724847,
+      "keep": false,
+      "executableSha256": "b53765fc511ae678f90e5140474d59a7fda4c3b783e0a83e8cc94fa340cade4d",
+      "inode": 184817792
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-partial-review-1793528879001240000/ForgeKit Studio 0.1.25.app",
+      "version": "0.1.25",
+      "executable": "forgekit-desktop",
+      "modified": 1793528548.1555848,
+      "keep": false,
+      "executableSha256": "76ff5bff6a0eb59bd0050430b0ebe9c4d6afc470ac9e21ea95bb3c1fe3e8e1a4",
+      "inode": 184900687
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-reference-blender-install-1793534971732459000/ForgeKit Studio 0.1.27.app",
+      "version": "0.1.27",
+      "executable": "forgekit-desktop",
+      "modified": 1793532376.1171556,
+      "keep": false,
+      "executableSha256": "6f67d3f4a2dbbc47970bc8c3cfea7eb0d859d979269966ff25d839fd80ae3547",
+      "inode": 184958623
+    }
+  ],
+  "registeredBefore": [
+    {
+      "path": "/Volumes/dmg.BAtcm5/ForgeKit Studio.app",
+      "version": "0.1.0",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.KN5ySv/ForgeKit Studio.app",
+      "version": "0.1.0",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.GvdRPa/ForgeKit Studio.app",
+      "version": "0.1.5",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.FNoRby/ForgeKit Studio.app",
+      "version": "0.1.0",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.4XBpK9/ForgeKit Studio.app",
+      "version": "0.1.0",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.BB4hlI/ForgeKit Studio.app",
+      "version": "0.1.0",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.GrUb2M/ForgeKit Studio.app",
+      "version": "0.1.0",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.ahdirT/ForgeKit Studio.app",
+      "version": "0.1.0",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.fQ2fJW/ForgeKit Studio.app",
+      "version": "0.1.0",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.ZMm44z/ForgeKit Studio.app",
+      "version": "0.1.8",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.uPEaJI/ForgeKit Studio.app",
+      "version": "0.1.9",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.65KZp1/ForgeKit Studio.app",
+      "version": "0.1.9",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.nL2wrC/ForgeKit Studio.app",
+      "version": "0.1.9",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.hs7b09/ForgeKit Studio.app",
+      "version": "0.1.0",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.dCt7Cy/ForgeKit Studio.app",
+      "version": "0.1.9",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.eI6Dts/ForgeKit Studio.app",
+      "version": "0.1.10",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.LQB4GQ/ForgeKit Studio.app",
+      "version": "0.1.0",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.9KW4gi/ForgeKit Studio.app",
+      "version": "0.1.10",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.1aG7Kp/ForgeKit Studio.app",
+      "version": "0.1.0",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.X5fjfu/ForgeKit Studio.app",
+      "version": "0.1.0",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.5rQeAv/ForgeKit Studio.app",
+      "version": "0.1.11",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.1esL52/ForgeKit Studio.app",
+      "version": "0.1.12",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.E5Zh1S/ForgeKit Studio.app",
+      "version": "0.1.0",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.PuChLA/ForgeKit Studio.app",
+      "version": "0.1.13",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.2VEGqX/ForgeKit Studio.app",
+      "version": "0.1.14",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.4Tbulv/ForgeKit Studio.app",
+      "version": "0.1.15",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.8flxIa/ForgeKit Studio.app",
+      "version": "0.1.0",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.do2BQC/ForgeKit Studio.app",
+      "version": "0.1.16",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.n2Ie6H/ForgeKit Studio.app",
+      "version": "0.1.0",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.8S3YD8/ForgeKit Studio.app",
+      "version": "0.1.17",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.QSbYH1/ForgeKit Studio.app",
+      "version": "0.1.18",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.gZxdAq/ForgeKit Studio.app",
+      "version": "0.1.18",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.wTjlhR/ForgeKit Studio.app",
+      "version": "0.1.0",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.BSC6Pi/ForgeKit Studio.app",
+      "version": "0.1.19",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.lxwn1M/ForgeKit Studio.app",
+      "version": "0.1.0",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.UBMcG8/ForgeKit Studio.app",
+      "version": "0.1.0",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.QKcyhC/ForgeKit Studio.app",
+      "version": "0.1.0",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.dgiKIA/ForgeKit Studio.app",
+      "version": "0.1.20",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.x62eRJ/ForgeKit Studio.app",
+      "version": "0.1.0",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.KP1Wgs/ForgeKit Studio.app",
+      "version": "0.1.20",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.72CcD4/ForgeKit Studio.app",
+      "version": "0.1.20",
+      "exists": false
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-10-31-continuation-1793416727359715000/ForgeKit Studio 0.1.19.app",
+      "version": "0.1.19",
+      "exists": true
+    },
+    {
+      "path": "/Volumes/dmg.jERm9I/ForgeKit Studio.app",
+      "version": "0.1.21",
+      "exists": false
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-10-31-layout-1793419266011854000/ForgeKit Studio 0.1.20.app",
+      "version": "0.1.20",
+      "exists": true
+    },
+    {
+      "path": "/Volumes/dmg.ZCu9pA/ForgeKit Studio.app",
+      "version": "0.1.22",
+      "exists": false
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-10-31-explorer-card-1793419981120959000/ForgeKit Studio 0.1.21.app",
+      "version": "0.1.21",
+      "exists": true
+    },
+    {
+      "path": "/Users/ariardianto/Documents/ForgeKIT/CODE/.forgekit-rebuild/build/apps/desktop/src-tauri/target/release/bundle/macos/ForgeKit Studio.app",
+      "version": "0.1.23",
+      "exists": true
+    },
+    {
+      "path": "/Volumes/dmg.DdYqAA/ForgeKit Studio.app",
+      "version": "0.1.23",
+      "exists": false
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-10-31-settings-1793421117886887000/ForgeKit Studio 0.1.22.app",
+      "version": "0.1.22",
+      "exists": true
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-obsidian-1793517525714488000/ForgeKit Studio 0.1.23.app",
+      "version": "0.1.23",
+      "exists": true
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-obsidian-1793517525714488000/candidate-before-ipc.app",
+      "version": "0.1.24",
+      "exists": true
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-obsidian-1793517525714488000/candidate-before-editors.app",
+      "version": "0.1.24",
+      "exists": true
+    },
+    {
+      "path": "/Volumes/dmg.x24GVf/ForgeKit Studio.app",
+      "version": "0.1.0",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.EQWyrH/ForgeKit Studio.app",
+      "version": "0.1.0",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.m5XGDX/ForgeKit Studio.app",
+      "version": "0.1.0",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.XsXu42/ForgeKit Studio.app",
+      "version": "0.1.0",
+      "exists": false
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-partial-review-1793528607764955000/ForgeKit Studio 0.1.24.app",
+      "version": "0.1.24",
+      "exists": true
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-partial-review-1793528879001240000/ForgeKit Studio 0.1.25.app",
+      "version": "0.1.25",
+      "exists": true
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-general-guides-install-1793530160238870000/ForgeKit Studio 0.1.25.app",
+      "version": "0.1.25",
+      "exists": true
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-model3d-quality-install-1793532486810993000/ForgeKit Studio 0.1.26.app",
+      "version": "0.1.26",
+      "exists": true
+    },
+    {
+      "path": "/Volumes/dmg.zDCSHi/ForgeKit Studio.app",
+      "version": "0.1.0",
+      "exists": false
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-reference-blender-install-1793534971732459000/ForgeKit Studio 0.1.27.app",
+      "version": "0.1.27",
+      "exists": true
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-blender-preview-studio-install-1793539197919228000/ForgeKit Studio 0.1.28.app",
+      "version": "0.1.28",
+      "exists": true
+    },
+    {
+      "path": "/Volumes/dmg.dHTEfG/ForgeKit Studio.app",
+      "version": "0.1.0",
+      "exists": false
+    },
+    {
+      "path": "/Users/ariardianto/Documents/ForgeKIT/CODE/apps/desktop/src-tauri/target/release/bundle/macos/ForgeKit Studio.app",
+      "version": "0.1.29",
+      "exists": true
+    },
+    {
+      "path": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-blender-preview-studio-install-1793539759120402000/ForgeKit Studio 0.1.29.app",
+      "version": "0.1.29",
+      "exists": true
+    },
+    {
+      "path": "/Applications/ForgeKit Studio.app",
+      "version": "0.1.29",
+      "exists": true
+    },
+    {
+      "path": "/Volumes/dmg.QZ5jox/ForgeKit Studio.app",
+      "version": "0.1.0",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.WkWj9H/ForgeKit Studio.app",
+      "version": "0.1.0",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.K1F4he/ForgeKit Studio.app",
+      "version": "0.1.0",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.jLx1gF/ForgeKit Studio.app",
+      "version": "0.1.0",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.vMfuXh/ForgeKit Studio.app",
+      "version": "0.1.0",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.0geeye/ForgeKit Studio.app",
+      "version": "0.1.0",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.t0Gah8/ForgeKit Studio.app",
+      "version": "0.1.0",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.DMkNG2/ForgeKit Studio.app",
+      "version": "0.1.0",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.O6SNAi/ForgeKit Studio.app",
+      "version": "0.1.0",
+      "exists": false
+    },
+    {
+      "path": "/Users/ariardianto/Documents/Codex/2026-10-28/https-chatgpt-com-s-cx-6ae17a5323b88191b2592bae190e0bbd/outputs/ForgeKit/CODE/apps/desktop/src-tauri/target/debug/bundle/macos/ForgeKit Studio.app",
+      "version": "0.1.0",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.HnUbzz/ForgeKit Studio.app",
+      "version": "0.1.0",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.f59WzA/ForgeKit Studio.app",
+      "version": "0.1.1",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.2hjzU2/ForgeKit Studio.app",
+      "version": "0.1.1",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.iZyYSZ/ForgeKit Studio.app",
+      "version": "0.1.2",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.juiXw5/ForgeKit Studio.app",
+      "version": "0.1.2",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.g2q1HU/ForgeKit Studio.app",
+      "version": "0.1.2",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.4AyVFB/ForgeKit Studio.app",
+      "version": "0.1.2",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.cnURhT/ForgeKit Studio.app",
+      "version": "0.1.2",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.62y8ID/ForgeKit Studio.app",
+      "version": "0.1.3",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.ZmHZmK/ForgeKit Studio.app",
+      "version": "0.1.3",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.4sBAsI/ForgeKit Studio.app",
+      "version": "0.1.4",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.pbioBP/ForgeKit Studio.app",
+      "version": "0.1.4",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.n6FQ3p/ForgeKit Studio.app",
+      "version": "0.1.4",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.R6PN8Q/ForgeKit Studio.app",
+      "version": "0.1.4",
+      "exists": false
+    },
+    {
+      "path": "/Volumes/dmg.eJQvGg/ForgeKit Studio.app",
+      "version": "0.1.4",
+      "exists": false
+    }
+  ],
+  "keptAfter": {
+    "path": "/Applications/ForgeKit Studio.app",
+    "version": "0.1.29",
+    "executableSha256": "a1ee366ec26069bffba7f86c355f6f76b0692688043960384049fa2b31003a33",
+    "signature": "verified"
+  },
+  "dataAfter": {
+    "tables": {
+      "chat_thread": {
+        "count": 14,
+        "sha256": "34ab7781e380ca98ddc06bfae085ac306686ddf6f47f6627b917ebcf454ac85e"
+      },
+      "chat_message": {
+        "count": 35,
+        "sha256": "8633fe3ed3c548e6f03300b0a116f8d4863f261a3f6964b673c45e56fc5af68a"
+      },
+      "gfx_version": {
+        "count": 4,
+        "sha256": "02297e3ef75c8a2dab7383e175f3d132fa3e0dea6a64a35c7f0bad2395ed91c4"
+      },
+      "sfx_version": {
+        "count": 1,
+        "sha256": "c32cdc8769a869f44cae2c303198f14b86ae5c4843c76793db0ab0285fea5433"
+      },
+      "image_version": {
+        "count": 1,
+        "sha256": "a9d18e98c777592cfc5888d59e5a483b87861667c811ce7decf620a24a6b5a3f"
+      },
+      "creative_version": {
+        "count": 2,
+        "sha256": "f87d9bd3167156fcfac2d0cdd55eb4800906b8962c4d9244778ce22a2e97007e"
+      }
+    },
+    "integrity": "ok"
+  },
+  "dataUnchanged": true,
+  "oldPathsRemoved": true,
+  "completedAt": "2026-11-01T20:37:24+0700",
+  "trashStatusNote": "Each bundle was moved with /usr/bin/trash and verified there immediately. At final check the Trash directory was empty; this cleanup never requested emptying it."
+}

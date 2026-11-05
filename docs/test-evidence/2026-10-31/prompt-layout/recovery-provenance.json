@@ -1,0 +1,10 @@
+{
+  "apps/desktop/src/features/shared/ReferenceImages.tsx": {
+    "restoredFrom": ".forgekit-rebuild/build/apps/desktop/src/features/shared/ReferenceImages.tsx",
+    "recoveryChanges": "Custom attachment picker UI only"
+  },
+  "apps/desktop/src/services/references.ts": {
+    "restoredFrom": ".forgekit-rebuild/build/apps/desktop/src/services/references.ts",
+    "recoveryChanges": "No changes"
+  }
+}

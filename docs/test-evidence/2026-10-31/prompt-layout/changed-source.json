@@ -1,0 +1,8 @@
+{
+  "apps/desktop/src/features/create/CreativeControls.tsx": "9aa8871b8888e8eff86d347eea9428a4143744c6b74997f938249191263569b3",
+  "apps/desktop/src/features/shared/EditorAiPromptBar.tsx": "0287bf60640db7621b51fa7ec524d22af904073c9c461ee1572e54db58b1558a",
+  "apps/desktop/src/features/shared/ReferenceImages.tsx": "28d9620ec925c7fe8e10060e0ef0b927a2886ecefad703e5e753ec82a35664ca",
+  "apps/desktop/src/services/references.ts": "a33f6ab8c5c04843c65c10ef3dac815fae7bf19d4e93e014c4cb3d70c6255387",
+  "apps/desktop/src/app/workspace-layout.css": "f51c689f81ecacc2f160b680593c862d1c67c38ba9a755bb0fc9604abe88e1c0",
+  "scripts/verify_prompt_layout.cjs": "1f2d9f5a7092c49859dd541e3fa3206afbd3dcdc82a92bfa4d00bf9a776c590b"
+}

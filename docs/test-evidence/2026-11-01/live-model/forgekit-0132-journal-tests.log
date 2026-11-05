@@ -1,0 +1,34 @@
+   Compiling forgekit-desktop v0.1.32 (/Users/ariardianto/Documents/ForgeKIT/CODE/apps/desktop/src-tauri)
+warning: static `PROCESSING` is never used
+ --> src/attachments.rs:6:8
+  |
+6 | static PROCESSING: std::sync::Mutex<()> = std::sync::Mutex::new(());
+  |        ^^^^^^^^^^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: static `REFRESH` is never used
+  --> src/browser_auth.rs:27:8
+   |
+27 | static REFRESH: Mutex<()> = Mutex::new(());
+   |        ^^^^^^^
+
+warning: function `access_token` is never used
+   --> src/browser_auth.rs:180:8
+    |
+180 | pub fn access_token(key_ref: &str, raw: String) -> Result<String, String> {
+    |        ^^^^^^^^^^^^
+
+warning: `forgekit-desktop` (lib test) generated 3 warnings
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 21.08s
+     Running unittests src/lib.rs (target/debug/deps/forgekit_desktop_lib-fdf6bdf6782279ab)
+
+running 5 tests
+test task_journal::tests::not_executed_pre_dispatch_failure_allows_retry_without_locking ... ok
+test task_journal::tests::agent_operations_pin_target_cache_completed_calls_and_never_replay_unknown_writes ... ok
+test task_journal::tests::tool_receipts_survive_failure_restart_retry_and_thread_deletion ... ok
+test task_journal::tests::creative_provider_phases_allow_generation_and_account_retry_but_not_terminal_reentry ... ok
+test task_journal::tests::chat_journal_retries_once_replays_receipts_and_recovers_restart ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 152 filtered out; finished in 0.11s
+

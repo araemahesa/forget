@@ -1,0 +1,20 @@
+{
+  "checkedAt": "2026-10-31T04:14:54.728867+00:00",
+  "target": "aarch64-apple-darwin",
+  "version": "0.1.22",
+  "signature": "ad-hoc",
+  "notarized": false,
+  "app": "/Users/ariardianto/Documents/ForgeKIT/CODE/.forgekit-rebuild/build/apps/desktop/src-tauri/target/release/bundle/macos/ForgeKit Studio.app",
+  "dmg": "/Users/ariardianto/Documents/ForgeKIT/CODE/.forgekit-rebuild/build/apps/desktop/src-tauri/target/release/bundle/dmg/ForgeKit Studio_0.1.22_aarch64.dmg",
+  "dmgBytes": 8917528,
+  "dmgSha256": "b2ade039a851bca071949142bf5aa0b17ba5f1ef557e38e1854d02bc52f46be7",
+  "executableBytes": 24093632,
+  "executableSha256": "5fb4563899f442f4a9421dfa54ddd9c98a4f0ff66e17877ca24611bf75193a1f",
+  "appCodesign": true,
+  "dmgCrc": true,
+  "mountedCodesign": true,
+  "mountedExecutableMatches": true,
+  "acceptanceHarnessMarkersAbsent": true,
+  "architecture": "/Users/ariardianto/Documents/ForgeKIT/CODE/.forgekit-rebuild/build/apps/desktop/src-tauri/target/release/bundle/macos/ForgeKit Studio.app/Contents/MacOS/forgekit-desktop: Mach-O 64-bit executable arm64",
+  "cleanMachineInstallTested": false
+}

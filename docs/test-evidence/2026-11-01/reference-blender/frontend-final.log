@@ -1,0 +1,16 @@
+$ vitest run --maxWorkers=2
+
+ RUN  v5.0.5 /Users/ariardianto/Documents/ForgeKIT/CODE/apps/desktop
+
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+
+ Test Files  57 passed (57)
+      Tests  314 passed (314)
+   Start at  18:58:24
+   Duration  37.53s (tests 46%, environment 40%, setup 10%, import 3%, transform 1%)
+
+Environment  jsdom was created 57 times · 27.24s total, 40% of tracked time
+             create it once per worker with pool: 'vmThreads' (keeps per-file isolation) or isolate: false (shares it across files)
+             learn more: https://vitest.dev/guide/improving-performance#test-environments
+

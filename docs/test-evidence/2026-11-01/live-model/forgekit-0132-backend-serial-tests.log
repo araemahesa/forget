@@ -1,0 +1,185 @@
+warning: static `PROCESSING` is never used
+ --> src/attachments.rs:6:8
+  |
+6 | static PROCESSING: std::sync::Mutex<()> = std::sync::Mutex::new(());
+  |        ^^^^^^^^^^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: static `REFRESH` is never used
+  --> src/browser_auth.rs:27:8
+   |
+27 | static REFRESH: Mutex<()> = Mutex::new(());
+   |        ^^^^^^^
+
+warning: function `access_token` is never used
+   --> src/browser_auth.rs:180:8
+    |
+180 | pub fn access_token(key_ref: &str, raw: String) -> Result<String, String> {
+    |        ^^^^^^^^^^^^
+
+warning: `forgekit-desktop` (lib test) generated 3 warnings
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.77s
+     Running unittests src/lib.rs (target/debug/deps/forgekit_desktop_lib-fdf6bdf6782279ab)
+
+running 157 tests
+test agent::adaptive_tests::aliases_and_unknown_tasks_remain_general ... ok
+test agent::adaptive_tests::mixed_prompt_uses_cross_feature_guides_and_identical_receipts ... ok
+test agent::adaptive_tests::ordinary_model_question_does_not_request_geometry_or_scene_work ... ok
+test agent::intent_tests::chat_selects_cross_domain_guides_and_records_the_same_hashes ... ok
+test agent::language_intent_tests::english_requests_route_to_the_same_domain_skills ... ok
+test agent::tests::bounded_output_preserves_small_errors_and_truncates_utf8_safely ... ok
+test agent::tests::cross_domain_skills_selected_for_chat_prompts ... ok
+test agent::tests::skill_registry_has_all_twenty_four_skills_with_valid_hashes ... ok
+test ai::tests::authorized_keychain_reads_remain_scoped_to_the_selected_account ... ok
+test ai::tests::curl_transport_round_trip_and_truncated_stream ... ok
+test ai::tests::http_errors_preserve_retry_after_without_rotating_billing_or_safety ... ok
+test ai::tests::protocols_have_distinct_requests_and_secure_endpoints ... ok
+test ai::tests::reasoning_selection_reaches_each_protocol ... ok
+test ai::tests::reference_png_larger_than_old_text_cap_reaches_selected_provider ... ok
+test ai::tests::stream_completion_requires_native_terminal_events ... ok
+test ai::tests::stream_lease_blocks_across_processes_and_releases ... ok
+test ai::tests::stream_lease_blocks_overlap_and_cancellation_survives_before_spawn ... ok
+test ai::tests::test_ai_profiles_crud ... ok
+test ai::tests::test_connection_profiles_and_fallback_lifecycle ... ok
+test ai::tests::test_thread_and_messages_lifecycle ... ok
+test ai::tests::tool_loop_transport_enforces_budget_replay_and_cancellation ... ok
+test ai_protocol::stream_failure_tests::rate_limits_remain_routable_for_both_stream_error_shapes ... ok
+test ai_protocol::tests::blender_renders_are_real_image_blocks_and_never_duplicated_in_tool_text ... ok
+test ai_protocol::tests::malformed_or_unauthorized_tool_events_fail_closed ... ok
+test ai_protocol::tests::native_tools_round_trip_preserves_provider_protocol_and_reasoning ... ok
+test ai_protocol::tests::output_limit_refusal_and_incomplete_have_distinct_categories ... ok
+test attachments::local_acceptance::extracts_real_pdf_voice_video_and_geometry_for_the_provider ... ignored, Requires installed local decoders and FORGEKIT_ATTACHMENT_FIXTURES
+test attachments::tests::selected_text_is_content_not_executable_and_limits_are_enforced ... ok
+test blender::live_tests::installed_blender_builds_reopenable_files_and_checks_cached_integrity ... ignored, Requires an installed Blender; generates actual files in a temporary isolated workspace
+test blender::tests::model_tool_rejects_code_paths_and_degenerate_profiles_before_dispatch ... ok
+test blender_insert::tests::generated_chunks_preserve_geometry_and_do_not_embed_code_from_names ... ok
+test blender_insert::tests::import_retains_upload_receipts_and_stops_on_unknown_results ... ok
+test browser_auth::tests::host_id_uses_supported_uuid_uri_and_rejects_legacy_base64 ... ok
+test browser_auth::tests::identity_login_does_not_grant_inference ... ok
+test browser_auth::tests::public_client_callbacks_bind_state_host_and_issuer ... ok
+test browser_auth::tests::rejects_unrelated_or_ambiguous_callbacks ... ok
+test codex_auth::tests::managed_profile_reference_does_not_require_a_keychain_marker ... ok
+test codex_auth::tests::managed_profile_still_requires_valid_tokens_and_rejects_links ... ok
+test codex_auth::tests::models_and_expiry_are_taken_from_runtime_not_hardcoded ... ok
+test codex_auth::tests::obsolete_login_methods_cannot_be_requested_by_old_clients ... ok
+test codex_auth::tests::rejects_foreign_paths_and_login_destinations ... ok
+test codex_auth::tests::rpc_is_isolated_correlates_ids_bounds_errors_and_reaps_process ... ok
+test connections::tests::catalog_transport_rejects_html_redirects_and_denied_access ... ok
+test connections::tests::chatgpt_and_platform_catalogs_use_distinct_shapes ... ok
+test connections::tests::official_providers_cannot_be_converted_to_router_connections ... ok
+test connections::tests::rejects_secret_urls_and_unproven_catalogs ... ok
+test connectors::tests::test_connectors_lifecycle ... ok
+test context::tests::bounded_tree_excludes_source_attributes_and_redacts_obvious_credentials ... ok
+test context::tests::snapshots_persist_check_integrity_and_expire_before_provider_request ... ok
+test creative::application_tests::application_requires_valid_recipe_and_never_invents_uploads ... ok
+test creative::model_detail_tests::model_detail_budget_matches_storage_and_rejects_invalid_surface_before_dispatch ... ok
+test creative::model_detail_tests::tiny_parts_curved_resolution_and_budgets_are_bounded ... ok
+test creative::tests::blender_tool_save_requires_matching_dispatched_provider_call ... ok
+test creative::tests::domain_migration_preserves_parent_export_and_rejects_orphans ... ok
+test creative::tests::every_recipe_domain_survives_save_restart_and_backup ... ok
+test creative::tests::local_prompts_build_distinct_specs_and_reject_unsupported_intent ... ok
+test creative::tests::music_and_camera_plans_have_real_content_and_validate_exports ... ok
+test creative::tests::provider_artifact_requires_matching_validated_checkpoint ... ok
+test creative::tests::validators_reject_ambiguous_or_unbounded_geometry_and_motion ... ok
+test creative::tests::versions_journal_restart_integrity_and_backup_preserve_old_schema ... ok
+test creative::tests::vfx_fade_and_gui_parent_graph_are_validated_without_changing_legacy_documents ... ok
+test creator_workspace::tests::test_json_values_equal_numbers ... ok
+test creator_workspace::tests::test_json_values_equal_objects ... ok
+test discord::tests::only_trusted_avatar_urls_and_public_identity ... ok
+test editor_ai::tests::extracts_colors_and_clamps_ranges ... ok
+test editor_ai::tests::local_editor_recipe_generates_valid_specs_for_all_five_kinds ... ok
+test explorer::live_acceptance::live_explorer_large_deep_map ... ignored, requires only the explicitly named local ForgeKitAcceptance.rbxlx fixture
+test explorer::tests::bounded_query_is_data_not_code ... ok
+test gfx_assets::tests::xml_accepts_legal_unicode_and_escaped_entities ... ok
+test gfx_assets::tests::xml_rejects_illegal_literal_text_and_attributes ... ok
+test gfx_assets::tests::xml_rejects_illegal_numeric_references ... ok
+test gfx_assets::tests::xml_rejects_references_outside_root ... ok
+test google_auth::tests::rejects_malformed_registration_and_ungranted_scope ... ok
+test images::tests::cancellation_and_mismatched_inputs_cannot_commit_image_versions ... ok
+test images::tests::drafts_library_and_task_receipts_survive_restart_and_backup ... ok
+test images::tests::image_boundary_rejects_invalid_specs_svg_png_and_missing_maps ... ok
+test images::tests::image_restart_exports_backup_restore_and_integrity ... ok
+test images::tests::image_write_failure_rolls_back_and_keeps_existing_files ... ok
+test luau_checks::tests::installed_analyzers_parse_without_executing_source ... ok
+test luau_checks::tests::rejects_unbounded_or_foreign_inputs ... ok
+test model_catalog::tests::reads_account_capabilities_and_excludes_hidden_models ... ok
+test model_catalog::tests::respects_explicit_empty_capabilities_and_anthropic_flags ... ok
+test model_catalog::tests::selection_is_scoped_to_account_and_supported_efforts ... ok
+test model_catalog::tests::unknown_models_stay_auto_and_invalid_ids_are_rejected ... ok
+test model_profile::tests::custom_mesh_and_lathe_match_frontend_cases ... ok
+test model_profile::tests::frontend_and_native_share_profile_acceptance_cases ... ok
+test obsidian::tests::adaptive_vault_routes_mixed_requests_without_loading_projects ... ignored, Reads the explicitly configured local vault; no provider/network
+test obsidian::tests::configured_vault_supports_every_prompt_domain ... ignored, Reads the explicitly configured local vault; no provider/network
+test obsidian::tests::context_is_selected_hashed_and_refreshed ... ok
+test obsidian::tests::native_context_commands_are_scoped_to_main_window ... ok
+test obsidian::tests::registry_versions_match_bundled_guides ... ok
+test obsidian::tests::rejects_escape_and_oversize_and_symlink ... ok
+test provider_usage::exhaustion_tests::exhausted_limits_are_fresh_model_scoped_and_reset_aware ... ok
+test provider_usage::tests::accepts_real_zero_and_legacy_payload_but_rejects_bad_values ... ok
+test provider_usage::tests::account_selection_requires_token_workspace_claim ... ok
+test provider_usage::tests::api_headers_are_account_scoped_and_not_plan_windows ... ok
+test provider_usage::tests::failed_refresh_preserves_observation_time_and_reports_actual_failure ... ok
+test provider_usage::tests::metadata_limits_do_not_claim_to_be_selected_model_limits ... ok
+test provider_usage::tests::reset_headers_require_a_valid_provider_duration ... ok
+test provider_usage::tests::uses_multi_bucket_actual_duration_and_nulls_without_fabricating_zero ... ok
+test provider_usage_http::tests::handles_proxy_blocks_and_discards_secrets_and_untrusted_errors ... ok
+test provider_usage_http::tests::metadata_get_keeps_auth_out_of_url_and_does_not_follow_redirects ... ok
+test reference_model::tests::actual_render_feedback_revises_once_and_resumes_same_checkpoint ... ignored, Actual Blender renders plus local HTTP fixture; no external provider, no user database or Studio
+test reference_model::tests::review_contract_rejects_unsubstantiated_acceptance_and_invalid_geometry ... ok
+test references::persistence_tests::reference_bytes_survive_chat_restart_and_change_request_identity ... ok
+test references::tests::images_are_not_silently_dropped_and_do_not_consume_text_budget ... ok
+test routing::keychain_failure_tests::os_authorization_does_not_revoke_the_provider_account ... ok
+test routing::tests::exhausted_selected_account_is_skipped_and_other_providers_are_never_used ... ok
+test routing::tests::fallback_is_bounded_scoped_and_cancelled ... ok
+test routing::tests::leases_are_atomic_and_release_capacity ... ok
+test sfx::tests::audio_draft_revision_and_save_receipt_are_atomic ... ok
+test sfx::tests::sfx_rejects_invalid_recipe_and_malformed_wav ... ok
+test sfx::tests::sfx_restart_export_backup_and_tampering ... ok
+test storage_tests::backup_includes_committed_wal_draft_without_changing_active_data ... ok
+test storage_tests::both_schema14_variants_upgrade_without_losing_accounts_or_history ... ok
+test storage_tests::cancelled_save_writes_no_version_or_artifact ... ok
+test storage_tests::cancelled_task_cannot_become_succeeded ... ok
+test storage_tests::draft_preserves_invalid_fields_and_rejects_stale_revision_across_connections ... ok
+test storage_tests::future_database_schema_is_rejected_without_applying_migrations ... ok
+test storage_tests::rejects_parent_and_absolute_paths ... ok
+test storage_tests::response_read_failure_rolls_back_version_without_deleting_committed_artifacts ... ok
+test storage_tests::saves_and_reopens_gfx_version ... ok
+test storage_tests::stores_both_artifacts_reopens_and_detects_tampering ... ok
+test storage_tests::task_history_survives_restart_and_reports_interrupted_work ... ok
+test storage_tests::writes_artifact_atomically_and_returns_hash ... ok
+test storage_tests::xml_accepts_legal_brief_text_with_non_bmp_characters ... ok
+test storage_tests::xml_rejects_illegal_brief_text_before_persistence ... ok
+test studio::tests::agent_catalog_removes_target_and_only_exposes_available_scoped_tools ... ok
+test studio::tests::agent_injects_locked_target_forces_edit_and_rejects_scope_override ... ok
+test studio::tests::decodes_empty_discovery_and_rejects_tool_errors ... ok
+test studio::tests::epochs_freeze_detectable_place_mode_and_reconnect_changes_and_fail_closed_writes ... ok
+test studio::tests::framing_rejects_invalid_oversized_and_unterminated_messages ... ok
+test studio::tests::mode_and_structured_results_are_strict_and_remote_epochs_are_never_trusted ... ok
+test studio::tests::permanent_writes_require_verified_edit_before_dispatch ... ok
+test studio::tests::rejects_mutation_and_bad_targets_before_starting_process ... ok
+test studio::tests::stdio_handles_server_ping_mismatch_timeout_and_reaps_child ... ok
+test supervisor::tests::account_switch_requires_rejected_request_without_candidate_or_effects ... ok
+test supervisor::tests::batch_admission_rejects_entire_oversize_batch_and_accounts_every_result ... ok
+test supervisor::tests::cancel_during_final_request_and_storage_failure_never_commit_or_dispatch ... ok
+test supervisor::tests::completed_writes_then_failed_final_resume_never_writes_again_even_new_ids ... ok
+test supervisor::tests::crash_after_dispatch_reconstructs_pending_results_without_replay ... ok
+test supervisor::tests::five_and_seven_tool_turns_reach_final_without_losing_transcript ... ok
+test supervisor::tests::identity_includes_account_model_effort_and_profile_revision ... ok
+test supervisor::tests::image_bytes_do_not_consume_the_text_context_budget_or_disable_recovery ... ok
+test supervisor::tests::known_pre_dispatch_failure_has_no_effect_and_same_intent_can_retry ... ok
+test supervisor::tests::limits_have_distinct_reasons_and_no_implicit_reset ... ok
+test supervisor::tests::model3d_request_uses_longer_bounded_budget_without_replaying_timeouts ... ok
+test supervisor::tests::repeated_unchanged_observations_force_finalization ... ok
+test supervisor::tests::unknown_write_blocks_later_write_in_same_batch ... ok
+test supervisor::tests::write_intent_survives_new_call_id_and_json_formatting ... ok
+test task_activity::tests::only_committed_task_can_emit_final_and_public_event_contains_no_provider_text ... ok
+test task_journal::tests::agent_operations_pin_target_cache_completed_calls_and_never_replay_unknown_writes ... ok
+test task_journal::tests::chat_journal_retries_once_replays_receipts_and_recovers_restart ... ok
+test task_journal::tests::creative_provider_phases_allow_generation_and_account_retry_but_not_terminal_reentry ... ok
+test task_journal::tests::not_executed_pre_dispatch_failure_allows_retry_without_locking ... ok
+test task_journal::tests::tool_receipts_survive_failure_restart_retry_and_thread_deletion ... ok
+test tools::tests::gateway_enforces_scope_schema_expiry_and_unambiguous_snapshot_references ... ok
+
+test result: ok. 151 passed; 0 failed; 6 ignored; 0 measured; 0 filtered out; finished in 6.06s
+

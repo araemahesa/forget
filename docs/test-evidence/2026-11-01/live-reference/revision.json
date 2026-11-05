@@ -1,0 +1,432 @@
+{
+  "task": {
+    "id": "79c1acb9-a6b7-42e5-8be7-0bdd42da1b5a",
+    "request_hash": "5dfd013e1962affc302652d4ebad0c383fdef3d17ae016709d8d07277e6827aa",
+    "status": "preview_ready",
+    "error": null,
+    "version_id": "creative-version-1793536997565-6",
+    "created_at": "1793536955274",
+    "updated_at": "1793536997574"
+  },
+  "parentVersionId": "creative-version-1793536619336-3",
+  "referenceNames": [
+    "view-front.png",
+    "view-perspective.png",
+    "view-right.png"
+  ],
+  "referenceHashes": [
+    "333a5123fa49975f9836adeaa2f42641c12d428e23174b73b9ad5616a39d134e",
+    "6681949c121d5f99eef9b85134255c62c992f362aa8d1c1e72b704d9a5c3afdc",
+    "42dade13e1cc29ebffdaffc750ad5680cfd9b116bd450b6fa7f399964878a6c9"
+  ],
+  "checkpoint": {
+    "fingerprint": "66f762a0cbc0862f8a5bfcc622003760f2d2b0a95bb7c48be21649f33bec3988",
+    "budget": {
+      "class": "complex",
+      "turns": 24,
+      "calls": 40,
+      "reserveTurns": 2,
+      "durationMs": 600000,
+      "requestSeconds": 120,
+      "contextBytes": 262144,
+      "outputTokens": 24576,
+      "totalOutputEstimate": 131072
+    },
+    "turns": 2,
+    "calls": 0,
+    "repairs": 0,
+    "phase": "reference_checked",
+    "validation": "passed",
+    "candidateHash": "53f4fd6fc923ab955d6b6ee257644fe512a7e37d272cdcb33883cb06d5614dc6",
+    "modelReview": {
+      "candidate": {
+        "kind": "model3d",
+        "recipe": {
+          "category": "prop",
+          "exportFormat": "blend",
+          "name": "Botol Biru dan Limas Asimetris",
+          "parts": [
+            {
+              "color": "#327BC4",
+              "id": "botol_biru",
+              "lathe": {
+                "points": [
+                  [
+                    0,
+                    -1
+                  ],
+                  [
+                    0.8,
+                    -1
+                  ],
+                  [
+                    1,
+                    -0.7
+                  ],
+                  [
+                    1,
+                    0.2
+                  ],
+                  [
+                    0.4,
+                    0.7
+                  ],
+                  [
+                    0.4,
+                    1
+                  ],
+                  [
+                    0,
+                    1
+                  ]
+                ]
+              },
+              "material": "Plastic",
+              "metalness": 0,
+              "name": "Botol Biru",
+              "opacity": 1,
+              "position": [
+                -2,
+                2,
+                0
+              ],
+              "primitive": "lathe",
+              "rotation": [
+                0,
+                0,
+                0
+              ],
+              "roughness": 0.5,
+              "segments": 64,
+              "size": [
+                2,
+                4,
+                2
+              ],
+              "smooth": true
+            },
+            {
+              "color": "#327BC4",
+              "id": "tetrahedron_asimetris",
+              "material": "Plastic",
+              "mesh": {
+                "faces": [
+                  [
+                    0,
+                    3,
+                    2,
+                    1
+                  ],
+                  [
+                    0,
+                    1,
+                    4
+                  ],
+                  [
+                    1,
+                    2,
+                    4
+                  ],
+                  [
+                    2,
+                    3,
+                    4
+                  ],
+                  [
+                    3,
+                    0,
+                    4
+                  ]
+                ],
+                "vertices": [
+                  [
+                    -1,
+                    -1,
+                    1
+                  ],
+                  [
+                    1,
+                    -1,
+                    1
+                  ],
+                  [
+                    1,
+                    -1,
+                    -1
+                  ],
+                  [
+                    -1,
+                    -1,
+                    -1
+                  ],
+                  [
+                    0.4,
+                    1,
+                    0
+                  ]
+                ]
+              },
+              "metalness": 0,
+              "name": "Limas Asimetris Biru",
+              "opacity": 1,
+              "position": [
+                2,
+                2,
+                0
+              ],
+              "primitive": "mesh",
+              "rotation": [
+                0,
+                0,
+                0
+              ],
+              "roughness": 0.5,
+              "size": [
+                2,
+                4,
+                2
+              ],
+              "smooth": true
+            }
+          ],
+          "seed": 20261101
+        }
+      },
+      "evaluations": [
+        {
+          "decision": "accept",
+          "differences": [],
+          "recipe": null,
+          "unseen": [
+            "Permukaan bawah alas dan seluruh sisi belakang tidak terlihat langsung pada render yang tersedia. Recipe memuat empat vertex alas, satu puncak bergeser, satu bidang alas dan empat sisi segitiga sebagai satu mesh tertutup.",
+            "Pemeriksaan ini membandingkan gambar yang diberikan dan struktur recipe; pembukaan ulang file .blend serta pengujian mesh aktual tidak dilakukan."
+          ]
+        }
+      ],
+      "pending": false,
+      "complete": true
+    }
+  },
+  "document": {
+    "kind": "model3d",
+    "recipe": {
+      "category": "prop",
+      "exportFormat": "blend",
+      "name": "Botol Biru dan Limas Asimetris",
+      "parts": [
+        {
+          "color": "#327BC4",
+          "id": "botol_biru",
+          "lathe": {
+            "points": [
+              [
+                0,
+                -1
+              ],
+              [
+                0.8,
+                -1
+              ],
+              [
+                1,
+                -0.7
+              ],
+              [
+                1,
+                0.2
+              ],
+              [
+                0.4,
+                0.7
+              ],
+              [
+                0.4,
+                1
+              ],
+              [
+                0,
+                1
+              ]
+            ]
+          },
+          "material": "Plastic",
+          "metalness": 0,
+          "name": "Botol Biru",
+          "opacity": 1,
+          "position": [
+            -2,
+            2,
+            0
+          ],
+          "primitive": "lathe",
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "roughness": 0.5,
+          "segments": 64,
+          "size": [
+            2,
+            4,
+            2
+          ],
+          "smooth": true
+        },
+        {
+          "color": "#327BC4",
+          "id": "tetrahedron_asimetris",
+          "material": "Plastic",
+          "mesh": {
+            "faces": [
+              [
+                0,
+                3,
+                2,
+                1
+              ],
+              [
+                0,
+                1,
+                4
+              ],
+              [
+                1,
+                2,
+                4
+              ],
+              [
+                2,
+                3,
+                4
+              ],
+              [
+                3,
+                0,
+                4
+              ]
+            ],
+            "vertices": [
+              [
+                -1,
+                -1,
+                1
+              ],
+              [
+                1,
+                -1,
+                1
+              ],
+              [
+                1,
+                -1,
+                -1
+              ],
+              [
+                -1,
+                -1,
+                -1
+              ],
+              [
+                0.4,
+                1,
+                0
+              ]
+            ]
+          },
+          "metalness": 0,
+          "name": "Limas Asimetris Biru",
+          "opacity": 1,
+          "position": [
+            2,
+            2,
+            0
+          ],
+          "primitive": "mesh",
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "roughness": 0.5,
+          "size": [
+            2,
+            4,
+            2
+          ],
+          "smooth": true
+        }
+      ],
+      "seed": 20261101
+    }
+  },
+  "manifest": {
+    "deliverable": "blend",
+    "files": [
+      {
+        "byteLength": 2170319,
+        "relativePath": "exports/blender/cb0468a6db598813318cb5fbded09a4b3b63e1b0ca464e0684c8ae6da2427029/model.blend",
+        "sha256": "ba959432838d9370c99da819dce90a86f96b2a354b5bf67857d8359dff15fd36"
+      },
+      {
+        "byteLength": 108667,
+        "relativePath": "exports/blender/cb0468a6db598813318cb5fbded09a4b3b63e1b0ca464e0684c8ae6da2427029/preview.json",
+        "sha256": "88313e72ee6bc4707c3d0aacf3e0023222e82d7ec9e6d7d402089deb97f04c5d"
+      },
+      {
+        "byteLength": 461917,
+        "relativePath": "exports/blender/cb0468a6db598813318cb5fbded09a4b3b63e1b0ca464e0684c8ae6da2427029/view-perspective.png",
+        "sha256": "79f6a7d4d94e902e63327333de3204b10cff4a49d47a6fb5c2de7dbb60f96331"
+      },
+      {
+        "byteLength": 454660,
+        "relativePath": "exports/blender/cb0468a6db598813318cb5fbded09a4b3b63e1b0ca464e0684c8ae6da2427029/view-front.png",
+        "sha256": "6850d5f84dc534a1391e0e7acca4fc51ccbd29887385bdd7dd514803140bf3a5"
+      },
+      {
+        "byteLength": 449341,
+        "relativePath": "exports/blender/cb0468a6db598813318cb5fbded09a4b3b63e1b0ca464e0684c8ae6da2427029/view-right.png",
+        "sha256": "b3af478f9959d8929d52bb80fbac2636643ddcf1191bd80f032c23f9584ad811"
+      }
+    ],
+    "metrics": {
+      "blendReopened": true,
+      "blenderVersion": "5.2.3 LTS",
+      "bounds": {
+        "max": [
+          3.0,
+          4.0,
+          1.0
+        ],
+        "min": [
+          -3.0,
+          0.0,
+          -1.0
+        ]
+      },
+      "materials": 1,
+      "parts": 2,
+      "referenceImagesPacked": 3,
+      "triangles": 646,
+      "vertices": 327,
+      "views": [
+        "perspective",
+        "front",
+        "right"
+      ]
+    },
+    "sourceRecipeSha256": "53f4fd6fc923ab955d6b6ee257644fe512a7e37d272cdcb33883cb06d5614dc6",
+    "studioApplied": false,
+    "visualSimilarity": "unverified"
+  },
+  "verifiedFiles": [
+    "exports/blender/cb0468a6db598813318cb5fbded09a4b3b63e1b0ca464e0684c8ae6da2427029/model.blend",
+    "exports/blender/cb0468a6db598813318cb5fbded09a4b3b63e1b0ca464e0684c8ae6da2427029/preview.json",
+    "exports/blender/cb0468a6db598813318cb5fbded09a4b3b63e1b0ca464e0684c8ae6da2427029/view-perspective.png",
+    "exports/blender/cb0468a6db598813318cb5fbded09a4b3b63e1b0ca464e0684c8ae6da2427029/view-front.png",
+    "exports/blender/cb0468a6db598813318cb5fbded09a4b3b63e1b0ca464e0684c8ae6da2427029/view-right.png"
+  ],
+  "blendFile": "/Users/ariardianto/Library/Application Support/dev.forgekit.studio/workspace/exports/blender/cb0468a6db598813318cb5fbded09a4b3b63e1b0ca464e0684c8ae6da2427029/model.blend",
+  "databaseIntegrity": "ok",
+  "foreignKeyViolations": 0
+}

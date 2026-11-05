@@ -1,0 +1,2419 @@
+{
+  "ok": true,
+  "context": "Real React components and useCreativeTask hook rendered against extracted installed ForgeKit CSS plus changed source CSS. Provider/IPC/recipe validation/file extraction are explicit fixtures. Not a native application build or live-provider test.",
+  "cases": [
+    {
+      "mode": "generator",
+      "kind": "model3d",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1920
+    },
+    {
+      "mode": "generator",
+      "kind": "animation",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1920
+    },
+    {
+      "mode": "generator",
+      "kind": "vfx",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1920
+    },
+    {
+      "mode": "generator",
+      "kind": "interface",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1920
+    },
+    {
+      "mode": "generator",
+      "kind": "npc",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1920
+    },
+    {
+      "mode": "generator",
+      "kind": "cutscene",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1920
+    },
+    {
+      "mode": "generator",
+      "kind": "music",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1920
+    },
+    {
+      "mode": "generator",
+      "kind": "sky",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1920
+    },
+    {
+      "mode": "generator",
+      "kind": "model3d",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "animation",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "vfx",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "interface",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "npc",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "cutscene",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "music",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "sky",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "model3d",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1280
+    },
+    {
+      "mode": "generator",
+      "kind": "animation",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1280
+    },
+    {
+      "mode": "generator",
+      "kind": "vfx",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1280
+    },
+    {
+      "mode": "generator",
+      "kind": "interface",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1280
+    },
+    {
+      "mode": "generator",
+      "kind": "npc",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1280
+    },
+    {
+      "mode": "generator",
+      "kind": "cutscene",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1280
+    },
+    {
+      "mode": "generator",
+      "kind": "music",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1280
+    },
+    {
+      "mode": "generator",
+      "kind": "sky",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1280
+    },
+    {
+      "mode": "generator",
+      "kind": "model3d",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1024
+    },
+    {
+      "mode": "generator",
+      "kind": "animation",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1024
+    },
+    {
+      "mode": "generator",
+      "kind": "vfx",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1024
+    },
+    {
+      "mode": "generator",
+      "kind": "interface",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1024
+    },
+    {
+      "mode": "generator",
+      "kind": "npc",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1024
+    },
+    {
+      "mode": "generator",
+      "kind": "cutscene",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1024
+    },
+    {
+      "mode": "generator",
+      "kind": "music",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1024
+    },
+    {
+      "mode": "generator",
+      "kind": "sky",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1024
+    },
+    {
+      "mode": "generator",
+      "kind": "model3d",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 720
+    },
+    {
+      "mode": "generator",
+      "kind": "animation",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 720
+    },
+    {
+      "mode": "generator",
+      "kind": "vfx",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 720
+    },
+    {
+      "mode": "generator",
+      "kind": "interface",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 720
+    },
+    {
+      "mode": "generator",
+      "kind": "npc",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 720
+    },
+    {
+      "mode": "generator",
+      "kind": "cutscene",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 720
+    },
+    {
+      "mode": "generator",
+      "kind": "music",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 720
+    },
+    {
+      "mode": "generator",
+      "kind": "sky",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 720
+    },
+    {
+      "mode": "generator",
+      "kind": "model3d",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "animation",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "vfx",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "interface",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "npc",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "cutscene",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "music",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "sky",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "model3d",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "animation",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "vfx",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "interface",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "npc",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "cutscene",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "music",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "sky",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "model3d",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1920
+    },
+    {
+      "mode": "generator",
+      "kind": "animation",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1920
+    },
+    {
+      "mode": "generator",
+      "kind": "vfx",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1920
+    },
+    {
+      "mode": "generator",
+      "kind": "interface",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1920
+    },
+    {
+      "mode": "generator",
+      "kind": "npc",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1920
+    },
+    {
+      "mode": "generator",
+      "kind": "cutscene",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1920
+    },
+    {
+      "mode": "generator",
+      "kind": "music",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1920
+    },
+    {
+      "mode": "generator",
+      "kind": "sky",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1920
+    },
+    {
+      "mode": "generator",
+      "kind": "model3d",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "animation",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "vfx",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "interface",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "npc",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "cutscene",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "music",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "sky",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "model3d",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1280
+    },
+    {
+      "mode": "generator",
+      "kind": "animation",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1280
+    },
+    {
+      "mode": "generator",
+      "kind": "vfx",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1280
+    },
+    {
+      "mode": "generator",
+      "kind": "interface",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1280
+    },
+    {
+      "mode": "generator",
+      "kind": "npc",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1280
+    },
+    {
+      "mode": "generator",
+      "kind": "cutscene",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1280
+    },
+    {
+      "mode": "generator",
+      "kind": "music",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1280
+    },
+    {
+      "mode": "generator",
+      "kind": "sky",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1280
+    },
+    {
+      "mode": "generator",
+      "kind": "model3d",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1024
+    },
+    {
+      "mode": "generator",
+      "kind": "animation",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1024
+    },
+    {
+      "mode": "generator",
+      "kind": "vfx",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1024
+    },
+    {
+      "mode": "generator",
+      "kind": "interface",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1024
+    },
+    {
+      "mode": "generator",
+      "kind": "npc",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1024
+    },
+    {
+      "mode": "generator",
+      "kind": "cutscene",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1024
+    },
+    {
+      "mode": "generator",
+      "kind": "music",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1024
+    },
+    {
+      "mode": "generator",
+      "kind": "sky",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1024
+    },
+    {
+      "mode": "generator",
+      "kind": "model3d",
+      "theme": "dark",
+      "density": "compact",
+      "width": 720
+    },
+    {
+      "mode": "generator",
+      "kind": "animation",
+      "theme": "dark",
+      "density": "compact",
+      "width": 720
+    },
+    {
+      "mode": "generator",
+      "kind": "vfx",
+      "theme": "dark",
+      "density": "compact",
+      "width": 720
+    },
+    {
+      "mode": "generator",
+      "kind": "interface",
+      "theme": "dark",
+      "density": "compact",
+      "width": 720
+    },
+    {
+      "mode": "generator",
+      "kind": "npc",
+      "theme": "dark",
+      "density": "compact",
+      "width": 720
+    },
+    {
+      "mode": "generator",
+      "kind": "cutscene",
+      "theme": "dark",
+      "density": "compact",
+      "width": 720
+    },
+    {
+      "mode": "generator",
+      "kind": "music",
+      "theme": "dark",
+      "density": "compact",
+      "width": 720
+    },
+    {
+      "mode": "generator",
+      "kind": "sky",
+      "theme": "dark",
+      "density": "compact",
+      "width": 720
+    },
+    {
+      "mode": "generator",
+      "kind": "model3d",
+      "theme": "dark",
+      "density": "compact",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "animation",
+      "theme": "dark",
+      "density": "compact",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "vfx",
+      "theme": "dark",
+      "density": "compact",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "interface",
+      "theme": "dark",
+      "density": "compact",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "npc",
+      "theme": "dark",
+      "density": "compact",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "cutscene",
+      "theme": "dark",
+      "density": "compact",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "music",
+      "theme": "dark",
+      "density": "compact",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "sky",
+      "theme": "dark",
+      "density": "compact",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "model3d",
+      "theme": "dark",
+      "density": "compact",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "animation",
+      "theme": "dark",
+      "density": "compact",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "vfx",
+      "theme": "dark",
+      "density": "compact",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "interface",
+      "theme": "dark",
+      "density": "compact",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "npc",
+      "theme": "dark",
+      "density": "compact",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "cutscene",
+      "theme": "dark",
+      "density": "compact",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "music",
+      "theme": "dark",
+      "density": "compact",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "sky",
+      "theme": "dark",
+      "density": "compact",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "model3d",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1920
+    },
+    {
+      "mode": "generator",
+      "kind": "animation",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1920
+    },
+    {
+      "mode": "generator",
+      "kind": "vfx",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1920
+    },
+    {
+      "mode": "generator",
+      "kind": "interface",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1920
+    },
+    {
+      "mode": "generator",
+      "kind": "npc",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1920
+    },
+    {
+      "mode": "generator",
+      "kind": "cutscene",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1920
+    },
+    {
+      "mode": "generator",
+      "kind": "music",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1920
+    },
+    {
+      "mode": "generator",
+      "kind": "sky",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1920
+    },
+    {
+      "mode": "generator",
+      "kind": "model3d",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "animation",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "vfx",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "interface",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "npc",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "cutscene",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "music",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "sky",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "model3d",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1280
+    },
+    {
+      "mode": "generator",
+      "kind": "animation",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1280
+    },
+    {
+      "mode": "generator",
+      "kind": "vfx",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1280
+    },
+    {
+      "mode": "generator",
+      "kind": "interface",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1280
+    },
+    {
+      "mode": "generator",
+      "kind": "npc",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1280
+    },
+    {
+      "mode": "generator",
+      "kind": "cutscene",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1280
+    },
+    {
+      "mode": "generator",
+      "kind": "music",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1280
+    },
+    {
+      "mode": "generator",
+      "kind": "sky",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1280
+    },
+    {
+      "mode": "generator",
+      "kind": "model3d",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1024
+    },
+    {
+      "mode": "generator",
+      "kind": "animation",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1024
+    },
+    {
+      "mode": "generator",
+      "kind": "vfx",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1024
+    },
+    {
+      "mode": "generator",
+      "kind": "interface",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1024
+    },
+    {
+      "mode": "generator",
+      "kind": "npc",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1024
+    },
+    {
+      "mode": "generator",
+      "kind": "cutscene",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1024
+    },
+    {
+      "mode": "generator",
+      "kind": "music",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1024
+    },
+    {
+      "mode": "generator",
+      "kind": "sky",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1024
+    },
+    {
+      "mode": "generator",
+      "kind": "model3d",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 720
+    },
+    {
+      "mode": "generator",
+      "kind": "animation",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 720
+    },
+    {
+      "mode": "generator",
+      "kind": "vfx",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 720
+    },
+    {
+      "mode": "generator",
+      "kind": "interface",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 720
+    },
+    {
+      "mode": "generator",
+      "kind": "npc",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 720
+    },
+    {
+      "mode": "generator",
+      "kind": "cutscene",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 720
+    },
+    {
+      "mode": "generator",
+      "kind": "music",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 720
+    },
+    {
+      "mode": "generator",
+      "kind": "sky",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 720
+    },
+    {
+      "mode": "generator",
+      "kind": "model3d",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "animation",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "vfx",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "interface",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "npc",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "cutscene",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "music",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "sky",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "model3d",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "animation",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "vfx",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "interface",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "npc",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "cutscene",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "music",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "sky",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "model3d",
+      "theme": "light",
+      "density": "compact",
+      "width": 1920
+    },
+    {
+      "mode": "generator",
+      "kind": "animation",
+      "theme": "light",
+      "density": "compact",
+      "width": 1920
+    },
+    {
+      "mode": "generator",
+      "kind": "vfx",
+      "theme": "light",
+      "density": "compact",
+      "width": 1920
+    },
+    {
+      "mode": "generator",
+      "kind": "interface",
+      "theme": "light",
+      "density": "compact",
+      "width": 1920
+    },
+    {
+      "mode": "generator",
+      "kind": "npc",
+      "theme": "light",
+      "density": "compact",
+      "width": 1920
+    },
+    {
+      "mode": "generator",
+      "kind": "cutscene",
+      "theme": "light",
+      "density": "compact",
+      "width": 1920
+    },
+    {
+      "mode": "generator",
+      "kind": "music",
+      "theme": "light",
+      "density": "compact",
+      "width": 1920
+    },
+    {
+      "mode": "generator",
+      "kind": "sky",
+      "theme": "light",
+      "density": "compact",
+      "width": 1920
+    },
+    {
+      "mode": "generator",
+      "kind": "model3d",
+      "theme": "light",
+      "density": "compact",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "animation",
+      "theme": "light",
+      "density": "compact",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "vfx",
+      "theme": "light",
+      "density": "compact",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "interface",
+      "theme": "light",
+      "density": "compact",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "npc",
+      "theme": "light",
+      "density": "compact",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "cutscene",
+      "theme": "light",
+      "density": "compact",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "music",
+      "theme": "light",
+      "density": "compact",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "sky",
+      "theme": "light",
+      "density": "compact",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "model3d",
+      "theme": "light",
+      "density": "compact",
+      "width": 1280
+    },
+    {
+      "mode": "generator",
+      "kind": "animation",
+      "theme": "light",
+      "density": "compact",
+      "width": 1280
+    },
+    {
+      "mode": "generator",
+      "kind": "vfx",
+      "theme": "light",
+      "density": "compact",
+      "width": 1280
+    },
+    {
+      "mode": "generator",
+      "kind": "interface",
+      "theme": "light",
+      "density": "compact",
+      "width": 1280
+    },
+    {
+      "mode": "generator",
+      "kind": "npc",
+      "theme": "light",
+      "density": "compact",
+      "width": 1280
+    },
+    {
+      "mode": "generator",
+      "kind": "cutscene",
+      "theme": "light",
+      "density": "compact",
+      "width": 1280
+    },
+    {
+      "mode": "generator",
+      "kind": "music",
+      "theme": "light",
+      "density": "compact",
+      "width": 1280
+    },
+    {
+      "mode": "generator",
+      "kind": "sky",
+      "theme": "light",
+      "density": "compact",
+      "width": 1280
+    },
+    {
+      "mode": "generator",
+      "kind": "model3d",
+      "theme": "light",
+      "density": "compact",
+      "width": 1024
+    },
+    {
+      "mode": "generator",
+      "kind": "animation",
+      "theme": "light",
+      "density": "compact",
+      "width": 1024
+    },
+    {
+      "mode": "generator",
+      "kind": "vfx",
+      "theme": "light",
+      "density": "compact",
+      "width": 1024
+    },
+    {
+      "mode": "generator",
+      "kind": "interface",
+      "theme": "light",
+      "density": "compact",
+      "width": 1024
+    },
+    {
+      "mode": "generator",
+      "kind": "npc",
+      "theme": "light",
+      "density": "compact",
+      "width": 1024
+    },
+    {
+      "mode": "generator",
+      "kind": "cutscene",
+      "theme": "light",
+      "density": "compact",
+      "width": 1024
+    },
+    {
+      "mode": "generator",
+      "kind": "music",
+      "theme": "light",
+      "density": "compact",
+      "width": 1024
+    },
+    {
+      "mode": "generator",
+      "kind": "sky",
+      "theme": "light",
+      "density": "compact",
+      "width": 1024
+    },
+    {
+      "mode": "generator",
+      "kind": "model3d",
+      "theme": "light",
+      "density": "compact",
+      "width": 720
+    },
+    {
+      "mode": "generator",
+      "kind": "animation",
+      "theme": "light",
+      "density": "compact",
+      "width": 720
+    },
+    {
+      "mode": "generator",
+      "kind": "vfx",
+      "theme": "light",
+      "density": "compact",
+      "width": 720
+    },
+    {
+      "mode": "generator",
+      "kind": "interface",
+      "theme": "light",
+      "density": "compact",
+      "width": 720
+    },
+    {
+      "mode": "generator",
+      "kind": "npc",
+      "theme": "light",
+      "density": "compact",
+      "width": 720
+    },
+    {
+      "mode": "generator",
+      "kind": "cutscene",
+      "theme": "light",
+      "density": "compact",
+      "width": 720
+    },
+    {
+      "mode": "generator",
+      "kind": "music",
+      "theme": "light",
+      "density": "compact",
+      "width": 720
+    },
+    {
+      "mode": "generator",
+      "kind": "sky",
+      "theme": "light",
+      "density": "compact",
+      "width": 720
+    },
+    {
+      "mode": "generator",
+      "kind": "model3d",
+      "theme": "light",
+      "density": "compact",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "animation",
+      "theme": "light",
+      "density": "compact",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "vfx",
+      "theme": "light",
+      "density": "compact",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "interface",
+      "theme": "light",
+      "density": "compact",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "npc",
+      "theme": "light",
+      "density": "compact",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "cutscene",
+      "theme": "light",
+      "density": "compact",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "music",
+      "theme": "light",
+      "density": "compact",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "sky",
+      "theme": "light",
+      "density": "compact",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "model3d",
+      "theme": "light",
+      "density": "compact",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "animation",
+      "theme": "light",
+      "density": "compact",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "vfx",
+      "theme": "light",
+      "density": "compact",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "interface",
+      "theme": "light",
+      "density": "compact",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "npc",
+      "theme": "light",
+      "density": "compact",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "cutscene",
+      "theme": "light",
+      "density": "compact",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "music",
+      "theme": "light",
+      "density": "compact",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "sky",
+      "theme": "light",
+      "density": "compact",
+      "width": 320
+    },
+    {
+      "mode": "editor",
+      "kind": "gfx",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1920
+    },
+    {
+      "mode": "editor",
+      "kind": "gfx",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1440
+    },
+    {
+      "mode": "editor",
+      "kind": "gfx",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1280
+    },
+    {
+      "mode": "editor",
+      "kind": "gfx",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1024
+    },
+    {
+      "mode": "editor",
+      "kind": "gfx",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 720
+    },
+    {
+      "mode": "editor",
+      "kind": "gfx",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 390
+    },
+    {
+      "mode": "editor",
+      "kind": "gfx",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 320
+    },
+    {
+      "mode": "editor",
+      "kind": "gfx",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1920
+    },
+    {
+      "mode": "editor",
+      "kind": "gfx",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1440
+    },
+    {
+      "mode": "editor",
+      "kind": "gfx",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1280
+    },
+    {
+      "mode": "editor",
+      "kind": "gfx",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1024
+    },
+    {
+      "mode": "editor",
+      "kind": "gfx",
+      "theme": "dark",
+      "density": "compact",
+      "width": 720
+    },
+    {
+      "mode": "editor",
+      "kind": "gfx",
+      "theme": "dark",
+      "density": "compact",
+      "width": 390
+    },
+    {
+      "mode": "editor",
+      "kind": "gfx",
+      "theme": "dark",
+      "density": "compact",
+      "width": 320
+    },
+    {
+      "mode": "editor",
+      "kind": "gfx",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1920
+    },
+    {
+      "mode": "editor",
+      "kind": "gfx",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1440
+    },
+    {
+      "mode": "editor",
+      "kind": "gfx",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1280
+    },
+    {
+      "mode": "editor",
+      "kind": "gfx",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1024
+    },
+    {
+      "mode": "editor",
+      "kind": "gfx",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 720
+    },
+    {
+      "mode": "editor",
+      "kind": "gfx",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 390
+    },
+    {
+      "mode": "editor",
+      "kind": "gfx",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 320
+    },
+    {
+      "mode": "editor",
+      "kind": "gfx",
+      "theme": "light",
+      "density": "compact",
+      "width": 1920
+    },
+    {
+      "mode": "editor",
+      "kind": "gfx",
+      "theme": "light",
+      "density": "compact",
+      "width": 1440
+    },
+    {
+      "mode": "editor",
+      "kind": "gfx",
+      "theme": "light",
+      "density": "compact",
+      "width": 1280
+    },
+    {
+      "mode": "editor",
+      "kind": "gfx",
+      "theme": "light",
+      "density": "compact",
+      "width": 1024
+    },
+    {
+      "mode": "editor",
+      "kind": "gfx",
+      "theme": "light",
+      "density": "compact",
+      "width": 720
+    },
+    {
+      "mode": "editor",
+      "kind": "gfx",
+      "theme": "light",
+      "density": "compact",
+      "width": 390
+    },
+    {
+      "mode": "editor",
+      "kind": "gfx",
+      "theme": "light",
+      "density": "compact",
+      "width": 320
+    },
+    {
+      "mode": "chat",
+      "kind": "gfx",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1920
+    },
+    {
+      "mode": "chat",
+      "kind": "gfx",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1440
+    },
+    {
+      "mode": "chat",
+      "kind": "gfx",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1280
+    },
+    {
+      "mode": "chat",
+      "kind": "gfx",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1024
+    },
+    {
+      "mode": "chat",
+      "kind": "gfx",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 720
+    },
+    {
+      "mode": "chat",
+      "kind": "gfx",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 390
+    },
+    {
+      "mode": "chat",
+      "kind": "gfx",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 320
+    },
+    {
+      "mode": "chat",
+      "kind": "gfx",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1920
+    },
+    {
+      "mode": "chat",
+      "kind": "gfx",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1440
+    },
+    {
+      "mode": "chat",
+      "kind": "gfx",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1280
+    },
+    {
+      "mode": "chat",
+      "kind": "gfx",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1024
+    },
+    {
+      "mode": "chat",
+      "kind": "gfx",
+      "theme": "dark",
+      "density": "compact",
+      "width": 720
+    },
+    {
+      "mode": "chat",
+      "kind": "gfx",
+      "theme": "dark",
+      "density": "compact",
+      "width": 390
+    },
+    {
+      "mode": "chat",
+      "kind": "gfx",
+      "theme": "dark",
+      "density": "compact",
+      "width": 320
+    },
+    {
+      "mode": "chat",
+      "kind": "gfx",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1920
+    },
+    {
+      "mode": "chat",
+      "kind": "gfx",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1440
+    },
+    {
+      "mode": "chat",
+      "kind": "gfx",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1280
+    },
+    {
+      "mode": "chat",
+      "kind": "gfx",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1024
+    },
+    {
+      "mode": "chat",
+      "kind": "gfx",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 720
+    },
+    {
+      "mode": "chat",
+      "kind": "gfx",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 390
+    },
+    {
+      "mode": "chat",
+      "kind": "gfx",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 320
+    },
+    {
+      "mode": "chat",
+      "kind": "gfx",
+      "theme": "light",
+      "density": "compact",
+      "width": 1920
+    },
+    {
+      "mode": "chat",
+      "kind": "gfx",
+      "theme": "light",
+      "density": "compact",
+      "width": 1440
+    },
+    {
+      "mode": "chat",
+      "kind": "gfx",
+      "theme": "light",
+      "density": "compact",
+      "width": 1280
+    },
+    {
+      "mode": "chat",
+      "kind": "gfx",
+      "theme": "light",
+      "density": "compact",
+      "width": 1024
+    },
+    {
+      "mode": "chat",
+      "kind": "gfx",
+      "theme": "light",
+      "density": "compact",
+      "width": 720
+    },
+    {
+      "mode": "chat",
+      "kind": "gfx",
+      "theme": "light",
+      "density": "compact",
+      "width": 390
+    },
+    {
+      "mode": "chat",
+      "kind": "gfx",
+      "theme": "light",
+      "density": "compact",
+      "width": 320
+    },
+    {
+      "mode": "attachments",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1920
+    },
+    {
+      "mode": "attachments",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1440
+    },
+    {
+      "mode": "attachments",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1280
+    },
+    {
+      "mode": "attachments",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1024
+    },
+    {
+      "mode": "attachments",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 720
+    },
+    {
+      "mode": "attachments",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 390
+    },
+    {
+      "mode": "attachments",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 320
+    },
+    {
+      "mode": "attachments",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1920
+    },
+    {
+      "mode": "attachments",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1440
+    },
+    {
+      "mode": "attachments",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1280
+    },
+    {
+      "mode": "attachments",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1024
+    },
+    {
+      "mode": "attachments",
+      "theme": "dark",
+      "density": "compact",
+      "width": 720
+    },
+    {
+      "mode": "attachments",
+      "theme": "dark",
+      "density": "compact",
+      "width": 390
+    },
+    {
+      "mode": "attachments",
+      "theme": "dark",
+      "density": "compact",
+      "width": 320
+    },
+    {
+      "mode": "attachments",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1920
+    },
+    {
+      "mode": "attachments",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1440
+    },
+    {
+      "mode": "attachments",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1280
+    },
+    {
+      "mode": "attachments",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1024
+    },
+    {
+      "mode": "attachments",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 720
+    },
+    {
+      "mode": "attachments",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 390
+    },
+    {
+      "mode": "attachments",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 320
+    },
+    {
+      "mode": "attachments",
+      "theme": "light",
+      "density": "compact",
+      "width": 1920
+    },
+    {
+      "mode": "attachments",
+      "theme": "light",
+      "density": "compact",
+      "width": 1440
+    },
+    {
+      "mode": "attachments",
+      "theme": "light",
+      "density": "compact",
+      "width": 1280
+    },
+    {
+      "mode": "attachments",
+      "theme": "light",
+      "density": "compact",
+      "width": 1024
+    },
+    {
+      "mode": "attachments",
+      "theme": "light",
+      "density": "compact",
+      "width": 720
+    },
+    {
+      "mode": "attachments",
+      "theme": "light",
+      "density": "compact",
+      "width": 390
+    },
+    {
+      "mode": "attachments",
+      "theme": "light",
+      "density": "compact",
+      "width": 320
+    },
+    {
+      "mode": "refine",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1920
+    },
+    {
+      "mode": "refine",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1440
+    },
+    {
+      "mode": "refine",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1280
+    },
+    {
+      "mode": "refine",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 1024
+    },
+    {
+      "mode": "refine",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 720
+    },
+    {
+      "mode": "refine",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 390
+    },
+    {
+      "mode": "refine",
+      "theme": "dark",
+      "density": "comfortable",
+      "width": 320
+    },
+    {
+      "mode": "refine",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1920
+    },
+    {
+      "mode": "refine",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1440
+    },
+    {
+      "mode": "refine",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1280
+    },
+    {
+      "mode": "refine",
+      "theme": "dark",
+      "density": "compact",
+      "width": 1024
+    },
+    {
+      "mode": "refine",
+      "theme": "dark",
+      "density": "compact",
+      "width": 720
+    },
+    {
+      "mode": "refine",
+      "theme": "dark",
+      "density": "compact",
+      "width": 390
+    },
+    {
+      "mode": "refine",
+      "theme": "dark",
+      "density": "compact",
+      "width": 320
+    },
+    {
+      "mode": "refine",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1920
+    },
+    {
+      "mode": "refine",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1440
+    },
+    {
+      "mode": "refine",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1280
+    },
+    {
+      "mode": "refine",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 1024
+    },
+    {
+      "mode": "refine",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 720
+    },
+    {
+      "mode": "refine",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 390
+    },
+    {
+      "mode": "refine",
+      "theme": "light",
+      "density": "comfortable",
+      "width": 320
+    },
+    {
+      "mode": "refine",
+      "theme": "light",
+      "density": "compact",
+      "width": 1920
+    },
+    {
+      "mode": "refine",
+      "theme": "light",
+      "density": "compact",
+      "width": 1440
+    },
+    {
+      "mode": "refine",
+      "theme": "light",
+      "density": "compact",
+      "width": 1280
+    },
+    {
+      "mode": "refine",
+      "theme": "light",
+      "density": "compact",
+      "width": 1024
+    },
+    {
+      "mode": "refine",
+      "theme": "light",
+      "density": "compact",
+      "width": 720
+    },
+    {
+      "mode": "refine",
+      "theme": "light",
+      "density": "compact",
+      "width": 390
+    },
+    {
+      "mode": "refine",
+      "theme": "light",
+      "density": "compact",
+      "width": 320
+    }
+  ],
+  "captures": [
+    "generator-dark-1440.png",
+    "generator-dark-390.png",
+    "generator-light-1440.png",
+    "generator-light-390.png",
+    "editor-dark-1440.png",
+    "editor-dark-390.png",
+    "editor-light-1440.png",
+    "editor-light-390.png",
+    "chat-dark-1440.png",
+    "chat-dark-390.png",
+    "chat-light-1440.png",
+    "chat-light-390.png"
+  ],
+  "errors": [],
+  "qualityChecks": [
+    {
+      "kind": "model3d",
+      "refine": false,
+      "quality": "high"
+    },
+    {
+      "kind": "model3d",
+      "refine": true,
+      "quality": "high"
+    },
+    {
+      "kind": "animation",
+      "refine": false,
+      "quality": "high"
+    },
+    {
+      "kind": "animation",
+      "refine": true,
+      "quality": "high"
+    },
+    {
+      "kind": "vfx",
+      "refine": false,
+      "quality": "high"
+    },
+    {
+      "kind": "vfx",
+      "refine": true,
+      "quality": "high"
+    },
+    {
+      "kind": "interface",
+      "refine": false,
+      "quality": "high"
+    },
+    {
+      "kind": "interface",
+      "refine": true,
+      "quality": "high"
+    },
+    {
+      "kind": "npc",
+      "refine": false,
+      "quality": "high"
+    },
+    {
+      "kind": "npc",
+      "refine": true,
+      "quality": "high"
+    },
+    {
+      "kind": "cutscene",
+      "refine": false,
+      "quality": "high"
+    },
+    {
+      "kind": "cutscene",
+      "refine": true,
+      "quality": "high"
+    },
+    {
+      "kind": "material",
+      "refine": false,
+      "quality": "high"
+    },
+    {
+      "kind": "material",
+      "refine": true,
+      "quality": "high"
+    },
+    {
+      "kind": "music",
+      "refine": false,
+      "quality": "high"
+    },
+    {
+      "kind": "music",
+      "refine": true,
+      "quality": "high"
+    },
+    {
+      "kind": "sky",
+      "refine": false,
+      "quality": "high"
+    },
+    {
+      "kind": "sky",
+      "refine": true,
+      "quality": "high"
+    }
+  ],
+  "interactions": [
+    "no output settings or quality control",
+    "high quality on generate/refine across nine supported creative kinds",
+    "frozen provider/model/effort unchanged",
+    "empty input disabled",
+    "one dispatch per submit in three components",
+    "generator stop",
+    "provider error visible",
+    "no provider disabled"
+  ]
+}

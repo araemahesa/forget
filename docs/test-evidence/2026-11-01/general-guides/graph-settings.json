@@ -1,0 +1,65 @@
+{
+  "collapse-filter": false,
+  "search": "-path:\"80 Template\" -path:\"90 Sistem/Bukti Setup\"",
+  "showTags": false,
+  "showAttachments": false,
+  "hideUnresolved": true,
+  "showOrphans": false,
+  "collapse-color-groups": true,
+  "colorGroups": [
+    {
+      "query": "path:\"30 Fitur\"",
+      "color": {
+        "a": 1,
+        "rgb": 16724825
+      }
+    },
+    {
+      "query": "path:\"40 Proyek\"",
+      "color": {
+        "a": 1,
+        "rgb": 8836528
+      }
+    },
+    {
+      "query": "path:\"35 Pengetahuan\"",
+      "color": {
+        "a": 1,
+        "rgb": 7717529
+      }
+    },
+    {
+      "query": "path:\"36 Rubrik\"",
+      "color": {
+        "a": 1,
+        "rgb": 16429153
+      }
+    },
+    {
+      "query": "path:\"37 Workflow\"",
+      "color": {
+        "a": 1,
+        "rgb": 10852599
+      }
+    },
+    {
+      "query": "path:\"50 Sistem/Skills\"",
+      "color": {
+        "a": 1,
+        "rgb": 8505296
+      }
+    }
+  ],
+  "collapse-display": true,
+  "showArrow": false,
+  "textFadeMultiplier": 0,
+  "nodeSizeMultiplier": 1.1,
+  "lineSizeMultiplier": 1,
+  "collapse-forces": true,
+  "centerStrength": 0.35,
+  "repelStrength": 14,
+  "linkStrength": 1,
+  "linkDistance": 180,
+  "scale": 0.35,
+  "close": true
+}

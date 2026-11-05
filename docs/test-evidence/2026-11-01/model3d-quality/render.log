@@ -1,0 +1,9 @@
+00:00.981  blend            | Read blend: "/Users/ariardianto/Documents/ForgeKIT/CODE/docs/test-evidence/2026-11-01/model3d-quality/live/workshop/model.blend"
+/tmp/forgekit_model3d_render.py:15: DeprecationWarning: 'World.use_nodes' is expected to be removed in Blender 6.0
+  scene.world=bpy.data.worlds.new('Inspection studio');scene.world.use_nodes=True;scene.world.node_tree.nodes['Background'].inputs['Color'].default_value=(.45,.45,.45,1)
+/tmp/forgekit_model3d_render.py:18: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  m=bpy.data.materials.new('Studio floor');m.use_nodes=True;m.node_tree.nodes['Principled BSDF'].inputs['Base Color'].default_value=(.105,.11,.12,1);m.node_tree.nodes['Principled BSDF'].inputs['Roughness'].default_value=.82;floor.data.materials.append(m)
+00:22.935  render           | Saved: '/Users/ariardianto/Documents/ForgeKIT/CODE/docs/test-evidence/2026-11-01/model3d-quality/live/workshop/verified-render.png'
+Blender 5.2.3 LTS (hash e13b728c6880 built 2026-10-22 01:31:22)
+
+Blender quit

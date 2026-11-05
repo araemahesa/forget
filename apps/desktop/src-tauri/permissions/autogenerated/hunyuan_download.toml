@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-hunyuan-download"
+description = "Enables the hunyuan_download command without any pre-configured scope."
+commands.allow = ["hunyuan_download"]
+
+[[permission]]
+identifier = "deny-hunyuan-download"
+description = "Denies the hunyuan_download command without any pre-configured scope."
+commands.deny = ["hunyuan_download"]

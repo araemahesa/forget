@@ -1,0 +1,29 @@
+{
+  "checkedAt": "2026-10-30T09:40:06.101676+00:00",
+  "version": "0.1.11",
+  "coldStartNativeObserved": true,
+  "manualAccountAuthorizationUsed": false,
+  "keychainDialogObserved": false,
+  "chat": {
+    "taskId": "134ba5b7-9c95-484b-9b28-df253ac07b1f",
+    "status": "completed",
+    "response": "Akun siap otomatis.",
+    "model": "gpt-6.1-sol",
+    "selectedAccountMatchesActual": true,
+    "attempts": 1
+  },
+  "databaseIntegrity": "ok",
+  "foreignKeysClean": true,
+  "allExistingRowsPreserved": true,
+  "changedExistingTables": [],
+  "newRowsByTable": {
+    "ai_checkpoint": 1,
+    "chat_message": 2,
+    "chat_thread": 1,
+    "chat_turn": 1,
+    "creative_event": 4,
+    "creative_task": 1,
+    "task_attempt": 1
+  },
+  "noRobloxMapChanged": true
+}

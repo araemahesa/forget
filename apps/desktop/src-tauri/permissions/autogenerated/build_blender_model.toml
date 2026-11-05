@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-build-blender-model"
+description = "Enables the build_blender_model command without any pre-configured scope."
+commands.allow = ["build_blender_model"]
+
+[[permission]]
+identifier = "deny-build-blender-model"
+description = "Denies the build_blender_model command without any pre-configured scope."
+commands.deny = ["build_blender_model"]

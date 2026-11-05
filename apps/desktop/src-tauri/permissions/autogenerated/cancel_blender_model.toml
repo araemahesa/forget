@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-cancel-blender-model"
+description = "Enables the cancel_blender_model command without any pre-configured scope."
+commands.allow = ["cancel_blender_model"]
+
+[[permission]]
+identifier = "deny-cancel-blender-model"
+description = "Denies the cancel_blender_model command without any pre-configured scope."
+commands.deny = ["cancel_blender_model"]

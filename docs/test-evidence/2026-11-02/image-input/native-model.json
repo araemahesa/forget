@@ -1,0 +1,17 @@
+{
+  "id": "b4a36c93-d09d-4abf-91f6-33b4465d4262",
+  "ok": false,
+  "error": {
+    "code": "element_not_found",
+    "message": "element 7 changed since the last snapshot; run get-app-state again and use a fresh element index",
+    "data": {
+      "nextSteps": [
+        "Run `orca computer get-app-state --app <app> --json` again and use an element index from the fresh tree.",
+        "Do not infer valid indexes from `elementCount` or reuse indexes after navigation, scrolling, focus changes, or delays."
+      ]
+    }
+  },
+  "_meta": {
+    "runtimeId": "77c228cf-b781-44b9-9269-1ae7b7191b40"
+  }
+}

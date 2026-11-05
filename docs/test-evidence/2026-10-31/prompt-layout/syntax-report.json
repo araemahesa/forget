@@ -1,0 +1,11 @@
+{
+  "typescriptSyntax": [
+    "features/create/CreativeControls.tsx",
+    "features/shared/EditorAiPromptBar.tsx",
+    "features/shared/ReferenceImages.tsx",
+    "features/chat/ChatPage.tsx",
+    "services/references.ts"
+  ],
+  "cssParsed": true,
+  "fullTypecheck": false
+}

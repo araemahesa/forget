@@ -1,0 +1,10 @@
+{
+  "databaseBackup": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-live-reference-1793535986707082000/forgekit.sqlite",
+  "testReferences": [
+    "view-front.png",
+    "view-right.png",
+    "view-perspective.png"
+  ],
+  "providerChoice": "Use current Model 3D selection; no automatic account switch",
+  "studioWrite": false
+}

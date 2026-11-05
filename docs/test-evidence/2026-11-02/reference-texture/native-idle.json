@@ -1,0 +1,57 @@
+{
+  "id": "a9906cdb-30da-4a71-9966-7c83624c9855",
+  "ok": true,
+  "result": {
+    "screenshotStatus": {
+      "metadata": {
+        "engine": "screenCaptureKit",
+        "windowId": 6328
+      },
+      "state": "captured"
+    },
+    "screenshot": {
+      "width": 2560,
+      "scale": 2,
+      "height": 1626,
+      "format": "png",
+      "path": "/var/folders/fl/fr6n4s1n6hbdx3gvn4t6k6kc0000gn/T/orca-computer-use/a9906cdb-30da-4a71-9966-7c83624c9855-screenshot.png",
+      "dataOmitted": true,
+      "expiresAt": "2026-11-03T16:28:31.031Z"
+    },
+    "snapshot": {
+      "app": {
+        "bundleId": "dev.forgekit.studio",
+        "name": "ForgeKit Studio",
+        "pid": 90050
+      },
+      "treeText": "App=dev.forgekit.studio (pid 90050)\nWindow: \"ForgeKit Studio\", App: ForgeKit Studio.\n\n0 dialog\n\t1 button affordance\n\t2 image Writing Tools\n\nNo UI element is currently focused.",
+      "focusedElementId": null,
+      "coordinateSpace": "window",
+      "truncation": {
+        "maxDepthReached": false,
+        "truncated": false,
+        "maxDepth": 64,
+        "maxNodes": 1200
+      },
+      "window": {
+        "height": 813,
+        "screenIndex": 0,
+        "x": 80,
+        "title": "ForgeKit Studio",
+        "isMinimized": false,
+        "width": 1280,
+        "isOffscreen": false,
+        "platform": {
+          "layer": 0
+        },
+        "y": 31,
+        "id": 6328
+      },
+      "id": "85B96953-B88A-4DB0-9422-191FE9F864E2",
+      "elementCount": 3
+    }
+  },
+  "_meta": {
+    "runtimeId": "77c228cf-b781-44b9-9269-1ae7b7191b40"
+  }
+}

@@ -1,0 +1,36 @@
+warning: static `PROCESSING` is never used
+ --> src/attachments.rs:6:8
+  |
+6 | static PROCESSING: std::sync::Mutex<()> = std::sync::Mutex::new(());
+  |        ^^^^^^^^^^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: static `REFRESH` is never used
+  --> src/browser_auth.rs:27:8
+   |
+27 | static REFRESH: Mutex<()> = Mutex::new(());
+   |        ^^^^^^^
+
+warning: function `access_token` is never used
+   --> src/browser_auth.rs:180:8
+    |
+180 | pub fn access_token(key_ref: &str, raw: String) -> Result<String, String> {
+    |        ^^^^^^^^^^^^
+
+warning: `forgekit-desktop` (lib test) generated 3 warnings
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.76s
+     Running unittests src/lib.rs (apps/desktop/src-tauri/target/debug/deps/forgekit_desktop_lib-e64b222b0dff9f30)
+
+running 8 tests
+test obsidian::tests::adaptive_vault_routes_mixed_requests_without_loading_projects ... ok
+test obsidian::tests::configured_knowledge_graph_routes_systems_and_3d_within_budget ... ok
+test obsidian::tests::configured_vault_supports_every_prompt_domain ... ok
+test obsidian::tests::context_is_selected_hashed_and_refreshed ... ok
+test obsidian::tests::learned_and_custom_skills_reach_only_relevant_fresh_task_context ... ok
+test obsidian::tests::native_context_commands_are_scoped_to_main_window ... ok
+test obsidian::tests::registry_versions_match_bundled_guides ... ok
+test obsidian::tests::rejects_escape_and_oversize_and_symlink ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 162 filtered out; finished in 0.38s
+

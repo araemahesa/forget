@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-save-router-connection"
+description = "Enables the save_router_connection command without any pre-configured scope."
+commands.allow = ["save_router_connection"]
+
+[[permission]]
+identifier = "deny-save-router-connection"
+description = "Denies the save_router_connection command without any pre-configured scope."
+commands.deny = ["save_router_connection"]

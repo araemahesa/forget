@@ -1,0 +1,17 @@
+{
+  "missingSourcesAndConfiguration": [
+    "tsconfig.base.json",
+    "pnpm-workspace.yaml",
+    "packages/contracts/package.json",
+    "packages/contracts/src/index.ts",
+    "apps/desktop/src-tauri/src/lib.rs",
+    "apps/desktop/src-tauri/build.rs",
+    "apps/desktop/src/features/shared/MessageAvatar.tsx",
+    "apps/desktop/src/services/editorAi.ts"
+  ],
+  "installedVersion": "0.1.19",
+  "nativeAppUpdated": false,
+  "databaseMigrated": false,
+  "userConfirmedNoCompleteSourceCopy": true,
+  "componentPreviewUsesFixtures": true
+}

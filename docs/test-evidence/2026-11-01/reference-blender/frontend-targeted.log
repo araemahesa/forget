@@ -1,0 +1,10 @@
+$ vitest run src/features/create/geometry.test.ts src/features/creators3d/blenderPreview.test.ts
+
+ RUN  v5.0.5 /Users/ariardianto/Documents/ForgeKIT/CODE/apps/desktop
+
+
+ Test Files  2 passed (2)
+      Tests  30 passed (30)
+   Start at  18:49:30
+   Duration  1.16s (environment 65%, setup 14%, transform 11%, tests 5%, import 5%, worker 1%)
+

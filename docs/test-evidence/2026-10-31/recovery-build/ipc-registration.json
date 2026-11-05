@@ -1,0 +1,281 @@
+{
+  "ok": true,
+  "method": "Static literal UI invoke/call audit, not runtime dispatch proof",
+  "registeredCommands": 90,
+  "uiCommands": {
+    "get_google_oauth_config": [
+      "apps/desktop/src/features/settings/GoogleOAuthSetup.tsx"
+    ],
+    "configure_google_oauth": [
+      "apps/desktop/src/features/settings/GoogleOAuthSetup.tsx"
+    ],
+    "get_creative_task": [
+      "apps/desktop/src/features/shared/TaskProgressCard.tsx",
+      "apps/desktop/src/features/shared/TaskRecovery.tsx",
+      "apps/desktop/src/features/shared/TaskAttempts.tsx",
+      "apps/desktop/src/features/create/useCreativeTask.ts",
+      "apps/desktop/src/features/create/useCreativeTask.ts",
+      "apps/desktop/src/features/create/useCreativeTask.ts"
+    ],
+    "resume_ai_task": [
+      "apps/desktop/src/features/shared/TaskRecovery.tsx"
+    ],
+    "cancel_creative": [
+      "apps/desktop/src/features/shared/EditorAiPromptBar.tsx",
+      "apps/desktop/src/features/shared/EditorAiPromptBar.tsx",
+      "apps/desktop/src/features/create/useCreativeTask.ts"
+    ],
+    "blender_status": [
+      "apps/desktop/src/features/shared/BlenderConnection.tsx"
+    ],
+    "read_studio_explorer": [
+      "apps/desktop/src/features/shared/StudioExplorer.tsx"
+    ],
+    "export_creative_geometry": [
+      "apps/desktop/src/features/motionAudio/AnimationPage.tsx",
+      "apps/desktop/src/features/creators3d/Model3dPage.tsx"
+    ],
+    "export_creative_audio": [
+      "apps/desktop/src/features/motionAudio/MusicPage.tsx"
+    ],
+    "load_blender_bundle": [
+      "apps/desktop/src/features/creators3d/useBlenderModel.ts"
+    ],
+    "build_blender_model": [
+      "apps/desktop/src/features/creators3d/useBlenderModel.ts"
+    ],
+    "reveal_blender_model": [
+      "apps/desktop/src/features/creators3d/useBlenderModel.ts"
+    ],
+    "cancel_blender_model": [
+      "apps/desktop/src/features/creators3d/useBlenderModel.ts"
+    ],
+    "list_creative_versions": [
+      "apps/desktop/src/features/create/useCreativeTask.ts"
+    ],
+    "load_creative_version": [
+      "apps/desktop/src/features/create/useCreativeTask.ts",
+      "apps/desktop/src/features/create/useCreativeTask.ts",
+      "apps/desktop/src/features/create/useCreativeTask.ts"
+    ],
+    "create_chat_thread": [
+      "apps/desktop/src/features/create/useCreativeTask.ts",
+      "apps/desktop/src/services/ai.ts"
+    ],
+    "send_chat_message": [
+      "apps/desktop/src/features/create/useCreativeTask.ts",
+      "apps/desktop/src/services/ai.ts"
+    ],
+    "save_creative_revision": [
+      "apps/desktop/src/features/create/useCreativeTask.ts"
+    ],
+    "generate_creative": [
+      "apps/desktop/src/features/create/useCreativeTask.ts"
+    ],
+    "cancel_chat_stream": [
+      "apps/desktop/src/features/create/useCreativeTask.ts",
+      "apps/desktop/src/services/ai.ts"
+    ],
+    "get_provider_model_catalog": [
+      "apps/desktop/src/services/modelCatalog.ts"
+    ],
+    "list_image_versions": [
+      "apps/desktop/src/services/images.ts"
+    ],
+    "save_image_version": [
+      "apps/desktop/src/services/images.ts"
+    ],
+    "export_image_artifact": [
+      "apps/desktop/src/services/images.ts"
+    ],
+    "load_creator_draft": [
+      "apps/desktop/src/services/creatorWorkspace.ts"
+    ],
+    "save_creator_draft": [
+      "apps/desktop/src/services/creatorWorkspace.ts"
+    ],
+    "list_work_tasks": [
+      "apps/desktop/src/services/creatorWorkspace.ts"
+    ],
+    "create_work_task": [
+      "apps/desktop/src/services/creatorWorkspace.ts"
+    ],
+    "update_work_task": [
+      "apps/desktop/src/services/creatorWorkspace.ts"
+    ],
+    "list_library": [
+      "apps/desktop/src/services/creatorWorkspace.ts"
+    ],
+    "set_library_deleted": [
+      "apps/desktop/src/services/creatorWorkspace.ts"
+    ],
+    "get_discord_account": [
+      "apps/desktop/src/services/accountState.ts"
+    ],
+    "configure_discord": [
+      "apps/desktop/src/services/accountState.ts"
+    ],
+    "login_discord": [
+      "apps/desktop/src/services/accountState.ts"
+    ],
+    "logout_discord": [
+      "apps/desktop/src/services/accountState.ts"
+    ],
+    "get_provider_usage": [
+      "apps/desktop/src/services/providerUsage.ts"
+    ],
+    "list_task_attempts": [
+      "apps/desktop/src/services/providerUsage.ts",
+      "apps/desktop/src/services/ai.ts"
+    ],
+    "list_ai_providers": [
+      "apps/desktop/src/services/ai.ts"
+    ],
+    "save_ai_provider": [
+      "apps/desktop/src/services/ai.ts"
+    ],
+    "delete_ai_provider": [
+      "apps/desktop/src/services/ai.ts"
+    ],
+    "test_ai_provider": [
+      "apps/desktop/src/services/ai.ts"
+    ],
+    "list_connection_profiles": [
+      "apps/desktop/src/services/ai.ts"
+    ],
+    "save_connection_profile": [
+      "apps/desktop/src/services/ai.ts"
+    ],
+    "delete_connection_profile": [
+      "apps/desktop/src/services/ai.ts"
+    ],
+    "set_primary_profile": [
+      "apps/desktop/src/services/ai.ts"
+    ],
+    "get_fallback_policy": [
+      "apps/desktop/src/services/ai.ts"
+    ],
+    "save_fallback_policy": [
+      "apps/desktop/src/services/ai.ts"
+    ],
+    "get_router_connection": [
+      "apps/desktop/src/services/ai.ts"
+    ],
+    "save_router_connection": [
+      "apps/desktop/src/services/ai.ts"
+    ],
+    "test_router_connection": [
+      "apps/desktop/src/services/ai.ts"
+    ],
+    "test_connection_profile": [
+      "apps/desktop/src/services/ai.ts"
+    ],
+    "connect_provider_browser": [
+      "apps/desktop/src/services/ai.ts"
+    ],
+    "cancel_provider_browser": [
+      "apps/desktop/src/services/ai.ts"
+    ],
+    "list_chat_threads": [
+      "apps/desktop/src/services/ai.ts"
+    ],
+    "rename_chat_thread": [
+      "apps/desktop/src/services/ai.ts"
+    ],
+    "delete_chat_thread": [
+      "apps/desktop/src/services/ai.ts"
+    ],
+    "load_chat_thread": [
+      "apps/desktop/src/services/ai.ts"
+    ],
+    "latest_chat_turn": [
+      "apps/desktop/src/services/ai.ts"
+    ],
+    "list_mcp_connectors": [
+      "apps/desktop/src/services/ai.ts"
+    ],
+    "save_mcp_connector": [
+      "apps/desktop/src/services/ai.ts"
+    ],
+    "toggle_mcp_connector": [
+      "apps/desktop/src/services/ai.ts"
+    ],
+    "list_available_mcp_tools": [
+      "apps/desktop/src/services/ai.ts"
+    ],
+    "probe_router_models": [
+      "apps/desktop/src/services/ai.ts"
+    ],
+    "list_provider_models": [
+      "apps/desktop/src/services/ai.ts"
+    ],
+    "list_sfx_versions": [
+      "apps/desktop/src/services/sfx.ts"
+    ],
+    "save_sfx_version": [
+      "apps/desktop/src/services/sfx.ts"
+    ],
+    "export_sfx_version": [
+      "apps/desktop/src/services/sfx.ts"
+    ],
+    "list_gfx_tasks": [
+      "apps/desktop/src/services/tauri.ts"
+    ],
+    "create_gfx_task": [
+      "apps/desktop/src/services/tauri.ts"
+    ],
+    "save_gfx_version": [
+      "apps/desktop/src/services/tauri.ts"
+    ],
+    "cancel_gfx_task": [
+      "apps/desktop/src/services/tauri.ts"
+    ],
+    "list_gfx_versions": [
+      "apps/desktop/src/services/tauri.ts"
+    ],
+    "export_gfx_artifact": [
+      "apps/desktop/src/services/tauri.ts"
+    ],
+    "get_workspace_info": [
+      "apps/desktop/src/services/tauri.ts"
+    ],
+    "load_gfx_version": [
+      "apps/desktop/src/services/tauri.ts"
+    ],
+    "load_gfx_draft": [
+      "apps/desktop/src/services/tauri.ts"
+    ],
+    "save_gfx_draft": [
+      "apps/desktop/src/services/tauri.ts"
+    ],
+    "create_workspace_backup": [
+      "apps/desktop/src/services/tauri.ts"
+    ],
+    "list_workspace_backups": [
+      "apps/desktop/src/services/tauri.ts"
+    ],
+    "verify_workspace_backup": [
+      "apps/desktop/src/services/tauri.ts"
+    ],
+    "restore_workspace_backup": [
+      "apps/desktop/src/services/tauri.ts"
+    ],
+    "finish_app_exit": [
+      "apps/desktop/src/services/tauri.ts"
+    ],
+    "probe_studio": [
+      "apps/desktop/src/services/tauri.ts"
+    ],
+    "read_studio": [
+      "apps/desktop/src/services/tauri.ts"
+    ],
+    "capture_studio_context": [
+      "apps/desktop/src/services/tauri.ts"
+    ],
+    "prepare_attachment": [
+      "apps/desktop/src/services/references.ts"
+    ]
+  },
+  "missingHandlers": [],
+  "missingCapabilities": []
+}

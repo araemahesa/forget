@@ -1,0 +1,31 @@
+{
+  "integrity": "ok",
+  "schema": 15,
+  "foreignKeyViolations": 0,
+  "tables": {
+    "gfx_version": {
+      "rows": 4,
+      "sha256": "cb71477dadbd87e36910f857c0517c2b674da75e3423955b7bba8ff74547cce5"
+    },
+    "sfx_version": {
+      "rows": 1,
+      "sha256": "ced700a489c788ce646953b22c427c0de8118a7ba6826bcc31f6bd5eccc4437b"
+    },
+    "image_version": {
+      "rows": 1,
+      "sha256": "b291d48c5406e7ed31519e1318a7c2a81e26cb89839ec5bd057dc962d4d7dac2"
+    },
+    "chat_thread": {
+      "rows": 14,
+      "sha256": "e777a3a9e538103b39409dc52360dd6ef8fea44fe6513d6ee0144b600e37b19e"
+    },
+    "chat_message": {
+      "rows": 32,
+      "sha256": "5ba502d1a97fe2de731efb59791d73a7322f5daf15a2623977a2b5aba80bd152"
+    },
+    "creative_version": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  }
+}

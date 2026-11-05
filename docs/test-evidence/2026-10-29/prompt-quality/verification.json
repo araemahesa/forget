@@ -1,0 +1,15 @@
+{
+  "version": "0.1.2",
+  "installed": "/Applications/ForgeKit Studio.app",
+  "tests": {
+    "contracts": 51,
+    "desktop": 251,
+    "native": 115,
+    "total": 417
+  },
+  "typecheck": "passed",
+  "build": "passed, existing geometry chunk-size warning",
+  "visualEvidence": "browser IPC fixtures, 80 route/viewport + 320 appearance/density overflow checks",
+  "liveStudio": "Place is not open; map/runtime acceptance unavailable",
+  "fullOriginalAcceptance": "incomplete: see PROMPT_QUALITY_2026_10_29.md"
+}

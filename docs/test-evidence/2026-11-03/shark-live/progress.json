@@ -1,0 +1,57 @@
+{
+  "id": "57ece4de-430f-44cf-8dfd-a8eae352b19d",
+  "ok": true,
+  "result": {
+    "screenshotStatus": {
+      "state": "captured",
+      "metadata": {
+        "engine": "screenCaptureKit",
+        "windowId": 6568
+      }
+    },
+    "snapshot": {
+      "app": {
+        "bundleId": "dev.forgekit.studio",
+        "name": "ForgeKit Studio",
+        "pid": 2423
+      },
+      "treeText": "App=dev.forgekit.studio (pid 2423)\nWindow: \"ForgeKit Studio\", App: ForgeKit Studio.\n\n0 standard window ForgeKit Studio\n\t1 scroll area\n\t\t2 HTML content ForgeKit Studio\n\t\t\t3 container Navigasi utama\n\t\t\t\t4 link AI Chat\n\t\t\t\t5 button Studio Kreatif\n\t\t\t\t6 link Pengaturan\n\t\t\t7 container\n\t\t\t\t8 container, Text: ForgeKit Studio Model 3D Studio belum terhubung\n\t\t\t\t9 heading Model 3D\n\t\t\t\t10 text Dari referensi ke Blender dan Roblox Studio.\n\t\t\t\t11 text Blender terdeteksi\n\t\t\t\t12 button Periksa koneksi Blender\n\t\t\t\t13 tab group Tab Model 3D\n\t\t\t\t\t14 tab Hiu Crimson — Rekonstruksi Organik, Value: 0\n\t\t\t\t\t15 button Tutup tab Hiu Crimson — Rekonstruksi Organik\n\t\t\t\t\t16 tab (selected) Model baru Sedang membuat, Value: 1\n\t\t\t\t\t17 button (disabled) Tutup tab Model baru\n\t\t\t\t18 button Tab Model 3D baru\n\t\t\t\t19 button Riwayat\n\t\t\t\t20 container Model baru Sedang membuat\n\t\t\t\t\t21 container Editor Model 3D\n\t\t\t\t\t\t22 container Kontrol Model 3D\n\t\t\t\t\t\t\t23 container\n\t\t\t\t\t\t\t\t24 heading Gambar ke 3D\n\t\t\t\t\t\t\t\t25 text Satu gambar menjadi model 3D lengkap.\n\t\t\t\t\t\t\t26 container Sumber model 3D\n\t\t\t\t\t\t\t\t27 toggle button (disabled) Dari gambar, Value: 1\n\t\t\t\t\t\t\t\t28 toggle button (disabled) Dengan prompt, Value: 0\n\t\t\t\t\t\t\t29 text Obsidian terhubung · 25 skill · 7 panduan pembelajaran · Belajar otomatis aktif\n\t\t\t\t\t\t\t30 button (disabled) Lampirkan file referensi\n\t\t\t\t\t\t\t31 container\n\t\t\t\t\t\t\t\t32 image Referensi Shark.jpg\n\t\t\t\t\t\t\t\t33 container Shark.jpg\n\t\t\t\t\t\t\t\t\t34 text Shark.jpg\n\t\t\t\t\t\t\t\t\t35 text Gambar referensi\n\t\t\t\t\t\t\t\t36 button (disabled) Hapus referensi Shark.jpg\n\t\t\t\t\t\t\t37 summary Format & batas lampiran, Value: 0\n\t\t\t\t\t\t\t38 text Belakang dan sisi yang tidak terlihat dilengkapi secara interpretatif.\n\t\t\t\t\t\t\t39 combo box (disabled, settable) Provider generator\n\t\t\t\t\t\t\t40 button (disabled) Akun berikutnya\n\t\t\t\t\t\t\t41 button Buka panel rincian penggunaan kuota provider\n\t\t\t\t\t\t\t42 container\n\t\t\t\t\t\t\t\t43 text Model\n\t\t\t\t\t\t\t\t44 combo box (disabled, settable) Model AI, Value: GPT-6.1-Sol\n\t\t\t\t\t\t\t45 container\n\t\t\t\t\t\t\t\t46 text Penalaran\n\t\t\t\t\t\t\t\t47 combo box (disabled, settable) Tingkat penalaran AI, Value: Medium\n\t\t\t\t\t\t\t48 button (disabled) Muat ulang model AI\n\t\t\t\t\t\t\t49 link Atur provider\n\t\t\t\t\t\t\t50 button Stop\n\t\t\t\t\t\t\t51 container Proses pembuatan Model 3D\n\t\t\t\t\t\t\t\t52 container, Text: Proses Membuat\n\t\t\t\t\t\t\t\t53 container, Text: Prompt diterima 01.34 Menyiapkan model Menyusun geometri\n\t\t\t\t\t\t\t\t54 text Provider sedang menyusun geometri. Model detail dapat memerlukan beberapa menit; gunakan Stop untuk membatalkan. Menunggu 265 detik.\n\t\t\t\t\t\t\t\t55 text jayapenum@gmail.com · Codex\n\t\t\t\t\t\t\t\t56 text gpt-6.1-sol\n\t\t\t\t\t\t\t\t57 text Berjalan\n\t\t\t\t\t\t\t58 summary Editor lanjutan, Value: 0\n\t\t\t\t\t\t59 text Hasil Blender\n\t\t\t\t\t\t60 container Kontrol ruang 3D\n\t\t\t\t\t\t\t61 button Bingkai\n\t\t\t\t\t\t\t62 button Depan\n\t\t\t\t\t\t\t63 button Kanan\n\t\t\t\t\t\t\t64 button Atas\n\t\t\t\t\t\t\t65 toggle button Tampilkan grid, Value: 1\n\t\t\t\t\t\t\t66 toggle button Wireframe, Value: 0\n\t\t\t\t\t\t\t67 toggle button Struktur objek, Value: 0\n\t\t\t\t\t\t68 container, Text: Model menyusun geometri Pratinjau muncul setelah geometri Blender tersedia gpt-6.1-sol\n\t\t\t\t\t\t69 button (disabled) Bangun di Blender\n\t\t70 scroll bar 0.3289474\n\t71 close button\n\t72 full screen button, Secondary Actions: zoom the window\n\t73 minimize button\n\t74 text ForgeKit Studio\n\nNo UI element is currently focused.",
+      "focusedElementId": null,
+      "coordinateSpace": "window",
+      "truncation": {
+        "maxDepthReached": false,
+        "truncated": false,
+        "maxDepth": 64,
+        "maxNodes": 1200
+      },
+      "window": {
+        "height": 813,
+        "screenIndex": 0,
+        "x": 80,
+        "title": "ForgeKit Studio",
+        "isMinimized": false,
+        "width": 1280,
+        "isOffscreen": false,
+        "platform": {
+          "layer": 0
+        },
+        "y": 31,
+        "id": 6568
+      },
+      "id": "57F2FD82-2C59-48B0-9B74-98D6D0A234CF",
+      "elementCount": 75
+    },
+    "screenshot": {
+      "scale": 2,
+      "height": 1626,
+      "width": 2560,
+      "format": "png",
+      "path": "/var/folders/fl/fr6n4s1n6hbdx3gvn4t6k6kc0000gn/T/orca-computer-use/57ece4de-430f-44cf-8dfd-a8eae352b19d-screenshot.png",
+      "dataOmitted": true,
+      "expiresAt": "2026-11-03T18:38:51.598Z"
+    }
+  },
+  "_meta": {
+    "runtimeId": "77c228cf-b781-44b9-9269-1ae7b7191b40"
+  }
+}

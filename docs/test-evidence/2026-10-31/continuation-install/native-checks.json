@@ -1,0 +1,17 @@
+{
+  "version": "0.1.20",
+  "sha256": "38839497bd13925ae5bb51a56ab1347f95d841be4e5782922d2de82851edb669",
+  "installedAppProcessCount": 1,
+  "nativeChecks": {
+    "landing": "AI Chat",
+    "savedPrimaryAccountLoaded": true,
+    "model": "GPT-6-Astra",
+    "effort": "Xhigh",
+    "keychainPrompt": false,
+    "animationRig": "Roblox R15 mesh",
+    "cameraRightPreset": true,
+    "cameraDragOrbit": true,
+    "newGenerationTested": false,
+    "studioConnected": false
+  }
+}

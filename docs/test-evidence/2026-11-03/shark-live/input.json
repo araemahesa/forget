@@ -1,0 +1,19 @@
+{
+  "path": "/Users/ariardianto/Downloads/Shark.jpg",
+  "sha256": "a4abfdf2b5b7464fd7d44a33b81f8125f303a230fd2dc3a07a6ad926988614ea",
+  "model": "gpt-6.1-sol",
+  "reasoning": "medium",
+  "quality": "high",
+  "userPrompt": "",
+  "assessment": [
+    "3D volume",
+    "body proportions",
+    "head and snout",
+    "open mouth and teeth",
+    "gill slits",
+    "dorsal and pectoral fins",
+    "tail shape",
+    "gray back and white belly",
+    "six real renders"
+  ]
+}

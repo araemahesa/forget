@@ -1,0 +1,18 @@
+{
+  "id": "718a8974-9da9-4965-aff3-c517a0f18614",
+  "ok": false,
+  "error": {
+    "code": "window_not_found",
+    "message": "app 'ForgeKit Studio' has no accessibility window; make sure the app has a visible window, then retry with --restore-window.",
+    "data": {
+      "nextSteps": [
+        "Run `orca computer list-windows --app <app> --json` and target one of the listed windows.",
+        "If the app is listed but no usable window is visible, retry observation once with `--restore-window`.",
+        "If no window is listed, open or focus the app first; `orca computer` does not launch closed desktop apps."
+      ]
+    }
+  },
+  "_meta": {
+    "runtimeId": "77d5f015-6c50-4219-941e-ffc172e5038a"
+  }
+}

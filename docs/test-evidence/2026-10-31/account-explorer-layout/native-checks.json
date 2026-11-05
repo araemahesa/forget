@@ -1,0 +1,15 @@
+{
+  "version": "0.1.21",
+  "topbarExtraControlsRemoved": true,
+  "chatLibraryButtonRemoved": true,
+  "providerThenAccounts": true,
+  "pickerHasUsage": false,
+  "nativeUsageAccountsRead": 2,
+  "nativeUsageAccountSwitch": true,
+  "nativeModelLoaded": true,
+  "explorerNextToNewChat": true,
+  "studioConnected": false,
+  "mapModified": false,
+  "inferenceSent": false,
+  "landing": "AI Chat"
+}

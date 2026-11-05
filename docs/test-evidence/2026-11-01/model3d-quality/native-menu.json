@@ -1,0 +1,67 @@
+{
+  "id": "d4574082-ad21-404e-b755-01b52aaa25ed",
+  "ok": true,
+  "result": {
+    "screenshotStatus": {
+      "state": "captured",
+      "metadata": {
+        "engine": "screenCaptureKit",
+        "windowId": 3438
+      }
+    },
+    "action": {
+      "fallbackReason": null,
+      "targetWindowId": 3438,
+      "actionName": "AXPress",
+      "path": "accessibility",
+      "verification": {
+        "state": "unverified",
+        "reason": "accessibility_action_unasserted"
+      }
+    },
+    "snapshot": {
+      "id": "161E94C6-7CD5-4E5E-8698-7B1338648E5C",
+      "app": {
+        "name": "ForgeKit Studio",
+        "pid": 31064,
+        "bundleId": "dev.forgekit.studio"
+      },
+      "truncation": {
+        "truncated": false,
+        "maxNodes": 1200,
+        "maxDepthReached": false,
+        "maxDepth": 64
+      },
+      "focusedElementId": 2,
+      "window": {
+        "x": 80,
+        "width": 1280,
+        "height": 813,
+        "screenIndex": 0,
+        "y": 31,
+        "platform": {
+          "layer": 0
+        },
+        "title": "ForgeKit Studio",
+        "isOffscreen": false,
+        "isMinimized": false,
+        "id": 3438
+      },
+      "treeText": "App=dev.forgekit.studio (pid 31064)\nWindow: \"ForgeKit Studio\", App: ForgeKit Studio.\n\n0 standard window ForgeKit Studio\n\t1 scroll area\n\t\t2 HTML content ForgeKit Studio\n\t\t\t3 container Navigasi utama\n\t\t\t\t4 link AI Chat\n\t\t\t\t5 button (expanded) Studio Kreatif\n\t\t\t\t6 container Studio Kreatif\n\t\t\t\t\t7 link Model 3D\n\t\t\t\t\t\t8 text Model 3D\n\t\t\t\t\t9 link Animasi\n\t\t\t\t\t\t10 text Animasi\n\t\t\t\t\t11 link Efek Visual\n\t\t\t\t\t\t12 text Efek Visual\n\t\t\t\t\t13 link Desain Visual\n\t\t\t\t\t\t14 text Desain Visual\n\t\t\t\t\t15 link Audio\n\t\t\t\t\t\t16 text Audio\n\t\t\t\t\t17 link Cutscene\n\t\t\t\t\t\t18 text Cutscene\n\t\t\t\t\t19 link Antarmuka Game\n\t\t\t\t\t\t20 text Antarmuka Game\n\t\t\t\t\t21 link Karakter & Dialog\n\t\t\t\t\t\t22 text Karakter & Dialog\n\t\t\t\t\t23 link Langit & Atmosfer\n\t\t\t\t\t\t24 text Langit & Atmosfer\n\t\t\t\t25 link Pengaturan\n\t\t\t26 container\n\t\t\t\t27 container, Text: ForgeKit Studio Pengaturan\n\t\t\t\t28 container\n\t\t\t\t\t29 heading Pengaturan\n\t\t\t\t\t30 text Akun, AI, dan tampilan.\n\t\t\t\t31 container Akun Discord\n\t\t\t\t\t32 heading Akun Discord\n\t\t\t\t\t33 text Profil percakapan\n\t\t\t\t\t34 text Belum tersambung\n\t\t\t\t\t35 button (disabled) Lanjutkan dengan Discord\n\t\t\t\t\t36 summary Konfigurasi Discord · diperlukan, Value: 0\n\t\t\t\t37 container Tampilan\n\t\t\t\t\t38 heading Tampilan\n\t\t\t\t\t39 container Tema aplikasi\n\t\t\t\t\t\t40 toggle button Sistem, Value: 1\n\t\t\t\t\t\t41 toggle button Gelap, Value: 0\n\t\t\t\t\t\t42 toggle button Terang, Value: 0\n\t\t\t\t\t43 text Kepadatan\n\t\t\t\t\t44 container Kepadatan\n\t\t\t\t\t\t45 toggle button Nyaman, Value: 1\n\t\t\t\t\t\t46 toggle button Ringkas, Value: 0\n\t\t\t\t\t47 container\n\t\t\t\t\t\t48 text Kurangi animasi tambahan\n\t\t\t\t\t\t49 checkbox Kurangi animasi tambahan, Value: 0\n\t\t\t\t50 container Provider AI\n\t\t\t\t\t51 heading Provider AI\n\t\t\t\t\t52 text Chat & kreasi\n\t\t\t\t\t53 container Katalog Provider\n\t\t\t\t\t\t54 text OpenAI\n\t\t\t\t\t\t55 container Login ChatGPT melalui Codex · membaca model dan limit akun secara otomatis bila tersedia\n\t\t\t\t\t\t\t56 text Login ChatGPT\n\t\t\t\t\t\t57 button Tambah akun\n\t\t\t\t\t\t58 button Koneksi API lanjutan untuk OpenAI\n\t\t\t\t\t\t59 text Claude\n\t\t\t\t\t\t60 container Claude Console resmi · koneksi API langsung untuk ForgeKit\n\t\t\t\t\t\t\t61 text Koneksi API Claude\n\t\t\t\t\t\t62 button Connect\n\t\t\t\t\t\t63 button Koneksi API lanjutan untuk Claude\n\t\t\t\t\t\t64 text Antigravity\n\t\t\t\t\t\t65 container via 9router · status integrasi sesuai versi\n\t\t\t\t\t\t\t66 text Gateway 9router\n\t\t\t\t\t\t67 summary Dukungan terbatas, Value: 0\n\t\t\t\t\t\t68 button Connect\n\t\t\t\t\t\t69 text Google / Gemini\n\t\t\t\t\t\t70 container Login Google resmi · OAuth dengan registrasi client ForgeKit\n\t\t\t\t\t\t\t71 text Login Google\n\t\t\t\t\t\t72 button Connect\n\t\t\t\t\t\t73 button Koneksi API lanjutan untuk Google / Gemini\n\t\t\t\t\t74 text Provider lain\n\t\t\t\t\t75 button Tambah koneksi\n\t\t\t\t\t76 heading Akun tersambung\n\t\t\t\t\t77 button (disabled) Perbarui usage\n\t\t\t\t\t78 text jayapenum@gmail.com · Codex\n\t\t\t\t\t79 text ChatGPT · Codex\n\t\t\t\t\t80 text UTAMA\n\t\t\t\t\t81 container, Text: Sisa penggunaan Memperbarui… 5h 32% 22:20 Mingguan 89% 8 Nov\n\t\t\t\t\t82 container\n\t\t\t\t\t\t83 text Model\n\t\t\t\t\t\t84 combo box (settable) Model AI, Value: GPT-6.1-Sol\n\t\t\t\t\t85 container\n\t\t\t\t\t\t86 text Penalaran\n\t\t\t\t\t\t87 combo box (settable) Tingkat penalaran AI, Value: Otomatis · low\n\t\t\t\t\t88 button Muat ulang model AI\n\t\t\t\t\t89 summary Detail akses, Value: 0\n\t\t\t\t\t90 button Kelola\n\t\t\t\t\t91 button Uji koneksi\n\t\t\t\t\t92 button Putuskan\n\t\t\t\t\t93 text lip.pillar14@icloud.com · Codex\n\t\t\t\t\t94 text ChatGPT · Codex\n\t\t\t\t\t95 text TERSIMPAN\n\t\t\t\t\t96 container, Text: Sisa penggunaan Memperbarui… 5h 100% 23:28 Mingguan 9% 4 Nov\n\t\t\t\t\t97 container\n\t\t\t\t\t\t98 text Model\n\t\t\t\t\t\t99 combo box (settable) Model AI, Value: GPT-6-Astra\n\t\t\t\t\t100 container\n\t\t\t\t\t\t101 text Penalaran\n\t\t\t\t\t\t102 combo box (settable) Tingkat penalaran AI, Value: High\n\t\t\t\t\t103 button Muat ulang model AI\n\t\t\t\t\t104 summary Detail akses, Value: 0\n\t\t\t\t\t105 button Jadikan utama\n\t\t\t\t\t106 button Kelola\n\t\t\t\t\t107 button Uji koneksi\n\t\t\t\t\t108 button Putuskan\n\t\t\t\t\t109 text Fallback otomatis\n\t\t\t\t\t110 text Nonaktif\n\t\t\t\t\t111 button Atur\n\t\t\t\t\t112 summary Detail fallback, Value: 0\n\t\t\t\t\t113 summary Pengaturan lanjutan, Value: 0\n\t\t\t\t114 summary Koneksi Studio & penyimpanan, Value: 0\n\t\t\t\t115 text ForgeKit Studio\n\t\t\t\t116 text v0.1.27\n\t\t117 scroll bar 1\n\t118 close button\n\t119 full screen button, Secondary Actions: zoom the window\n\t120 minimize button\n\t121 text ForgeKit Studio\n\nThe focused UI element is 2 HTML content ForgeKit Studio.",
+      "coordinateSpace": "window",
+      "elementCount": 122
+    },
+    "screenshot": {
+      "format": "png",
+      "scale": 2,
+      "width": 2560,
+      "height": 1626,
+      "path": "/var/folders/fl/fr6n4s1n6hbdx3gvn4t6k6kc0000gn/T/orca-computer-use/d4574082-ad21-404e-b755-01b52aaa25ed-screenshot.png",
+      "dataOmitted": true,
+      "expiresAt": "2026-11-02T11:29:31.122Z"
+    }
+  },
+  "_meta": {
+    "runtimeId": "710fe79a-e3c7-4077-bc62-9a85d15d879d"
+  }
+}

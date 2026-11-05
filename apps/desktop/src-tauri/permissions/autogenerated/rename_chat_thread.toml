@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-rename-chat-thread"
+description = "Enables the rename_chat_thread command without any pre-configured scope."
+commands.allow = ["rename_chat_thread"]
+
+[[permission]]
+identifier = "deny-rename-chat-thread"
+description = "Denies the rename_chat_thread command without any pre-configured scope."
+commands.deny = ["rename_chat_thread"]

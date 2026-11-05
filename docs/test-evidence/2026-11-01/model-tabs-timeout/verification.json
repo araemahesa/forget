@@ -1,0 +1,28 @@
+{
+  "checkedAt": "2026-11-01T21:58:42+0700",
+  "version": "0.1.30",
+  "frontendTestsPassed": 323,
+  "backendTestsPassed": 146,
+  "backendEnvironmentTestsIgnored": 6,
+  "finalFocusedTestsPassed": 17,
+  "nativeUi": {
+    "newTabIsEmpty": true,
+    "historyListsSavedArtifacts": true,
+    "historyReusesOpenTab": true,
+    "closingTabKeepsSavedArtifacts": true,
+    "blenderResultVisible": true,
+    "rawTimeoutAndGenericInstructionsRemoved": true,
+    "friendlyTimeoutShownOnce": true,
+    "originalReferenceRestored": true
+  },
+  "dataTablesUnchangedAfterUiChecks": true,
+  "newGenerationsDuringUiChecks": 0,
+  "liveProviderRegenerationTested": false,
+  "temporaryBuildBytesRemoved": 2549919744,
+  "oldAppTrashed": "# Moved \"/private/tmp/forgekit-0130-rollback.noindex/ForgeKit Studio.app\" to \"/Users/ariardianto/.Trash/ForgeKit Studio.app\"",
+  "spotlight": [
+    "/Applications/ForgeKit Studio.app"
+  ],
+  "sourceFolderBytes": 285978624,
+  "installedExecutableSha256": "7ba818ba161451017a80a6e0f0fc9c55a7e2dbccbefffd39c6ba4735b4c9a33d"
+}

@@ -1,0 +1,26 @@
+
+running 1 test
+chat: 6 bounded notes
+model3d: 5 bounded notes
+animation: 5 bounded notes
+vfx: 5 bounded notes
+interface: 5 bounded notes
+npc: 5 bounded notes
+cutscene: 5 bounded notes
+music: 5 bounded notes
+sfx: 5 bounded notes
+sky: 5 bounded notes
+gfx: 5 bounded notes
+icon: 5 bounded notes
+clothing: 5 bounded notes
+texture: 4 bounded notes
+test obsidian::tests::configured_vault_supports_every_prompt_domain ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 134 filtered out; finished in 0.06s
+
+
+running 1 test
+test blender::live_tests::installed_blender_builds_reopenable_files_and_checks_cached_integrity ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 134 filtered out; finished in 10.02s
+

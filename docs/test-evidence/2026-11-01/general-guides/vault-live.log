@@ -1,0 +1,97 @@
+   Compiling forgekit-desktop v0.1.25 (/Users/ariardianto/Documents/ForgeKIT/CODE/apps/desktop/src-tauri)
+warning: unused import: `json`
+ --> src/explorer.rs:2:18
+  |
+2 | use serde_json::{json, Value};
+  |                  ^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: static `PROCESSING` is never used
+ --> src/attachments.rs:6:8
+  |
+6 | static PROCESSING: std::sync::Mutex<()> = std::sync::Mutex::new(());
+  |        ^^^^^^^^^^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: static `REFRESH` is never used
+  --> src/browser_auth.rs:27:8
+   |
+27 | static REFRESH: Mutex<()> = Mutex::new(());
+   |        ^^^^^^^
+
+warning: function `access_token` is never used
+   --> src/browser_auth.rs:180:8
+    |
+180 | pub fn access_token(key_ref: &str, raw: String) -> Result<String, String> {
+    |        ^^^^^^^^^^^^
+
+warning: field `headers` is never read
+ --> src/provider_usage_http.rs:8:9
+  |
+6 | pub struct Response {
+  |            -------- field in this struct
+7 |     pub status: u16,
+8 |     pub headers: HashMap<String, String>,
+  |         ^^^^^^^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: static `PROCESSING` is never used
+ --> src/attachments.rs:6:8
+  |
+6 | static PROCESSING: std::sync::Mutex<()> = std::sync::Mutex::new(());
+  |        ^^^^^^^^^^
+
+warning: function `context_size` is never used
+   --> src/references.rs:112:8
+    |
+112 | pub fn context_size(messages: &[Value]) -> Result<usize, String> {
+    |        ^^^^^^^^^^^^
+
+warning: function `validate_login_method` is never used
+  --> src/codex_auth.rs:12:15
+   |
+12 | pub(crate) fn validate_login_method(method: Option<&str>) -> Result<(), String> {
+   |               ^^^^^^^^^^^^^^^^^^^^^
+
+warning: `forgekit-desktop` (lib test) generated 3 warnings
+warning: `forgekit-desktop` (lib) generated 7 warnings (2 duplicates) (run `cargo fix --lib -p forgekit-desktop` to apply 1 suggestion)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 21.87s
+     Running unittests src/lib.rs (apps/desktop/src-tauri/target/debug/deps/forgekit_desktop_lib-905e655e83486232)
+
+running 6 tests
+test obsidian::tests::adaptive_vault_routes_mixed_requests_without_loading_projects ... 
+thread 'obsidian::tests::adaptive_vault_routes_mixed_requests_without_loading_projects' (1626798) panicked at src/obsidian.rs:125:44:
+called `Result::unwrap()` on an `Err` value: "Konteks vault terlalu besar. Ringkas panduan sebelum mengirim ulang."
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+FAILED
+test obsidian::tests::configured_vault_supports_every_prompt_domain ... chat: 9 bounded notes
+model3d: 20 bounded notes
+animation: 18 bounded notes
+vfx: 17 bounded notes
+interface: 18 bounded notes
+npc: 16 bounded notes
+cutscene: 20 bounded notes
+music: 18 bounded notes
+sfx: 18 bounded notes
+sky: 19 bounded notes
+gfx: 17 bounded notes
+icon: 17 bounded notes
+clothing: 17 bounded notes
+texture: 11 bounded notes
+ok
+test obsidian::tests::context_is_selected_hashed_and_refreshed ... ok
+test obsidian::tests::native_context_commands_are_scoped_to_main_window ... ok
+test obsidian::tests::registry_versions_match_bundled_guides ... ok
+test obsidian::tests::rejects_escape_and_oversize_and_symlink ... ok
+
+failures:
+
+failures:
+    obsidian::tests::adaptive_vault_routes_mixed_requests_without_loading_projects
+
+test result: FAILED. 5 passed; 1 failed; 0 ignored; 0 measured; 134 filtered out; finished in 0.06s
+
+error: test failed, to rerun pass `--lib`

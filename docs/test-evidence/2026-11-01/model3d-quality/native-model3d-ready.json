@@ -1,0 +1,57 @@
+{
+  "id": "badae355-3c65-47dc-91ea-bfa4076f64eb",
+  "ok": true,
+  "result": {
+    "snapshot": {
+      "id": "C3928D0C-0366-42AD-8C6D-F01CA8184D4C",
+      "app": {
+        "pid": 31064,
+        "bundleId": "dev.forgekit.studio",
+        "name": "ForgeKit Studio"
+      },
+      "truncation": {
+        "truncated": false,
+        "maxNodes": 1200,
+        "maxDepthReached": false,
+        "maxDepth": 64
+      },
+      "focusedElementId": 34,
+      "window": {
+        "x": 80,
+        "width": 1280,
+        "height": 813,
+        "screenIndex": 0,
+        "y": 31,
+        "platform": {
+          "layer": 0
+        },
+        "title": "ForgeKit Studio",
+        "isOffscreen": false,
+        "isMinimized": false,
+        "id": 3438
+      },
+      "treeText": "App=dev.forgekit.studio (pid 31064)\nWindow: \"ForgeKit Studio\", App: ForgeKit Studio.\n\n0 standard window ForgeKit Studio\n\t1 scroll area\n\t\t2 HTML content ForgeKit Studio\n\t\t\t3 container Navigasi utama\n\t\t\t\t4 link AI Chat\n\t\t\t\t5 button Studio Kreatif\n\t\t\t\t6 link Pengaturan\n\t\t\t7 container\n\t\t\t\t8 container, Text: ForgeKit Studio Model 3D Studio belum terhubung\n\t\t\t\t9 heading Model 3D\n\t\t\t\t10 text Buat bentuk dari prompt dan referensi, lalu periksa hasil Blender. Unit: stud, sumbu Y ke atas.\n\t\t\t\t11 text Blender terdeteksi\n\t\t\t\t12 button Periksa koneksi Blender\n\t\t\t\t13 container Kontrol Model 3D\n\t\t\t\t\t14 container\n\t\t\t\t\t\t15 heading Brief kreatif\n\t\t\t\t\t\t16 text Mulai dari ide, lanjutkan menjadi karya.\n\t\t\t\t\t17 text Apa yang ingin dibuat?\n\t\t\t\t\t18 text entry area (settable) Apa yang ingin dibuat?, Placeholder: Jelaskan yang ingin dibuat…, Secondary Actions: show writing tools\n\t\t\t\t\t\t19 text Jelaskan yang ingin dibuat…\n\t\t\t\t\t20 button Lampirkan file referensi\n\t\t\t\t\t21 summary Format & batas lampiran, Value: 0\n\t\t\t\t\t22 combo box (settable) Provider generator\n\t\t\t\t\t23 button Jadikan Utama\n\t\t\t\t\t24 button Buka panel rincian penggunaan kuota provider\n\t\t\t\t\t25 container\n\t\t\t\t\t\t26 text Model\n\t\t\t\t\t\t27 combo box (settable) Model AI, Value: GPT-6-Astra\n\t\t\t\t\t28 container\n\t\t\t\t\t\t29 text Penalaran\n\t\t\t\t\t\t30 combo box (settable) Tingkat penalaran AI, Value: High\n\t\t\t\t\t31 button Muat ulang model AI\n\t\t\t\t\t32 link Atur provider\n\t\t\t\t\t33 button (disabled) Generate\n\t\t\t\t\t34 summary Versi tersimpan (0), Value: 0\n\t\t\t\t\t35 summary Editor lanjutan, Value: 0\n\t\t\t\t36 text Belum ada artefak · Pratinjau recipe\n\t\t\t\t37 container\n\t\t\t\t\t38 checkbox Wireframe, Value: 0\n\t\t\t\t\t39 text Wireframe\n\t\t\t\t40 container Kontrol ruang 3D\n\t\t\t\t\t41 button Bingkai\n\t\t\t\t\t42 button Depan\n\t\t\t\t\t43 button Kanan\n\t\t\t\t\t44 button Atas\n\t\t\t\t\t45 toggle button Tampilkan grid, Value: 1\n\t\t\t\t\t46 toggle button Wireframe, Value: 0\n\t\t\t\t\t47 toggle button Struktur objek, Value: 0\n\t\t\t\t48 image Viewport geometri Model 3D\n\t\t\t\t49 summary Validasi & batas kemampuan, Value: 0\n\t\t\t\t50 button (disabled) Ekspor GLB\n\t\t\t\t51 button (disabled) Ekspor OBJ\n\t\t\t\t52 button (disabled) Bangun di Blender\n\t\t\t\t53 button (disabled) Terapkan ke Studio\n\t\t\t\t54 text Untuk mesh Blender, buka folder hasil lalu impor model.fbx atau model.glb melalui File → Import di Roblox Studio. Material dan genggaman tetap perlu diperiksa di Studio. Tombol Terapkan menggunakan primitive native yang didukung.\n\t\t55 scroll bar 0\n\t56 close button\n\t57 full screen button, Secondary Actions: zoom the window\n\t58 minimize button\n\t59 text ForgeKit Studio\n\nThe focused UI element is 34 summary Versi tersimpan (0), Value: 0.",
+      "coordinateSpace": "window",
+      "elementCount": 60
+    },
+    "screenshot": {
+      "format": "png",
+      "scale": 2,
+      "width": 2560,
+      "height": 1626,
+      "path": "/var/folders/fl/fr6n4s1n6hbdx3gvn4t6k6kc0000gn/T/orca-computer-use/badae355-3c65-47dc-91ea-bfa4076f64eb-screenshot.png",
+      "dataOmitted": true,
+      "expiresAt": "2026-11-02T11:29:57.466Z"
+    },
+    "screenshotStatus": {
+      "state": "captured",
+      "metadata": {
+        "windowId": 3438,
+        "engine": "screenCaptureKit"
+      }
+    }
+  },
+  "_meta": {
+    "runtimeId": "710fe79a-e3c7-4077-bc62-9a85d15d879d"
+  }
+}

@@ -1,0 +1,508 @@
+{
+  "ok": true,
+  "context": "Real React prompt components with explicit local fixtures; missing global styles replaced by fixture tokens. Not a full application build or live-provider test.",
+  "cases": [
+    {
+      "mode": "generator",
+      "kind": "model3d",
+      "theme": "dark",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "animation",
+      "theme": "dark",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "vfx",
+      "theme": "dark",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "interface",
+      "theme": "dark",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "npc",
+      "theme": "dark",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "cutscene",
+      "theme": "dark",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "music",
+      "theme": "dark",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "sky",
+      "theme": "dark",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "model3d",
+      "theme": "dark",
+      "width": 760
+    },
+    {
+      "mode": "generator",
+      "kind": "animation",
+      "theme": "dark",
+      "width": 760
+    },
+    {
+      "mode": "generator",
+      "kind": "vfx",
+      "theme": "dark",
+      "width": 760
+    },
+    {
+      "mode": "generator",
+      "kind": "interface",
+      "theme": "dark",
+      "width": 760
+    },
+    {
+      "mode": "generator",
+      "kind": "npc",
+      "theme": "dark",
+      "width": 760
+    },
+    {
+      "mode": "generator",
+      "kind": "cutscene",
+      "theme": "dark",
+      "width": 760
+    },
+    {
+      "mode": "generator",
+      "kind": "music",
+      "theme": "dark",
+      "width": 760
+    },
+    {
+      "mode": "generator",
+      "kind": "sky",
+      "theme": "dark",
+      "width": 760
+    },
+    {
+      "mode": "generator",
+      "kind": "model3d",
+      "theme": "dark",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "animation",
+      "theme": "dark",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "vfx",
+      "theme": "dark",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "interface",
+      "theme": "dark",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "npc",
+      "theme": "dark",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "cutscene",
+      "theme": "dark",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "music",
+      "theme": "dark",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "sky",
+      "theme": "dark",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "model3d",
+      "theme": "dark",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "animation",
+      "theme": "dark",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "vfx",
+      "theme": "dark",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "interface",
+      "theme": "dark",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "npc",
+      "theme": "dark",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "cutscene",
+      "theme": "dark",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "music",
+      "theme": "dark",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "sky",
+      "theme": "dark",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "model3d",
+      "theme": "light",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "animation",
+      "theme": "light",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "vfx",
+      "theme": "light",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "interface",
+      "theme": "light",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "npc",
+      "theme": "light",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "cutscene",
+      "theme": "light",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "music",
+      "theme": "light",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "sky",
+      "theme": "light",
+      "width": 1440
+    },
+    {
+      "mode": "generator",
+      "kind": "model3d",
+      "theme": "light",
+      "width": 760
+    },
+    {
+      "mode": "generator",
+      "kind": "animation",
+      "theme": "light",
+      "width": 760
+    },
+    {
+      "mode": "generator",
+      "kind": "vfx",
+      "theme": "light",
+      "width": 760
+    },
+    {
+      "mode": "generator",
+      "kind": "interface",
+      "theme": "light",
+      "width": 760
+    },
+    {
+      "mode": "generator",
+      "kind": "npc",
+      "theme": "light",
+      "width": 760
+    },
+    {
+      "mode": "generator",
+      "kind": "cutscene",
+      "theme": "light",
+      "width": 760
+    },
+    {
+      "mode": "generator",
+      "kind": "music",
+      "theme": "light",
+      "width": 760
+    },
+    {
+      "mode": "generator",
+      "kind": "sky",
+      "theme": "light",
+      "width": 760
+    },
+    {
+      "mode": "generator",
+      "kind": "model3d",
+      "theme": "light",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "animation",
+      "theme": "light",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "vfx",
+      "theme": "light",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "interface",
+      "theme": "light",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "npc",
+      "theme": "light",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "cutscene",
+      "theme": "light",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "music",
+      "theme": "light",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "sky",
+      "theme": "light",
+      "width": 390
+    },
+    {
+      "mode": "generator",
+      "kind": "model3d",
+      "theme": "light",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "animation",
+      "theme": "light",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "vfx",
+      "theme": "light",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "interface",
+      "theme": "light",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "npc",
+      "theme": "light",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "cutscene",
+      "theme": "light",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "music",
+      "theme": "light",
+      "width": 320
+    },
+    {
+      "mode": "generator",
+      "kind": "sky",
+      "theme": "light",
+      "width": 320
+    },
+    {
+      "mode": "editor",
+      "kind": "gfx",
+      "theme": "dark",
+      "width": 1440
+    },
+    {
+      "mode": "editor",
+      "kind": "gfx",
+      "theme": "dark",
+      "width": 760
+    },
+    {
+      "mode": "editor",
+      "kind": "gfx",
+      "theme": "dark",
+      "width": 390
+    },
+    {
+      "mode": "editor",
+      "kind": "gfx",
+      "theme": "dark",
+      "width": 320
+    },
+    {
+      "mode": "editor",
+      "kind": "gfx",
+      "theme": "light",
+      "width": 1440
+    },
+    {
+      "mode": "editor",
+      "kind": "gfx",
+      "theme": "light",
+      "width": 760
+    },
+    {
+      "mode": "editor",
+      "kind": "gfx",
+      "theme": "light",
+      "width": 390
+    },
+    {
+      "mode": "editor",
+      "kind": "gfx",
+      "theme": "light",
+      "width": 320
+    },
+    {
+      "mode": "chat",
+      "kind": "gfx",
+      "theme": "dark",
+      "width": 1440
+    },
+    {
+      "mode": "chat",
+      "kind": "gfx",
+      "theme": "dark",
+      "width": 760
+    },
+    {
+      "mode": "chat",
+      "kind": "gfx",
+      "theme": "dark",
+      "width": 390
+    },
+    {
+      "mode": "chat",
+      "kind": "gfx",
+      "theme": "dark",
+      "width": 320
+    },
+    {
+      "mode": "chat",
+      "kind": "gfx",
+      "theme": "light",
+      "width": 1440
+    },
+    {
+      "mode": "chat",
+      "kind": "gfx",
+      "theme": "light",
+      "width": 760
+    },
+    {
+      "mode": "chat",
+      "kind": "gfx",
+      "theme": "light",
+      "width": 390
+    },
+    {
+      "mode": "chat",
+      "kind": "gfx",
+      "theme": "light",
+      "width": 320
+    }
+  ],
+  "captures": [
+    "generator-dark-1440.png",
+    "generator-dark-390.png",
+    "generator-light-1440.png",
+    "generator-light-390.png",
+    "editor-dark-1440.png",
+    "editor-dark-390.png",
+    "editor-light-1440.png",
+    "editor-light-390.png",
+    "chat-dark-1440.png",
+    "chat-dark-390.png",
+    "chat-light-1440.png",
+    "chat-light-390.png"
+  ],
+  "errors": [],
+  "interactions": [
+    "empty input disabled",
+    "one dispatch per submit in three components",
+    "generator stop",
+    "provider error visible",
+    "no provider disabled"
+  ]
+}

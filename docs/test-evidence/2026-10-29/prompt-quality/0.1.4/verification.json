@@ -1,0 +1,59 @@
+{
+  "version": "0.1.4",
+  "automated": {
+    "contracts": 53,
+    "desktop": 263,
+    "rust": 122,
+    "total": 438,
+    "optInIgnored": 1,
+    "typecheck": true,
+    "frontendBuild": true
+  },
+  "live": {
+    "isolatedData": true,
+    "isolatedStudioMap": "ForgeKitAcceptance.rbxlx",
+    "providerGeneratorEditorPaths": 14,
+    "appliedRootsIndependentlyReadBack": [
+      "model3d",
+      "vfx",
+      "interface",
+      "npc",
+      "animation",
+      "cutscene"
+    ],
+    "npcRecipeExact": true,
+    "animationMatricesExact": true,
+    "animationRuntimeRestored": true,
+    "cutsceneCompletionCameraRestored": true,
+    "guiCloseNativeClick": true,
+    "npcBranchesDistanceRespawn": true,
+    "liveLuauChecker": true,
+    "returnedToEdit": true
+  },
+  "rawHarnessReport": "provider-apply-final.json intentionally leaves installation acceptance pending independent read-back; independent files and runtime observations supply that evidence without rewriting raw results.",
+  "fullOriginalAcceptanceComplete": false,
+  "remaining": [
+    "Perceptual quality across all media and representative performance not fully evaluated",
+    "Comprehensive native zoom/accessibility and multiple real map/reconnect cases not all proven",
+    "Only connected ChatGPT account quota tested live; other providers require their own available quota API",
+    "StyLua/Selene static-only, no full Luau type analyzer or clean-machine bundled tools",
+    "Bounded Explorer search/adapter-dependent selection sync",
+    "Ad-hoc signed, not notarized"
+  ],
+  "layoutFixtures": {
+    "routeViewport": 80,
+    "themeDensity": 320,
+    "errors": 0
+  },
+  "bundleAndInstalledBinaryEqual": true,
+  "signature": "ad-hoc",
+  "finalExecutableSha256": "a2273bdebf07cead08bcdfdf5c6aafa8ca4f97e38302550f029c06adcd74d7c7",
+  "dataIntegrity": "ok",
+  "allTenProtectedHashesUnchanged": true,
+  "nativeRestart": {
+    "enabledModelCatalog": true,
+    "explorerAutomaticallyVisible": true,
+    "explorerExplicitRefreshRecovered": true,
+    "tasksSubmitted": 0
+  }
+}

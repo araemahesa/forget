@@ -1,0 +1,43 @@
+$ pnpm --filter @forgekit/desktop build
+$ vite build
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 403 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                            0.40 kB │ gzip:   0.27 kB
+dist/assets/music.worker-9ERz6Snj.js       4.28 kB
+dist/assets/sfx.worker-CCMB8BVv.js         5.93 kB
+dist/assets/MessageContent-a9o1ZK5K.css    0.78 kB │ gzip:   0.32 kB
+dist/assets/index-CJTGlzR4.css           163.93 kB │ gzip:  29.20 kB
+dist/assets/Status-DOcxRky-.js             0.36 kB │ gzip:   0.23 kB
+dist/assets/Select-B7NU21AF.js             0.53 kB │ gzip:   0.36 kB
+dist/assets/StudioApply-Csr_A_EB.js        0.61 kB │ gzip:   0.42 kB
+dist/assets/TextField-BWCeK-X6.js          0.61 kB │ gzip:   0.39 kB
+dist/assets/EditorModes-DCBKv4Vb.js        4.43 kB │ gzip:   1.91 kB
+dist/assets/AnimationPage-CoEkFRPc.js      5.51 kB │ gzip:   2.14 kB
+dist/assets/NpcDialoguePage-DeGNotcL.js    6.92 kB │ gzip:   2.62 kB
+dist/assets/Dropdown-CxQMO9EX.js           6.98 kB │ gzip:   2.87 kB
+dist/assets/VfxPage-DNPoal6_.js            7.17 kB │ gzip:   2.85 kB
+dist/assets/CutscenePage-SgvZ46Bb.js       9.06 kB │ gzip:   3.54 kB
+dist/assets/GuiPage-BaJnjIPV.js            9.55 kB │ gzip:   3.72 kB
+dist/assets/useGfxDraft-DzN3_AEj.js       15.93 kB │ gzip:   4.12 kB
+dist/assets/MessageAvatar-42OZS9p1.js     16.80 kB │ gzip:   6.04 kB
+dist/assets/ChatPage-j7sUgGhz.js          20.23 kB │ gzip:   7.03 kB
+dist/assets/SkyboxPage-D7I8d1m1.js        22.84 kB │ gzip:   6.61 kB
+dist/assets/useCreativeTask-C3xgbXxd.js   25.76 kB │ gzip:   8.51 kB
+dist/assets/AudioWorkspace-aMX9B-el.js    33.06 kB │ gzip:  10.17 kB
+dist/assets/SettingsPage-C6q44rea.js      34.66 kB │ gzip:  10.05 kB
+dist/assets/Model3dPage-BazAm0P_.js       52.75 kB │ gzip:  16.14 kB
+dist/assets/VisualWorkspace-CF8Xza6y.js   78.53 kB │ gzip:  20.78 kB
+dist/assets/MessageContent-CeT7QBV8.js   191.42 kB │ gzip:  58.46 kB
+dist/assets/index-B5HRcpCZ.js            250.13 kB │ gzip:  78.40 kB
+dist/assets/robloxRig-DQ3iTmjV.js        262.39 kB │ gzip:  59.76 kB
+dist/assets/geometry-CYeGGzFh.js         672.27 kB │ gzip: 170.52 kB
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 961ms

@@ -1,0 +1,68 @@
+{
+  "version": "0.1.33",
+  "installed": "/Applications/ForgeKit Studio.app",
+  "previousApp": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-live-model-install-1793547710102503000/ForgeKit Studio 0.1.32.app",
+  "executableSha256": "8128ec62618dfb0836fcd8281e83270ff3edecd874dab5111505e475f7b4a7d4",
+  "signature": "ad-hoc verified",
+  "databaseBefore": {
+    "integrity": "ok",
+    "foreignKeyErrors": 0,
+    "tables": {
+      "chat_thread": {
+        "count": 14,
+        "sha256": "c6bfa1bd5d035e229dbed12c8a99647afb55e8f8a4f01c6e1919735ba7ab30aa"
+      },
+      "chat_message": {
+        "count": 35,
+        "sha256": "f78cc0489637ae41e796b6d122abdf703bead86ba56198e70ceeed7db39c161e"
+      },
+      "gfx_version": {
+        "count": 4,
+        "sha256": "f8b1843758bceb8730142c7eb9850704323ddabd44a9371bc518b565ebe645a5"
+      },
+      "sfx_version": {
+        "count": 1,
+        "sha256": "ad0a953a250cba93c0aaef31acb0d447a0928990ac482524de3657035c58c691"
+      },
+      "image_version": {
+        "count": 1,
+        "sha256": "b01363243211e8f6c32c5bdadbac53b87aaf5525baa7d6129e90d16913f596ed"
+      },
+      "creative_version": {
+        "count": 2,
+        "sha256": "1d7b166cbb0ead356ff050bbc3a75c48216d97f842de0f2d31bacb2aee240f07"
+      }
+    }
+  },
+  "databaseAfter": {
+    "integrity": "ok",
+    "foreignKeyErrors": 0,
+    "tables": {
+      "chat_thread": {
+        "count": 14,
+        "sha256": "c6bfa1bd5d035e229dbed12c8a99647afb55e8f8a4f01c6e1919735ba7ab30aa"
+      },
+      "chat_message": {
+        "count": 35,
+        "sha256": "f78cc0489637ae41e796b6d122abdf703bead86ba56198e70ceeed7db39c161e"
+      },
+      "gfx_version": {
+        "count": 4,
+        "sha256": "f8b1843758bceb8730142c7eb9850704323ddabd44a9371bc518b565ebe645a5"
+      },
+      "sfx_version": {
+        "count": 1,
+        "sha256": "ad0a953a250cba93c0aaef31acb0d447a0928990ac482524de3657035c58c691"
+      },
+      "image_version": {
+        "count": 1,
+        "sha256": "b01363243211e8f6c32c5bdadbac53b87aaf5525baa7d6129e90d16913f596ed"
+      },
+      "creative_version": {
+        "count": 2,
+        "sha256": "1d7b166cbb0ead356ff050bbc3a75c48216d97f842de0f2d31bacb2aee240f07"
+      }
+    }
+  },
+  "dataTablesMatch": true
+}

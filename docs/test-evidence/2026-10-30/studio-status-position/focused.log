@@ -1,0 +1,13 @@
+$ vitest --run src/app/App.test.tsx src/features/chat/ChatPage.test.tsx src/services/studioState.test.ts --maxWorkers=1
+
+ RUN  v5.0.5 /Users/ariardianto/Documents/Codex/2026-10-28/https-chatgpt-com-s-cx-6ae17a5323b88191b2592bae190e0bbd/outputs/ForgeKit/CODE/apps/desktop
+
+
+ Test Files  3 passed (3)
+      Tests  30 passed (30)
+   Start at  18:20:59
+   Duration  9.78s (tests 73%, environment 17%, setup 6%, import 3%, transform 1%)
+
+    Isolate  3 workers spawned · ~615ms startup each (spawn + environment, per file)
+             at least ~1.23s faster with isolate: false — reuses workers across files instead of one per file
+

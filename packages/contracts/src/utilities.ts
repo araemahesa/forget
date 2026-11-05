@@ -1,0 +1,41 @@
+import { object, boundedNumber, boundedText } from './creative';
+import type { ValidationIssue } from './gfx';
+export type CityDistrict = 'Downtown' | 'Commercial' | 'Residential' | 'Industrial' | 'Park';
+export type CityRecipe = { name: string; gridSize: [number, number]; blockSize: number; roadWidth: number; density: 'low' | 'medium' | 'high'; districts: CityDistrict[]; seed: number };
+export type TerrainBiome = 'Canyon' | 'Arctic' | 'Marsh' | 'Plains' | 'Mountains' | 'Desert' | 'Forest' | 'Snow' | 'Swamp' | 'Volcanic';
+export type TerrainRecipe = { name: string; seed: number; sizeX: number; sizeZ: number; maxHeight: number; waterLevel: number; addCaves: boolean; biomes: TerrainBiome[] };
+export type LightingRecipe = { name: string; timeOfDay: string; brightness: number; ambientColor: string; outdoorAmbientColor: string; colorShift_Top: string; colorShift_Bottom: string; shadowSoftness: number; atmosphereDensity: number; atmosphereHaze: number; bloomIntensity: number };
+export type PlaceDiagnosticIssue = { id: string; code: string; severity: 'info' | 'warning' | 'error'; location: string; message: string; suggestedFix: string };
+export type PlaceDoctorRecipe = { placeName: string; checkMemoryLeaks: boolean; checkUnanchoredParts: boolean; checkMissingCollision: boolean; checkScriptErrors: boolean; maxScanDepth: number };
+export type RigWeldRecipe = { modelName: string; rigType: 'R6' | 'R15' | 'Custom'; rootPartName: string; autoWeldAccessories: boolean; tolerance: number };
+export type MeshOptimizerRecipe = { meshName: string; targetTriangles: number; decimationRatio: number; preserveNormals: boolean; generateLOD: boolean };
+export type UnionToMeshRecipe = { unionName: string; exportFormat: 'obj' | 'rbxmesh'; weldLooseParts: boolean; smoothAngle: number };
+export type LocalizationRecipe = { tableName: string; sourceLocale: string; targetLocales: string[]; entries: { key: string; context: string; sourceText: string; translations: Record<string, string> }[] };
+export type RobloxAssetItem = { id: string; assetId?: string; name: string; assetType: 'Decal' | 'Audio' | 'MeshPart' | 'Model' | 'Animation'; creatorType: 'User' | 'Group'; creatorTargetId: string; status: 'draft' | 'ready' | 'moderation_pending' | 'failed'; sizeBytes?: number };
+export type RobloxExperienceConfig = { universeId: string; placeId: string; experienceName: string; maxPlayers: number; genre: string };
+export type DataStoreRecord = { key: string; scope: string; value: string; versionId: string; updatedAt: string };
+export type CommunityItem = { id: string; title: string; description: string; kind: 'model3d' | 'texture' | 'audio' | 'vfx'; author: string; downloads: number; rating: number; license: string; tags: string[]; createdAt: string };
+// Reconstructed contracts for retained legacy forms. These validate input; they do not imply a live executor.
+type Check = (value: unknown) => boolean;
+const text: Check = v => boundedText(v);
+const bool: Check = v => typeof v === 'boolean';
+const range = (min: number, max: number): Check => v => boundedNumber(v, min, max);
+const integer = (min: number, max: number): Check => v => Number.isInteger(v) && boundedNumber(v, min, max);
+const oneOf = (values: readonly string[]): Check => v => typeof v === 'string' && values.includes(v);
+const list = (item: Check, max = 1000): Check => v => Array.isArray(v) && v.length > 0 && v.length <= max && v.every(item);
+const color: Check = v => typeof v === 'string' && /^#[a-f0-9]{6}$/i.test(v);
+const id: Check = v => typeof v === 'string' && /^[1-9]\d{0,19}$/.test(v);
+function validate(v: unknown, fields: Record<string, Check>): ValidationIssue[] {
+  if (!object(v)) return [{ path: 'recipe', severity: 'error', message: 'Struktur input tidak sah.' }];
+  return Object.entries(fields).filter(([key, check]) => !check(v[key])).map(([path]) => ({ path, severity: 'error', message: `Nilai ${path} tidak sah.` }));
+}
+export const validateCityRecipe = (v: unknown) => validate(v, { name: text, gridSize: v => Array.isArray(v) && v.length === 2 && v.every(integer(1,64)), blockSize: range(1,1000), roadWidth: range(1,1000), density: oneOf(['low','medium','high']), districts: list(oneOf(['Downtown','Commercial','Residential','Industrial','Park']),5), seed: integer(0,2147483647) });
+export const validateTerrainRecipe = (v: unknown) => validate(v, { name: text, seed: integer(0,2147483647), sizeX: range(1,10000), sizeZ: range(1,10000), maxHeight: range(1,10000), waterLevel: range(0,10000), addCaves: bool, biomes: list(oneOf(['Plains','Mountains','Desert','Forest','Snow','Swamp','Volcanic']),7) });
+export const validateLightingRecipe = (v: unknown) => validate(v, { name: text, timeOfDay: v => typeof v === 'string' && /^(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d$/.test(v), brightness: range(0,10), ambientColor: color, outdoorAmbientColor: color, colorShift_Top: color, colorShift_Bottom: color, shadowSoftness: range(0,1), atmosphereDensity: range(0,1), atmosphereHaze: range(0,10), bloomIntensity: range(0,10) });
+export const validatePlaceDoctorRecipe = (v: unknown) => validate(v, { placeName: text, checkMemoryLeaks: bool, checkUnanchoredParts: bool, checkMissingCollision: bool, checkScriptErrors: bool, maxScanDepth: integer(1,50) });
+export const validateRigWeldRecipe = (v: unknown) => validate(v, { modelName: text, rigType: oneOf(['R6','R15']), rootPartName: text, autoWeldAccessories: bool, tolerance: range(0,1) });
+export const validateMeshOptimizerRecipe = (v: unknown) => validate(v, { meshName: text, targetTriangles: integer(1,10000000), decimationRatio: range(.01,1), preserveNormals: bool, generateLOD: bool });
+export const validateUnionToMeshRecipe = (v: unknown) => validate(v, { unionName: text, exportFormat: oneOf(['obj','rbxmesh']), weldLooseParts: bool, smoothAngle: range(0,180) });
+export const validateLocalizationRecipe = (v: unknown) => validate(v, { tableName: text, sourceLocale: text, targetLocales: list(text,100), entries: list(v => object(v) && text(v.key) && text(v.sourceText) && typeof v.context === 'string' && object(v.translations) && Object.values(v.translations).every(x => typeof x === 'string'),10000) });
+export const validateRobloxAssetItem = (v: unknown) => validate(v, { id: text, name: text, assetType: oneOf(['Decal','Audio','MeshPart','Model','Animation']), creatorType: oneOf(['User','Group']), creatorTargetId: id, status: oneOf(['draft','ready','moderation_pending','failed']) });
+export const validateRobloxExperienceConfig = (v: unknown) => validate(v, { universeId: id, placeId: id, experienceName: text, maxPlayers: integer(1,700), genre: text });

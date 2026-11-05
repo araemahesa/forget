@@ -1,0 +1,57 @@
+{
+  "id": "484ad010-80cb-4d6f-99a9-f79d2e16b7e1",
+  "ok": true,
+  "result": {
+    "screenshot": {
+      "format": "png",
+      "scale": 2,
+      "width": 2560,
+      "height": 1626,
+      "path": "/var/folders/fl/fr6n4s1n6hbdx3gvn4t6k6kc0000gn/T/orca-computer-use/484ad010-80cb-4d6f-99a9-f79d2e16b7e1-screenshot.png",
+      "dataOmitted": true,
+      "expiresAt": "2026-11-02T12:10:50.327Z"
+    },
+    "snapshot": {
+      "id": "1E18DD3B-C3E3-4240-866B-87C4DD89AFE1",
+      "app": {
+        "bundleId": "dev.forgekit.studio",
+        "pid": 38393,
+        "name": "ForgeKit Studio"
+      },
+      "truncation": {
+        "truncated": false,
+        "maxNodes": 1200,
+        "maxDepthReached": false,
+        "maxDepth": 64
+      },
+      "focusedElementId": null,
+      "window": {
+        "x": 80,
+        "width": 1280,
+        "height": 813,
+        "screenIndex": 0,
+        "y": 31,
+        "platform": {
+          "layer": 0
+        },
+        "title": "ForgeKit Studio",
+        "isOffscreen": false,
+        "isMinimized": false,
+        "id": 3547
+      },
+      "treeText": "App=dev.forgekit.studio (pid 38393)\nWindow: \"ForgeKit Studio\", App: ForgeKit Studio.\n\n0 standard window ForgeKit Studio\n\t1 close button\n\t2 full screen button, Secondary Actions: zoom the window\n\t3 minimize button\n\t4 text ForgeKit Studio\n\nNo UI element is currently focused.",
+      "coordinateSpace": "window",
+      "elementCount": 5
+    },
+    "screenshotStatus": {
+      "state": "captured",
+      "metadata": {
+        "engine": "screenCaptureKit",
+        "windowId": 3547
+      }
+    }
+  },
+  "_meta": {
+    "runtimeId": "710fe79a-e3c7-4077-bc62-9a85d15d879d"
+  }
+}

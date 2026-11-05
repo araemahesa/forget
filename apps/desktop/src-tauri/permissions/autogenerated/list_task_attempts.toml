@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-list-task-attempts"
+description = "Enables the list_task_attempts command without any pre-configured scope."
+commands.allow = ["list_task_attempts"]
+
+[[permission]]
+identifier = "deny-list-task-attempts"
+description = "Denies the list_task_attempts command without any pre-configured scope."
+commands.deny = ["list_task_attempts"]

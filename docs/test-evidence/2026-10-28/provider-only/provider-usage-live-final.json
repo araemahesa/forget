@@ -1,0 +1,38 @@
+[
+  {
+    "accessCheck": {
+      "modelCatalogReadable": true,
+      "modelCount": 8
+    },
+    "accountIndex": 1,
+    "checkedAt": 1793200232,
+    "message": null,
+    "mode": "direct",
+    "planType": "plus",
+    "provider": "openai",
+    "source": "codex",
+    "status": "available",
+    "windows": [
+      {
+        "index": 0,
+        "label": "5h",
+        "limit": null,
+        "remaining": null,
+        "resetsAt": 1793209266,
+        "unit": null,
+        "usedPercent": 4.0,
+        "windowDurationMins": 300
+      },
+      {
+        "index": 1,
+        "label": "Mingguan",
+        "limit": null,
+        "remaining": null,
+        "resetsAt": 1793776273,
+        "unit": null,
+        "usedPercent": 14.0,
+        "windowDurationMins": 10080
+      }
+    ]
+  }
+]

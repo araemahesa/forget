@@ -1,0 +1,144 @@
+{
+  "mode": "generator",
+  "kind": "model3d",
+  "width": 1440,
+  "card": {
+    "x": 220,
+    "y": 24,
+    "width": 1000,
+    "height": 295,
+    "top": 24,
+    "right": 1220,
+    "bottom": 319,
+    "left": 220
+  },
+  "overflow": false,
+  "items": [
+    {
+      "tag": "TEXTAREA",
+      "name": "",
+      "rect": {
+        "x": 237,
+        "y": 71,
+        "width": 966,
+        "height": 96,
+        "top": 71,
+        "right": 1203,
+        "bottom": 167,
+        "left": 237
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "name": "Provider generator",
+      "rect": {
+        "x": 244,
+        "y": 186,
+        "width": 34,
+        "height": 48,
+        "top": 186,
+        "right": 278,
+        "bottom": 234,
+        "left": 244
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "name": "Jadikan akun pilihan ini sebagai pilihan utama seluruh aplikasi",
+      "rect": {
+        "x": 237,
+        "y": 228,
+        "width": 139.65625,
+        "height": 36,
+        "top": 228,
+        "right": 376.65625,
+        "bottom": 264,
+        "left": 237
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "name": "Buka panel rincian penggunaan kuota provider",
+      "rect": {
+        "x": 376.65625,
+        "y": 229,
+        "width": 34,
+        "height": 34,
+        "top": 229,
+        "right": 410.65625,
+        "bottom": 263,
+        "left": 376.65625
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "name": "Model AI",
+      "rect": {
+        "x": 429.65625,
+        "y": 223.5,
+        "width": 339.1875,
+        "height": 45,
+        "top": 223.5,
+        "right": 768.84375,
+        "bottom": 268.5,
+        "left": 429.65625
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "name": "Tingkat penalaran AI",
+      "rect": {
+        "x": 754.453125,
+        "y": 225,
+        "width": 42.25,
+        "height": 42,
+        "top": 225,
+        "right": 796.703125,
+        "bottom": 267,
+        "left": 754.453125
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "name": "Muat ulang model AI",
+      "rect": {
+        "x": 962.640625,
+        "y": 210,
+        "width": 36,
+        "height": 36,
+        "top": 210,
+        "right": 998.640625,
+        "bottom": 246,
+        "left": 962.640625
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "name": "Generate",
+      "rect": {
+        "x": 1095,
+        "y": 209,
+        "width": 108,
+        "height": 38,
+        "top": 209,
+        "right": 1203,
+        "bottom": 247,
+        "left": 1095
+      }
+    },
+    {
+      "tag": "BUTTON",
+      "name": "Kualitas generator",
+      "rect": {
+        "x": 248,
+        "y": 327.5,
+        "width": 90.21875,
+        "height": 27,
+        "top": 327.5,
+        "right": 338.21875,
+        "bottom": 354.5,
+        "left": 248
+      }
+    }
+  ]
+}

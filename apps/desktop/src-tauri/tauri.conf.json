@@ -1,0 +1,45 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "ForgeKit Studio",
+  "version": "0.1.46",
+  "identifier": "dev.forgekit.studio",
+  "build": {
+    "frontendDist": "../dist",
+    "beforeBuildCommand": "pnpm build",
+    "beforeDevCommand": "pnpm dev --host 127.0.0.1 --port 1420",
+    "devUrl": "http://127.0.0.1:1420"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "ForgeKit Studio",
+        "width": 1280,
+        "height": 820,
+        "minWidth": 720,
+        "minHeight": 450,
+        "resizable": true,
+        "dragDropEnabled": false
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; connect-src 'self' ipc: http://ipc.localhost; img-src 'self' data: blob: https://cdn.discordapp.com; media-src 'self' blob:; worker-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'none'"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": [
+      "app",
+      "dmg"
+    ],
+    "macOS": {
+      "signingIdentity": "-"
+    },
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ]
+  }
+}

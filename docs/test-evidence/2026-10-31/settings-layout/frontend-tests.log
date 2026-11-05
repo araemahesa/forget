@@ -1,0 +1,28 @@
+$ pnpm -r --if-present test --run
+Scope: 2 of 3 workspace projects
+$ vitest run --run
+
+ RUN  v5.0.5 /Users/ariardianto/Documents/ForgeKIT/CODE/packages/contracts
+
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  11:30:33
+   Duration  106ms (import 46%, transform 25%, worker 16%, tests 12%, environment 1%)
+
+$ vitest --run
+
+ RUN  v5.0.5 /Users/ariardianto/Documents/ForgeKIT/CODE/apps/desktop
+
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+
+ Test Files  53 passed (53)
+      Tests  273 passed (273)
+   Start at  11:30:33
+   Duration  17.25s (tests 44%, environment 40%, setup 10%, import 3%, transform 3%, worker 1%)
+
+Environment  jsdom was created 53 times · 43.63s total, 40% of tracked time
+             create it once per worker with pool: 'vmThreads' (keeps per-file isolation) or isolate: false (shares it across files)
+             learn more: https://vitest.dev/guide/improving-performance#test-environments
+

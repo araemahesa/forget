@@ -1,0 +1,43 @@
+{
+  "appVersion": "0.1.34",
+  "taskId": "0a62ede1-72f9-4669-93d2-6538af2d23d9",
+  "status": "preview_ready",
+  "error": null,
+  "versionId": "creative-version-1793548910976-1",
+  "checkpointPhase": "reference_checked",
+  "checkpointValidation": "passed",
+  "reviewCount": 2,
+  "reviewDecision": "revise",
+  "metrics": {
+    "blendReopened": true,
+    "blenderVersion": "5.2.3 LTS",
+    "bounds": {
+      "max": [
+        3.660000085830689,
+        3.3949999809265137,
+        4.84993839263916
+      ],
+      "min": [
+        -3.660000085830689,
+        -2.2249999046325684,
+        -7.525000095367432
+      ]
+    },
+    "materials": 37,
+    "parts": 68,
+    "referenceImagesPacked": 1,
+    "triangles": 9388,
+    "vertices": 5277,
+    "views": [
+      "perspective",
+      "front",
+      "right"
+    ]
+  },
+  "bundleFilesVerified": true,
+  "outputDirectory": "/Users/ariardianto/Documents/ChatGPT/ForgeKit/outputs/hiu-2026-11-01",
+  "databaseIntegrity": "ok",
+  "foreignKeyErrors": 0,
+  "backendTests": 152,
+  "actualBlenderFixtureTests": 1
+}

@@ -1,0 +1,23 @@
+# Core compatibility target, not a full transitive lock. setup.sh records pip freeze.
+# PyTorch CUDA wheels installed separately by setup.sh.
+Pillow==11.1.0
+numpy==1.26.4
+diffusers==0.32.2
+transformers==4.48.3
+huggingface-hub==0.28.1
+accelerate==1.3.0
+safetensors==0.5.2
+einops==0.8.1
+omegaconf==2.3.0
+opencv-python==4.11.0.86
+trimesh==4.6.2
+pymeshlab==2023.12.post3
+pygltflib==1.16.3
+xatlas==0.0.9
+rembg==2.0.62
+onnxruntime==1.20.1
+ninja==1.11.1.3
+pybind11==2.13.6
+scikit-image==0.25.1
+PyMCubes==0.1.6
+tqdm==4.67.1

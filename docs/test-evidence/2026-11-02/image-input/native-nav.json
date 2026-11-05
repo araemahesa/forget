@@ -1,0 +1,67 @@
+{
+  "id": "a48483a3-d3cd-4fca-9deb-b248fd6824ce",
+  "ok": true,
+  "result": {
+    "snapshot": {
+      "app": {
+        "bundleId": "dev.forgekit.studio",
+        "pid": 98220,
+        "name": "ForgeKit Studio"
+      },
+      "treeText": "App=dev.forgekit.studio (pid 98220)\nWindow: \"ForgeKit Studio\", App: ForgeKit Studio.\n\n0 standard window ForgeKit Studio\n\t1 scroll area\n\t\t2 HTML content ForgeKit Studio\n\t\t\t3 container Navigasi utama\n\t\t\t\t4 link AI Chat\n\t\t\t\t5 button (expanded) Studio Kreatif\n\t\t\t\t6 container Studio Kreatif\n\t\t\t\t\t7 link Model 3D\n\t\t\t\t\t\t8 text Model 3D\n\t\t\t\t\t9 link Animasi\n\t\t\t\t\t\t10 text Animasi\n\t\t\t\t\t11 link Efek Visual\n\t\t\t\t\t\t12 text Efek Visual\n\t\t\t\t\t13 link Desain Visual\n\t\t\t\t\t\t14 text Desain Visual\n\t\t\t\t\t15 link Audio\n\t\t\t\t\t\t16 text Audio\n\t\t\t\t\t17 link Cutscene\n\t\t\t\t\t\t18 text Cutscene\n\t\t\t\t\t19 link Antarmuka Game\n\t\t\t\t\t\t20 text Antarmuka Game\n\t\t\t\t\t21 link Karakter & Dialog\n\t\t\t\t\t\t22 text Karakter & Dialog\n\t\t\t\t\t23 link Langit & Atmosfer\n\t\t\t\t\t\t24 text Langit & Atmosfer\n\t\t\t\t25 link Pengaturan\n\t\t\t26 container\n\t\t\t\t27 container, Text: ForgeKit Studio AI Chat Studio belum terhubung\n\t\t\t\t28 container Percakapan aktif\n\t\t\t\t\t29 container\n\t\t\t\t\t\t30 heading AI Chat\n\t\t\t\t\t\t31 text Uji otomatis ForgeKit setelah restart. Jawab hanya: Akun siap otomatis.\n\t\t\t\t\t\t32 button Percakapan baru\n\t\t\t\t\t\t33 button Explorer map\n\t\t\t\t\t\t34 button Riwayat percakapan\n\t\t\t\t\t35 container Pesan percakapan\n\t\t\t\t\t\t36 container, Text: Kamu Pengguna Uji otomatis ForgeKit setelah restart. Jawab hanya: Akun siap otomatis.\n\t\t\t\t\t\t37 container, Text: ForgeKit AI Asisten Akun siap otomatis.\n\t\t\t\t\t\t38 container, Text: Kamu Pengguna hi kamu sedang pakai model apa\n\t\t\t\t\t\t39 container, Text: Kamu Pengguna hi kamu sedang pakai model apa\n\t\t\t\t\t\t40 container, Text: Kamu Pengguna hi kamu sedang pakai model apa\n\t\t\t\t\t\t41 summary Rincian proses, Value: 0\n\t\t\t\t\t42 button Pesan terbaru\n\t\t\t\t\t43 container\n\t\t\t\t\t\t44 container Pemulihan tugas\n\t\t\t\t\t\t\t45 text Status sistem · Tugas belum selesai. Hasil sebelumnya dipertahankan.\n\t\t\t\t\t\t\t46 text openai\n\t\t\t\t\t\t\t47 text ·\n\t\t\t\t\t\t\t48 text gpt-6-astra\n\t\t\t\t\t\t49 text Obsidian terhubung · 25 skill · 7 panduan pembelajaran · Belajar otomatis aktif\n\t\t\t\t\t\t50 button Lampirkan file referensi\n\t\t\t\t\t\t51 text entry area (settable) Input pesan chat, Placeholder: Tulis ide atau pertanyaan…\n\t\t\t\t\t\t\t52 text Tulis ide atau pertanyaan…\n\t\t\t\t\t\t53 combo box (settable) Provider percakapan\n\t\t\t\t\t\t54 button Akun berikutnya\n\t\t\t\t\t\t55 button Buka panel rincian penggunaan kuota provider\n\t\t\t\t\t\t56 container\n\t\t\t\t\t\t\t57 text Model\n\t\t\t\t\t\t\t58 combo box (settable) Model AI, Value: GPT-6.1-Sol\n\t\t\t\t\t\t59 container\n\t\t\t\t\t\t\t60 text Penalaran\n\t\t\t\t\t\t\t61 combo box (settable) Tingkat penalaran AI, Value: Medium\n\t\t\t\t\t\t62 button Muat ulang model AI\n\t\t\t\t\t\t63 button (disabled) Kirim\n\t64 close button\n\t65 full screen button, Secondary Actions: zoom the window\n\t66 minimize button\n\t67 text ForgeKit Studio\n\nThe focused UI element is 2 HTML content ForgeKit Studio.",
+      "focusedElementId": 2,
+      "coordinateSpace": "window",
+      "truncation": {
+        "maxDepthReached": false,
+        "truncated": false,
+        "maxDepth": 64,
+        "maxNodes": 1200
+      },
+      "window": {
+        "height": 813,
+        "screenIndex": 0,
+        "x": 80,
+        "title": "ForgeKit Studio",
+        "isMinimized": false,
+        "width": 1280,
+        "isOffscreen": false,
+        "platform": {
+          "layer": 0
+        },
+        "y": 31,
+        "id": 6493
+      },
+      "id": "9CE828E6-352C-48A4-A676-D9CAC3BE3469",
+      "elementCount": 68
+    },
+    "screenshotStatus": {
+      "state": "captured",
+      "metadata": {
+        "windowId": 6493,
+        "engine": "screenCaptureKit"
+      }
+    },
+    "action": {
+      "targetWindowId": 6493,
+      "fallbackReason": null,
+      "actionName": "AXPress",
+      "path": "accessibility",
+      "verification": {
+        "state": "unverified",
+        "reason": "accessibility_action_unasserted"
+      }
+    },
+    "screenshot": {
+      "scale": 2,
+      "height": 1626,
+      "width": 2560,
+      "format": "png",
+      "path": "/var/folders/fl/fr6n4s1n6hbdx3gvn4t6k6kc0000gn/T/orca-computer-use/a48483a3-d3cd-4fca-9deb-b248fd6824ce-screenshot.png",
+      "dataOmitted": true,
+      "expiresAt": "2026-11-03T16:46:53.830Z"
+    }
+  },
+  "_meta": {
+    "runtimeId": "77c228cf-b781-44b9-9269-1ae7b7191b40"
+  }
+}

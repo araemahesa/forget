@@ -1,0 +1,8 @@
+$ pnpm --filter @forgekit/desktop build
+$ vite build
+sh: vite: command not found
+[WARN]  Local package.json exists, but node_modules missing, did you mean to install?
+/Users/ariardianto/Documents/ForgeKIT/CODE/apps/desktop:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @forgekit/desktop@0.1.19 build: `vite build`
+spawn ENOENT
+[ELIFECYCLE] Command failed with exit code 1.

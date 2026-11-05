@@ -1,0 +1,31 @@
+{
+  "ok": true,
+  "stage": "first native launch",
+  "tables": {
+    "gfx_version": {
+      "rows": 4,
+      "unchanged": true
+    },
+    "sfx_version": {
+      "rows": 1,
+      "unchanged": true
+    },
+    "image_version": {
+      "rows": 1,
+      "unchanged": true
+    },
+    "chat_thread": {
+      "rows": 14,
+      "unchanged": true
+    },
+    "chat_message": {
+      "rows": 32,
+      "unchanged": true
+    },
+    "creative_version": {
+      "rows": 0,
+      "unchanged": true
+    }
+  },
+  "backupCreated": true
+}

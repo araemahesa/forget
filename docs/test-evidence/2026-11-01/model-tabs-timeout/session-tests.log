@@ -1,0 +1,13 @@
+$ vitest --run --maxWorkers=1 src/features/create/useCreativeTask.test.tsx src/features/creators3d/Model3dTabs.test.tsx
+
+ RUN  v5.0.5 /Users/ariardianto/Documents/ForgeKIT/CODE/apps/desktop
+
+
+ Test Files  2 passed (2)
+      Tests  6 passed (6)
+   Start at  21:29:15
+   Duration  2.81s (environment 55%, tests 25%, setup 15%, transform 2%, import 2%, worker 1%)
+
+    Isolate  2 workers spawned · ~833ms startup each (spawn + environment, per file)
+             at least ~833ms faster with isolate: false — reuses workers across files instead of one per file
+

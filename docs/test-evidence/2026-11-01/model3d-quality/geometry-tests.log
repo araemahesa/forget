@@ -1,0 +1,10 @@
+$ vitest run src/features/create/geometry.test.ts src/features/create/viewportCamera.test.ts
+
+ RUN  v5.0.5 /Users/ariardianto/Documents/ForgeKIT/CODE/apps/desktop
+
+
+ Test Files  2 passed (2)
+      Tests  17 passed (17)
+   Start at  18:18:32
+   Duration  1.59s (environment 65%, setup 18%, tests 6%, transform 6%, import 4%, worker 1%)
+

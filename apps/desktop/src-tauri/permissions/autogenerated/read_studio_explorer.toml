@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-read-studio-explorer"
+description = "Enables the read_studio_explorer command without any pre-configured scope."
+commands.allow = ["read_studio_explorer"]
+
+[[permission]]
+identifier = "deny-read-studio-explorer"
+description = "Denies the read_studio_explorer command without any pre-configured scope."
+commands.deny = ["read_studio_explorer"]

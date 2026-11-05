@@ -1,0 +1,15 @@
+{
+  "name": "forgekit-studio",
+  "private": true,
+  "packageManager": "pnpm@11.25.0",
+  "scripts": {
+    "dev": "pnpm --filter @forgekit/desktop dev",
+    "typecheck": "pnpm --filter @forgekit/desktop typecheck",
+    "test": "pnpm -r --if-present test",
+    "build": "pnpm --filter @forgekit/desktop build",
+    "tauri": "cd apps/desktop && tauri"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.12.4"
+  }
+}

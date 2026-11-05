@@ -1,0 +1,91 @@
+/* Settings use bounded reading width and compact, consistent section cards. */
+.settings-page { max-width: 1120px; }
+.settings-page .catalog-heading { margin-bottom: 24px; }
+.settings-page .catalog-heading > p { margin: 8px 0 0; color: var(--text-muted); font-size: 12px; }
+.settings-content { display: flex; flex-direction: column; gap: 24px; }
+.settings-page .settings-preferences { margin: 0; padding: 0; border: 0; gap: 20px; align-items: stretch; }
+.settings-page .settings-preferences > .settings-section,
+.settings-page #settings-providers { padding: 24px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); }
+.settings-page .settings-section h2 { font-size: 15px; margin-bottom: 20px; }
+.settings-page .section-header h2 { margin: 0; }
+.settings-page .settings-section-caption { color: var(--text-muted); font-size: 11px; }
+.settings-page .account-settings { display: flex; flex-direction: column; gap: 16px; }
+.settings-page .account-settings h2, .settings-page .account-profile { margin: 0; }
+.settings-page .account-settings .oauth-setup { margin-top: auto; }
+.settings-page .oauth-setup { padding-top: 12px; font-size: 11px; color: var(--text-secondary); }
+.settings-page .oauth-setup p { font-size: 11px; line-height: 1.7; }
+.settings-page .theme-options { gap: 10px; }
+.settings-page .theme-mini { height: 42px; padding: 6px; }
+.settings-page .theme-option > span { padding: 7px 4px; font-size: 11px; gap: 5px; }
+.settings-page .theme-option > span .icon { width: 13px; height: 13px; }
+.settings-page .setting-row { margin-top: 12px; padding-top: 12px; font-size: 12px; }
+.settings-page .setting-row strong { font-weight: 500; }
+.settings-page .motion-setting { margin-bottom: 0; }
+.settings-page .segmented-control button { padding: 6px 10px; font-size: 11px; }
+.settings-page .provider-cards-grid { gap: 12px; }
+.settings-page .provider-card { padding: 16px; gap: 14px; background: var(--surface-raised); }
+.settings-page .provider-card-header { display: flex; align-items: center; gap: 8px; flex-wrap: nowrap; }
+.settings-page .provider-card-header strong { font-size: 12px; line-height: 1.5; }
+.settings-page .provider-card-header .provider-logo { width: 20px; height: 20px; }
+.settings-page .provider-card-desc { font-size: 11px; line-height: 1.5; margin: 8px 0 0; color: var(--text-muted); }
+.settings-page .provider-connect-actions { margin-top: 0; gap: 6px; }
+.settings-page .provider-connect-actions .connect-btn { padding-inline: 10px; font-size: 11px; min-height: 32px; }
+.settings-page .provider-connect-actions .connect-btn .icon { width: 14px; height: 14px; }
+.settings-page .provider-advanced-button { padding: 0; }
+.settings-page .notice-deprecated { font-size: 10px; margin-top: 6px; }
+.settings-page .other-connections-bar { padding: 12px 0 0; margin-top: 12px; border: 0; }
+.settings-page .other-connections-bar .button { min-height: 30px; font-size: 11px; }
+.settings-page .connected-accounts-section { margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--border); }
+.settings-page .connected-accounts-section .section-header { margin-bottom: 16px; }
+.settings-page .connected-accounts-section .section-header .button { min-height: 32px; font-size: 11px; }
+.settings-page .accounts-list { display: grid; gap: 16px; }
+.settings-page .account-row { padding: 20px; gap: 16px; background: var(--surface-raised); }
+.settings-page .account-info { width: 100%; min-width: 0; }
+.settings-page .account-tag-row { display: flex; align-items: flex-start; flex-wrap: nowrap; gap: 10px; margin-bottom: 16px; }
+.settings-page .account-tag-row > .provider-logo { margin-top: 2px; }
+.settings-page .account-name-block { display: flex; flex: 1; min-width: 0; flex-direction: column; gap: 5px; }
+.settings-page .account-name-block strong { overflow-wrap: anywhere; font-size: 12px; line-height: 1.5; }
+.settings-page .account-mode-tag { color: var(--text-muted); font-size: 10px; }
+.settings-page .account-role-badge { flex-shrink: 0; padding: 3px 6px; border-radius: 4px; background: var(--accent-subtle); font-size: 9px; white-space: nowrap; }
+.settings-page .account-access-state { display: block; margin: 0 0 12px; color: var(--warning); }
+.settings-page .provider-usage.is-compact { padding: 12px; margin: 0; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; font-size: 11px; }
+.settings-page .provider-usage.is-compact .provider-usage-heading { font-size: 11px; color: var(--text-muted); }
+.settings-page .provider-usage.is-compact .provider-usage-heading .icon { width: 14px; height: 14px; }
+.settings-page .provider-usage.is-compact .provider-usage-row { grid-template-columns: minmax(55px,1fr) 50px 60px; gap: 8px; }
+.settings-page .account-models { margin: 16px 0 12px; }
+.settings-page .account-models > small { display: none; }
+.settings-page .account-models .model-controls { width: 100%; }
+.settings-page .account-access-details { padding-top: 12px; margin-top: 12px; border-top: 1px solid var(--border); font-size: 11px; color: var(--text-muted); }
+.settings-page .account-access-details p { margin: 10px 0 0; font-size: 11px; line-height: 1.7; overflow-wrap: anywhere; }
+.settings-page .account-row > .action-row { padding-top: 0; margin: 0; gap: 6px; }
+.settings-page .account-row > .action-row .button { min-height: 30px; padding-inline: 10px; font-size: 10px; }
+.settings-page .fallback-control-card { margin-top: 20px; padding: 16px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface-raised); }
+.settings-page .fallback-header { display: flex; align-items: center; gap: 12px; font-size: 12px; }
+.settings-page .fallback-header > span { font-size: 11px; color: var(--text-muted); }
+.settings-page .fallback-header .button { margin-left: auto; min-height: 30px; font-size: 11px; }
+.settings-page .fallback-help { margin-top: 12px; font-size: 11px; color: var(--text-muted); }
+.settings-page .fallback-help p { margin: 12px 0 8px; }
+.settings-page .fallback-help small { line-height: 1.7; }
+.settings-page .advanced-disclosure { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
+.settings-page .settings-advanced { padding: 16px 20px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); color: var(--text-secondary); font-size: 12px; }
+.settings-page .settings-advanced[open] > .settings-section { padding-top: 20px; }
+.settings-page .settings-about { display: flex; align-items: center; gap: 10px; margin-top: 24px; padding: 0 0 8px; font-size: 11px; color: var(--text-muted); }
+.settings-page .settings-about .brand-mark { width: 24px; height: 24px; flex-basis: 24px; }
+.settings-page .settings-about > span { margin-left: auto; }
+@media (min-width: 1000px) {
+  .settings-page .settings-preferences { grid-template-columns: minmax(0,.8fr) minmax(0,1.2fr); }
+  .settings-page .accounts-list { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@media (min-width: 1100px) { .settings-page .provider-cards-grid { grid-template-columns: repeat(4,minmax(0,1fr)); } }
+@media (max-width: 999px) {
+  .settings-page .settings-preferences, .settings-page .accounts-list { grid-template-columns: minmax(0,1fr); }
+  .settings-page .account-settings .oauth-setup { margin-top: 0; }
+}
+@media (max-width: 760px) {
+  .settings-page .settings-preferences > .settings-section, .settings-page #settings-providers { padding: 16px; }
+  .settings-page .account-row { padding: 16px; }
+}
+.settings-page .account-models .ai-model-controls { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(0,1fr) 30px; gap: 8px; }
+.settings-page .account-models .ai-model-controls label { font-size: 11px; }
+.settings-page .account-models .ai-model-controls .dropdown-trigger { min-height: 36px; font-size: 11px; }
+.settings-page .account-models .ai-model-controls > small { grid-column: 1 / -1; font-size: 11px; }

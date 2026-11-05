@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-reveal-blender-model"
+description = "Enables the reveal_blender_model command without any pre-configured scope."
+commands.allow = ["reveal_blender_model"]
+
+[[permission]]
+identifier = "deny-reveal-blender-model"
+description = "Denies the reveal_blender_model command without any pre-configured scope."
+commands.deny = ["reveal_blender_model"]

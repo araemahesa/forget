@@ -1,0 +1,45 @@
+{
+  "scope": "Isolated unpublished ForgeKitAcceptance.rbxlx only; not user production map",
+  "studioId": "92938234-1e45-4bfe-8640-12713fa85f74",
+  "gate": {
+    "anchoredParts": 26,
+    "entranceSize": [
+      12,
+      16,
+      2
+    ],
+    "entrancePosition": [
+      0,
+      0,
+      0
+    ],
+    "fixtureChildrenRetained": 455
+  },
+  "wind": {
+    "qualityRepairBySameProvider": 1,
+    "runtimeFolders": 1,
+    "lines": 20,
+    "movementStuds": 1.7080254554748535,
+    "movementSampleSeconds": 0.5103934166691033,
+    "fadeMin": 0.4000000059604645,
+    "fadeMax": 0.9958851337432861,
+    "fadeSampleSeconds": 1.2525452500012761,
+    "tickDelta": 19,
+    "afterRespawn": {
+      "folders": 1,
+      "lines": 20,
+      "characterPresent": true
+    },
+    "afterRuntimeScriptDestroy": {
+      "runtimeRemoved": true
+    },
+    "consoleOutput": "",
+    "editScriptPreservedAfterStoppingPlay": true
+  },
+  "returnedToEdit": true,
+  "limitations": [
+    "Bounded instance count and observed animation; no representative device FPS or memory benchmark",
+    "No independent art-direction quality certification",
+    "Runtime script destruction touched only temporary Play copy"
+  ]
+}

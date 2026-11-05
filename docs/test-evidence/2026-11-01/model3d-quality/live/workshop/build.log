@@ -1,0 +1,48 @@
+Info: Saved as "model.blend"
+INFO Draco is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_draco_bridge.dylib
+INFO MeshOptimizer is available, use library at /Applications/Blender.app/Contents/Resources/5.2/scripts/addons_core/io_scene_gltf2/libbf_intern_meshopt_bridge.dylib
+18:25:34 | INFO: Starting glTF 2.0 export
+18:25:34 | INFO: Extracting primitive: Cone.002
+18:25:34 | INFO: Primitives created: 1
+18:25:34 | INFO: Extracting primitive: Cone.003
+18:25:34 | INFO: Primitives created: 1
+18:25:34 | INFO: Extracting primitive: Cone.004
+18:25:34 | INFO: Primitives created: 1
+18:25:34 | INFO: Extracting primitive: Cone.005
+18:25:34 | INFO: Primitives created: 1
+18:25:34 | INFO: Extracting primitive: Cone.001
+18:25:34 | INFO: Primitives created: 1
+18:25:34 | INFO: Extracting primitive: Cube.005
+18:25:34 | INFO: Primitives created: 1
+18:25:34 | INFO: Extracting primitive: Cone
+18:25:34 | INFO: Primitives created: 1
+18:25:34 | INFO: Extracting primitive: Cube.007
+18:25:34 | INFO: Primitives created: 1
+18:25:34 | INFO: Extracting primitive: Cube.001
+18:25:34 | INFO: Primitives created: 1
+18:25:34 | INFO: Extracting primitive: Cube.002
+18:25:34 | INFO: Primitives created: 1
+18:25:34 | INFO: Extracting primitive: Cube.003
+18:25:34 | INFO: Primitives created: 1
+18:25:34 | INFO: Extracting primitive: Cube.004
+18:25:34 | INFO: Primitives created: 1
+18:25:34 | INFO: Extracting primitive: profile-hook
+18:25:34 | INFO: Primitives created: 1
+18:25:34 | INFO: Extracting primitive: Cube.008
+18:25:34 | INFO: Primitives created: 1
+18:25:34 | INFO: Extracting primitive: Cube.006
+18:25:34 | INFO: Primitives created: 1
+18:25:34 | INFO: Extracting primitive: Torus
+18:25:34 | INFO: Primitives created: 1
+18:25:34 | INFO: Extracting primitive: Cube
+18:25:34 | INFO: Primitives created: 1
+18:25:34 | INFO: Finished glTF 2.0 export in 0.15633702278137207 s
+
+
+FBX export starting... '/Users/ariardianto/Documents/ForgeKIT/CODE/docs/test-evidence/2026-11-01/model3d-quality/live/workshop/model.fbx'
+export finished in 0.0692 sec.
+Blender 5.2.3 LTS (hash e13b728c6880 built 2026-10-22 01:31:22)
+
+Blender quit
+/Users/ariardianto/Documents/ForgeKIT/CODE/docs/test-evidence/2026-11-01/model3d-quality/live/workshop/build.py:107: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  material.use_nodes = True

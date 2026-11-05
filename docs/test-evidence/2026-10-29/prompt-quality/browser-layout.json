@@ -1,0 +1,30 @@
+{
+  "scope": "Browser without native IPC; empty Chat only. No provider, Studio or active-task proof.",
+  "rows": [
+    {
+      "width": 1920,
+      "height": 1080,
+      "horizontalOverflow": false
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "horizontalOverflow": false
+    },
+    {
+      "width": 1280,
+      "height": 800,
+      "horizontalOverflow": false
+    },
+    {
+      "width": 1024,
+      "height": 700,
+      "horizontalOverflow": false
+    },
+    {
+      "width": 720,
+      "height": 450,
+      "horizontalOverflow": false
+    }
+  ]
+}

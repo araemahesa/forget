@@ -1,0 +1,51 @@
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-control: 7px;
+  --radius-panel: 12px;
+
+  --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-code: "SF Mono", Menlo, Consolas, monospace;
+
+  --text-caption: 10px;
+  --text-small: 11px;
+  --text-body: 13px;
+  --text-reading: 14px;
+  --text-section: 15px;
+  --text-page: 27px;
+
+  --control-sm: 32px;
+  --control-height: 40px;
+  --field-gap: 20px;
+  --field-padding: 24px;
+  --control-lg: 44px;
+  --sidebar-width: 216px;
+  --sidebar-collapsed-width: 68px;
+
+  --motion-fast: 100ms;
+  --motion-ui: 160ms;
+  --motion-panel: 220ms;
+  --motion-dialog: 240ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --z-sidebar: 2;
+}
+
+:root[data-density='compact'] {
+  --control-height: 36px;
+  --field-gap: 16px;
+  --field-padding: 20px;
+}

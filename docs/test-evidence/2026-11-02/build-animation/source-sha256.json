@@ -1,0 +1,13 @@
+{
+  "apps/desktop/src-tauri/src/blender.rs": "ee676a91a7db146eee90cfa28f8efeab5975362e1e3f00b2d70df8349f3dc353",
+  "apps/desktop/src-tauri/src/commands.rs": "9a02b60350f357a2f099dd4fadf445efc2fc8251ffb0f77b7004b052965b87e2",
+  "apps/desktop/src-tauri/src/lib.rs": "4d3378516973df7192680c32238504466088d027854beaa7b1fbb68b2cb1515a",
+  "apps/desktop/src-tauri/build.rs": "9ad800824b3d9543d548b4e2978d52bb0ec87954a86f8166a74032bea71f0dba",
+  "apps/desktop/src-tauri/capabilities/default.json": "cd095804449cede004f5406e5146a69b9c3299e26afb838a279e726fdaf8cf81",
+  "apps/desktop/src/features/create/ThreeViewport.tsx": "0d9f71a6d56d34afdc552441b3ce54512308cef2a72e8db4541f2ea19d0110f6",
+  "apps/desktop/src/features/create/modelReveal.ts": "a2874d7c362470f016c1a6460c65c6d6787bddf18a07776b82e7d2eb39bf152a",
+  "apps/desktop/src/features/creators3d/Model3dEditor.tsx": "c5602e51843357c28d7c932339c91f52bc97c9b364f7b9665f531b11a4157d3f",
+  "apps/desktop/src/features/creators3d/useModelBuildProgress.ts": "d0cc95ca9aa3e856bbecc038bccf0fb254ae8d8e074fa29098c162593b7a1005",
+  "apps/desktop/src/features/creators3d/ModelBuildOverlay.tsx": "24f57d8c84ed9f6341e0d97de776082ba489a11f870494c380125daac1f95a42",
+  "apps/desktop/src/app/workspace-layout.css": "1d5aa7a9653aa187b8d55d95296beb4b085489711bbed73f289e27e500196345"
+}

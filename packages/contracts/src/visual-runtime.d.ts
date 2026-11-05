@@ -1,0 +1,12 @@
+import type { ValidationIssue } from './gfx';
+export function validateClothingSpec(input: unknown): ValidationIssue[];
+export function validateGfxSpec(input: unknown): ValidationIssue[];
+export function validateIconSpec(input: unknown): ValidationIssue[];
+export function validateTextureSpec(input: unknown): ValidationIssue[];
+export function hasBlockingClothingErrors(issues: readonly ValidationIssue[]): boolean;
+export function hasBlockingGfxErrors(issues: readonly ValidationIssue[]): boolean;
+export function hasBlockingIconErrors(issues: readonly ValidationIssue[]): boolean;
+export function hasBlockingTextureErrors(issues: readonly ValidationIssue[]): boolean;
+import type { ClothingKind, IconGlyph } from './media';
+export function clothingDimensions(kind: ClothingKind): { width: number; height: number };
+export const iconGlyphs: readonly IconGlyph[];

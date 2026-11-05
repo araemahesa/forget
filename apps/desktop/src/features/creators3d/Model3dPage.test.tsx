@@ -1,0 +1,41 @@
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { Group } from 'three';
+import { afterEach, expect, it, vi } from 'vitest';
+const state=vi.hoisted(()=>({model:null as Group|null,bundle:null as unknown,studio:null as unknown,busy:false,live:null as Group|null,insert:vi.fn(),viewport:vi.fn(),version:{id:'v',document:{kind:'model3d',recipe:{name:'Saved recipe',parts:[]}}}}));
+vi.mock('./useBlenderModel',()=>({useBlenderModel:()=>({model:state.model,bundle:state.bundle,busy:false,importing:false,insert:state.insert})}));
+vi.mock('../create/useCreativeTask',()=>({useCreativeTask:()=>({version:state.version,busy:state.busy,setError:vi.fn()})}));
+vi.mock('./useModelBuildProgress',()=>({useModelBuildProgress:()=>({model:state.live,phase:'rendering',previewId:'candidate'})}));
+vi.mock('../create/CreativeControls',()=>({CreativeControls:()=>null}));
+vi.mock('../shared/BlenderConnection',()=>({BlenderConnection:()=>null}));
+vi.mock('../../services/studioState',()=>({useStudioSnapshot:()=>state.studio}));
+vi.mock('../create/ThreeViewport',()=>({ThreeViewport:(props:unknown)=>{state.viewport(props);return null;}}));
+vi.mock('./BlenderComparison',()=>({BlenderComparison:()=>null}));
+import { Model3dEditor } from './Model3dEditor';
+afterEach(()=>{cleanup();state.model=null;state.bundle=null;state.studio=null;state.busy=false;state.live=null;vi.clearAllMocks();});
+it('never substitutes recipe geometry while the verified Blender bundle is unavailable',()=>{
+  render(<Model3dEditor/>);
+  expect(state.viewport.mock.lastCall?.[0].object.children).toHaveLength(0);
+  expect(screen.queryByLabelText('Hasil Blender')).toBeNull();
+  expect(screen.queryByText('Pratinjau recipe')).toBeNull();
+});
+it('shows the Blender object and enables insertion only for a verified Studio context',()=>{
+  state.model=new Group();state.model.name='Real Blender';
+  state.bundle={receipt:{metrics:{parts:2,triangles:646,blenderVersion:'5.2'}},references:[],views:[]};
+  const {rerender}=render(<Model3dEditor/>);
+  expect(state.viewport.mock.lastCall?.[0].object).toBe(state.model);
+  expect(screen.getByRole('button',{name:'Masukkan ke Studio'})).toBeDisabled();
+  state.studio={studio:{name:'Test map'},context:{id:'snapshot'}};rerender(<Model3dEditor/>);
+  fireEvent.click(screen.getByRole('button',{name:'Masukkan ke Studio'}));expect(state.insert).toHaveBeenCalledOnce();
+});
+it('shows only the current Blender candidate during generation, then returns to the saved model after failure or cancellation',()=>{
+  state.model=new Group();state.model.name='Previous result';state.busy=true;
+  const {rerender}=render(<Model3dEditor/>);
+  expect(state.viewport.mock.lastCall?.[0].object).not.toBe(state.model);
+  expect(state.viewport.mock.lastCall?.[0].overlay).toBeTruthy();
+  state.live=new Group();state.live.name='Actual candidate';rerender(<Model3dEditor/>);
+  expect(state.viewport.mock.lastCall?.[0].object).toBe(state.live);
+  expect(state.viewport.mock.lastCall?.[0].revealKey).toBe('candidate');
+  state.busy=false;rerender(<Model3dEditor/>);
+  expect(state.viewport.mock.lastCall?.[0].object).toBe(state.model);
+  expect(state.viewport.mock.lastCall?.[0].overlay).toBeUndefined();
+});

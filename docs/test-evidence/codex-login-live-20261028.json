@@ -1,0 +1,18 @@
+{
+  "authMethod": "codex_oauth",
+  "checkedAt": 1793191405,
+  "credentialOwner": "forgekit",
+  "inferenceVerified": true,
+  "inferenceMessage": "Satu respons teks streaming selesai. Tools dan media belum diuji.",
+  "modelCount": 8,
+  "newAccountSaved": true,
+  "planType": "plus",
+  "usageSource": "codex",
+  "usageStatus": "available",
+  "windows": [
+    {"label": "5h", "resetsAt": 1793209266, "usedPercent": 1.0, "windowDurationMins": 300},
+    {"label": "Mingguan", "resetsAt": 1793776273, "usedPercent": 13.0, "windowDurationMins": 10080}
+  ],
+  "message": null,
+  "method": "User completed a NEW managed Codex browser login started by ForgeKit's codex_login acceptance runner. The account was saved as a separate connection. Model discovery, a short streamed inference, and rateLimits/read used that connection's own profile. No other application's credentials or cookie were imported. Values are the provider response at checkedAt, not permanent quotas."
+}

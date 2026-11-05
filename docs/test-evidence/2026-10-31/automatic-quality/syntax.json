@@ -1,0 +1,13 @@
+{
+  "files": [
+    {
+      "file": "CODE/apps/desktop/src/features/create/CreativeControls.tsx",
+      "parsed": true
+    },
+    {
+      "file": "CODE/apps/desktop/src/features/create/useCreativeTask.ts",
+      "parsed": true
+    }
+  ],
+  "css": true
+}

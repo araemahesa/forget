@@ -1,0 +1,81 @@
+   Compiling forgekit-desktop v0.1.26 (/Users/ariardianto/Documents/ForgeKIT/CODE/apps/desktop/src-tauri)
+warning: unused import: `json`
+ --> src/explorer.rs:2:18
+  |
+2 | use serde_json::{json, Value};
+  |                  ^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: field `headers` is never read
+ --> src/provider_usage_http.rs:8:9
+  |
+6 | pub struct Response {
+  |            -------- field in this struct
+7 |     pub status: u16,
+8 |     pub headers: HashMap<String, String>,
+  |         ^^^^^^^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: static `PROCESSING` is never used
+ --> src/attachments.rs:6:8
+  |
+6 | static PROCESSING: std::sync::Mutex<()> = std::sync::Mutex::new(());
+  |        ^^^^^^^^^^
+
+warning: function `context_size` is never used
+   --> src/references.rs:112:8
+    |
+112 | pub fn context_size(messages: &[Value]) -> Result<usize, String> {
+    |        ^^^^^^^^^^^^
+
+warning: static `REFRESH` is never used
+  --> src/browser_auth.rs:27:8
+   |
+27 | static REFRESH: Mutex<()> = Mutex::new(());
+   |        ^^^^^^^
+
+warning: function `access_token` is never used
+   --> src/browser_auth.rs:180:8
+    |
+180 | pub fn access_token(key_ref: &str, raw: String) -> Result<String, String> {
+    |        ^^^^^^^^^^^^
+
+warning: function `validate_login_method` is never used
+  --> src/codex_auth.rs:12:15
+   |
+12 | pub(crate) fn validate_login_method(method: Option<&str>) -> Result<(), String> {
+   |               ^^^^^^^^^^^^^^^^^^^^^
+
+warning: static `PROCESSING` is never used
+ --> src/attachments.rs:6:8
+  |
+6 | static PROCESSING: std::sync::Mutex<()> = std::sync::Mutex::new(());
+  |        ^^^^^^^^^^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `forgekit-desktop` (lib test) generated 3 warnings (2 duplicates)
+warning: `forgekit-desktop` (lib) generated 7 warnings (run `cargo fix --lib -p forgekit-desktop` to apply 1 suggestion)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 28.14s
+     Running unittests src/lib.rs (apps/desktop/src-tauri/target/debug/deps/forgekit_desktop_lib-6cb477b1d7bcfd98)
+
+running 8 tests
+test agent::adaptive_tests::aliases_and_unknown_tasks_remain_general ... ok
+test agent::adaptive_tests::mixed_prompt_uses_cross_feature_guides_and_identical_receipts ... ok
+test agent::adaptive_tests::ordinary_model_question_does_not_request_geometry_or_scene_work ... ok
+test agent::intent_tests::chat_selects_cross_domain_guides_and_records_the_same_hashes ... ok
+test agent::language_intent_tests::english_requests_route_to_the_same_domain_skills ... ok
+test agent::tests::bounded_output_preserves_small_errors_and_truncates_utf8_safely ... ok
+test agent::tests::cross_domain_skills_selected_for_chat_prompts ... ok
+test agent::tests::skill_registry_has_all_twenty_four_skills_with_valid_hashes ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 133 filtered out; finished in 0.02s
+
+     Running unittests src/main.rs (apps/desktop/src-tauri/target/debug/deps/forgekit_desktop-19b9afa90730e869)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

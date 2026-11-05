@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-create-work-task"
+description = "Enables the create_work_task command without any pre-configured scope."
+commands.allow = ["create_work_task"]
+
+[[permission]]
+identifier = "deny-create-work-task"
+description = "Denies the create_work_task command without any pre-configured scope."
+commands.deny = ["create_work_task"]

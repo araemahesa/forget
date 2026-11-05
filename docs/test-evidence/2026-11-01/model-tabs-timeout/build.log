@@ -1,0 +1,670 @@
+        Info Looking up installed tauri packages to check mismatched versions...
+     Running beforeBuildCommand `pnpm build`
+$ vite build
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 409 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                             0.40 kB │ gzip:   0.26 kB
+dist/assets/music.worker-9ERz6Snj.js        4.28 kB
+dist/assets/sfx.worker-CCMB8BVv.js          5.93 kB
+dist/assets/index-BQQWHilB.css            169.80 kB │ gzip:  30.04 kB
+dist/assets/Status-gbtgqZBC.js              0.36 kB │ gzip:   0.23 kB
+dist/assets/Select-DQnO_eN9.js              0.53 kB │ gzip:   0.35 kB
+dist/assets/StudioApply-tTgfDIkx.js         0.61 kB │ gzip:   0.42 kB
+dist/assets/TextField-DYk9qP36.js           0.61 kB │ gzip:   0.39 kB
+dist/assets/MessageAvatar-C8wzH7Dp.js       1.26 kB │ gzip:   0.72 kB
+dist/assets/AnimationPage-uwRswKYV.js       5.52 kB │ gzip:   2.14 kB
+dist/assets/NpcDialoguePage-C6o4gqbG.js     6.91 kB │ gzip:   2.62 kB
+dist/assets/VfxPage-ClDMW6rT.js             7.18 kB │ gzip:   2.85 kB
+dist/assets/CutscenePage-BWdchsIN.js        9.06 kB │ gzip:   3.54 kB
+dist/assets/GuiPage-TuZRRpUy.js             9.56 kB │ gzip:   3.72 kB
+dist/assets/EditorModes-DGwJluUx.js        10.63 kB │ gzip:   4.01 kB
+dist/assets/Model3dPage-B5rzzJ6j.js        15.61 kB │ gzip:   5.27 kB
+dist/assets/useGfxDraft-DF2d-2e7.js        15.93 kB │ gzip:   4.11 kB
+dist/assets/ChatPage-BNLqfNji.js           20.27 kB │ gzip:   7.05 kB
+dist/assets/ModelControls-D9-Lfk1F.js      22.48 kB │ gzip:   8.17 kB
+dist/assets/SkyboxPage-BWwj1Ccm.js         22.84 kB │ gzip:   6.62 kB
+dist/assets/featureSelection-Y50JmOCb.js   23.97 kB │ gzip:   7.90 kB
+dist/assets/useCreativeTask-DZms4tU4.js    31.39 kB │ gzip:  10.35 kB
+dist/assets/AudioWorkspace-Cird_nf6.js     34.01 kB │ gzip:  10.41 kB
+dist/assets/SettingsPage-93MvzPEv.js       34.67 kB │ gzip:  10.05 kB
+dist/assets/VisualWorkspace-gfZvMFGn.js    79.55 kB │ gzip:  21.10 kB
+dist/assets/MessageContent-h227QSBY.js    167.68 kB │ gzip:  51.14 kB
+dist/assets/index-DimdnwUg.js             250.14 kB │ gzip:  78.42 kB
+dist/assets/robloxRig-BRgK2OqE.js         262.39 kB │ gzip:  59.76 kB
+dist/assets/geometry-DUYOKc2K.js          620.57 kB │ gzip: 156.01 kB
+
+✓ built in 637ms
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.27
+   Compiling quote v1.0.47
+   Compiling libc v0.2.191
+   Compiling serde_core v1.0.229
+   Compiling shlex v2.0.1
+   Compiling find-msvc-tools v0.1.15
+   Compiling cc v1.10.0
+   Compiling version_check v0.9.5
+   Compiling cfg-if v1.0.5
+   Compiling icu_normalizer_data v2.4.0
+   Compiling icu_properties_data v2.4.0
+   Compiling zmij v1.0.23
+   Compiling siphasher v1.0.4
+   Compiling fastrand v2.5.0
+   Compiling stable_deref_trait v1.2.1
+   Compiling phf_shared v0.13.1
+   Compiling memchr v2.8.3
+   Compiling phf_generator v0.13.1
+   Compiling serde v1.0.229
+   Compiling smallvec v1.16.4
+   Compiling autocfg v1.5.1
+   Compiling subtle v2.6.1
+   Compiling syn v3.0.9
+   Compiling syn v2.0.119
+   Compiling thiserror v2.0.21
+   Compiling getrandom v0.2.17
+   Compiling generic-array v0.14.7
+   Compiling time-core v0.1.9
+   Compiling const-oid v0.9.6
+   Compiling itoa v1.0.18
+   Compiling num-conv v0.2.2
+   Compiling typenum v1.20.1
+   Compiling typeid v1.0.3
+   Compiling objc2-exception-helper v0.1.1
+   Compiling phf_codegen v0.13.1
+   Compiling erased-serde v0.4.11
+   Compiling serde_json v1.0.154
+   Compiling writeable v0.6.4
+   Compiling utf_types v1.0.0
+   Compiling ident_case v1.0.1
+   Compiling bitflags v2.13.2
+   Compiling litemap v0.8.3
+   Compiling strsim v0.11.1
+   Compiling utf8_iter v1.1.0
+   Compiling semver v1.0.28
+   Compiling parking_lot_core v0.9.12
+   Compiling rand_core v0.6.4
+   Compiling scopeguard v1.2.0
+   Compiling new_debug_unreachable v1.0.6
+   Compiling objc2 v0.6.5
+   Compiling anyhow v1.0.104
+   Compiling bytes v1.12.1
+   Compiling lock_api v0.4.14
+   Compiling string_cache_codegen v0.6.1
+   Compiling base64ct v1.8.3
+   Compiling getrandom v0.4.3
+   Compiling objc2-encode v4.1.0
+   Compiling precomputed-hash v0.1.1
+   Compiling pem-rfc7468 v0.7.0
+   Compiling web_atoms v0.2.6
+   Compiling parking_lot v0.12.5
+   Compiling percent-encoding v2.3.2
+   Compiling winnow v1.0.4
+   Compiling synstructure v0.14.0
+   Compiling darling_core v0.24.1
+   Compiling toml_parser v1.1.5+spec-1.1.0
+   Compiling string_cache v0.9.0
+   Compiling rustc_version v0.4.1
+   Compiling toml_datetime v1.1.2+spec-1.1.0
+   Compiling serde_spanned v1.1.2
+   Compiling log v0.4.34
+   Compiling toml_writer v1.1.3+spec-1.1.0
+   Compiling dtoa v1.0.11
+   Compiling crc32fast v1.5.3
+   Compiling dtoa-short v0.3.5
+   Compiling toml v1.1.8+spec-1.1.0
+   Compiling form_urlencoded v1.2.2
+   Compiling uuid v1.29.0
+   Compiling http v1.5.0
+   Compiling tendril v0.5.1
+   Compiling block2 v0.6.2
+   Compiling selectors v0.38.0
+   Compiling indexmap v1.9.3
+   Compiling aho-corasick v1.1.5
+   Compiling zerofrom-derive v0.1.8
+   Compiling yoke-derive v0.8.4
+   Compiling serde_derive v1.0.229
+   Compiling zerovec-derive v0.11.7
+   Compiling displaydoc v0.2.7
+   Compiling zeroize_derive v1.5.0
+   Compiling thiserror-impl v2.0.21
+   Compiling zerofrom v0.1.8
+   Compiling yoke v0.8.4
+   Compiling zeroize v1.9.1
+   Compiling zerovec v0.11.9
+   Compiling phf_macros v0.13.1
+   Compiling zerotrie v0.2.5
+   Compiling darling_macro v0.24.1
+   Compiling darling v0.24.1
+   Compiling der v0.7.10
+   Compiling serde_with_macros v3.24.0
+   Compiling phf v0.13.1
+   Compiling tinystr v0.8.5
+   Compiling potential_utf v0.1.6
+   Compiling crypto-common v0.1.7
+   Compiling icu_collections v2.4.0
+   Compiling block-buffer v0.10.4
+   Compiling icu_locale_core v2.4.0
+   Compiling digest v0.10.7
+   Compiling derive_more-impl v2.1.1
+   Compiling cssparser-macros v0.7.1
+   Compiling pin-project-lite v0.2.17
+   Compiling regex-syntax v0.8.11
+   Compiling alloc-no-stdlib v3.0.0
+   Compiling camino v1.2.6
+   Compiling icu_provider v2.4.0
+   Compiling spki v0.7.3
+   Compiling derive_more v2.1.1
+   Compiling alloc-stdlib v0.3.0
+   Compiling swift-rs v1.0.9
+   Compiling cssparser v0.37.0
+   Compiling pkcs8 v0.10.2
+   Compiling markup5ever v0.39.0
+   Compiling icu_properties v2.4.0
+   Compiling icu_normalizer v2.4.0
+   Compiling objc2-core-foundation v0.3.2
+   Compiling serde_derive_internals v0.29.1
+   Compiling idna_adapter v1.2.2
+   Compiling idna v1.1.0
+   Compiling regex-automata v0.4.18
+   Compiling url v2.5.8
+   Compiling servo_arc v0.4.3
+   Compiling web-time v1.1.0
+   Compiling libm v0.2.16
+   Compiling fnv v1.0.7
+   Compiling bit-vec v0.8.0
+   Compiling powerfmt v0.2.1
+   Compiling schemars v0.8.22
+   Compiling rustc-hash v2.1.3
+   Compiling hashbrown v0.12.3
+   Compiling hashbrown v0.17.1
+   Compiling deranged v0.5.9
+   Compiling equivalent v1.0.3
+   Compiling bit-set v0.8.0
+   Compiling cfb v0.14.0
+   Compiling indexmap v2.14.2
+   Compiling objc2-foundation v0.3.2
+   Compiling time v0.3.55
+   Compiling schemars_derive v0.8.22
+   Compiling html5ever v0.39.0
+   Compiling brotli-decompressor v6.2.0
+   Compiling regex v1.13.1
+   Compiling cargo-platform v0.1.9
+   Compiling jsonptr v0.7.1
+   Compiling time-macros v0.2.32
+   Compiling num-traits v0.2.19
+   Compiling quick-xml v0.42.0
+   Compiling dunce v1.0.5
+   Compiling tauri-utils v2.10.2
+   Compiling futures-core v0.3.34
+   Compiling base64 v0.23.1
+   Compiling foldhash v0.2.0
+   Compiling same-file v1.0.6
+   Compiling base64 v0.21.7
+   Compiling dyn-clone v1.0.20
+   Compiling plist v1.10.3
+   Compiling walkdir v2.5.0
+   Compiling dom_query v0.28.0
+   Compiling json-patch v4.2.0
+   Compiling cargo_metadata v0.19.2
+   Compiling brotli v9.1.1
+   Compiling urlpattern v0.6.0
+   Compiling serde-untagged v0.1.9
+   Compiling infer v0.22.0
+undefined
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command was killed with SIGINT (User interruption with CTRL-C): tauri build --bundles app
+        Info Looking up installed tauri packages to check mismatched versions...
+     Running beforeBuildCommand `pnpm build`
+$ vite build
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 409 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                             0.40 kB │ gzip:   0.26 kB
+dist/assets/music.worker-9ERz6Snj.js        4.28 kB
+dist/assets/sfx.worker-CCMB8BVv.js          5.93 kB
+dist/assets/index-DJLRqJls.css            170.54 kB │ gzip:  30.13 kB
+dist/assets/Status-v9S_at7I.js              0.36 kB │ gzip:   0.23 kB
+dist/assets/Select-C1JlHBy5.js              0.53 kB │ gzip:   0.36 kB
+dist/assets/StudioApply-BXGfcaep.js         0.61 kB │ gzip:   0.42 kB
+dist/assets/TextField-QIiIgQYO.js           0.61 kB │ gzip:   0.39 kB
+dist/assets/MessageAvatar-DYYUlql7.js       1.26 kB │ gzip:   0.72 kB
+dist/assets/AnimationPage-CBXGuk9z.js       5.52 kB │ gzip:   2.14 kB
+dist/assets/NpcDialoguePage-BdZfcVxg.js     6.91 kB │ gzip:   2.62 kB
+dist/assets/VfxPage-BzgKR13U.js             7.18 kB │ gzip:   2.85 kB
+dist/assets/CutscenePage-BFSo6D9X.js        9.06 kB │ gzip:   3.54 kB
+dist/assets/GuiPage-BBKlzVwc.js             9.56 kB │ gzip:   3.72 kB
+dist/assets/EditorModes-CEXlzxiD.js        10.63 kB │ gzip:   4.01 kB
+dist/assets/Model3dPage-BUPx5O5s.js        15.61 kB │ gzip:   5.27 kB
+dist/assets/useGfxDraft-PDpzJbc7.js        15.93 kB │ gzip:   4.12 kB
+dist/assets/ChatPage-DQDhbg9b.js           20.27 kB │ gzip:   7.05 kB
+dist/assets/ModelControls-COS8YEbI.js      22.48 kB │ gzip:   8.17 kB
+dist/assets/SkyboxPage-8nKDjk4g.js         22.84 kB │ gzip:   6.62 kB
+dist/assets/featureSelection-APhLz9B2.js   24.34 kB │ gzip:   7.97 kB
+dist/assets/useCreativeTask-BZn5v_pg.js    31.39 kB │ gzip:  10.35 kB
+dist/assets/AudioWorkspace-C_AMKS6a.js     34.01 kB │ gzip:  10.41 kB
+dist/assets/SettingsPage-490uycAL.js       34.67 kB │ gzip:  10.05 kB
+dist/assets/VisualWorkspace-CWSOJmsE.js    79.55 kB │ gzip:  21.10 kB
+dist/assets/MessageContent-C2O12pIC.js    167.68 kB │ gzip:  51.14 kB
+dist/assets/index-BEubJLYn.js             250.14 kB │ gzip:  78.41 kB
+dist/assets/robloxRig-B33xpvEo.js         262.39 kB │ gzip:  59.76 kB
+dist/assets/geometry-BI02FN8s.js          620.57 kB │ gzip: 156.01 kB
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 13.16s
+[33m[PLUGIN_TIMINGS] [0mJavaScript callbacks ran for 1.9s of this 13.1s build (14%).
+2 callbacks are listed without a time. Their calls overlapped, so the time inside one call includes work from other calls. To find their cost, profile the build with `node --cpu-prof`:
+  - plugin vite:css transform (5 calls)
+  - plugin vite:worker-import-meta-url transform (2 calls)
+See https://rolldown.rs/reference/InputOptions.checks#bundlertimings for more details.
+
+   Compiling objc2-foundation v0.3.2
+   Compiling time v0.3.55
+   Compiling cargo_metadata v0.19.2
+   Compiling objc2-quartz-core v0.3.2
+   Compiling brotli v9.1.1
+   Compiling urlpattern v0.6.0
+   Compiling url v2.5.8
+   Compiling serde_json v1.0.154
+   Compiling libm v0.2.16
+   Compiling infer v0.22.0
+   Compiling serde_with v3.24.0
+   Compiling generic-array v0.14.7
+   Compiling socket2 v0.6.5
+   Compiling mio v1.2.4
+   Compiling simd-adler32 v0.3.10
+   Compiling ctor v1.0.13
+   Compiling once_cell v1.21.4
+   Compiling glob v0.3.4
+   Compiling tauri-utils v2.10.2
+   Compiling tokio v1.54.1
+   Compiling num-traits v0.2.19
+   Compiling objc2-app-kit v0.3.2
+undefined
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command was killed with SIGINT (User interruption with CTRL-C): tauri build --bundles app
+        Info Looking up installed tauri packages to check mismatched versions...
+     Running beforeBuildCommand `pnpm build`
+$ vite build
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 409 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                             0.40 kB │ gzip:   0.27 kB
+dist/assets/music.worker-9ERz6Snj.js        4.28 kB
+dist/assets/sfx.worker-CCMB8BVv.js          5.93 kB
+dist/assets/index-DJLRqJls.css            170.54 kB │ gzip:  30.13 kB
+dist/assets/Status-D-5pCk8S.js              0.36 kB │ gzip:   0.23 kB
+dist/assets/Select-CX0ufKrb.js              0.53 kB │ gzip:   0.36 kB
+dist/assets/StudioApply-CxluSOUl.js         0.61 kB │ gzip:   0.42 kB
+dist/assets/TextField-Cd31BFhz.js           0.61 kB │ gzip:   0.39 kB
+dist/assets/MessageAvatar-DOlFanGh.js       1.26 kB │ gzip:   0.72 kB
+dist/assets/AnimationPage-DjLnBdz-.js       5.52 kB │ gzip:   2.14 kB
+dist/assets/NpcDialoguePage-s4VA1bZk.js     6.91 kB │ gzip:   2.62 kB
+dist/assets/VfxPage-UmO65I2G.js             7.18 kB │ gzip:   2.85 kB
+dist/assets/CutscenePage-BaYbuYag.js        9.06 kB │ gzip:   3.54 kB
+dist/assets/GuiPage-DnB3qv_d.js             9.56 kB │ gzip:   3.72 kB
+dist/assets/EditorModes-D4g_N03A.js        10.63 kB │ gzip:   4.01 kB
+dist/assets/Model3dPage-C24-ZkyF.js        15.64 kB │ gzip:   5.28 kB
+dist/assets/useGfxDraft-DL6S0AXF.js        15.93 kB │ gzip:   4.11 kB
+dist/assets/ChatPage-DigvE_id.js           20.27 kB │ gzip:   7.04 kB
+dist/assets/ModelControls-DAlyNmBI.js      22.48 kB │ gzip:   8.17 kB
+dist/assets/SkyboxPage-nvrHDCJy.js         22.84 kB │ gzip:   6.61 kB
+dist/assets/featureSelection-B6eX_DSl.js   24.34 kB │ gzip:   7.97 kB
+dist/assets/useCreativeTask-T54curOb.js    31.65 kB │ gzip:  10.42 kB
+dist/assets/AudioWorkspace-D-fcq5wL.js     34.01 kB │ gzip:  10.41 kB
+dist/assets/SettingsPage-BqWVGjqP.js       34.67 kB │ gzip:  10.05 kB
+dist/assets/VisualWorkspace-CvXpYBZC.js    79.55 kB │ gzip:  21.10 kB
+dist/assets/MessageContent-Bk2DZX_j.js    167.68 kB │ gzip:  51.14 kB
+dist/assets/index-B4brPQW9.js             250.14 kB │ gzip:  78.41 kB
+dist/assets/robloxRig-CXKhDY6n.js         262.39 kB │ gzip:  59.76 kB
+dist/assets/geometry-UE_LEIiP.js          620.57 kB │ gzip: 156.01 kB
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 1.23s
+   Compiling tauri-utils v2.10.2
+   Compiling objc2-app-kit v0.3.2
+   Compiling hmac v0.12.1
+   Compiling ring v0.17.14
+   Compiling typenum v1.20.1
+   Compiling zerocopy v0.8.63
+   Compiling adler2 v2.0.1
+   Compiling core-foundation-sys v0.8.7
+   Compiling option-ext v0.2.0
+   Compiling base64 v0.23.1
+   Compiling objc2 v0.6.5
+   Compiling dirs-sys v0.5.0
+   Compiling generic-array v0.14.7
+   Compiling embed-resource v3.0.12
+   Compiling crc32fast v1.5.3
+   Compiling signature v2.2.0
+   Compiling ff v0.13.1
+   Compiling typeid v1.0.3
+   Compiling aho-corasick v1.1.5
+   Compiling futures-sink v0.3.34
+   Compiling crossbeam-utils v0.8.23
+   Compiling base16ct v0.2.0
+   Compiling regex-syntax v0.8.11
+   Compiling simd-adler32 v0.3.10
+   Compiling objc2-encode v4.1.0
+   Compiling heck v0.5.0
+   Compiling alloc-no-stdlib v3.0.0
+   Compiling alloc-stdlib v0.3.0
+   Compiling regex-automata v0.4.18
+   Compiling sec1 v0.7.3
+   Compiling group v0.13.0
+   Compiling tauri-winres v0.3.7
+   Compiling dirs v7.0.0
+   Compiling core-foundation v0.10.1
+   Compiling miniz_oxide v0.9.1
+   Compiling hkdf v0.12.4
+   Compiling num-integer v0.1.47
+   Compiling http-body v1.1.0
+   Compiling cargo_toml v1.0.1
+   Compiling crypto-bigint v0.5.5
+   Compiling erased-serde v0.4.11
+   Compiling dpi v0.1.2
+   Compiling rustls-pki-types v1.15.1
+   Compiling cookie v0.18.2
+   Compiling uuid v1.29.0
+   Compiling log v0.4.34
+   Compiling static_vcruntime v3.0.0
+   Compiling hashbrown v0.17.1
+   Compiling fnv v1.0.7
+   Compiling futures-task v0.3.34
+   Compiling raw-window-handle v0.6.2
+   Compiling winnow v1.0.4
+   Compiling httparse v1.10.1
+   Compiling equivalent v1.0.3
+   Compiling siphasher v1.0.4
+   Compiling futures-io v0.3.34
+   Compiling untrusted v0.9.0
+   Compiling web-time v1.1.0
+   Compiling slab v0.4.12
+   Compiling futures-util v0.3.34
+   Compiling cfb v0.14.0
+   Compiling phf_shared v0.13.1
+   Compiling indexmap v2.14.2
+   Compiling toml_parser v1.1.5+spec-1.1.0
+   Compiling tauri-build v2.7.4
+   Compiling elliptic-curve v0.13.8
+   Compiling flate2 v1.1.10
+   Compiling ppv-lite86 v0.2.21
+   Compiling regex v1.13.1
+   Compiling objc2-foundation v0.3.2
+   Compiling brotli-decompressor v6.2.0
+   Compiling crypto-common v0.1.7
+   Compiling block-buffer v0.10.4
+   Compiling miniz_oxide v0.8.9
+   Compiling fdeflate v0.3.7
+   Compiling jsonptr v0.7.1
+   Compiling anyhow v1.0.104
+   Compiling quick-xml v0.42.0
+   Compiling serde_spanned v1.1.2
+   Compiling toml_datetime v1.1.2+spec-1.1.0
+   Compiling cpufeatures v0.2.17
+   Compiling foreign-types-macros v0.2.4
+   Compiling tower-service v0.3.3
+   Compiling rustls v0.23.46
+   Compiling same-file v1.0.6
+   Compiling foreign-types-shared v0.3.1
+   Compiling try-lock v0.2.5
+   Compiling toml_writer v1.1.3+spec-1.1.0
+   Compiling toml v1.1.8+spec-1.1.0
+   Compiling want v0.3.2
+   Compiling foreign-types v0.5.0
+   Compiling walkdir v2.5.0
+   Compiling sha2 v0.10.9
+   Compiling plist v1.10.3
+   Compiling json-patch v4.2.0
+   Compiling png v0.18.1
+   Compiling digest v0.10.7
+   Compiling brotli v9.1.1
+   Compiling wry v0.57.1
+   Compiling urlpattern v0.6.0
+   Compiling crossbeam-channel v0.5.17
+   Compiling rand_chacha v0.3.1
+   Compiling serde-untagged v0.1.9
+   Compiling phf v0.13.1
+   Compiling rustls-webpki v0.103.16
+   Compiling infer v0.22.0
+   Compiling core-graphics-types v0.2.0
+   Compiling rfc6979 v0.4.0
+   Compiling objc2-web-kit v0.3.2
+   Compiling tracing-core v0.1.36
+   Compiling curve25519-dalek v4.1.3
+   Compiling serde_with v3.24.0
+   Compiling tauri-runtime v2.12.2
+   Compiling vcpkg v0.2.15
+   Compiling dunce v1.0.5
+   Compiling pkg-config v0.3.34
+   Compiling spin v0.9.9
+   Compiling num-bigint-dig v0.8.6
+   Compiling glob v0.3.4
+   Compiling semver v1.0.28
+   Compiling atomic-waker v1.1.2
+   Compiling ctor v1.0.13
+   Compiling byteorder v1.5.0
+   Compiling ico v0.6.0
+   Compiling hyper v1.12.0
+   Compiling lazy_static v1.5.1
+   Compiling libsqlite3-sys v0.35.0
+   Compiling tracing v0.1.44
+   Compiling ecdsa v0.16.9
+   Compiling core-graphics v0.25.0
+   Compiling rand v0.8.8
+   Compiling primeorder v0.13.6
+   Compiling tauri v2.12.5
+   Compiling num-iter v0.1.46
+   Compiling futures-channel v0.3.34
+   Compiling sync_wrapper v1.0.2
+   Compiling dispatch2 v0.3.1
+   Compiling foldhash v0.1.5
+   Compiling ipnet v2.12.2
+   Compiling getrandom v0.3.4
+   Compiling base64 v0.22.1
+   Compiling muda v0.20.0
+   Compiling tauri-runtime-wry v2.12.3
+   Compiling tower-layer v0.3.3
+   Compiling tower v0.5.3
+   Compiling hyper-util v0.1.21
+   Compiling hashbrown v0.15.5
+   Compiling tao v0.37.2
+   Compiling tokio-rustls v0.26.6
+   Compiling tauri-codegen v2.7.4
+   Compiling webpki-roots v1.0.11
+   Compiling num-bigint v0.4.8
+   Compiling ed25519 v2.2.3
+   Compiling pkcs1 v0.7.5
+   Compiling keyboard-types v0.8.3
+   Compiling serialize-to-javascript-impl v0.1.2
+   Compiling ryu v1.0.23
+   Compiling serde_urlencoded v0.7.1
+   Compiling serialize-to-javascript v0.1.2
+   Compiling rsa v0.9.10
+   Compiling ed25519-dalek v2.2.0
+   Compiling simple_asn1 v0.6.4
+   Compiling hyper-rustls v0.27.10
+   Compiling tauri-macros v2.7.4
+   Compiling hashlink v0.10.0
+   Compiling tower-http v0.6.11
+   Compiling pem v3.0.6
+   Compiling p384 v0.13.1
+   Compiling p256 v0.13.2
+   Compiling forgekit-desktop v0.1.30 (/Users/ariardianto/Documents/ForgeKIT/CODE/apps/desktop/src-tauri)
+   Compiling window-vibrancy v0.8.1
+   Compiling http-body-util v0.1.5
+   Compiling security-framework-sys v2.17.0
+   Compiling serde_repr v0.1.21
+   Compiling fallible-iterator v0.3.0
+   Compiling mime v0.3.17
+   Compiling fallible-streaming-iterator v0.1.9
+   Compiling embed_plist v1.2.2
+   Compiling rusqlite v0.37.0
+   Compiling security-framework v3.7.0
+   Compiling reqwest v0.12.28
+   Compiling jsonwebtoken v10.4.0
+   Compiling chrono v0.4.45
+warning: unused import: `json`
+ --> src/explorer.rs:2:18
+  |
+2 | use serde_json::{json, Value};
+  |                  ^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: field `headers` is never read
+ --> src/provider_usage_http.rs:8:9
+  |
+6 | pub struct Response {
+  |            -------- field in this struct
+7 |     pub status: u16,
+8 |     pub headers: HashMap<String, String>,
+  |         ^^^^^^^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: static `PROCESSING` is never used
+ --> src/attachments.rs:6:8
+  |
+6 | static PROCESSING: std::sync::Mutex<()> = std::sync::Mutex::new(());
+  |        ^^^^^^^^^^
+
+warning: static `REFRESH` is never used
+  --> src/browser_auth.rs:27:8
+   |
+27 | static REFRESH: Mutex<()> = Mutex::new(());
+   |        ^^^^^^^
+
+warning: function `access_token` is never used
+   --> src/browser_auth.rs:180:8
+    |
+180 | pub fn access_token(key_ref: &str, raw: String) -> Result<String, String> {
+    |        ^^^^^^^^^^^^
+
+warning: function `validate_login_method` is never used
+  --> src/codex_auth.rs:12:15
+   |
+12 | pub(crate) fn validate_login_method(method: Option<&str>) -> Result<(), String> {
+   |               ^^^^^^^^^^^^^^^^^^^^^
+
+undefined
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command was killed with SIGINT (User interruption with CTRL-C): tauri build --bundles app
+        Info Looking up installed tauri packages to check mismatched versions...
+     Running beforeBuildCommand `pnpm build`
+$ vite build
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 410 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                             0.40 kB │ gzip:   0.26 kB
+dist/assets/music.worker-9ERz6Snj.js        4.28 kB
+dist/assets/sfx.worker-CCMB8BVv.js          5.93 kB
+dist/assets/index-DJLRqJls.css            170.54 kB │ gzip:  30.13 kB
+dist/assets/Status-EZlvMFHG.js              0.36 kB │ gzip:   0.23 kB
+dist/assets/Select-CUsQAGbq.js              0.53 kB │ gzip:   0.36 kB
+dist/assets/StudioApply-BjIau4m5.js         0.61 kB │ gzip:   0.42 kB
+dist/assets/TextField-BV_0TX59.js           0.61 kB │ gzip:   0.39 kB
+dist/assets/MessageAvatar-RwytHNZ9.js       1.26 kB │ gzip:   0.72 kB
+dist/assets/AnimationPage-Hx8m-hgD.js       5.52 kB │ gzip:   2.14 kB
+dist/assets/NpcDialoguePage-5Kst9CoI.js     6.91 kB │ gzip:   2.62 kB
+dist/assets/VfxPage-BJKCxHHU.js             7.18 kB │ gzip:   2.85 kB
+dist/assets/CutscenePage-Djvir4LP.js        9.06 kB │ gzip:   3.54 kB
+dist/assets/GuiPage-C777gHJG.js             9.56 kB │ gzip:   3.71 kB
+dist/assets/EditorModes-BJYzzmN8.js        10.63 kB │ gzip:   4.01 kB
+dist/assets/Model3dPage-C9gCRTuN.js        15.64 kB │ gzip:   5.28 kB
+dist/assets/useGfxDraft-DkdPRdCh.js        15.93 kB │ gzip:   4.12 kB
+dist/assets/ChatPage-eWYe8Kq3.js           20.27 kB │ gzip:   7.04 kB
+dist/assets/ModelControls-CPzAjy4R.js      22.48 kB │ gzip:   8.17 kB
+dist/assets/SkyboxPage-DTK2ugN7.js         22.84 kB │ gzip:   6.62 kB
+dist/assets/featureSelection-Dkvxe9E7.js   24.51 kB │ gzip:   8.05 kB
+dist/assets/useCreativeTask-BVvtEh54.js    31.51 kB │ gzip:  10.37 kB
+dist/assets/AudioWorkspace-Dg88fd18.js     34.01 kB │ gzip:  10.41 kB
+dist/assets/SettingsPage-CnwZ_XET.js       34.67 kB │ gzip:  10.05 kB
+dist/assets/VisualWorkspace-C08w3I96.js    79.55 kB │ gzip:  21.10 kB
+dist/assets/MessageContent-DqxlVKKn.js    167.68 kB │ gzip:  51.14 kB
+dist/assets/index-cz_7lVga.js             250.14 kB │ gzip:  78.42 kB
+dist/assets/robloxRig-DBgeZeUK.js         262.39 kB │ gzip:  59.76 kB
+dist/assets/geometry-C1bm8Cb8.js          620.57 kB │ gzip: 156.01 kB
+
+✓ built in 808ms
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+   Compiling forgekit-desktop v0.1.30 (/Users/ariardianto/Documents/ForgeKIT/CODE/apps/desktop/src-tauri)
+warning: unused import: `json`
+ --> src/explorer.rs:2:18
+  |
+2 | use serde_json::{json, Value};
+  |                  ^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: field `headers` is never read
+ --> src/provider_usage_http.rs:8:9
+  |
+6 | pub struct Response {
+  |            -------- field in this struct
+7 |     pub status: u16,
+8 |     pub headers: HashMap<String, String>,
+  |         ^^^^^^^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: static `PROCESSING` is never used
+ --> src/attachments.rs:6:8
+  |
+6 | static PROCESSING: std::sync::Mutex<()> = std::sync::Mutex::new(());
+  |        ^^^^^^^^^^
+
+warning: static `REFRESH` is never used
+  --> src/browser_auth.rs:27:8
+   |
+27 | static REFRESH: Mutex<()> = Mutex::new(());
+   |        ^^^^^^^
+
+warning: function `access_token` is never used
+   --> src/browser_auth.rs:180:8
+    |
+180 | pub fn access_token(key_ref: &str, raw: String) -> Result<String, String> {
+    |        ^^^^^^^^^^^^
+
+warning: function `validate_login_method` is never used
+  --> src/codex_auth.rs:12:15
+   |
+12 | pub(crate) fn validate_login_method(method: Option<&str>) -> Result<(), String> {
+   |               ^^^^^^^^^^^^^^^^^^^^^
+
+warning: `forgekit-desktop` (lib) generated 6 warnings (run `cargo fix --lib -p forgekit-desktop` to apply 1 suggestion)
+    Finished `release` profile [optimized] target(s) in 4m 12s
+       Built application at: /private/tmp/forgekit-0130-build.noindex/release/forgekit-desktop
+    Bundling ForgeKit Studio.app (/private/tmp/forgekit-0130-build.noindex/release/bundle/macos/ForgeKit Studio.app)
+     Signing with identity "-"
+Signing with identity "-"
+Signing /private/tmp/forgekit-0130-build.noindex/release/bundle/macos/ForgeKit Studio.app/Contents/MacOS/forgekit-desktop
+/private/tmp/forgekit-0130-build.noindex/release/bundle/macos/ForgeKit Studio.app/Contents/MacOS/forgekit-desktop: replacing existing signature
+Signing with identity "-"
+Signing /private/tmp/forgekit-0130-build.noindex/release/bundle/macos/ForgeKit Studio.app
+/private/tmp/forgekit-0130-build.noindex/release/bundle/macos/ForgeKit Studio.app: replacing existing signature
+        Warn skipping app notarization, no APPLE_ID & APPLE_PASSWORD & APPLE_TEAM_ID or APPLE_API_KEY & APPLE_API_ISSUER & APPLE_API_KEY_PATH environment variables found
+    Finished 1 bundle at:
+        /private/tmp/forgekit-0130-build.noindex/release/bundle/macos/ForgeKit Studio.app (29.50 MiB)
+

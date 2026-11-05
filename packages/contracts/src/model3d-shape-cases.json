@@ -1,0 +1,11 @@
+[
+  {"name":"asymmetric mesh","primitive":"mesh","mesh":{"vertices":[[-0.5,-0.5,-0.5],[0.5,-0.5,-0.5],[0.5,-0.5,0.5],[-0.5,-0.5,0.5],[0.2,0.7,0]],"faces":[[0,3,2,1],[0,1,4],[1,2,4],[2,3,4],[3,0,4]]},"valid":true},
+  {"name":"mesh invalid index","primitive":"mesh","mesh":{"vertices":[[0,0,0],[1,0,0],[0,1,0],[0,0,1]],"faces":[[0,1,9]]},"valid":false},
+  {"name":"mesh unused vertex","primitive":"mesh","mesh":{"vertices":[[0,0,0],[1,0,0],[0,1,0],[0,0,1]],"faces":[[0,1,2]]},"valid":false},
+  {"name":"mesh zero area","primitive":"mesh","mesh":{"vertices":[[0,0,0],[1,0,0],[0.5,0,0],[0,1,1]],"faces":[[0,1,2],[1,2,3]]},"valid":false},
+  {"name":"mesh repeated face","primitive":"mesh","mesh":{"vertices":[[0,0,0],[1,0,0],[0,1,0],[0,0,1]],"faces":[[0,1,2],[2,1,0],[1,2,3]]},"valid":false},
+  {"name":"variable bottle volume","primitive":"lathe","segments":32,"lathe":{"points":[[0,-1],[0.8,-1],[1,-0.7],[1,0.2],[0.4,0.7],[0.4,1],[0,1]]},"valid":true},
+  {"name":"lathe negative radius","primitive":"lathe","lathe":{"points":[[0,-1],[-0.2,0],[0,1]]},"valid":false},
+  {"name":"lathe repeated point","primitive":"lathe","lathe":{"points":[[0,-1],[0.4,0],[0.4,0],[0,1]]},"valid":false},
+  {"name":"lathe flat profile","primitive":"lathe","lathe":{"points":[[0,0],[0.5,0],[1,0]]},"valid":false}
+]

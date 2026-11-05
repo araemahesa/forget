@@ -1,0 +1,31 @@
+   Compiling forgekit-desktop v0.1.27 (/Users/ariardianto/Documents/ForgeKIT/CODE/apps/desktop/src-tauri)
+warning: static `PROCESSING` is never used
+ --> src/attachments.rs:6:8
+  |
+6 | static PROCESSING: std::sync::Mutex<()> = std::sync::Mutex::new(());
+  |        ^^^^^^^^^^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: static `REFRESH` is never used
+  --> src/browser_auth.rs:27:8
+   |
+27 | static REFRESH: Mutex<()> = Mutex::new(());
+   |        ^^^^^^^
+
+warning: function `access_token` is never used
+   --> src/browser_auth.rs:180:8
+    |
+180 | pub fn access_token(key_ref: &str, raw: String) -> Result<String, String> {
+    |        ^^^^^^^^^^^^
+
+warning: `forgekit-desktop` (lib test) generated 3 warnings
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 22.84s
+     Running unittests src/lib.rs (apps/desktop/src-tauri/target/debug/deps/forgekit_desktop_lib-9ef166ad6c631d63)
+
+running 1 test
+mixed request: 62 notes, 86513 text bytes
+test obsidian::tests::adaptive_vault_routes_mixed_requests_without_loading_projects ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 143 filtered out; finished in 0.09s
+

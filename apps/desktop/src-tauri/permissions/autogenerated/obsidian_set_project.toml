@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-obsidian-set-project"
+description = "Enables the obsidian_set_project command without any pre-configured scope."
+commands.allow = ["obsidian_set_project"]
+
+[[permission]]
+identifier = "deny-obsidian-set-project"
+description = "Denies the obsidian_set_project command without any pre-configured scope."
+commands.deny = ["obsidian_set_project"]

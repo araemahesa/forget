@@ -1,0 +1,9 @@
+node_modules/
+dist/
+target/
+__pycache__/
+*.pyc
+.DS_Store
+.logs/
+.forgekit-rebuild/
+services/hunyuan3d/upstream/

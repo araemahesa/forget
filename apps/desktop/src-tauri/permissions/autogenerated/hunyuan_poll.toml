@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-hunyuan-poll"
+description = "Enables the hunyuan_poll command without any pre-configured scope."
+commands.allow = ["hunyuan_poll"]
+
+[[permission]]
+identifier = "deny-hunyuan-poll"
+description = "Denies the hunyuan_poll command without any pre-configured scope."
+commands.deny = ["hunyuan_poll"]

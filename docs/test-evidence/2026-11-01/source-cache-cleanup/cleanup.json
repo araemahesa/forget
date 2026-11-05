@@ -1,0 +1,74 @@
+{
+  "startedAt": "2026-11-01T20:43:10+0700",
+  "folder": "/Users/ariardianto/Documents/ForgeKIT",
+  "beforeBytes": 15448629248,
+  "versionKept": "0.1.29",
+  "removedCaches": [
+    {
+      "path": "/Users/ariardianto/Documents/ForgeKIT/CODE/apps/desktop/src-tauri/target",
+      "bytes": 8269684736
+    },
+    {
+      "path": "/Users/ariardianto/Documents/ForgeKIT/CODE/.forgekit-rebuild/build/apps/desktop/src-tauri/target",
+      "bytes": 6870855680
+    },
+    {
+      "path": "/Users/ariardianto/Documents/ForgeKIT/CODE/node_modules/.vitest-cache",
+      "bytes": 9318400
+    },
+    {
+      "path": "/Users/ariardianto/Documents/ForgeKIT/CODE/apps/desktop/node_modules/.vite",
+      "bytes": 12288
+    },
+    {
+      "path": "/Users/ariardianto/Documents/ForgeKIT/CODE/apps/desktop/node_modules/.vite-temp",
+      "bytes": 0
+    },
+    {
+      "path": "/Users/ariardianto/Documents/ForgeKIT/CODE/.forgekit-rebuild/__pycache__",
+      "bytes": 16384
+    },
+    {
+      "path": "/Users/ariardianto/Documents/ForgeKIT/CODE/scripts/__pycache__",
+      "bytes": 8192
+    }
+  ],
+  "oldSourceCopiesTrashed": [
+    {
+      "path": "/Users/ariardianto/Documents/ForgeKIT/CODE/.forgekit-rebuild/build",
+      "bytes": 8134656,
+      "receipt": "# Moved \"/Users/ariardianto/Documents/ForgeKIT/CODE/.forgekit-rebuild/build\" to \"/Users/ariardianto/.Trash/build\""
+    },
+    {
+      "path": "/Users/ariardianto/Documents/ForgeKIT/CODE/.forgekit-rebuild/source-complete",
+      "bytes": 2985984,
+      "receipt": "# Moved \"/Users/ariardianto/Documents/ForgeKIT/CODE/.forgekit-rebuild/source-complete\" to \"/Users/ariardianto/.Trash/source-complete\""
+    },
+    {
+      "path": "/Users/ariardianto/Documents/ForgeKIT/CODE/.forgekit-rebuild/source-next",
+      "bytes": 2744320,
+      "receipt": "# Moved \"/Users/ariardianto/Documents/ForgeKIT/CODE/.forgekit-rebuild/source-next\" to \"/Users/ariardianto/.Trash/source-next\""
+    },
+    {
+      "path": "/Users/ariardianto/Documents/ForgeKIT/CODE/.forgekit-rebuild/source-stage",
+      "bytes": 2748416,
+      "receipt": "# Moved \"/Users/ariardianto/Documents/ForgeKIT/CODE/.forgekit-rebuild/source-stage\" to \"/Users/ariardianto/.Trash/source-stage\""
+    },
+    {
+      "path": "/Users/ariardianto/Documents/ForgeKIT/CODE/.forgekit-rebuild/pre-reconstruction-20261031",
+      "bytes": 1884160,
+      "receipt": "# Moved \"/Users/ariardianto/Documents/ForgeKIT/CODE/.forgekit-rebuild/pre-reconstruction-20261031\" to \"/Users/ariardianto/.Trash/pre-reconstruction-20261031\""
+    },
+    {
+      "path": "/Users/ariardianto/Documents/ForgeKIT/CODE/.forgekit-rebuild/superseded",
+      "bytes": 12288,
+      "receipt": "# Moved \"/Users/ariardianto/Documents/ForgeKIT/CODE/.forgekit-rebuild/superseded\" to \"/Users/ariardianto/.Trash/superseded\""
+    }
+  ],
+  "preservedFileCount": 1025,
+  "completedAt": "2026-11-01T20:43:20+0700",
+  "afterBytes": 280371200,
+  "preservedFilesUnchanged": true,
+  "installedAppUnchanged": true,
+  "folderReductionBytes": 15168258048
+}

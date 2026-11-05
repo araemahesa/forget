@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-export-creative-audio"
+description = "Enables the export_creative_audio command without any pre-configured scope."
+commands.allow = ["export_creative_audio"]
+
+[[permission]]
+identifier = "deny-export-creative-audio"
+description = "Denies the export_creative_audio command without any pre-configured scope."
+commands.deny = ["export_creative_audio"]

@@ -1,0 +1,23 @@
+{
+  "ok": true,
+  "context": "Browser IPC fixtures; not live connection evidence.",
+  "captures": [
+    "dark-offline-1440.png",
+    "dark-offline-720.png",
+    "dark-offline-390.png",
+    "dark-offline-320.png",
+    "light-offline-1440.png",
+    "light-offline-720.png",
+    "light-offline-390.png",
+    "light-offline-320.png",
+    "dark-connected-1440.png",
+    "dark-connected-720.png",
+    "dark-connected-390.png",
+    "dark-connected-320.png",
+    "light-connected-1440.png",
+    "light-connected-720.png",
+    "light-connected-390.png",
+    "light-connected-320.png"
+  ],
+  "errors": []
+}

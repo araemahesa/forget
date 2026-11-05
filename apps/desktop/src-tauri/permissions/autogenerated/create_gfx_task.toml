@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-create-gfx-task"
+description = "Enables the create_gfx_task command without any pre-configured scope."
+commands.allow = ["create_gfx_task"]
+
+[[permission]]
+identifier = "deny-create-gfx-task"
+description = "Denies the create_gfx_task command without any pre-configured scope."
+commands.deny = ["create_gfx_task"]

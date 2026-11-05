@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-save-fallback-policy"
+description = "Enables the save_fallback_policy command without any pre-configured scope."
+commands.allow = ["save_fallback_policy"]
+
+[[permission]]
+identifier = "deny-save-fallback-policy"
+description = "Denies the save_fallback_policy command without any pre-configured scope."
+commands.deny = ["save_fallback_policy"]

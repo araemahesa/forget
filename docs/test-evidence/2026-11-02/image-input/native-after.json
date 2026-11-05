@@ -1,0 +1,57 @@
+{
+  "id": "978eb417-835e-4910-ba2f-715facee1474",
+  "ok": true,
+  "result": {
+    "screenshotStatus": {
+      "metadata": {
+        "engine": "screenCaptureKit",
+        "windowId": 6493
+      },
+      "state": "captured"
+    },
+    "snapshot": {
+      "app": {
+        "pid": 98220,
+        "name": "ForgeKit Studio",
+        "bundleId": "dev.forgekit.studio"
+      },
+      "treeText": "App=dev.forgekit.studio (pid 98220)\nWindow: \"ForgeKit Studio\", App: ForgeKit Studio.\n\n0 standard window ForgeKit Studio\n\t1 close button\n\t2 full screen button, Secondary Actions: zoom the window\n\t3 minimize button\n\t4 text ForgeKit Studio\n\nNo UI element is currently focused.",
+      "focusedElementId": null,
+      "coordinateSpace": "window",
+      "truncation": {
+        "maxDepthReached": false,
+        "truncated": false,
+        "maxDepth": 64,
+        "maxNodes": 1200
+      },
+      "window": {
+        "height": 813,
+        "screenIndex": 0,
+        "x": 80,
+        "title": "ForgeKit Studio",
+        "isMinimized": false,
+        "width": 1280,
+        "isOffscreen": false,
+        "platform": {
+          "layer": 0
+        },
+        "y": 31,
+        "id": 6493
+      },
+      "id": "037AC636-8F65-4915-88C1-CF0E81C1B693",
+      "elementCount": 5
+    },
+    "screenshot": {
+      "scale": 2,
+      "height": 1626,
+      "width": 2560,
+      "format": "png",
+      "path": "/var/folders/fl/fr6n4s1n6hbdx3gvn4t6k6kc0000gn/T/orca-computer-use/978eb417-835e-4910-ba2f-715facee1474-screenshot.png",
+      "dataOmitted": true,
+      "expiresAt": "2026-11-03T16:46:16.400Z"
+    }
+  },
+  "_meta": {
+    "runtimeId": "77c228cf-b781-44b9-9269-1ae7b7191b40"
+  }
+}

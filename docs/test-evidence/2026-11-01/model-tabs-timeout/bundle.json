@@ -1,0 +1,10 @@
+{
+  "version": "0.1.30",
+  "signatureVerified": true,
+  "modelAsset": "Model3dPage-C9gCRTuN.js",
+  "modelAssetSha256": "0910d1890d846bd3e66ba9e735e73d12ecaa90c8a66e59f0363134b62ca2d866",
+  "latestFrontendEmbedded": true,
+  "executableSha256": "7ba818ba161451017a80a6e0f0fc9c55a7e2dbccbefffd39c6ba4735b4c9a33d",
+  "architecture": "/private/tmp/forgekit-0130-build.noindex/release/bundle/macos/ForgeKit Studio.app/Contents/MacOS/forgekit-desktop: Mach-O 64-bit executable arm64",
+  "releaseOptLevel": 1
+}

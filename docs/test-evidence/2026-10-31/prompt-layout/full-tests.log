@@ -1,0 +1,9 @@
+$ pnpm -r --if-present test --run
+Scope: all 2 projects
+apps/desktop test$ vitest --run
+apps/desktop test: sh: vitest: command not found
+[WARN]  Local package.json exists, but node_modules missing, did you mean to install?
+/Users/ariardianto/Documents/ForgeKIT/CODE/apps/desktop:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] @forgekit/desktop@0.1.19 test: `vitest --run`
+spawn ENOENT
+[ELIFECYCLE] Test failed. See above for more details.

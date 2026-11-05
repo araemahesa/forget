@@ -1,0 +1,56 @@
+{
+  "integrity": "ok",
+  "tables": {
+    "gfx_version": {
+      "count": 4,
+      "countUnchanged": true,
+      "hashUnchanged": true
+    },
+    "artifact": {
+      "count": 8,
+      "countUnchanged": true,
+      "hashUnchanged": true
+    },
+    "sfx_version": {
+      "count": 1,
+      "countUnchanged": true,
+      "hashUnchanged": true
+    },
+    "image_version": {
+      "count": 1,
+      "countUnchanged": true,
+      "hashUnchanged": true
+    },
+    "image_artifact": {
+      "count": 2,
+      "countUnchanged": true,
+      "hashUnchanged": true
+    },
+    "chat_thread": {
+      "count": 9,
+      "countUnchanged": true,
+      "hashUnchanged": true
+    },
+    "chat_message": {
+      "count": 21,
+      "countUnchanged": true,
+      "hashUnchanged": true
+    },
+    "chat_turn": {
+      "count": 11,
+      "countUnchanged": true,
+      "hashUnchanged": true
+    },
+    "connection_profile": {
+      "count": 1,
+      "countUnchanged": true,
+      "hashUnchanged": true
+    },
+    "creative_version": {
+      "count": 0,
+      "countUnchanged": true,
+      "hashUnchanged": true
+    }
+  },
+  "note": "Installer preserved all ten table hashes. Explicit native connection test may update verification metadata; no connection deleted. Nine account/chat/artifact content tables retain their baseline hashes after launch."
+}

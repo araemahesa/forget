@@ -1,0 +1,21 @@
+{
+  "nativeUIAvailable": true,
+  "modelControlEnabled": true,
+  "observedModel": "gpt-6-astra",
+  "officialQuotaWindows": [
+    "5h",
+    "Mingguan"
+  ],
+  "source": "codex",
+  "afterTaskUsedPercent": [
+    3,
+    20
+  ],
+  "resetDisplayed": true,
+  "readAutomaticallyOnPanelOpen": true,
+  "readPeriodicallyWhileVisible": true,
+  "postTaskCacheRegressionFound": true,
+  "postTaskCacheFix": "Cache identity follows saved account, excluding per-task model overrides. Regression fails before fix and passes after fix.",
+  "nativeChatSmokeEvidence": "native-chat-smoke.json",
+  "visiblePollingCoveredByTests": true
+}

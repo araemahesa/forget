@@ -1,0 +1,14 @@
+Blender 5.2.3 LTS (hash e13b728c6880 built 2026-10-22 01:31:22)
+
+Blender quit
+/Users/ariardianto/Documents/ForgeKIT/CODE/docs/test-evidence/2026-11-01/model3d-quality/live/triangle-budget/build.py:107: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  material.use_nodes = True
+Traceback (most recent call last):
+  File "/Users/ariardianto/Documents/ForgeKIT/CODE/docs/test-evidence/2026-11-01/model3d-quality/live/triangle-budget/build.py", line 152, in <module>
+    build(json.loads(recipe_path.read_text()), destination)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ariardianto/Documents/ForgeKIT/CODE/docs/test-evidence/2026-11-01/model3d-quality/live/triangle-budget/build.py", line 129, in build
+    raise ValueError('Generated geometry exceeds 200000 triangles; reduce hidden detail or radial segments')
+ValueError: Generated geometry exceeds 200000 triangles; reduce hidden detail or radial segments
+
+Error: script failed, file: '/Users/ariardianto/Documents/ForgeKIT/CODE/docs/test-evidence/2026-11-01/model3d-quality/live/triangle-budget/build.py', exiting.

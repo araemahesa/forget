@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-test-router-connection"
+description = "Enables the test_router_connection command without any pre-configured scope."
+commands.allow = ["test_router_connection"]
+
+[[permission]]
+identifier = "deny-test-router-connection"
+description = "Denies the test_router_connection command without any pre-configured scope."
+commands.deny = ["test_router_connection"]

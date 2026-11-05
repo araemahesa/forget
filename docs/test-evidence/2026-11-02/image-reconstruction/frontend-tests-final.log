@@ -1,0 +1,15 @@
+
+ RUN  v5.0.5 /Users/ariardianto/Documents/ForgeKIT/CODE/apps/desktop
+
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+
+ Test Files  62 passed (62)
+      Tests  346 passed (346)
+   Start at  22:06:12
+   Duration  62.78s (tests 45%, environment 40%, setup 10%, import 4%, transform 1%, worker 1%)
+
+Environment  jsdom was created 62 times · 23.08s total, 40% of tracked time
+             create it once per worker with pool: 'vmThreads' (keeps per-file isolation) or isolate: false (shares it across files)
+             learn more: https://vitest.dev/guide/improving-performance#test-environments
+

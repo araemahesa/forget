@@ -1,0 +1,12 @@
+import type { ValidationIssue } from './gfx';
+export function validateSkyboxRecipe(input: unknown): ValidationIssue[];
+export function hasBlockingSkyboxErrors(issues: readonly ValidationIssue[]): boolean;
+export function validateMusicRecipe(input: unknown): ValidationIssue[];
+export function validateCutsceneRecipe(input: unknown): ValidationIssue[];
+export function validateAnimationRecipe(input: unknown): ValidationIssue[];
+import type { CubeFace, SkyboxPreset, SkyboxRecipe } from './skybox';
+export const cubeFaces: readonly CubeFace[];
+export const cubeFaceLabels: Record<CubeFace, string>;
+export const skyboxPresetsData: Record<SkyboxPreset, Omit<SkyboxRecipe, 'name' | 'seed'>>;
+export const qualityProfiles: Record<'fast' | 'balanced' | 'high', { label: string; maxParts: number; maxKeyframes: number; maxDurationMs: number }>;
+export const rigJoints: Record<'R6' | 'R15', readonly string[]>;

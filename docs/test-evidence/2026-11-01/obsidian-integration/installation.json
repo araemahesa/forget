@@ -1,0 +1,10 @@
+{
+  "version": "0.1.24",
+  "installed": "/Applications/ForgeKit Studio.app",
+  "previousApp": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-01-obsidian-1793517525714488000/ForgeKit Studio 0.1.23.app",
+  "executableSha256": "b53765fc511ae678f90e5140474d59a7fda4c3b783e0a83e8cc94fa340cade4d",
+  "signature": "ad-hoc verified",
+  "notarized": false,
+  "ipcPermissions": "scoped main window",
+  "editorPromptIntegration": true
+}

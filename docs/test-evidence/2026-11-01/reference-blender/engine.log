@@ -1,0 +1,10 @@
+/Users/ariardianto/Documents/ForgeKIT/CODE/docs/test-evidence/2026-11-01/reference-blender/engine/build.py:136: DeprecationWarning: 'Material.use_nodes' is expected to be removed in Blender 6.0
+  material.use_nodes = True
+00:01.886  render           | Saved: 'docs/test-evidence/2026-11-01/reference-blender/engine/view-perspective.png'
+00:02.679  render           | Saved: 'docs/test-evidence/2026-11-01/reference-blender/engine/view-front.png'
+00:03.431  render           | Saved: 'docs/test-evidence/2026-11-01/reference-blender/engine/view-right.png'
+00:03.436  blend            | Read blend: "/Users/ariardianto/Documents/ForgeKIT/CODE/docs/test-evidence/2026-11-01/reference-blender/engine/model.blend"
+Info: Saved as "model.blend"
+Blender 5.2.3 LTS (hash e13b728c6880 built 2026-10-22 01:31:22)
+
+Blender quit

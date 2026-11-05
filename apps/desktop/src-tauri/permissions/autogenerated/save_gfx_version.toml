@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-save-gfx-version"
+description = "Enables the save_gfx_version command without any pre-configured scope."
+commands.allow = ["save_gfx_version"]
+
+[[permission]]
+identifier = "deny-save-gfx-version"
+description = "Denies the save_gfx_version command without any pre-configured scope."
+commands.deny = ["save_gfx_version"]

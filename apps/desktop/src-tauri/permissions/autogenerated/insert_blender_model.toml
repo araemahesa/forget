@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-insert-blender-model"
+description = "Enables the insert_blender_model command without any pre-configured scope."
+commands.allow = ["insert_blender_model"]
+
+[[permission]]
+identifier = "deny-insert-blender-model"
+description = "Denies the insert_blender_model command without any pre-configured scope."
+commands.deny = ["insert_blender_model"]

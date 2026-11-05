@@ -1,0 +1,52 @@
+{
+  "file": "/Users/ariardianto/Library/Application Support/dev.forgekit.studio/workspace/exports/blender/cb0468a6db598813318cb5fbded09a4b3b63e1b0ca464e0684c8ae6da2427029/model.blend",
+  "objects": [
+    {
+      "id": "botol_biru",
+      "name": "Botol Biru",
+      "vertices": 322,
+      "faces": 640,
+      "triangles": 640,
+      "manifold": true,
+      "dimensions": [
+        2.0,
+        4.0,
+        2.0
+      ],
+      "finite": true,
+      "materials": [
+        "Plastic_327BC4"
+      ]
+    },
+    {
+      "id": "tetrahedron_asimetris",
+      "name": "Limas Asimetris Biru",
+      "vertices": 5,
+      "faces": 6,
+      "triangles": 6,
+      "manifold": true,
+      "dimensions": [
+        2.0,
+        4.0,
+        2.0
+      ],
+      "finite": true,
+      "materials": [
+        "Plastic_327BC4"
+      ]
+    }
+  ],
+  "packedReferences": [
+    "Reference 1: view-front.png · 1",
+    "Reference 2: view-perspective.png · 1",
+    "Reference 3: view-right.png · 1"
+  ],
+  "camera": "ForgeKit Inspection Camera",
+  "lights": 3,
+  "resolution": [
+    1920,
+    1920
+  ],
+  "samples": 128,
+  "autoexecEnabled": false
+}

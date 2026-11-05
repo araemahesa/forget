@@ -1,0 +1,26 @@
+{
+  "installedVersion": "0.1.28",
+  "installedBinaryMatchesVerifiedBuild": true,
+  "integrity": "ok",
+  "foreignKeyErrors": 0,
+  "tablesMatchInstallSnapshot": true,
+  "tableCounts": {
+    "chat_thread": 14,
+    "chat_message": 35,
+    "gfx_version": 4,
+    "sfx_version": 1,
+    "image_version": 1,
+    "creative_version": 0
+  },
+  "native": {
+    "model3dPageLoaded": true,
+    "blenderDetected": true,
+    "providerModelEffortLoaded": true,
+    "blenderDeliverableCopy": true,
+    "obsoleteModelExportsVisible": false
+  },
+  "newInference": false,
+  "mapChanged": false,
+  "newBuildInstalled": false,
+  "contextAccess": "ChatGPT 2 latest visible progress and local recovery report; shared URL has no readable content; complete conversation not retrieved"
+}

@@ -1,0 +1,15 @@
+{
+  "installedVersion": "0.1.41",
+  "savedModelTriangles": 15124,
+  "cardinalViews": [
+    "front",
+    "back",
+    "right",
+    "left",
+    "top",
+    "bottom"
+  ],
+  "allSixViewsVisible": true,
+  "newProviderInference": false,
+  "legacyModelRebuilt": true
+}

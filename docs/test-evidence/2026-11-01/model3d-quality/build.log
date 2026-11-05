@@ -1,0 +1,116 @@
+Scope: all 3 workspace projects
+✓ Lockfile passes supply-chain policies (verified 1d ago)
+Lockfile is up to date, resolution step is skipped
+Already up to date
+
+Done in 523ms using pnpm v11.25.0
+$ cd apps/desktop && tauri build --bundles app
+        Info Looking up installed tauri packages to check mismatched versions...
+     Running beforeBuildCommand `pnpm build`
+$ vite build
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 408 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                             0.40 kB │ gzip:   0.27 kB
+dist/assets/music.worker-9ERz6Snj.js        4.28 kB
+dist/assets/sfx.worker-CCMB8BVv.js          5.93 kB
+dist/assets/index-CJTGlzR4.css            163.93 kB │ gzip:  29.20 kB
+dist/assets/Status-iRhXVVEf.js              0.36 kB │ gzip:   0.23 kB
+dist/assets/Select-C98b_SF5.js              0.53 kB │ gzip:   0.36 kB
+dist/assets/StudioApply-DCFttmn7.js         0.61 kB │ gzip:   0.42 kB
+dist/assets/TextField-ePcggl2R.js           0.61 kB │ gzip:   0.39 kB
+dist/assets/MessageAvatar-nanP4pIC.js       1.26 kB │ gzip:   0.72 kB
+dist/assets/AnimationPage-loQoHECI.js       5.52 kB │ gzip:   2.14 kB
+dist/assets/NpcDialoguePage-DCE4ir5A.js     6.92 kB │ gzip:   2.62 kB
+dist/assets/VfxPage-D9_vxdU8.js             7.18 kB │ gzip:   2.85 kB
+dist/assets/CutscenePage-C7wHSb8c.js        9.07 kB │ gzip:   3.54 kB
+dist/assets/GuiPage-G2MkDUbd.js             9.56 kB │ gzip:   3.72 kB
+dist/assets/EditorModes-BGhnfZAi.js        10.63 kB │ gzip:   4.01 kB
+dist/assets/useGfxDraft-D6ZfauvN.js        15.93 kB │ gzip:   4.12 kB
+dist/assets/ChatPage-BcT--nf8.js           20.27 kB │ gzip:   7.04 kB
+dist/assets/featureSelection-Cmp2iaI0.js   22.18 kB │ gzip:   7.46 kB
+dist/assets/ModelControls-GF9qcWxa.js      22.48 kB │ gzip:   8.17 kB
+dist/assets/SkyboxPage-BRhr-Iov.js         22.84 kB │ gzip:   6.61 kB
+dist/assets/useCreativeTask-Clm-b1rP.js    28.81 kB │ gzip:   9.53 kB
+dist/assets/AudioWorkspace-D-Rr3lfd.js     34.01 kB │ gzip:  10.41 kB
+dist/assets/SettingsPage-DYBinR1P.js       34.67 kB │ gzip:  10.05 kB
+dist/assets/Model3dPage-DNpfXgVe.js        52.91 kB │ gzip:  16.14 kB
+dist/assets/VisualWorkspace-BEyGdqMa.js    79.55 kB │ gzip:  21.10 kB
+dist/assets/MessageContent-XaqiUmUk.js    167.68 kB │ gzip:  51.14 kB
+dist/assets/index-Pt_X981D.js             250.14 kB │ gzip:  78.40 kB
+dist/assets/robloxRig-OAq1MGDF.js         262.39 kB │ gzip:  59.76 kB
+dist/assets/geometry-DTDnEjkK.js          678.31 kB │ gzip: 172.27 kB
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 304ms
+   Compiling forgekit-desktop v0.1.27 (/Users/ariardianto/Documents/ForgeKIT/CODE/apps/desktop/src-tauri)
+warning: unused import: `json`
+ --> src/explorer.rs:2:18
+  |
+2 | use serde_json::{json, Value};
+  |                  ^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: field `headers` is never read
+ --> src/provider_usage_http.rs:8:9
+  |
+6 | pub struct Response {
+  |            -------- field in this struct
+7 |     pub status: u16,
+8 |     pub headers: HashMap<String, String>,
+  |         ^^^^^^^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: static `PROCESSING` is never used
+ --> src/attachments.rs:6:8
+  |
+6 | static PROCESSING: std::sync::Mutex<()> = std::sync::Mutex::new(());
+  |        ^^^^^^^^^^
+
+warning: function `context_size` is never used
+   --> src/references.rs:112:8
+    |
+112 | pub fn context_size(messages: &[Value]) -> Result<usize, String> {
+    |        ^^^^^^^^^^^^
+
+warning: static `REFRESH` is never used
+  --> src/browser_auth.rs:27:8
+   |
+27 | static REFRESH: Mutex<()> = Mutex::new(());
+   |        ^^^^^^^
+
+warning: function `access_token` is never used
+   --> src/browser_auth.rs:180:8
+    |
+180 | pub fn access_token(key_ref: &str, raw: String) -> Result<String, String> {
+    |        ^^^^^^^^^^^^
+
+warning: function `validate_login_method` is never used
+  --> src/codex_auth.rs:12:15
+   |
+12 | pub(crate) fn validate_login_method(method: Option<&str>) -> Result<(), String> {
+   |               ^^^^^^^^^^^^^^^^^^^^^
+
+warning: `forgekit-desktop` (lib) generated 7 warnings (run `cargo fix --lib -p forgekit-desktop` to apply 1 suggestion)
+    Finished `release` profile [optimized] target(s) in 1m 35s
+       Built application at: /Users/ariardianto/Documents/ForgeKIT/CODE/apps/desktop/src-tauri/target/release/forgekit-desktop
+    Bundling ForgeKit Studio.app (/Users/ariardianto/Documents/ForgeKIT/CODE/apps/desktop/src-tauri/target/release/bundle/macos/ForgeKit Studio.app)
+     Signing with identity "-"
+Signing with identity "-"
+Signing /Users/ariardianto/Documents/ForgeKIT/CODE/apps/desktop/src-tauri/target/release/bundle/macos/ForgeKit Studio.app/Contents/MacOS/forgekit-desktop
+/Users/ariardianto/Documents/ForgeKIT/CODE/apps/desktop/src-tauri/target/release/bundle/macos/ForgeKit Studio.app/Contents/MacOS/forgekit-desktop: replacing existing signature
+Signing with identity "-"
+Signing /Users/ariardianto/Documents/ForgeKIT/CODE/apps/desktop/src-tauri/target/release/bundle/macos/ForgeKit Studio.app
+/Users/ariardianto/Documents/ForgeKIT/CODE/apps/desktop/src-tauri/target/release/bundle/macos/ForgeKit Studio.app: replacing existing signature
+        Warn skipping app notarization, no APPLE_ID & APPLE_PASSWORD & APPLE_TEAM_ID or APPLE_API_KEY & APPLE_API_ISSUER & APPLE_API_KEY_PATH environment variables found
+    Finished 1 bundle at:
+        /Users/ariardianto/Documents/ForgeKIT/CODE/apps/desktop/src-tauri/target/release/bundle/macos/ForgeKit Studio.app (23.37 MiB)
+

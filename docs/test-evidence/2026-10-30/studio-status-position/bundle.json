@@ -1,0 +1,20 @@
+{
+  "checkedAt": "2026-10-30T11:26:39.616399+00:00",
+  "target": "aarch64-apple-darwin",
+  "version": "0.1.16",
+  "signature": "ad-hoc",
+  "notarized": false,
+  "app": "/Users/ariardianto/Documents/Codex/2026-10-28/https-chatgpt-com-s-cx-6ae17a5323b88191b2592bae190e0bbd/outputs/ForgeKit/CODE/apps/desktop/src-tauri/target/release/bundle/macos/ForgeKit Studio.app",
+  "dmg": "/Users/ariardianto/Documents/Codex/2026-10-28/https-chatgpt-com-s-cx-6ae17a5323b88191b2592bae190e0bbd/outputs/ForgeKit/CODE/apps/desktop/src-tauri/target/release/bundle/dmg/ForgeKit Studio_0.1.16_aarch64.dmg",
+  "dmgBytes": 8393134,
+  "dmgSha256": "312c37cfc23dc600a5db175111804682d0fc6e7e33faad18d480f75acce32431",
+  "executableBytes": 22905328,
+  "executableSha256": "7a082d8be68e595b23d4bcd3316555906f202832bb4fc90a0c86be08d229e70e",
+  "appCodesign": true,
+  "dmgCrc": true,
+  "mountedCodesign": true,
+  "mountedExecutableMatches": true,
+  "acceptanceHarnessMarkersAbsent": true,
+  "architecture": "/Users/ariardianto/Documents/Codex/2026-10-28/https-chatgpt-com-s-cx-6ae17a5323b88191b2592bae190e0bbd/outputs/ForgeKit/CODE/apps/desktop/src-tauri/target/release/bundle/macos/ForgeKit Studio.app/Contents/MacOS/forgekit-desktop: Mach-O 64-bit executable arm64",
+  "cleanMachineInstallTested": false
+}

@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-capture-studio-context"
+description = "Enables the capture_studio_context command without any pre-configured scope."
+commands.allow = ["capture_studio_context"]
+
+[[permission]]
+identifier = "deny-capture-studio-context"
+description = "Denies the capture_studio_context command without any pre-configured scope."
+commands.deny = ["capture_studio_context"]

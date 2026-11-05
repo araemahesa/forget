@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-hunyuan-start"
+description = "Enables the hunyuan_start command without any pre-configured scope."
+commands.allow = ["hunyuan_start"]
+
+[[permission]]
+identifier = "deny-hunyuan-start"
+description = "Denies the hunyuan_start command without any pre-configured scope."
+commands.deny = ["hunyuan_start"]

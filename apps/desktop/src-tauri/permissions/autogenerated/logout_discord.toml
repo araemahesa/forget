@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-logout-discord"
+description = "Enables the logout_discord command without any pre-configured scope."
+commands.allow = ["logout_discord"]
+
+[[permission]]
+identifier = "deny-logout-discord"
+description = "Denies the logout_discord command without any pre-configured scope."
+commands.deny = ["logout_discord"]

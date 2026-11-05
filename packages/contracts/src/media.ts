@@ -1,0 +1,13 @@
+export type ClothingKind = 'shirt' | 'pants' | 'tshirt';
+export type ClothingPattern = 'solid' | 'stripes' | 'denim' | 'camo' | 'hoodie' | 'plaid';
+export type NeckStyle = 'round' | 'v_neck' | 'collar' | 'crew';
+export type ClothingSpec = { schemaVersion: 1; name: string; kind: ClothingKind; baseColor: string; accentColor: string; pattern: ClothingPattern; neckStyle: NeckStyle; pocket: boolean; cuffColor: string; shading: boolean; templateGuide: boolean };
+export type IconGlyph = 'sword' | 'shield' | 'bow' | 'axe' | 'skull' | 'potion' | 'coin' | 'gem' | 'chest' | 'key' | 'bag' | 'heart' | 'star' | 'spark' | 'flame' | 'bolt' | 'compass' | 'crown';
+export type IconShape = 'rounded' | 'hexagon' | 'none' | 'square' | 'squircle' | 'circle' | 'shield';
+export type IconStyle = 'solid' | 'outline' | 'duotone';
+export type IconSpec = { schemaVersion: 1; name: string; glyph: IconGlyph; shape: IconShape; style: IconStyle; background: string; primaryColor: string; secondaryColor: string; size: number; padding: number; strokeWidth: number };
+export type SfxCategory = 'coin' | 'laser' | 'explosion' | 'jump' | 'powerup' | 'hit' | 'ui_click' | 'footstep';
+export type WaveformType = 'sine' | 'square' | 'triangle' | 'sawtooth' | 'noise';
+export type SfxRecipe = { schemaVersion: 1; name: string; category: SfxCategory; waveform: WaveformType; durationMs: number; frequencyStart: number; frequencyEnd: number; attackMs: number; decayMs: number; sustain: number; loop: boolean; releaseMs: number; volume: number; noiseMix: number; seed: number; filterCutoff: number };
+export { validateClothingSpec, hasBlockingClothingErrors, clothingDimensions, iconGlyphs, validateIconSpec, hasBlockingIconErrors } from './visual-runtime.js';
+export { validateSfxRecipe, hasBlockingSfxErrors } from './sfx-runtime.js';

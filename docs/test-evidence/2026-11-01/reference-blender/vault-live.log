@@ -1,0 +1,49 @@
+warning: static `PROCESSING` is never used
+ --> src/attachments.rs:6:8
+  |
+6 | static PROCESSING: std::sync::Mutex<()> = std::sync::Mutex::new(());
+  |        ^^^^^^^^^^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: static `REFRESH` is never used
+  --> src/browser_auth.rs:27:8
+   |
+27 | static REFRESH: Mutex<()> = Mutex::new(());
+   |        ^^^^^^^
+
+warning: function `access_token` is never used
+   --> src/browser_auth.rs:180:8
+    |
+180 | pub fn access_token(key_ref: &str, raw: String) -> Result<String, String> {
+    |        ^^^^^^^^^^^^
+
+warning: `forgekit-desktop` (lib test) generated 3 warnings
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.85s
+     Running unittests src/lib.rs (apps/desktop/src-tauri/target/debug/deps/forgekit_desktop_lib-9ef166ad6c631d63)
+
+running 6 tests
+test obsidian::tests::native_context_commands_are_scoped_to_main_window ... ok
+test obsidian::tests::registry_versions_match_bundled_guides ... ok
+test obsidian::tests::rejects_escape_and_oversize_and_symlink ... ok
+chat: 9 bounded notes
+test obsidian::tests::context_is_selected_hashed_and_refreshed ... ok
+model3d: 28 bounded notes
+animation: 18 bounded notes
+vfx: 17 bounded notes
+mixed request: 64 notes, 95358 text bytes
+test obsidian::tests::adaptive_vault_routes_mixed_requests_without_loading_projects ... ok
+interface: 18 bounded notes
+npc: 16 bounded notes
+cutscene: 20 bounded notes
+music: 18 bounded notes
+sfx: 18 bounded notes
+sky: 19 bounded notes
+gfx: 17 bounded notes
+icon: 17 bounded notes
+clothing: 17 bounded notes
+texture: 12 bounded notes
+test obsidian::tests::configured_vault_supports_every_prompt_domain ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 143 filtered out; finished in 0.06s
+

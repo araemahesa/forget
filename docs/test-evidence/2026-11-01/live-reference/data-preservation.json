@@ -1,0 +1,40 @@
+{
+  "existingData": {
+    "chat_thread": {
+      "before": 14,
+      "after": 14,
+      "oldRowsUnchanged": true
+    },
+    "chat_message": {
+      "before": 35,
+      "after": 35,
+      "oldRowsUnchanged": true
+    },
+    "gfx_version": {
+      "before": 4,
+      "after": 4,
+      "oldRowsUnchanged": true
+    },
+    "sfx_version": {
+      "before": 1,
+      "after": 1,
+      "oldRowsUnchanged": true
+    },
+    "image_version": {
+      "before": 1,
+      "after": 1,
+      "oldRowsUnchanged": true
+    },
+    "creative_version": {
+      "before": 0,
+      "after": 2,
+      "oldRowsUnchanged": true
+    }
+  },
+  "providerProfilesUnchanged": true,
+  "databaseIntegrity": "ok",
+  "foreignKeyViolations": 0,
+  "productionCodeChanged": false,
+  "installedVersion": "0.1.28",
+  "studioWrites": false
+}

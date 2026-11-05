@@ -1,0 +1,4 @@
+error: failed to parse manifest at `/Users/ariardianto/Documents/ForgeKIT/CODE/apps/desktop/src-tauri/Cargo.toml`
+
+Caused by:
+  can't find library `forgekit_desktop_lib`, rename file to `src/lib.rs` or specify lib.path

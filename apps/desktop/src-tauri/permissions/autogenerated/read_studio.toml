@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-read-studio"
+description = "Enables the read_studio command without any pre-configured scope."
+commands.allow = ["read_studio"]
+
+[[permission]]
+identifier = "deny-read-studio"
+description = "Denies the read_studio command without any pre-configured scope."
+commands.deny = ["read_studio"]

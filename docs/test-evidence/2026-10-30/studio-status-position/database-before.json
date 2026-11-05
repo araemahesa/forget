@@ -1,0 +1,139 @@
+{
+  "schema": 15,
+  "integrity": [
+    [
+      "ok"
+    ]
+  ],
+  "foreignKeys": [],
+  "tables": {
+    "ai_checkpoint": {
+      "rows": 9,
+      "sha256": "eab2e83561ec428c90024831a599a48869bc55cac3e146b156983c9e33dbe610"
+    },
+    "ai_provider_profile": {
+      "rows": 2,
+      "sha256": "0a15a523782fb177d134fb4a31a43d22d716f2c61f9a613384b074cc2e6aae14"
+    },
+    "artifact": {
+      "rows": 8,
+      "sha256": "ea0f3f28f9aba94b84f0507386f76d176ecdb6015b234d02d0e7314dc6ba0c37"
+    },
+    "chat_message": {
+      "rows": 32,
+      "sha256": "08295ca4c31901402dc2809d5ba636c0bca20e586702afe926297143a42e6509"
+    },
+    "chat_thread": {
+      "rows": 14,
+      "sha256": "e777a3a9e538103b39409dc52360dd6ef8fea44fe6513d6ee0144b600e37b19e"
+    },
+    "chat_turn": {
+      "rows": 17,
+      "sha256": "611282b5a23e2babf49e54e2f4eba4ab31fa267a25a7d8f18e0d838ba5c0de8d"
+    },
+    "collection_item": {
+      "rows": 1,
+      "sha256": "296ed72dffe75d8637ba9712fcefd6620e9f7b84732b162167e8545fca62e6a2"
+    },
+    "connection_cooldown": {
+      "rows": 1,
+      "sha256": "3836dff8cd13f611ab9924462310aff8200952e6d7d5ce0a2a291c2e5d6f73ae"
+    },
+    "connection_profile": {
+      "rows": 2,
+      "sha256": "206d6f3bc89bcdf9e3a3c5269330bb88975f0cf261d04f6b5c0f3417057b37a7"
+    },
+    "connection_verification": {
+      "rows": 2,
+      "sha256": "087039ec1921369c2674ac9db15a5e881b6a9af69d9da37db95339426194c706"
+    },
+    "context_snapshot": {
+      "rows": 13,
+      "sha256": "e624cc6229d60d438f1a25f59e07f42cbc409a11f8935317ce72b4bb47d75b1c"
+    },
+    "creative_event": {
+      "rows": 90,
+      "sha256": "7fd0190df8196949457392089e1592be18f117ea42e5105b2d703ed11561f09c"
+    },
+    "creative_export": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "creative_task": {
+      "rows": 19,
+      "sha256": "bacc889ab434e6dcd368bf1955fe4abe24aaa96a6d9af5c3d99f097a2eab3681"
+    },
+    "creative_version": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "creator_draft": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "editor_draft": {
+      "rows": 1,
+      "sha256": "08b6588f9425c40c17558ac9b4c8ade9ddde8e30ead08dea7b6164e13243fcfb"
+    },
+    "fallback_policy": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "gfx_version": {
+      "rows": 4,
+      "sha256": "cb71477dadbd87e36910f857c0517c2b674da75e3423955b7bba8ff74547cce5"
+    },
+    "image_artifact": {
+      "rows": 2,
+      "sha256": "7182b16076ed786ffc6ba82ba01fa050ef037368c3dfac82302aef748c3f6afb"
+    },
+    "image_version": {
+      "rows": 1,
+      "sha256": "b291d48c5406e7ed31519e1318a7c2a81e26cb89839ec5bd057dc962d4d7dac2"
+    },
+    "library_visibility": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "mcp_connector_config": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "router_connection": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "sfx_version": {
+      "rows": 1,
+      "sha256": "deaf1068c63bc86984dd86a2b3dc7b875fc0c9940c04a4849a5d2b1824c44bde"
+    },
+    "task": {
+      "rows": 4,
+      "sha256": "7966a06333eb689bb55f2ce716e3a72b63057b9c59639a6fe53f52f073c29cae"
+    },
+    "task_attempt": {
+      "rows": 21,
+      "sha256": "00dd624e6a32506fcbc9425840c115109eb7a6fc97b702bf5fd6147bcbaa2fc6"
+    },
+    "task_input": {
+      "rows": 4,
+      "sha256": "c75ecc8193c9beb7874c5e57cf1d428729d436ac80764133a2c580d9ee01ce6b"
+    },
+    "tool_receipt": {
+      "rows": 5,
+      "sha256": "c5fc1414e6c9f47e5ba0f338917f3e7acbde29ff5e775260fb6f5b1e0cded2d5"
+    },
+    "work_event": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "work_task": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "workspace": {
+      "rows": 1,
+      "sha256": "453878a574e0fed03faffe22ea95b56b75608b83f8e68f22ad847830b1a25932"
+    }
+  }
+}

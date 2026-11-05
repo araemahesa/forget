@@ -1,0 +1,24 @@
+{
+  "version": "0.1.29",
+  "typecheck": "passed",
+  "frontendFullSuite": {
+    "passed": 317,
+    "failed": 0
+  },
+  "additionalImportHook": "passed",
+  "rustSuite": {
+    "passed": 145,
+    "failed": 0,
+    "environmentIgnored": 6
+  },
+  "luaImporterHarness": "passed, mocked services; no uploads",
+  "nativeModelPreview": "only Blender buffer, no recipe switch or duplicate wireframe checkbox",
+  "nativeGallery": "three Blender renders; references/report collapsed",
+  "nativeAnimationGrid": "verified wide shared grid",
+  "liveStudioImport": "not tested: no connected Studio",
+  "databaseIntegrity": "ok",
+  "foreignKeyViolations": 0,
+  "installedExecutableMatchesBuild": true,
+  "studioWritesPerformed": false,
+  "assetUploadsPerformed": false
+}

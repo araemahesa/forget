@@ -1,0 +1,57 @@
+{
+  "id": "b8aba22d-3f17-4483-82bf-44e80b0f6391",
+  "ok": true,
+  "result": {
+    "screenshot": {
+      "format": "png",
+      "scale": 2,
+      "width": 2560,
+      "height": 1626,
+      "path": "/var/folders/fl/fr6n4s1n6hbdx3gvn4t6k6kc0000gn/T/orca-computer-use/b8aba22d-3f17-4483-82bf-44e80b0f6391-screenshot.png",
+      "dataOmitted": true,
+      "expiresAt": "2026-11-02T10:28:28.634Z"
+    },
+    "screenshotStatus": {
+      "state": "captured",
+      "metadata": {
+        "engine": "screenCaptureKit",
+        "windowId": 3290
+      }
+    },
+    "snapshot": {
+      "focusedElementId": null,
+      "id": "E5160542-1968-46E2-AE0C-8B4FF6257675",
+      "app": {
+        "bundleId": "dev.forgekit.studio",
+        "pid": 21991,
+        "name": "ForgeKit Studio"
+      },
+      "coordinateSpace": "window",
+      "window": {
+        "screenIndex": 0,
+        "title": "ForgeKit Studio",
+        "isOffscreen": false,
+        "isMinimized": false,
+        "x": 80,
+        "y": 31,
+        "platform": {
+          "layer": 0
+        },
+        "width": 1280,
+        "height": 813,
+        "id": 3290
+      },
+      "treeText": "App=dev.forgekit.studio (pid 21991)\nWindow: \"ForgeKit Studio\", App: ForgeKit Studio.\n\n0 standard window ForgeKit Studio\n\t1 scroll area\n\t\t2 HTML content ForgeKit Studio\n\t\t\t3 container Navigasi utama\n\t\t\t\t4 link AI Chat\n\t\t\t\t5 button Studio Kreatif\n\t\t\t\t6 link Pengaturan\n\t\t\t7 container\n\t\t\t\t8 container, Text: ForgeKit Studio AI Chat Studio belum terhubung\n\t\t\t\t9 container Percakapan aktif\n\t\t\t\t\t10 container\n\t\t\t\t\t\t11 heading AI Chat\n\t\t\t\t\t\t12 text Uji otomatis ForgeKit setelah restart. Jawab hanya: Akun siap otomatis.\n\t\t\t\t\t\t13 button Percakapan baru\n\t\t\t\t\t\t14 button Explorer map\n\t\t\t\t\t\t15 button Riwayat percakapan\n\t\t\t\t\t16 container Pesan percakapan\n\t\t\t\t\t\t17 container, Text: Kamu Pengguna Uji otomatis ForgeKit setelah restart. Jawab hanya: Akun siap otomatis.\n\t\t\t\t\t\t18 container, Text: ForgeKit AI Asisten Akun siap otomatis.\n\t\t\t\t\t\t19 container, Text: Kamu Pengguna hi kamu sedang pakai model apa\n\t\t\t\t\t\t20 container, Text: Kamu Pengguna hi kamu sedang pakai model apa\n\t\t\t\t\t\t21 container, Text: Kamu Pengguna hi kamu sedang pakai model apa\n\t\t\t\t\t\t22 summary Rincian proses, Value: 0\n\t\t\t\t\t23 container\n\t\t\t\t\t\t24 container Pemulihan tugas\n\t\t\t\t\t\t\t25 text Status sistem · Tugas belum selesai. Hasil sebelumnya dipertahankan.\n\t\t\t\t\t\t\t26 text openai\n\t\t\t\t\t\t\t27 text ·\n\t\t\t\t\t\t\t28 text gpt-6-astra\n\t\t\t\t\t\t29 summary Obsidian · konteks otomatis, Value: 0\n\t\t\t\t\t\t30 button Lampirkan file referensi\n\t\t\t\t\t\t31 text entry area (settable) Input pesan chat, Placeholder: Tulis ide atau pertanyaan…\n\t\t\t\t\t\t\t32 text Tulis ide atau pertanyaan…\n\t\t\t\t\t\t33 combo box (settable) Provider percakapan\n\t\t\t\t\t\t34 button Jadikan Utama\n\t\t\t\t\t\t35 button Buka panel rincian penggunaan kuota provider\n\t\t\t\t\t\t36 container\n\t\t\t\t\t\t\t37 text Model\n\t\t\t\t\t\t\t38 combo box (settable) Model AI, Value: GPT-6-Astra\n\t\t\t\t\t\t39 container\n\t\t\t\t\t\t\t40 text Penalaran\n\t\t\t\t\t\t\t41 combo box (settable) Tingkat penalaran AI, Value: High\n\t\t\t\t\t\t42 button Muat ulang model AI\n\t\t\t\t\t\t43 button (disabled) Kirim\n\t44 close button\n\t45 full screen button, Secondary Actions: zoom the window\n\t46 minimize button\n\t47 text ForgeKit Studio\n\nNo UI element is currently focused.",
+      "truncation": {
+        "truncated": false,
+        "maxNodes": 1200,
+        "maxDepthReached": false,
+        "maxDepth": 64
+      },
+      "elementCount": 48
+    }
+  },
+  "_meta": {
+    "runtimeId": "710fe79a-e3c7-4077-bc62-9a85d15d879d"
+  }
+}

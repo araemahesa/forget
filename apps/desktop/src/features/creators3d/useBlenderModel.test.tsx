@@ -1,0 +1,24 @@
+import { act, renderHook, waitFor } from '@testing-library/react';
+import { afterEach, expect, it, vi } from 'vitest';
+const mocks=vi.hoisted(()=>({call:vi.fn(),refresh:vi.fn(),acquire:vi.fn(),release:vi.fn(),build:vi.fn()}));
+vi.mock('../../services/tauri',()=>({call:mocks.call}));
+vi.mock('../../services/studioState',()=>({refreshStudioContext:mocks.refresh,acquireStudioTask:mocks.acquire}));
+vi.mock('./blenderPreview',()=>({buildBlenderPreview:mocks.build}));
+import { Group } from 'three';
+import { useBlenderModel } from './useBlenderModel';
+afterEach(()=>vi.clearAllMocks());
+it('refreshes the map before locking, pins the saved version and suppresses duplicate clicks',async()=>{
+  mocks.build.mockReturnValue(new Group());mocks.acquire.mockReturnValue(mocks.release);
+  mocks.refresh.mockResolvedValue({studio:{studioId:'studio-A',name:'Map A'},context:{id:'fresh-context'}});
+  let complete:(value:unknown)=>void=()=>{};
+  mocks.call.mockImplementation((name:string)=>name==='load_blender_bundle'?Promise.resolve({mesh:{},receipt:{},references:[],views:[]}):new Promise(resolve=>{complete=resolve;}));
+  const {result,unmount}=renderHook(()=>useBlenderModel('version-A'));
+  await waitFor(()=>expect(result.current.bundle).not.toBeNull());
+  let pending:Promise<void>;
+  act(()=>{pending=result.current.insert();void result.current.insert();});
+  await waitFor(()=>expect(mocks.call).toHaveBeenCalledWith('insert_blender_model',{versionId:'version-A',studioId:'studio-A',contextSnapshotId:'fresh-context'}));
+  expect(mocks.refresh).toHaveBeenCalledOnce();
+  expect(mocks.refresh.mock.invocationCallOrder[0]).toBeLessThan(mocks.acquire.mock.invocationCallOrder[0]);
+  await act(async()=>{complete({modelName:'Imported',reused:false});await pending!;});
+  expect(mocks.release).toHaveBeenCalledOnce();expect(result.current.notice).toContain('Map A');unmount();
+});

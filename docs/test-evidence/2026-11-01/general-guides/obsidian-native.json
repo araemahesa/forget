@@ -1,0 +1,57 @@
+{
+  "id": "bb597570-2e1f-438c-8674-f1cba13efe2d",
+  "ok": true,
+  "result": {
+    "screenshot": {
+      "format": "png",
+      "scale": 2,
+      "width": 2048,
+      "height": 1600,
+      "path": "/var/folders/fl/fr6n4s1n6hbdx3gvn4t6k6kc0000gn/T/orca-computer-use/bb597570-2e1f-438c-8674-f1cba13efe2d-screenshot.png",
+      "dataOmitted": true,
+      "expiresAt": "2026-11-02T10:49:07.210Z"
+    },
+    "snapshot": {
+      "id": "6F6DA053-6630-4F1F-90D7-63DA5E94D008",
+      "app": {
+        "bundleId": "md.obsidian",
+        "name": "Obsidian",
+        "pid": 92729
+      },
+      "truncation": {
+        "truncated": false,
+        "maxNodes": 1200,
+        "maxDepthReached": false,
+        "maxDepth": 64
+      },
+      "focusedElementId": 2,
+      "window": {
+        "x": 208,
+        "width": 1024,
+        "height": 800,
+        "screenIndex": 0,
+        "y": 31,
+        "platform": {
+          "layer": 0
+        },
+        "title": "Graph view - ForgeKit Studio Vault - Obsidian 1.14.5",
+        "isOffscreen": false,
+        "isMinimized": false,
+        "id": 2982
+      },
+      "treeText": "App=md.obsidian (pid 92729)\nWindow: \"Graph view - ForgeKit Studio Vault - Obsidian 1.14.5\", App: Obsidian.\n\n0 standard window Graph view - ForgeKit Studio Vault - Obsidian 1.14.5\n\t1 container Graph view - ForgeKit Studio Vault - Obsidian 1.14.5\n\t\t2 HTML content Graph view - ForgeKit Studio Vault - Obsidian 1.14.5\n\t\t\t3 container\n\t\t\t\t4 container Open quick switcher\n\t\t\t\t\t5 image\n\t\t\t\t6 container Open graph view\n\t\t\t\t\t7 image\n\t\t\t\t8 container Create new canvas\n\t\t\t\t\t9 image\n\t\t\t\t10 container Open today's daily note\n\t\t\t\t\t11 image\n\t\t\t\t12 container Insert template\n\t\t\t\t\t13 image\n\t\t\t\t14 container Open command palette\n\t\t\t\t\t15 image\n\t\t\t\t16 container Create new base\n\t\t\t\t\t17 image\n\t\t\t\t18 container\n\t\t\t\t\t19 splitter\n\t\t\t\t\t20 container\n\t\t\t\t\t\t21 image\n\t\t\t\t\t\t22 text ForgeKit Studio Vault\n\t\t\t\t\t23 image\n\t\t\t\t\t24 image\n\t\t\t\t\t25 container\n\t\t\t\t\t\t26 container\n\t\t\t\t\t\t\t27 container Files\n\t\t\t\t\t\t\t\t28 image\n\t\t\t\t\t\t\t29 container Search\n\t\t\t\t\t\t\t\t30 image\n\t\t\t\t\t\t\t31 container Bookmarks\n\t\t\t\t\t\t\t\t32 image\n\t\t\t\t\t\t\t33 image\n\t\t\t\t\t\t34 container\n\t\t\t\t\t\t\t35 container New note\n\t\t\t\t\t\t\t\t36 image\n\t\t\t\t\t\t\t37 container New folder\n\t\t\t\t\t\t\t\t38 image\n\t\t\t\t\t\t\t39 container Change sort order\n\t\t\t\t\t\t\t\t40 image\n\t\t\t\t\t\t\t41 container Auto-reveal current file\n\t\t\t\t\t\t\t\t42 image\n\t\t\t\t\t\t\t43 container Collapse all\n\t\t\t\t\t\t\t\t44 image\n\t\t\t\t\t\t\t45 container, Text: 00 Studio Beranda Mulai di Sini Pipeline Map CANVAS 10 Fondasi 20 Produksi Alur Produksi\n\t\t\t\t46 container\n\t\t\t\t\t47 container\n\t\t\t\t\t\t48 container Graph view\n\t\t\t\t\t\t\t49 image\n\t\t\t\t\t\t\t50 text Graph view\n\t\t\t\t\t\t\t51 container Close\n\t\t\t\t\t\t\t\t52 image\n\t\t\t\t\t\t53 container New tab\n\t\t\t\t\t\t\t54 image\n\t\t\t\t\t\t55 image\n\t\t\t\t\t\t56 image\n\t\t\t\t\t57 container\n\t\t\t\t\t\t58 container\n\t\t\t\t\t\t\t59 button Navigate back\n\t\t\t\t\t\t\t60 button (disabled) Navigate forward\n\t\t\t\t\t\t\t61 text Graph view\n\t\t\t\t\t\t\t62 button More options\n\t\t\t\t\t\t63 container\n\t\t\t\t\t\t\t64 image\n\t\t\t\t\t\t\t65 HTML content\n\t\t\t\t\t\t\t66 container\n\t\t\t\t\t\t\t\t67 container Open graph settings\n\t\t\t\t\t\t\t\t\t68 image\n\t\t\t\t\t\t\t\t69 container Start time-lapse animation\n\t\t\t\t\t\t\t\t\t70 image\n\t71 close button\n\t72 full screen button, Secondary Actions: zoom the window\n\t73 minimise button\n\nThe focused UI element is 2 HTML content Graph view - ForgeKit Studio Vault - Obsidian 1.14.5.",
+      "coordinateSpace": "window",
+      "elementCount": 74
+    },
+    "screenshotStatus": {
+      "state": "captured",
+      "metadata": {
+        "engine": "screenCaptureKit",
+        "windowId": 2982
+      }
+    }
+  },
+  "_meta": {
+    "runtimeId": "710fe79a-e3c7-4077-bc62-9a85d15d879d"
+  }
+}

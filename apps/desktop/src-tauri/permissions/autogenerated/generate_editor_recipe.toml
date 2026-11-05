@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-generate-editor-recipe"
+description = "Enables the generate_editor_recipe command without any pre-configured scope."
+commands.allow = ["generate_editor_recipe"]
+
+[[permission]]
+identifier = "deny-generate-editor-recipe"
+description = "Denies the generate_editor_recipe command without any pre-configured scope."
+commands.deny = ["generate_editor_recipe"]

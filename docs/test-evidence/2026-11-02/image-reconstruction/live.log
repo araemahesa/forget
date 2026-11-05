@@ -1,0 +1,15 @@
+FORGEKIT_STAGE reconstruction: membaca siluet
+FORGEKIT_STAGE reconstruction: membentuk volume
+FORGEKIT_STAGE reconstruction: geometri dan warna siap
+00:09.791  render           | Saved: '/Users/ariardianto/Documents/ForgeKIT/CODE/docs/test-evidence/2026-11-02/image-reconstruction/stepped-solid/view-front.png'
+00:14.051  render           | Saved: '/Users/ariardianto/Documents/ForgeKIT/CODE/docs/test-evidence/2026-11-02/image-reconstruction/stepped-solid/view-right.png'
+00:19.409  render           | Saved: '/Users/ariardianto/Documents/ForgeKIT/CODE/docs/test-evidence/2026-11-02/image-reconstruction/stepped-solid/view-top.png'
+00:19.457  blend            | Read blend: "/Users/ariardianto/Documents/ForgeKIT/CODE/docs/test-evidence/2026-11-02/image-reconstruction/stepped-solid/model.blend"
+00:19.846  render           | Saved: '/Users/ariardianto/Documents/ForgeKIT/CODE/docs/test-evidence/2026-11-02/image-reconstruction/stepped-solid/alpha-front.png'
+00:19.910  render           | Saved: '/Users/ariardianto/Documents/ForgeKIT/CODE/docs/test-evidence/2026-11-02/image-reconstruction/stepped-solid/alpha-right.png'
+00:20.013  render           | Saved: '/Users/ariardianto/Documents/ForgeKIT/CODE/docs/test-evidence/2026-11-02/image-reconstruction/stepped-solid/alpha-top.png'
+Info: Saved as "model.blend"
+FORGEKIT_RECONSTRUCTION_ACCEPTANCE {"ok": true, "fixture": "orthographic stepped solid with through-hole", "metrics": {"blenderVersion": "5.2.3 LTS", "parts": 1, "materials": 1, "vertices": 11760, "triangles": 23520, "bounds": {"min": [-1.5, -1.5, -1.0], "max": [1.5, 1.5, 1.0]}, "reconstructions": [{"partId": "stepped", "method": "orthographic-visual-hull", "resolution": 96, "views": [{"view": "front", "image": 0, "silhouetteIou": 1.0}, {"view": "right", "image": 1, "silhouetteIou": 1.0}, {"view": "top", "image": 2, "silhouetteIou": 1.0}], "coloredVertexFraction": 0.5751, "elapsedSeconds": 1.674, "limitations": ["Siluet membatasi volume; rongga tersembunyi tidak direkonstruksi.", "Warna proyeksi masih memuat pencahayaan gambar; sisi tanpa referensi memakai warna dasar."]}], "referenceImagesPacked": 3, "views": ["front", "right", "top"], "blendReopened": true}, "renderedScores": [{"view": "front", "renderedSilhouetteIou": 1.0, "boxBaselineIou": 0.7381}, {"view": "right", "renderedSilhouetteIou": 0.9996, "boxBaselineIou": 1.0}, {"view": "top", "renderedSilhouetteIou": 0.9996, "boxBaselineIou": 1.0}], "sourceColorPreserved": true, "throughHolePreserved": true, "manifold": true, "explicitRejections": ["opaque alpha", "background only", "wrong proportions", "inconsistent silhouettes"], "externalProviderTested": false, "studioUploadTested": false, "generalPhotoFidelityCertified": false}
+Blender 5.2.3 LTS (hash e13b728c6880 built 2026-10-22 01:31:22)
+
+Blender quit

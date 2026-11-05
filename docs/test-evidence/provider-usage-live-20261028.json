@@ -1,0 +1,17 @@
+[
+  {
+    "accessCheck": {
+      "modelCatalogReadable": true,
+      "modelCount": 8
+    },
+    "accountIndex": 1,
+    "checkedAt": 1793182289,
+    "message": "ChatGPT belum memberikan akses pembacaan usage untuk token akun ini; lihat ChatGPT → Pengaturan → Usage (HTTP 401).",
+    "mode": "direct",
+    "planType": null,
+    "provider": "openai",
+    "source": "none",
+    "status": "unavailable",
+    "windows": []
+  }
+]

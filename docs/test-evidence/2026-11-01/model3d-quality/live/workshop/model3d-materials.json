@@ -1,0 +1,8 @@
+{
+  "Plastic": { "roughness": 0.48, "metalness": 0, "opacity": 1, "emissiveIntensity": 0 },
+  "Wood": { "roughness": 0.78, "metalness": 0, "opacity": 1, "emissiveIntensity": 0 },
+  "Metal": { "roughness": 0.28, "metalness": 0.85, "opacity": 1, "emissiveIntensity": 0 },
+  "Glass": { "roughness": 0.12, "metalness": 0, "opacity": 0.4, "emissiveIntensity": 0 },
+  "Concrete": { "roughness": 0.9, "metalness": 0, "opacity": 1, "emissiveIntensity": 0 },
+  "Neon": { "roughness": 0.35, "metalness": 0, "opacity": 1, "emissiveIntensity": 0.5 }
+}

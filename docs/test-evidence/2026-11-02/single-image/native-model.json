@@ -1,0 +1,67 @@
+{
+  "id": "9224bc9c-e968-4e0e-8f54-821909124f71",
+  "ok": true,
+  "result": {
+    "snapshot": {
+      "app": {
+        "name": "ForgeKit Studio",
+        "pid": 2423,
+        "bundleId": "dev.forgekit.studio"
+      },
+      "treeText": "App=dev.forgekit.studio (pid 2423)\nWindow: \"ForgeKit Studio\", App: ForgeKit Studio.\n\n0 standard window ForgeKit Studio\n\t1 scroll area\n\t\t2 HTML content ForgeKit Studio\n\t\t\t3 container Navigasi utama\n\t\t\t\t4 link AI Chat\n\t\t\t\t5 button Studio Kreatif\n\t\t\t\t6 link Pengaturan\n\t\t\t7 container\n\t\t\t\t8 container, Text: ForgeKit Studio Model 3D Studio belum terhubung\n\t\t\t\t9 heading Model 3D\n\t\t\t\t10 text Dari referensi ke Blender dan Roblox Studio.\n\t\t\t\t11 text Blender terdeteksi\n\t\t\t\t12 button Periksa koneksi Blender\n\t\t\t\t13 tab group Tab Model 3D\n\t\t\t\t\t14 tab (selected) Hiu Crimson — Rekonstruksi Organik, Value: 1\n\t\t\t\t\t15 button Tutup tab Hiu Crimson — Rekonstruksi Organik\n\t\t\t\t16 button Tab Model 3D baru\n\t\t\t\t17 button Riwayat\n\t\t\t\t18 container Hiu Crimson — Rekonstruksi Organik\n\t\t\t\t\t19 container Editor Model 3D\n\t\t\t\t\t\t20 container Kontrol Model 3D\n\t\t\t\t\t\t\t21 container\n\t\t\t\t\t\t\t\t22 heading Gambar ke 3D\n\t\t\t\t\t\t\t\t23 text Satu gambar menjadi model 3D lengkap.\n\t\t\t\t\t\t\t24 container Sumber model 3D\n\t\t\t\t\t\t\t\t25 toggle button Dari gambar, Value: 1\n\t\t\t\t\t\t\t\t26 toggle button Dengan prompt, Value: 0\n\t\t\t\t\t\t\t27 button Lampirkan file referensi\n\t\t\t\t\t\t\t28 summary Format & batas lampiran, Value: 0\n\t\t\t\t\t\t\t29 text Belakang dan sisi yang tidak terlihat dilengkapi secara interpretatif.\n\t\t\t\t\t\t\t30 combo box (settable) Provider generator\n\t\t\t\t\t\t\t31 button Akun berikutnya\n\t\t\t\t\t\t\t32 button Buka panel rincian penggunaan kuota provider\n\t\t\t\t\t\t\t33 container\n\t\t\t\t\t\t\t\t34 text Model\n\t\t\t\t\t\t\t\t35 combo box (settable) Model AI, Value: GPT-6.1-Sol\n\t\t\t\t\t\t\t36 container\n\t\t\t\t\t\t\t\t37 text Penalaran\n\t\t\t\t\t\t\t\t38 combo box (settable) Tingkat penalaran AI, Value: Medium\n\t\t\t\t\t\t\t39 button Muat ulang model AI\n\t\t\t\t\t\t\t40 link Atur provider\n\t\t\t\t\t\t\t41 button Buat 3D\n\t\t\t\t\t\t\t42 container Proses pembuatan Model 3D\n\t\t\t\t\t\t\t\t43 container, Text: Proses Selesai\n\t\t\t\t\t\t\t\t44 container, Text: Prompt diterima 13.18 Menyiapkan model Memeriksa hasil Model tersimpan 13.19\n\t\t\t\t\t\t\t45 summary Editor lanjutan, Value: 0\n\t\t\t\t\t\t46 text Hasil Blender\n\t\t\t\t\t\t47 container Kontrol ruang 3D\n\t\t\t\t\t\t\t48 button Bingkai\n\t\t\t\t\t\t\t49 button Depan\n\t\t\t\t\t\t\t50 button Kanan\n\t\t\t\t\t\t\t51 button Atas\n\t\t\t\t\t\t\t52 toggle button Tampilkan grid, Value: 1\n\t\t\t\t\t\t\t53 toggle button Wireframe, Value: 0\n\t\t\t\t\t\t\t54 toggle button Struktur objek, Value: 0\n\t\t\t\t\t\t55 container\n\t\t\t\t\t\t\t56 text Hasil Blender akan tampil di sini.\n\t\t\t\t\t\t\t57 image Viewport hasil Blender\n\t\t\t\t\t\t58 button Bangun di Blender\n\t\t59 scroll bar 0\n\t60 close button\n\t61 full screen button, Secondary Actions: zoom the window\n\t62 minimize button\n\t63 text ForgeKit Studio\n\nThe focused UI element is 5 button Studio Kreatif.",
+      "focusedElementId": 5,
+      "coordinateSpace": "window",
+      "truncation": {
+        "maxDepthReached": false,
+        "truncated": false,
+        "maxDepth": 64,
+        "maxNodes": 1200
+      },
+      "window": {
+        "height": 813,
+        "screenIndex": 0,
+        "x": 80,
+        "title": "ForgeKit Studio",
+        "isMinimized": false,
+        "width": 1280,
+        "isOffscreen": false,
+        "platform": {
+          "layer": 0
+        },
+        "y": 31,
+        "id": 6568
+      },
+      "id": "0B2C866A-4492-4209-B67D-3B42445FC681",
+      "elementCount": 64
+    },
+    "screenshotStatus": {
+      "metadata": {
+        "windowId": 6568,
+        "engine": "screenCaptureKit"
+      },
+      "state": "captured"
+    },
+    "action": {
+      "targetWindowId": 6568,
+      "fallbackReason": null,
+      "actionName": "AXPress",
+      "path": "accessibility",
+      "verification": {
+        "state": "unverified",
+        "reason": "accessibility_action_unasserted"
+      }
+    },
+    "screenshot": {
+      "scale": 2,
+      "height": 1626,
+      "width": 2560,
+      "format": "png",
+      "path": "/var/folders/fl/fr6n4s1n6hbdx3gvn4t6k6kc0000gn/T/orca-computer-use/9224bc9c-e968-4e0e-8f54-821909124f71-screenshot.png",
+      "dataOmitted": true,
+      "expiresAt": "2026-11-03T17:13:07.409Z"
+    }
+  },
+  "_meta": {
+    "runtimeId": "77c228cf-b781-44b9-9269-1ae7b7191b40"
+  }
+}

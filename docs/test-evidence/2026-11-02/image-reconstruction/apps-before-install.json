@@ -1,0 +1,99 @@
+{
+  "id": "911fdca8-434c-4e0c-946a-2c1c3b7e6965",
+  "ok": true,
+  "result": {
+    "apps": [
+      {
+        "isRunning": true,
+        "name": "Roblox",
+        "pid": 61601,
+        "bundleId": "com.roblox.RobloxPlayer",
+        "lastUsedAt": null,
+        "useCount": null
+      },
+      {
+        "name": "Blender",
+        "pid": 44856,
+        "useCount": null,
+        "isRunning": true,
+        "lastUsedAt": null,
+        "bundleId": "org.blenderfoundation.blender"
+      },
+      {
+        "useCount": null,
+        "pid": 63194,
+        "isRunning": true,
+        "lastUsedAt": null,
+        "name": "ChatGPT",
+        "bundleId": "com.openai.codex"
+      },
+      {
+        "lastUsedAt": null,
+        "isRunning": true,
+        "name": "Discord",
+        "useCount": null,
+        "bundleId": "com.hnc.Discord",
+        "pid": 78893
+      },
+      {
+        "isRunning": true,
+        "name": "Finder",
+        "bundleId": "com.apple.finder",
+        "lastUsedAt": null,
+        "useCount": null,
+        "pid": 660
+      },
+      {
+        "isRunning": true,
+        "pid": 82815,
+        "name": "ForgeKit Studio",
+        "bundleId": "dev.forgekit.studio",
+        "lastUsedAt": null,
+        "useCount": null
+      },
+      {
+        "name": "Google Chrome",
+        "isRunning": true,
+        "lastUsedAt": null,
+        "pid": 35799,
+        "useCount": null,
+        "bundleId": "com.google.Chrome"
+      },
+      {
+        "isRunning": true,
+        "lastUsedAt": null,
+        "bundleId": "md.obsidian",
+        "name": "Obsidian",
+        "pid": 74939,
+        "useCount": null
+      },
+      {
+        "isRunning": true,
+        "lastUsedAt": null,
+        "useCount": null,
+        "pid": 80552,
+        "bundleId": "com.stablyai.orca",
+        "name": "Orca"
+      },
+      {
+        "bundleId": "com.apple.Safari",
+        "lastUsedAt": null,
+        "name": "Safari",
+        "pid": 82719,
+        "isRunning": true,
+        "useCount": null
+      },
+      {
+        "useCount": null,
+        "name": "‎WhatsApp",
+        "pid": 28965,
+        "bundleId": "net.whatsapp.WhatsApp",
+        "lastUsedAt": null,
+        "isRunning": true
+      }
+    ]
+  },
+  "_meta": {
+    "runtimeId": "77d5f015-6c50-4219-941e-ffc172e5038a"
+  }
+}

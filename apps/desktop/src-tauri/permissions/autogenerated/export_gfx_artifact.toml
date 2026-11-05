@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-export-gfx-artifact"
+description = "Enables the export_gfx_artifact command without any pre-configured scope."
+commands.allow = ["export_gfx_artifact"]
+
+[[permission]]
+identifier = "deny-export-gfx-artifact"
+description = "Denies the export_gfx_artifact command without any pre-configured scope."
+commands.deny = ["export_gfx_artifact"]

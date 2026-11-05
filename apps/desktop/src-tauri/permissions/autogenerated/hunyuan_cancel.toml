@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-hunyuan-cancel"
+description = "Enables the hunyuan_cancel command without any pre-configured scope."
+commands.allow = ["hunyuan_cancel"]
+
+[[permission]]
+identifier = "deny-hunyuan-cancel"
+description = "Denies the hunyuan_cancel command without any pre-configured scope."
+commands.deny = ["hunyuan_cancel"]

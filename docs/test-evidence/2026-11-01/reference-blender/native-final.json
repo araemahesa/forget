@@ -1,0 +1,57 @@
+{
+  "id": "bcfedb36-b46c-4020-9e51-930e7447a9e8",
+  "ok": true,
+  "result": {
+    "snapshot": {
+      "focusedElementId": null,
+      "id": "6F5D4D9E-4005-4E4B-9285-3D34327D34BA",
+      "app": {
+        "bundleId": "dev.forgekit.studio",
+        "pid": 86824,
+        "name": "ForgeKit Studio"
+      },
+      "coordinateSpace": "window",
+      "window": {
+        "screenIndex": 0,
+        "title": "ForgeKit Studio",
+        "isOffscreen": false,
+        "isMinimized": false,
+        "x": 80,
+        "y": 31,
+        "platform": {
+          "layer": 0
+        },
+        "width": 1280,
+        "height": 813,
+        "id": 4439
+      },
+      "treeText": "App=dev.forgekit.studio (pid 86824)\nWindow: \"ForgeKit Studio\", App: ForgeKit Studio.\n\n0 standard window ForgeKit Studio\n\t1 scroll area\n\t\t2 HTML content ForgeKit Studio\n\t\t\t3 container Penggunaan dan Kuota Provider\n\t\t\t\t4 container\n\t\t\t\t\t5 heading Penggunaan akun\n\t\t\t\t\t6 button Perbarui penggunaan kuota sekarang\n\t\t\t\t\t7 button Tutup panel usage\n\t\t\t\t\t8 radio group Tampilan usage\n\t\t\t\t\t\t9 radio button Detail, Value: 1\n\t\t\t\t\t\t10 radio button Ringkas, Value: 0\n\t\t\t\t11 list Daftar provider dan akun\n\t\t\t\t\t12 text OpenAI · Codex lip.pillar14@icloud.com 1 jam 11 mnt 96%\n\t\t\t\t\t13 text (selected) OpenAI · Codex jayapenum@gmail.com 4 jam 11 mnt 28%\n\t\t\t\t14 link Kelola Akun…\n\t\t\t\t\t15 text Kelola Akun…\n\t\t\t\t16 container Rincian kuota dan limit akun\n\t\t\t\t\t17 container\n\t\t\t\t\t\t18 heading OpenAI\n\t\t\t\t\t\t19 text Diperbarui segera lalu\n\t\t\t\t\t20 separator (disabled)\n\t\t\t\t\t21 text 5 jam\n\t\t\t\t\t22 text codex\n\t\t\t\t\t23 progress indicator 5 jam: 28% terpakai, Value: 28\n\t\t\t\t\t24 text 28% terpakai\n\t\t\t\t\t25 text Reset dalam 4 jam 11 mnt\n\t\t\t\t\t26 text Mingguan\n\t\t\t\t\t27 text codex\n\t\t\t\t\t28 progress indicator Mingguan: 20% terpakai, Value: 20\n\t\t\t\t\t29 text 20% terpakai\n\t\t\t\t\t30 text Reset dalam 6 hari 17 jam\n\t\t\t\t\t31 separator (disabled)\n\t\t\t\t\t32 text OPENAI ACCOUNT\n\t\t\t\t\t33 link JA jayapenum@gmail.com Paket: plus\n\t\t\t\t\t\t34 text JA\n\t\t\t\t\t\t35 text jayapenum@gmail.com\n\t\t\t\t\t\t36 text Paket: plus\n\t\t\t\t\t37 container, Text: Kelola Akun Buka Halaman Usage Provider\n\t\t38 scroll bar 1\n\t39 close button\n\t40 full screen button, Secondary Actions: zoom the window\n\t41 minimize button\n\t42 text ForgeKit Studio\n\nNo UI element is currently focused.",
+      "truncation": {
+        "truncated": false,
+        "maxNodes": 1200,
+        "maxDepthReached": false,
+        "maxDepth": 64
+      },
+      "elementCount": 43
+    },
+    "screenshot": {
+      "format": "png",
+      "scale": 2,
+      "width": 2560,
+      "height": 1626,
+      "path": "/var/folders/fl/fr6n4s1n6hbdx3gvn4t6k6kc0000gn/T/orca-computer-use/bcfedb36-b46c-4020-9e51-930e7447a9e8-screenshot.png",
+      "dataOmitted": true,
+      "expiresAt": "2026-11-02T16:35:54.993Z"
+    },
+    "screenshotStatus": {
+      "state": "captured",
+      "metadata": {
+        "windowId": 4439,
+        "engine": "screenCaptureKit"
+      }
+    }
+  },
+  "_meta": {
+    "runtimeId": "710fe79a-e3c7-4077-bc62-9a85d15d879d"
+  }
+}

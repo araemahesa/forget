@@ -1,0 +1,13 @@
+{
+  "installedApp": "/Applications/ForgeKit Studio.app",
+  "version": "0.1.4",
+  "connectionTestMs": 3982,
+  "modelCatalogEnabled": true,
+  "modelCount": 8,
+  "officialUsage": {
+    "fiveHourRemainingPercent": 94,
+    "weeklyRemainingPercent": 70
+  },
+  "resetTimesRendered": true,
+  "credentialsExported": false
+}

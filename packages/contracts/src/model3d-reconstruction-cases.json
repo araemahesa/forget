@@ -1,0 +1,811 @@
+[
+  {
+    "name": "three orthographic alpha views",
+    "valid": true,
+    "reconstruction": {
+      "resolution": 96,
+      "views": [
+        {
+          "image": 0,
+          "view": "front",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        },
+        {
+          "image": 0,
+          "view": "right",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        },
+        {
+          "image": 0,
+          "view": "top",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        }
+      ]
+    }
+  },
+  {
+    "name": "single photograph",
+    "valid": false,
+    "reconstruction": {
+      "resolution": 96,
+      "views": [
+        {
+          "image": 0,
+          "view": "front",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        }
+      ]
+    }
+  },
+  {
+    "name": "opposite same axis",
+    "valid": false,
+    "reconstruction": {
+      "resolution": 96,
+      "views": [
+        {
+          "image": 0,
+          "view": "front",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        },
+        {
+          "image": 0,
+          "view": "back",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        }
+      ]
+    }
+  },
+  {
+    "name": "duplicate camera",
+    "valid": false,
+    "reconstruction": {
+      "resolution": 96,
+      "views": [
+        {
+          "image": 0,
+          "view": "front",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        },
+        {
+          "image": 0,
+          "view": "front",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        }
+      ]
+    }
+  },
+  {
+    "name": "out of frame crop",
+    "valid": false,
+    "reconstruction": {
+      "resolution": 96,
+      "views": [
+        {
+          "image": 0,
+          "view": "front",
+          "crop": [
+            0.8,
+            0,
+            0.5,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        },
+        {
+          "image": 0,
+          "view": "right",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        },
+        {
+          "image": 0,
+          "view": "top",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        }
+      ]
+    }
+  },
+  {
+    "name": "empty crop",
+    "valid": false,
+    "reconstruction": {
+      "resolution": 96,
+      "views": [
+        {
+          "image": 0,
+          "view": "front",
+          "crop": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        },
+        {
+          "image": 0,
+          "view": "right",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        },
+        {
+          "image": 0,
+          "view": "top",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        }
+      ]
+    }
+  },
+  {
+    "name": "source path instead of index",
+    "valid": false,
+    "reconstruction": {
+      "resolution": 96,
+      "views": [
+        {
+          "image": "/tmp/image.png",
+          "view": "front",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        },
+        {
+          "image": 0,
+          "view": "right",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        },
+        {
+          "image": 0,
+          "view": "top",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        }
+      ]
+    }
+  },
+  {
+    "name": "fractional source index",
+    "valid": false,
+    "reconstruction": {
+      "resolution": 96,
+      "views": [
+        {
+          "image": 0.5,
+          "view": "front",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        },
+        {
+          "image": 0,
+          "view": "right",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        },
+        {
+          "image": 0,
+          "view": "top",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        }
+      ]
+    }
+  },
+  {
+    "name": "negative image",
+    "valid": false,
+    "reconstruction": {
+      "resolution": 96,
+      "views": [
+        {
+          "image": -1,
+          "view": "front",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        },
+        {
+          "image": 0,
+          "view": "right",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        },
+        {
+          "image": 0,
+          "view": "top",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        }
+      ]
+    }
+  },
+  {
+    "name": "excess image",
+    "valid": false,
+    "reconstruction": {
+      "resolution": 96,
+      "views": [
+        {
+          "image": 12,
+          "view": "front",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        },
+        {
+          "image": 0,
+          "view": "right",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        },
+        {
+          "image": 0,
+          "view": "top",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        }
+      ]
+    }
+  },
+  {
+    "name": "unknown camera",
+    "valid": false,
+    "reconstruction": {
+      "resolution": 96,
+      "views": [
+        {
+          "image": 0,
+          "view": "perspective",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        },
+        {
+          "image": 0,
+          "view": "right",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        },
+        {
+          "image": 0,
+          "view": "top",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        }
+      ]
+    }
+  },
+  {
+    "name": "background URL",
+    "valid": false,
+    "reconstruction": {
+      "resolution": 96,
+      "views": [
+        {
+          "image": 0,
+          "view": "front",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "https://example.com",
+          "tolerance": 0.06
+        },
+        {
+          "image": 0,
+          "view": "right",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        },
+        {
+          "image": 0,
+          "view": "top",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        }
+      ]
+    }
+  },
+  {
+    "name": "unknown resolution",
+    "valid": false,
+    "reconstruction": {
+      "resolution": 256,
+      "views": [
+        {
+          "image": 0,
+          "view": "front",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        },
+        {
+          "image": 0,
+          "view": "right",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        },
+        {
+          "image": 0,
+          "view": "top",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        }
+      ]
+    }
+  },
+  {
+    "name": "resolution string",
+    "valid": false,
+    "reconstruction": {
+      "resolution": "96",
+      "views": [
+        {
+          "image": 0,
+          "view": "front",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        },
+        {
+          "image": 0,
+          "view": "right",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        },
+        {
+          "image": 0,
+          "view": "top",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        }
+      ]
+    }
+  },
+  {
+    "name": "tiny threshold",
+    "valid": false,
+    "reconstruction": {
+      "resolution": 96,
+      "views": [
+        {
+          "image": 0,
+          "view": "front",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0
+        },
+        {
+          "image": 0,
+          "view": "right",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        },
+        {
+          "image": 0,
+          "view": "top",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        }
+      ]
+    }
+  },
+  {
+    "name": "ambiguous crop bool",
+    "valid": false,
+    "reconstruction": {
+      "resolution": 96,
+      "views": [
+        {
+          "image": 0,
+          "view": "front",
+          "crop": [
+            false,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        },
+        {
+          "image": 0,
+          "view": "right",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        },
+        {
+          "image": 0,
+          "view": "top",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        }
+      ]
+    }
+  },
+  {
+    "name": "unknown option",
+    "valid": false,
+    "reconstruction": {
+      "resolution": 96,
+      "views": [
+        {
+          "image": 0,
+          "view": "front",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        },
+        {
+          "image": 0,
+          "view": "right",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        },
+        {
+          "image": 0,
+          "view": "top",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        }
+      ],
+      "code": "print(1)"
+    }
+  },
+  {
+    "name": "unknown camera field",
+    "valid": false,
+    "reconstruction": {
+      "resolution": 96,
+      "views": [
+        {
+          "image": 0,
+          "view": "front",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06,
+          "url": "/tmp/x"
+        },
+        {
+          "image": 0,
+          "view": "right",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        },
+        {
+          "image": 0,
+          "view": "top",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        }
+      ]
+    }
+  },
+  {
+    "name": "flat background and low resolution",
+    "valid": true,
+    "reconstruction": {
+      "resolution": 64,
+      "views": [
+        {
+          "image": 0,
+          "view": "front",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "#fAfAfA",
+          "tolerance": 0.06
+        },
+        {
+          "image": 0,
+          "view": "right",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        },
+        {
+          "image": 0,
+          "view": "top",
+          "crop": [
+            0,
+            0,
+            1,
+            1
+          ],
+          "background": "alpha",
+          "tolerance": 0.06
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,71 @@
+{
+  "additionalHistoricalSources": [
+    {
+      "path": "apps/desktop/src/features/creators3d/Model3dPage.tsx",
+      "sourceSession": "/Users/ariardianto/.codex/sessions/2026/10/30/rollout-2026-10-30T16-11-24-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a18c14-02b0-7392-b230-97577d4ddc19.jsonl",
+      "sourceTime": "2026-10-30T14:19:32.858Z",
+      "recoveredSha256": "06a48aa367b0bb960f2125e8f46c67b91a1e01326bd678e378da3c1a410e7f12"
+    },
+    {
+      "path": "apps/desktop/src/features/create/ThreeViewport.tsx",
+      "sourceSession": "/Users/ariardianto/.codex/sessions/2026/10/30/rollout-2026-10-30T16-11-24-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a18c14-02b0-7392-b230-97577d4ddc19.jsonl",
+      "sourceTime": "2026-10-30T14:27:53.028Z",
+      "recoveredSha256": "49e9822f4a98e712fa48d8b7b18baa033fe749ee2216dc5069ec87addbe0a05f"
+    }
+  ],
+  "status": "source_changes_verified_in_isolated_components_not_deployed",
+  "changes": [
+    "Removed model viewport instructions and default orbit/zoom hint",
+    "Shared prompt layout for generators, revisions, AI editors, and chat",
+    "Collapsed quality and budget details under Output",
+    "Kept provider/model choices, error feedback, stop and submission controls"
+  ],
+  "files": [
+    {
+      "path": "apps/desktop/src/features/creators3d/Model3dPage.tsx",
+      "sha256": "159bb15a872d9aacc008681e957a16148a6a46ad7d64fe0dbf828f7910716415"
+    },
+    {
+      "path": "apps/desktop/src/features/create/ThreeViewport.tsx",
+      "sha256": "2ad887c4324d309ada2d295996b7bcc7bac7b133fb91292ae57edfba9a94da04"
+    },
+    {
+      "path": "apps/desktop/src/features/create/CreativeControls.tsx",
+      "sha256": "790717da19809daad4445fa0130b41fecd4cee9ced83e0e3e4403fa534eba154"
+    },
+    {
+      "path": "apps/desktop/src/features/shared/EditorAiPromptBar.tsx",
+      "sha256": "d9ceca1217b9d3799aac71869524df40f17d13c6b3f945771e3c256bdc59d359"
+    },
+    {
+      "path": "apps/desktop/src/features/chat/ChatPage.tsx",
+      "sha256": "f587937c074978affcd0f5ee2980fe1e0cbef5b669c4897d3bf9d727eab8aecd"
+    },
+    {
+      "path": "apps/desktop/src/app/workspace-layout.css",
+      "sha256": "d3f2699d11d7a2eec23403f4e58ff0f4797b29419c07b6a063d6b4ed63aff834"
+    },
+    {
+      "path": "scripts/verify_prompt_layout.cjs",
+      "sha256": "287bc66efd5796cf7586def10d5b9a6ac8325db95ff51ba7626ee48162ee1ac4"
+    }
+  ],
+  "checks": {
+    "componentLayoutCases": 80,
+    "viewportWidths": [
+      1440,
+      760,
+      390,
+      320
+    ],
+    "themes": [
+      "dark",
+      "light"
+    ],
+    "typescriptSyntaxFiles": 50,
+    "cssParsed": true,
+    "liveProviderTested": false,
+    "fullApplicationBuild": false
+  },
+  "limitation": "The recovered project still lacks required frontend modules, contracts, styles, workspace configuration, and backend modules. The installed application has not been changed."
+}

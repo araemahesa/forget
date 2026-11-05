@@ -1,0 +1,9 @@
+
+ RUN  v5.0.5 /Users/ariardianto/Documents/ForgeKIT/CODE/apps/desktop
+
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  23:26:14
+   Duration  848ms (environment 68%, setup 15%, transform 9%, import 7%, tests 1%, worker 1%)
+

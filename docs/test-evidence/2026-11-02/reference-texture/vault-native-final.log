@@ -1,0 +1,69 @@
+   Compiling forgekit-desktop v0.1.38 (/Users/ariardianto/Documents/ForgeKIT/CODE/apps/desktop/src-tauri)
+warning: static `PROCESSING` is never used
+ --> src/attachments.rs:6:8
+  |
+6 | static PROCESSING: std::sync::Mutex<()> = std::sync::Mutex::new(());
+  |        ^^^^^^^^^^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: static `REFRESH` is never used
+  --> src/browser_auth.rs:27:8
+   |
+27 | static REFRESH: Mutex<()> = Mutex::new(());
+   |        ^^^^^^^
+
+warning: function `access_token` is never used
+   --> src/browser_auth.rs:180:8
+    |
+180 | pub fn access_token(key_ref: &str, raw: String) -> Result<String, String> {
+    |        ^^^^^^^^^^^^
+
+warning: `forgekit-desktop` (lib test) generated 3 warnings
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 7.04s
+     Running unittests src/lib.rs (target/debug/deps/forgekit_desktop_lib-e64b222b0dff9f30)
+
+running 4 tests
+test obsidian::tests::adaptive_vault_routes_mixed_requests_without_loading_projects ... mixed request: 84 notes, 70892 text bytes
+ok
+test obsidian::tests::configured_knowledge_graph_routes_systems_and_3d_within_budget ... chat: 12 notes, 12425 text bytes; halo
+chat: 24 notes, 18865 text bytes; Buat sistem quest multiplayer dengan reward idempoten dan data pemain
+model3d: 52 notes, 57218 text bytes; Rekonstruksi hiu merah dari referensi 3D, cocokkan kamera dan silhouette
+interface: 23 notes, 15726 text bytes; Buat HUD responsif untuk touch dan gamepad dengan state error
+music: 20 notes, 14597 text bytes; Buat musik ambience untuk zona hutan
+chat: 45 notes, 45637 text bytes; Debug source ForgeKit pada checkpoint dan viewport model 3D
+broad chat: 91 notes, 79612 text bytes
+broad model3d: 83 notes, 71161 text bytes
+broad interface: 72 notes, 55712 text bytes
+broad npc: 72 notes, 55514 text bytes
+broad animation: 70 notes, 52921 text bytes
+broad vfx: 71 notes, 54228 text bytes
+broad music: 70 notes, 52837 text bytes
+broad sfx: 70 notes, 52722 text bytes
+broad sky: 71 notes, 54187 text bytes
+broad gfx: 70 notes, 52986 text bytes
+broad icon: 70 notes, 52912 text bytes
+broad clothing: 70 notes, 53032 text bytes
+broad texture: 69 notes, 51452 text bytes
+broad cutscene: 70 notes, 52858 text bytes
+ok
+test obsidian::tests::configured_reference_texture_skills_are_scoped_and_bounded ... reference texture: 48 notes; scoped routing passed
+ok
+test obsidian::tests::configured_vault_supports_every_prompt_domain ... chat: 12 bounded notes
+model3d: 39 bounded notes
+animation: 19 bounded notes
+vfx: 18 bounded notes
+interface: 19 bounded notes
+npc: 17 bounded notes
+cutscene: 21 bounded notes
+music: 19 bounded notes
+sfx: 19 bounded notes
+sky: 20 bounded notes
+gfx: 18 bounded notes
+icon: 18 bounded notes
+clothing: 18 bounded notes
+texture: 13 bounded notes
+ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 167 filtered out; finished in 0.40s
+

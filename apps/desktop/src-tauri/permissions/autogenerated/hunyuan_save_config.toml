@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-hunyuan-save-config"
+description = "Enables the hunyuan_save_config command without any pre-configured scope."
+commands.allow = ["hunyuan_save_config"]
+
+[[permission]]
+identifier = "deny-hunyuan-save-config"
+description = "Denies the hunyuan_save_config command without any pre-configured scope."
+commands.deny = ["hunyuan_save_config"]

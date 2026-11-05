@@ -1,0 +1,1119 @@
+
+ RUN  v5.0.5 /Users/ariardianto/Documents/ForgeKIT/CODE/apps/desktop
+
+ ❯ src/features/LibraryPage.test.tsx (5 tests | 1 failed) 10351ms
+   × lists five kinds, loads verified details, exports and opens correct editor 5690ms
+ ❯ src/features/create/ThreeViewport.test.tsx (1 test | 1 failed) 12794ms
+   × keeps every imported object reachable beyond the old 512-node limit 12780ms
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+Not implemented: HTMLCanvasElement's getContext() method: without installing the canvas npm package
+ ❯ src/features/sfx/SfxPage.test.tsx (10 tests | 1 failed) 6075ms
+   ❯ SfxPage (10)
+     × preserves draft on native failure and reports unavailable history 1123ms
+ ❯ src/features/skybox/SkyboxPage.test.tsx (7 tests | 1 failed) 5923ms
+   ❯ SkyboxPage (7)
+     × stores manual edits and keeps previous recipe after provider failure 1527ms
+ ❯ src/app/App.test.tsx (14 tests | 2 failed) 22323ms
+   × shows one live Studio status in the top bar immediately after the AI Chat breadcrumb 6667ms
+   ❯ Chat home and inline navigation (8)
+     × renders nine inline links directly under parent and closes only after click 732ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/app/App.test.tsx > shows one live Studio status in the top bar immediately after the AI Chat breadcrumb
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/app/App.test.tsx:68:1
+     66| });
+     67|
+     68| it('shows one live Studio status in the top bar immediately after the …
+       | ^
+     69|   render(<App />); await home();
+     70|   const topbar = document.querySelector('.topbar') as HTMLElement;
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  src/app/App.test.tsx > Chat home and inline navigation > renders nine inline links directly under parent and closes only after click
+TestingLibraryElementError: Unable to find an accessible element with the role "group" and name "Studio Kreatif"
+
+Here are the accessible roles:
+
+  navigation:
+
+  Name "Navigasi utama":
+  [36m<nav[39m
+    [33maria-label[39m=[32m"Navigasi utama"[39m
+    [33mclass[39m=[32m"floating-navigation"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  link:
+
+  Name "AI Chat":
+  [36m<a[39m
+    [33maria-label[39m=[32m"AI Chat"[39m
+    [33mclass[39m=[32m"floating-icon"[39m
+    [33mhref[39m=[32m"#chat"[39m
+    [33mtitle[39m=[32m"AI Chat"[39m
+  [36m/>[39m
+
+  Name "Pengaturan":
+  [36m<a[39m
+    [33maria-current[39m=[32m"page"[39m
+    [33maria-label[39m=[32m"Pengaturan"[39m
+    [33mclass[39m=[32m"floating-icon"[39m
+    [33mhref[39m=[32m"#settings"[39m
+    [33mtitle[39m=[32m"Pengaturan"[39m
+  [36m/>[39m
+
+  Name "ForgeKit Studio":
+  [36m<a[39m
+    [33maria-label[39m=[32m"ForgeKit Studio"[39m
+    [33mclass[39m=[32m"topbar-brand"[39m
+    [33mhref[39m=[32m"#chat"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "Studio Kreatif":
+  [36m<button[39m
+    [33maria-controls[39m=[32m"creative-children"[39m
+    [33maria-expanded[39m=[32m"false"[39m
+    [33maria-label[39m=[32m"Studio Kreatif"[39m
+    [33mclass[39m=[32m"floating-icon"[39m
+    [33mdata-current[39m=[32m"false"[39m
+    [33mtitle[39m=[32m"Studio Kreatif"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  main:
+
+  Name "":
+  [36m<main[39m
+    [33mclass[39m=[32m"main-content"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  banner:
+
+  Name "":
+  [36m<header[39m
+    [33mclass[39m=[32m"topbar"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  strong:
+
+  Name "":
+  [36m<strong />[39m
+
+  --------------------------------------------------
+  status:
+
+  Name "":
+  [36m<p[39m
+    [33mrole[39m=[32m"status"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"app-shell"[39m
+    [36m>[39m
+      [36m<nav[39m
+        [33maria-label[39m=[32m"Navigasi utama"[39m
+        [33mclass[39m=[32m"floating-navigation"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33maria-label[39m=[32m"AI Chat"[39m
+          [33mclass[39m=[32m"floating-icon"[39m
+          [33mhref[39m=[32m"#chat"[39m
+          [33mtitle[39m=[32m"AI Chat"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M21 12a8 8 0 0 1-8 8H4l-1 2V11a8 8 0 0 1 8-8h2a8 8 0 0 1 8 9ZM7 9h10M7 13h7"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"1.7"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</a>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"floating-icon-wrap"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33maria-controls[39m=[32m"creative-children"[39m
+            [33maria-expanded[39m=[32m"false"[39m
+            [33maria-label[39m=[32m"Studio Kreatif"[39m
+            [33mclass[39m=[32m"floating-icon"[39m
+            [33mdata-current[39m=[32m"false"[39m
+            [33mtitle[39m=[32m"Studio Kreatif"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"icon"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"m12 3 1.8 6.2L20 11l-6.2 1.8L12 19l-1.8-6.2L4 11l6.2-1.8L12 3Z"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-linejoin[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"1.8"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+          [36m</button>[39m
+        [36m</div>[39m
+        [36m<a[39m
+          [33maria-current[39m=[32m"page"[39m
+          [33maria-label[39m=[32m"Pengaturan"[39m
+          [33mclass[39m=[32m"floating-icon"[39m
+          [33mhref[39m=[32m"#settings"[39m
+          [33mtitle[39m=[32m"Pengaturan"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"m9.5 3-.6 2.2-1.5.9-2.2-.6-2.5 4.3 1.6 1.6v1.7l-1.6 1.6L5.2 19l2.2-.6 1.5.9.6 2.2h5l.6-2.2 1.5-.9 2.2.6 2.5-4.3-1.6-1.6v-1.7l1.6-1.6-2.5-4.3-2.2.6-1.5-.9-.6-2.2h-5Z"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"1.7"[39m
+            [36m/>[39m
+            [36m<circle[39m
+              [33mcx[39m=[32m"12"[39m
+              [33mcy[39m=[32m"12.25"[39m
+              [33mr[39m=[32m"3"[39m
+              [33mstroke-width[39m=[32m"1.7"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</a>[39m
+      [36m</nav>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"main-content"[39m
+      [36m>[39m
+        [36m<header[39m
+          [33mclass[39m=[32m"topbar"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"topbar-leading"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33maria-label[39m=[32m"ForgeKit Studio"[39m
+              [33mclass[39m=[32m"topbar-brand"[39m
+              [33mhref[39m=[32m"#chat"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"brand-mark"[39m
+              [36m>[39m
+                [36m<img[39m
+                  [33malt[39m=[32m""[39m
+                  [33mdraggable[39m=[32m"false"[39m
+                  [33mheight[39m=[32m"34"[39m
+                  [33msrc[39m=[32m"/branding/app-icon.svg"[39m
+                  [33mwidth[39m=[32m"34"[39m
+                [36m/>[39m
+              [36m</span>[39m
+              [36m<span>[39m
+                [0mForgeKit Studio[0m
+              [36m</span>[39m
+            [36m</a>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"topbar-divider"[39m
+            [36m/>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"breadcrumb"[39m
+            [36m>[39m
+              [36m<strong>[39m
+                [0mPengaturan[0m
+              [36m</strong>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+        [36m</header>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"page-body"[39m
+          [33mid[39m=[32m"settings"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mhidden[39m=[32m""[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"chat-container"[39m
+            [36m>[39m
+              [36m<section[39m
+                [33maria-label[39m=[32m"Percakapan aktif"[39m
+                [33mclass[39m=[32m"chat-main"[39m
+              [36m>[39m
+                [36m<header[39m
+                  [33mclass[39m=[32m"chat-header"[39m
+                [36m>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"chat-header-info"[39m
+                  [36m>[39m
+                    [36m<h1>[39m
+                      [0mAI Chat[0m
+                    [36m</h1>[39m
+                    [36m<span>[39m
+                      [0mRuang untuk ide berikutnya[0m
+                    [36m</span>[39m
+                  [36m</div>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"chat-header-actions"[39m
+                  [36m>[39m
+                    [36m<button[39m
+                      [33maria-label[39m=[32m"Percakapan baru"[39m
+                      [33mclass[39m=[32m"theme-button"[39m
+                      [33mtitle[39m=[32m"Percakapan baru"[39m
+                      [33mtype[39m=[32m"button"[39m
+                    [36m>[39m
+                      [36m<svg[39m
+                        [33maria-hidden[39m=[32m"true"[39m
+                        [33mclass[39m=[32m"icon"[39m
+                        [33mfill[39m=[32m"none"[39m
+                        [33mstroke[39m=[3...
+ ❯ Object.getElementError ../../node_modules/.pnpm/@testing-library+dom@10.4.2/node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ ../../node_modules/.pnpm/@testing-library+dom@10.4.2/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ ../../node_modules/.pnpm/@testing-library+dom@10.4.2/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ ../../node_modules/.pnpm/@testing-library+dom@10.4.2/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/app/App.test.tsx:104:29
+    102|     const user = userEvent.setup(); render(<App />); await home();
+    103|     await user.click(creative());
+    104|     const children = screen.getByRole('group', { name: 'Studio Kreatif…
+       |                             ^
+    105|     expect(children.parentElement).toBe(creative().parentElement);
+    106|     expect(within(children).getAllByRole('link')).toHaveLength(9);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  src/features/LibraryPage.test.tsx > lists five kinds, loads verified details, exports and opens correct editor
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/features/LibraryPage.test.tsx:38:1
+     36| });
+     37|
+     38| it('lists five kinds, loads verified details, exports and opens correc…
+       | ^
+     39|   const onOpen = vi.fn();
+     40|   render(<LibraryPage onOpen={onOpen} />);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  src/features/create/ThreeViewport.test.tsx > keeps every imported object reachable beyond the old 512-node limit
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/features/create/ThreeViewport.test.tsx:8:1
+      6| afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
+      7|
+      8| it('keeps every imported object reachable beyond the old 512-node limi…
+       | ^
+      9|   vi.stubGlobal('WebGLRenderingContext', undefined);
+     10|   const scene = new Group(), geometry = new BoxGeometry(), material = …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  src/features/sfx/SfxPage.test.tsx > SfxPage > preserves draft on native failure and reports unavailable history
+TestingLibraryElementError: Found multiple elements with the role "alert"
+
+Here are the matching elements:
+
+Ignored nodes: comments, script, style
+[36m<p[39m
+  [33mclass[39m=[32m"status-error"[39m
+  [33mrole[39m=[32m"alert"[39m
+[36m>[39m
+  [0mPenyimpanan lokal memerlukan aplikasi desktop ForgeKit Studio.[0m
+[36m</p>[39m
+
+Ignored nodes: comments, script, style
+[36m<p[39m
+  [33mclass[39m=[32m"status status-error"[39m
+  [33mrole[39m=[32m"alert"[39m
+[36m>[39m
+  [0mDatabase tidak dapat dibaca[0m
+[36m</p>[39m
+
+(If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"gfx-page sfx-page"[39m
+    [36m>[39m
+      [36m<dialog[39m
+        [33maria-labelledby[39m=[32m"sfx-replace-title"[39m
+        [33mclass[39m=[32m"replace-dialog"[39m
+      [36m>[39m
+        [36m<h2[39m
+          [33mid[39m=[32m"sfx-replace-title"[39m
+        [36m>[39m
+          [0mBuang perubahan saat ini?[0m
+        [36m</h2>[39m
+        [36m<p>[39m
+          [0mIsian efek suara yang belum disimpan akan digantikan oleh versi yang dipilih.[0m
+        [36m</p>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"action-row"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button secondary-button"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mPertahankan draf[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button primary-button"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mGanti dengan versi pilihan[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</dialog>[39m
+      [36m<header[39m
+        [33mclass[39m=[32m"page-header gfx-page-header"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"gfx-title-row"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"page-icon"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"icon"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M3 10v4m4-8v12m5-16v20m5-16v12m4-8v4"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"1.7"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+          [36m</span>[39m
+          [36m<div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"page-title-line"[39m
+            [36m>[39m
+              [36m<h1>[39m
+                [0mGenerator Efek Suara[0m
+              [36m</h1>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"creator-type"[39m
+              [36m>[39m
+                [0mDSP AUDIO SYNTHESIS[0m
+              [36m</span>[39m
+            [36m</div>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"page-description"[39m
+            [36m>[39m
+              [0mSintesis suara retro, laser, koin, ledakan, dan langkah kaki langsung ke format audio WAV.[0m
+            [36m</p>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"document-state"[39m
+        [36m>[39m
+          [0mBelum disimpan[0m
+        [36m</span>[39m
+      [36m</header>[39m
+      [36m<section[39m
+        [33maria-label[39m=[32m"Penyusunan Spesifikasi AI"[39m
+        [33mclass[39m=[32m"editor-ai-prompt-bar"[39m
+      [36m>[39m
+        [36m<form[39m
+          [33mclass[39m=[32m"editor-ai-form prompt-composer"[39m
+        [36m>[39m
+          [36m<header[39m
+            [33mclass[39m=[32m"prompt-heading"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"prompt-heading-icon"[39m
+            [36m>[39m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"icon"[39m
+                [33mfill[39m=[32m"none"[39m
+                [33mstroke[39m=[32m"currentColor"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"m12 3 1.8 6.2L20 11l-6.2 1.8L12 19l-1.8-6.2L4 11l6.2-1.8L12 3Z"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"1.8"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+            [36m</span>[39m
+            [36m<div>[39m
+              [36m<h2>[39m
+                [0mAsisten desain[0m
+              [36m</h2>[39m
+              [36m<p>[39m
+                [0mJelaskan ide atau perubahan yang diinginkan.[0m
+              [36m</p>[39m
+            [36m</div>[39m
+          [36m</header>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"status-error"[39m
+            [33mrole[39m=[32m"alert"[39m
+          [36m>[39m
+            [0mPenyimpanan lokal memerlukan aplikasi desktop ForgeKit Studio.[0m
+          [36m</p>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"editor-ai-input-row"[39m
+          [36m>[39m
+            [36m<textarea[39m
+              [33maria-label[39m=[32m"Prompt instruksi AI"[39m
+              [33mclass[39m=[32m"editor-ai-input prompt-input"[39m
+              [33mmaxlength[39m=[32m"16000"[39m
+              [33mplaceholder[39m=[32m"Jelaskan yang ingin dibuat…"[39m
+              [33mrows[39m=[32m"3"[39m
+            [36m/>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"editor-ai-controls-row prompt-toolbar"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"editor-ai-picker-group prompt-options"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"provider-picker-wrapper"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mhidden[39m=[32m""[39m
+                  [33mid[39m=[32m"_r_i_"[39m
+                [36m>[39m
+                  [0mPilih provider[0m
+                [36m</span>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"dropdown provider-picker"[39m
+                [36m>[39m
+                  [36m<button[39m
+                    [33maria-describedby[39m=[32m"_r_i_"[39m
+                    [33maria-expanded[39m=[32m"false"[39m
+                    [33maria-haspopup[39m=[32m"listbox"[39m
+                    [33maria-label[39m=[32m"Koneksi AI Fitur Ini"[39m
+                    [33mclass[39m=[32m"dropdown-trigger"[39m
+                    [33mdisabled[39m=[32m""[39m
+                    [33mid[39m=[32m"dropdown-_r_j_"[39m
+                    [33mrole[39m=[32m"combobox"[39m
+                    [33mtitle[39m=[32m"Pilih provider"[39m
+                    [33mtype[39m=[32m"button"[39m
+                    [33mvalue[39m=[32m""[39m
+                  [36m>[39m
+                    [36m<span[39m
+                      [33mclass[39m=[32m"dropdown-value"[39m
+                    [36m>[39m
+               ...
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"gfx-page sfx-page"[39m
+    [36m>[39m
+      [36m<dialog[39m
+        [33maria-labelledby[39m=[32m"sfx-replace-title"[39m
+        [33mclass[39m=[32m"replace-dialog"[39m
+      [36m>[39m
+        [36m<h2[39m
+          [33mid[39m=[32m"sfx-replace-title"[39m
+        [36m>[39m
+          [0mBuang perubahan saat ini?[0m
+        [36m</h2>[39m
+        [36m<p>[39m
+          [0mIsian efek suara yang belum disimpan akan digantikan oleh versi yang dipilih.[0m
+        [36m</p>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"action-row"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button secondary-button"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mPertahankan draf[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button primary-button"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mGanti dengan versi pilihan[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</dialog>[39m
+      [36m<header[39m
+        [33mclass[39m=[32m"page-header gfx-page-header"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"gfx-title-row"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"page-icon"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"icon"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M3 10v4m4-8v12m5-16v20m5-16v12m4-8v4"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"1.7"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+          [36m</span>[39m
+          [36m<div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"page-title-line"[39m
+            [36m>[39m
+              [36m<h1>[39m
+                [0mGenerator Efek Suara[0m
+              [36m</h1>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"creator-type"[39m
+              [36m>[39m
+                [0mDSP AUDIO SYNTHESIS[0m
+              [36m</span>[39m
+            [36m</div>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"page-description"[39m
+            [36m>[39m
+              [0mSintesis suara retro, laser, koin, ledakan, dan langkah kaki langsung ke format audio WAV.[0m
+            [36m</p>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"document-state"[39m
+        [36m>[39m
+          [0mBelum disimpan[0m
+        [36m</span>[39m
+      [36m</header>[39m
+      [36m<section[39m
+        [33maria-label[39m=[32m"Penyusunan Spesifikasi AI"[39m
+        [33mclass[39m=[32m"editor-ai-prompt-bar"[39m
+      [36m>[39m
+        [36m<form[39m
+          [33mclass[39m=[32m"editor-ai-form prompt-composer"[39m
+        [36m>[39m
+          [36m<header[39m
+            [33mclass[39m=[32m"prompt-heading"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"prompt-heading-icon"[39m
+            [36m>[39m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"icon"[39m
+                [33mfill[39m=[32m"none"[39m
+                [33mstroke[39m=[32m"currentColor"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"m12 3 1.8 6.2L20 11l-6.2 1.8L12 19l-1.8-6.2L4 11l6.2-1.8L12 3Z"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-linejoin[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"1.8"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+            [36m</span>[39m
+            [36m<div>[39m
+              [36m<h2>[39m
+                [0mAsisten desain[0m
+              [36m</h2>[39m
+              [36m<p>[39m
+                [0mJelaskan ide atau perubahan yang diinginkan.[0m
+              [36m</p>[39m
+            [36m</div>[39m
+          [36m</header>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"status-error"[39m
+            [33mrole[39m=[32m"alert"[39m
+          [36m>[39m
+            [0mPenyimpanan lokal memerlukan aplikasi desktop ForgeKit Studio.[0m
+          [36m</p>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"editor-ai-input-row"[39m
+          [36m>[39m
+            [36m<textarea[39m
+              [33maria-label[39m=[32m"Prompt instruksi AI"[39m
+              [33mclass[39m=[32m"editor-ai-input prompt-input"[39m
+              [33mmaxlength[39m=[32m"16000"[39m
+              [33mplaceholder[39m=[32m"Jelaskan yang ingin dibuat…"[39m
+              [33mrows[39m=[32m"3"[39m
+            [36m/>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"editor-ai-controls-row prompt-toolbar"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"editor-ai-picker-group prompt-options"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"provider-picker-wrapper"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mhidden[39m=[32m""[39m
+                  [33mid[39m=[32m"_r_i_"[39m
+                [36m>[39m
+                  [0mPilih provider[0m
+                [36m</span>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"dropdown provider-picker"[39m
+                [36m>[39m
+                  [36m<button[39m
+                    [33maria-describedby[39m=[32m"_r_i_"[39m
+                    [33maria-expanded[39m=[32m"false"[39m
+                    [33maria-haspopup[39m=[32m"listbox"[39m
+                    [33maria-label[39m=[32m"Koneksi AI Fitur Ini"[39m
+                    [33mclass[39m=[32m"dropdown-trigger"[39m
+                    [33mdisabled[39m=[32m""[39m
+                    [33mid[39m=[32m"dropdown-_r_j_"[39m
+                    [33mrole[39m=[32m"combobox"[39m
+                    [33mtitle[39m=[32m"Pilih provider"[39m
+                    [33mtype[39m=[32m"button"[39m
+                    [33mvalue[39m=[32m""[39m
+                  [36m>[39m
+                    [36m<span[39m
+                      [33mclass[39m=[32m"dropdown-value"[39m
+                    [36m>[39m
+               ...
+ ❯ waitForWrapper ../../node_modules/.pnpm/@testing-library+dom@10.4.2/node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ ../../node_modules/.pnpm/@testing-library+dom@10.4.2/node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ src/features/sfx/SfxPage.test.tsx:73:25
+     71|     const user = userEvent.setup();
+     72|     render(<SfxPage />);
+     73|     expect(await screen.findByRole('alert')).toHaveTextContent('Databa…
+       |                         ^
+     74|     await user.keyboard('{Control>}s{/Control}');
+     75|     expect(await screen.findByText('Disk penuh')).toBeVisible();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+ FAIL  src/features/skybox/SkyboxPage.test.tsx > SkyboxPage > stores manual edits and keeps previous recipe after provider failure
+TestingLibraryElementError: Found multiple elements with the role "alert"
+
+Here are the matching elements:
+
+Ignored nodes: comments, script, style
+[36m<p[39m
+  [33mclass[39m=[32m"status-error"[39m
+  [33mrole[39m=[32m"alert"[39m
+[36m>[39m
+  [0mUnexpected fixture command: obsidian_status[0m
+[36m</p>[39m
+
+Ignored nodes: comments, script, style
+[36m<p[39m
+  [33mclass[39m=[32m"generator-error"[39m
+  [33mrole[39m=[32m"alert"[39m
+[36m>[39m
+  [0mProvider menolak recipe; versi sebelumnya dipertahankan.[0m
+[36m</p>[39m
+
+(If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"gfx-page skybox-page"[39m
+    [36m>[39m
+      [36m<dialog[39m
+        [33mclass[39m=[32m"replace-dialog"[39m
+      [36m>[39m
+        [36m<h2>[39m
+          [0mBuang perubahan saat ini?[0m
+        [36m</h2>[39m
+        [36m<p>[39m
+          [0mDraf editor akan diganti versi pilihan. Versi tersimpan tetap tersedia.[0m
+        [36m</p>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"action-row"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button secondary-button"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mPertahankan draf[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button primary-button"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mGanti dengan versi pilihan[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</dialog>[39m
+      [36m<header[39m
+        [33mclass[39m=[32m"page-header gfx-page-header"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"gfx-title-row"[39m
+        [36m>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"page-icon"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"icon"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [36m>[39m
+              [36m<circle[39m
+                [33mcx[39m=[32m"12"[39m
+                [33mcy[39m=[32m"12"[39m
+                [33mr[39m=[32m"3.5"[39m
+                [33mstroke-width[39m=[32m"1.8"[39m
+              [36m/>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"1.7"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+          [36m</span>[39m
+          [36m<div>[39m
+            [36m<h1>[39m
+              [0mGenerator Langit[0m
+            [36m</h1>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"page-description"[39m
+            [36m>[39m
+              [0mPrompt menjadi ilustrasi langit enam sisi dan parameter pencahayaan. Revisi dan versi tersimpan bersama task.[0m
+            [36m</p>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+        [36m<span[39m
+          [33mclass[39m=[32m"document-state"[39m
+        [36m>[39m
+          [0mVersi tersimpan[0m
+        [36m</span>[39m
+      [36m</header>[39m
+      [36m<div[39m
+        [33maria-label[39m=[32m"Aksi skybox"[39m
+        [33mclass[39m=[32m"editor-toolbar"[39m
+        [33mrole[39m=[32m"group"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"button secondary-button"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mRender[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"button secondary-button"[39m
+          [33mdisabled[39m=[32m""[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M5 4h12l2 2v14H5V4Zm3 0v5h7V4M8 20v-6h8v6"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"1.8"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+          [0mSimpan versi[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"button secondary-button"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mSalin Skrip Luau[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"button secondary-button"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mEkspor Jaring (SVG)[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"button secondary-button"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mEkspor 6 Sisi[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33maria-describedby[39m=[32m"skybox-apply-reason"[39m
+          [33mclass[39m=[32m"button secondary-button"[39m
+          [33mdisabled[39m=[32m""[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mTerapkan ke Studio[0m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<p[39m
+        [33mclass[39m=[32m"generator-caption"[39m
+        [33mid[39m=[32m"skybox-apply-reason"[39m
+      [36m>[39m
+        [0mSambungan cubemap belum divalidasi. Upload enam gambar raster dan izin tulis Studio belum tersedia; salinan Luau hanya mengatur Lighting/Sky, tanpa memasang tekstur.[0m
+      [36m</p>[39m
+      [36m<div[39m
+        [33maria-label[39m=[32m"Tampilan editor"[39m
+        [33mclass[39m=[32m"editor-switch"[39m
+        [33mrole[39m=[32m"group"[39m
+      [36m>[39m
+        [36m<button[39m
+          [33maria-controls[39m=[32m"skybox-controls"[39m
+          [33maria-pressed[39m=[32m"true"[39m
+          [33mclass[39m=[32m"button secondary-button"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mPengaturan[0m
+        [36m</button>[39m
+        [36m<button[39m
+          [33maria-controls[39m=[32m"skybox-preview"[39m
+          [33maria-pressed[39m=[32m"false"[39m
+          [33mclass[39m=[32m"button secondary-button"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mPratinjau[0m
+        [36m</button>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"gfx-workspace skybox-workspace"[39m
+        [33mdata-view[39m=[32m"controls"[39m
+      [36m>[39m
+        [36m<section[39m
+          [33maria-label[39m=[32m"Pratinjau Skybox"[39m
+          [33mclass[39m=[32m"gfx-preview canvas-panel skybox-preview"[39m
+          [33mid[39m=[32m"skybox-preview"[39m
+        [36m>[39m
+          [36m<header[39m
+            [33mclass[39m=[32m"canvas-heading"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"canvas-label"[39m
+            [36m>[39m
+              [36m<svg[39m
+                [33mar...
+
+Ignored nodes: comments, script, style
+[36m<html>[39m
+  [36m<head />[39m
+  [36m<body>[39m
+    [36m<div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"gfx-page skybox-page"[39m
+      [36m>[39m
+        [36m<dialog[39m
+          [33mclass[39m=[32m"replace-dialog"[39m
+        [36m>[39m
+          [36m<h2>[39m
+            [0mBuang perubahan saat ini?[0m
+          [36m</h2>[39m
+          [36m<p>[39m
+            [0mDraf editor akan diganti versi pilihan. Versi tersimpan tetap tersedia.[0m
+          [36m</p>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"action-row"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"button secondary-button"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mPertahankan draf[0m
+            [36m</button>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"button primary-button"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mGanti dengan versi pilihan[0m
+            [36m</button>[39m
+          [36m</div>[39m
+        [36m</dialog>[39m
+        [36m<header[39m
+          [33mclass[39m=[32m"page-header gfx-page-header"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"gfx-title-row"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"page-icon"[39m
+            [36m>[39m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"icon"[39m
+                [33mfill[39m=[32m"none"[39m
+                [33mstroke[39m=[32m"currentColor"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+              [36m>[39m
+                [36m<circle[39m
+                  [33mcx[39m=[32m"12"[39m
+                  [33mcy[39m=[32m"12"[39m
+                  [33mr[39m=[32m"3.5"[39m
+                  [33mstroke-width[39m=[32m"1.8"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"[39m
+                  [33mstroke-linecap[39m=[32m"round"[39m
+                  [33mstroke-width[39m=[32m"1.7"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+            [36m</span>[39m
+            [36m<div>[39m
+              [36m<h1>[39m
+                [0mGenerator Langit[0m
+              [36m</h1>[39m
+              [36m<p[39m
+                [33mclass[39m=[32m"page-description"[39m
+              [36m>[39m
+                [0mPrompt menjadi ilustrasi langit enam sisi dan parameter pencahayaan. Revisi dan versi tersimpan bersama task.[0m
+              [36m</p>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"document-state"[39m
+          [36m>[39m
+            [0mVersi tersimpan[0m
+          [36m</span>[39m
+        [36m</header>[39m
+        [36m<div[39m
+          [33maria-label[39m=[32m"Aksi skybox"[39m
+          [33mclass[39m=[32m"editor-toolbar"[39m
+          [33mrole[39m=[32m"group"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button secondary-button"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mRender[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button secondary-button"[39m
+            [33mdisabled[39m=[32m""[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"icon"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M5 4h12l2 2v14H5V4Zm3 0v5h7V4M8 20v-6h8v6"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-linejoin[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"1.8"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+            [0mSimpan versi[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button secondary-button"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mSalin Skrip Luau[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button secondary-button"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mEkspor Jaring (SVG)[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"button secondary-button"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mEkspor 6 Sisi[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-describedby[39m=[32m"skybox-apply-reason"[39m
+            [33mclass[39m=[32m"button secondary-button"[39m
+            [33mdisabled[39m=[32m""[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mTerapkan ke Studio[0m
+          [36m</button>[39m
+        [36m</div>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"generator-caption"[39m
+          [33mid[39m=[32m"skybox-apply-reason"[39m
+        [36m>[39m
+          [0mSambungan cubemap belum divalidasi. Upload enam gambar raster dan izin tulis Studio belum tersedia; salinan Luau hanya mengatur Lighting/Sky, tanpa memasang tekstur.[0m
+        [36m</p>[39m
+        [36m<div[39m
+          [33maria-label[39m=[32m"Tampilan editor"[39m
+          [33mclass[39m=[32m"editor-switch"[39m
+          [33mrole[39m=[32m"group"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33maria-controls[39m=[32m"skybox-controls"[39m
+            [33maria-pressed[39m=[32m"true"[39m
+            [33mclass[39m=[32m"button secondary-button"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mPengaturan[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-controls[39m=[32m"skybox-preview"[39m
+            [33maria-pressed[39m=[32m"false"[39m
+            [33mclass[39m=[32m"button secondary-button"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mPratinjau[0m
+          [36m</button>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"gfx-workspace skybox-workspace"[39m
+          [33mdata-view[39m=[32m"controls"[39m
+        [36m>[39m
+          [36m<section[39m
+            [33maria-label[39m=[32m"Pratinjau Skybox"[39m
+            [33mclass[39m=[32m...
+ ❯ Proxy.waitForWrapper ../../node_modules/.pnpm/@testing-library+dom@10.4.2/node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ src/features/skybox/SkyboxPage.test.tsx:94:11
+     92|     failed = true;
+     93|     await user.click(screen.getByRole('button', { name: 'Generate' }));
+     94|     await waitFor(() => expect(screen.getByRole('alert')).toHaveTextCo…
+       |           ^
+     95|     expect(versions).toHaveLength(1);
+     96|     expect(screen.getByLabelText('Nama Skybox')).toHaveValue('Langit S…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+
+
+ Test Files  5 failed | 50 passed (55)
+      Tests  6 failed | 277 passed (283)
+   Start at  17:42:45
+   Duration  45.95s (tests 45%, environment 35%, setup 11%, import 5%, transform 4%, worker 1%)
+
+Environment  jsdom was created 55 times · 106.39s total, 35% of tracked time
+             create it once per worker with pool: 'vmThreads' (keeps per-file isolation) or isolate: false (shares it across files)
+             learn more: https://vitest.dev/guide/improving-performance#test-environments
+
+undefined
+/Users/ariardianto/Documents/ForgeKIT/CODE/apps/desktop:
+[ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL] Command failed with exit code 1: vitest run

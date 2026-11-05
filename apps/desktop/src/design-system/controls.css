@@ -1,0 +1,169 @@
+/* ForgeKit controls: surfaces and typography express state, never strokes.
+   Keep these rules after workspace geometry so every creator shares them. */
+:root {
+  --control-surface: #211b20;
+  --control-hover: #30262d;
+  --control-focus: #442530;
+  --menu-surface: #211b20;
+  --menu-shadow: 0 14px 44px rgb(0 0 0 / 42%);
+}
+[data-theme='light'] {
+  --control-surface: #eee8eb;
+  --control-hover: #e2d6dc;
+  --control-focus: #f4ccd5;
+  --menu-surface: #fffafd;
+  --menu-shadow: 0 14px 44px rgb(50 16 28 / 16%);
+}
+
+/* The product uses filled keyboard focus in place of browser focus rings. */
+button, .button, .floating-icon, .navigation-child,
+button:is(:hover, :active, :focus, :focus-visible),
+.button:is(:hover, :active, :focus, :focus-visible) {
+  border: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+button { transition: background-color 150ms var(--ease-out), color 150ms var(--ease-out), transform 150ms var(--ease-out); }
+button:focus-visible, .button:focus-visible { background-color: var(--control-focus); color: var(--text); }
+.button { gap: 8px; min-height: 40px; padding: 10px 15px; border-radius: 10px; font-size: 12px; font-weight: 550; line-height: 1.4; }
+.button .icon { width: 16px; height: 16px; flex-shrink: 0; }
+.button.secondary-button { color: var(--text-secondary); background-color: var(--control-surface); }
+.button.secondary-button:is(:hover, :focus-visible):not(:disabled) { color: var(--text); background-color: var(--control-hover); transform: none; }
+.button.secondary-button:focus-visible:not(:disabled) { background-color: var(--control-focus); }
+.button.primary-button { color: #fff; background: var(--primary-button); }
+.button.primary-button:hover:not(:disabled) { background: #ec0b3c; transform: none; }
+.button.primary-button:focus-visible:not(:disabled) { background: #f43f64; color: #fff; }
+.button:active:not(:disabled) { transform: translateY(1px); }
+button:disabled, .button:disabled { cursor: not-allowed; }
+.button:disabled { opacity: .36; transform: none; }
+.theme-button, .provider-advanced-button { border-radius: 8px; }
+.theme-button:is(:hover, :focus-visible):not(:disabled), .provider-advanced-button:focus-visible { background: var(--control-hover); color: var(--text); transform: none; }
+.theme-button:active:not(:disabled) { transform: scale(.96); }
+/* Floating navigation stays icon-only, including keyboard focus. */
+.floating-icon:is(:hover, :focus-visible), .navigation-child:is(:hover, :focus-visible) { background: transparent; color: var(--accent); }
+.floating-icon:focus-visible .icon, .navigation-child:focus-visible .icon { filter: drop-shadow(0 0 5px color-mix(in srgb, var(--accent) 50%, transparent)); }
+:is(.settings-tabs, .editor-section-tabs) > .button,
+.editor-section-tabs > button { border-radius: 8px; padding-inline: 12px; margin-block: 4px; }
+:is(.settings-tabs, .editor-section-tabs) > button:is(.is-active, [aria-selected='true'], [aria-pressed='true']) { background: var(--accent-subtle); color: var(--accent); }
+:is(.settings-tabs, .editor-section-tabs) > button:focus-visible { background: var(--control-focus); }
+.chat-starters > button { border-radius: 10px; padding-inline: 12px; }
+.chat-starters > button:is(:hover, :focus-visible) { background: color-mix(in srgb, var(--control-surface) 68%, transparent); }
+.chat-composer-box, .chat-composer-box:focus-within { border: 0; background: var(--surface); box-shadow: none; }
+
+/* The span owns sizing; the button owns the single painted control surface. */
+.dropdown, .dropdown.select-input {
+  display: inline-flex;
+  position: relative;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  height: 40px;
+  min-height: 0;
+  padding: 0 !important;
+  border: 0 !important;
+  background: none !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border-radius: 0;
+  vertical-align: middle;
+}
+.dropdown .dropdown-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  padding: 0 12px;
+  border-radius: 9px;
+  background: var(--control-surface);
+  color: var(--text-secondary);
+  font: 500 12px/1.45 var(--font-ui);
+  text-align: left;
+  cursor: pointer;
+}
+.dropdown-value { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dropdown-trigger > .icon { flex: 0 0 12px; width: 12px; height: 12px; opacity: .65; transform: rotate(90deg); transition: transform 160ms var(--ease-out), opacity 160ms; }
+.dropdown .dropdown-trigger:hover:not(:disabled) { background: var(--control-hover); color: var(--text); }
+.dropdown .dropdown-trigger:is(:focus-visible, [aria-expanded='true']):not(:disabled) { background: var(--control-focus); color: var(--text); }
+.dropdown-trigger[aria-expanded='true'] > .icon { transform: rotate(270deg); opacity: 1; }
+.dropdown .dropdown-trigger:disabled { opacity: .4; cursor: not-allowed; }
+.dropdown-menu {
+  position: fixed;
+  z-index: 1000;
+  margin: 0;
+  padding: 6px;
+  overflow: auto;
+  overscroll-behavior: contain;
+  list-style: none;
+  background: var(--menu-surface);
+  color: var(--text);
+  border: 0;
+  outline: none;
+  border-radius: 12px;
+  box-shadow: var(--menu-shadow);
+  scrollbar-width: thin;
+  scrollbar-color: var(--control-hover) transparent;
+  animation: dropdown-reveal 130ms var(--ease-out);
+  transform-origin: top center;
+}
+.dropdown-menu[data-side='top'] { translate: 0 -100%; transform-origin: bottom center; }
+.dropdown-menu [role='option'] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 38px;
+  margin: 2px 0;
+  padding: 9px 11px;
+  border-radius: 7px;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 450;
+  line-height: 1.5;
+  cursor: pointer;
+  transition: background-color 100ms, color 100ms;
+}
+.dropdown-menu [role='option'] > span { min-width: 0; overflow-wrap: anywhere; }
+.dropdown-menu [role='option'] > .icon { width: 14px; height: 14px; flex: 0 0 14px; color: var(--accent); }
+.dropdown-menu [aria-selected='true'] { background: var(--accent-subtle); color: var(--text); font-weight: 550; }
+.dropdown-menu [data-highlighted='true']:not([aria-disabled='true']) { background: var(--control-hover); color: var(--text); }
+.dropdown-menu [aria-disabled='true'] { opacity: .35; cursor: not-allowed; }
+.chat-composer-options .dropdown { height: 36px; max-width: none; }
+.chat-composer-options .dropdown-trigger { padding-inline: 10px; font-size: 11px; }
+.chat-composer-options > label:first-child .dropdown { width: 100%; }
+.ai-model-controls .dropdown { width: 100%; }
+.generator-inspector .dropdown, .provider-form .dropdown { height: 40px; }
+@keyframes dropdown-reveal { from { transform: scale(.98); } to { transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) {
+  button, .dropdown-trigger > .icon, .dropdown-menu { animation: none; transition: none; }
+}
+
+/* Account menus share the keyboard and portal behavior of the model control. */
+.provider-logo { display: inline-flex; width: 20px; height: 20px; flex: 0 0 20px; align-items: center; justify-content: center; color: var(--text); }
+.provider-logo img, .provider-logo .icon { width: 100%; height: 100%; object-fit: contain; }
+.provider-logo:is(.is-openai, .is-claude, .is-gemini) img { filter: invert(1); }
+[data-theme='light'] .provider-logo:is(.is-openai, .is-claude, .is-gemini) img { filter: none; }
+.model-choice { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.model-choice > span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.model-choice .provider-logo { width: 16px; height: 16px; flex-basis: 16px; }
+.dropdown.provider-picker, .chat-composer-options .dropdown.provider-picker { width: 44px; max-width: 44px; flex: 0 0 44px; }
+.provider-picker .dropdown-trigger { justify-content: center; padding: 0; }
+.provider-picker .dropdown-trigger > .icon { display: none; }
+.provider-picker .dropdown-value { display: flex; }
+.dropdown-group-heading { display: flex; align-items: center; gap: 9px; padding: 12px 11px 6px; color: var(--text); font-size: 12px; font-weight: 650; }
+.dropdown-group-heading .provider-logo { width: 17px; height: 17px; flex-basis: 17px; }
+.provider-picker-menu [role='option'] { align-items: flex-start; padding: 12px; gap: 12px; }
+.provider-picker-menu [role='option'] > span { flex: 1; }
+.provider-picker-menu [role='option'] > .icon { margin-top: 3px; }
+.provider-account, .provider-usage, .provider-usage-window { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.provider-account-heading, .provider-usage-caption { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.provider-account-heading small { color: var(--accent); font-size: 10px; }
+.provider-usage { margin-top: 3px; gap: 12px; }
+.provider-usage-caption { font-size: 11px; }
+.provider-usage-caption strong { font-weight: 500; }
+.provider-usage-note { color: var(--text-secondary); font-size: 10px; line-height: 1.6; overflow-wrap: anywhere; }
+.provider-usage-meter { display: block; height: 4px; border-radius: 4px; background: var(--control-hover); overflow: hidden; }
+.provider-usage-meter > span { display: block; height: 100%; background: var(--accent); border-radius: inherit; }

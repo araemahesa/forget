@@ -1,0 +1,1 @@
+{"blenderVersion": "5.2.3 LTS", "parts": 2, "materials": 1, "vertices": 167, "triangles": 326, "bounds": {"min": [-1.5, 0.0, -0.5], "max": [1.5, 2.0, 0.5]}, "referenceImagesPacked": 1, "views": ["perspective", "front", "right"], "blendReopened": true}

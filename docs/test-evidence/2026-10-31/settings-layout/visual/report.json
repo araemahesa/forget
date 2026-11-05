@@ -1,0 +1,17 @@
+{
+  "ok": true,
+  "context": "Browser layout fixtures only; not live account evidence.",
+  "captures": [
+    "dark-1920x1080.png",
+    "dark-1440x900.png",
+    "dark-1280x800.png",
+    "dark-1024x700.png",
+    "dark-720x450.png",
+    "light-1920x1080.png",
+    "light-1440x900.png",
+    "light-1280x800.png",
+    "light-1024x700.png",
+    "light-720x450.png"
+  ],
+  "errors": []
+}

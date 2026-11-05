@@ -1,0 +1,109 @@
+warning: unused import: `json`
+ --> src/explorer.rs:2:18
+  |
+2 | use serde_json::{json, Value};
+  |                  ^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: field `headers` is never read
+ --> src/provider_usage_http.rs:8:9
+  |
+6 | pub struct Response {
+  |            -------- field in this struct
+7 |     pub status: u16,
+8 |     pub headers: HashMap<String, String>,
+  |         ^^^^^^^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: static `PROCESSING` is never used
+ --> src/attachments.rs:6:8
+  |
+6 | static PROCESSING: std::sync::Mutex<()> = std::sync::Mutex::new(());
+  |        ^^^^^^^^^^
+
+warning: static `REFRESH` is never used
+  --> src/browser_auth.rs:27:8
+   |
+27 | static REFRESH: Mutex<()> = Mutex::new(());
+   |        ^^^^^^^
+
+warning: function `access_token` is never used
+   --> src/browser_auth.rs:180:8
+    |
+180 | pub fn access_token(key_ref: &str, raw: String) -> Result<String, String> {
+    |        ^^^^^^^^^^^^
+
+warning: function `validate_login_method` is never used
+  --> src/codex_auth.rs:12:15
+   |
+12 | pub(crate) fn validate_login_method(method: Option<&str>) -> Result<(), String> {
+   |               ^^^^^^^^^^^^^^^^^^^^^
+
+warning: static `PROCESSING` is never used
+ --> src/attachments.rs:6:8
+  |
+6 | static PROCESSING: std::sync::Mutex<()> = std::sync::Mutex::new(());
+  |        ^^^^^^^^^^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `forgekit-desktop` (lib) generated 6 warnings (run `cargo fix --lib -p forgekit-desktop` to apply 1 suggestion)
+warning: `forgekit-desktop` (lib test) generated 3 warnings (2 duplicates)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 2.05s
+     Running unittests src/lib.rs (target/debug/deps/forgekit_desktop_lib-33f5a003cd1e1dd7)
+
+running 8 tests
+test obsidian::tests::native_context_commands_are_scoped_to_main_window ... ok
+test obsidian::tests::registry_versions_match_bundled_guides ... ok
+test obsidian::tests::rejects_escape_and_oversize_and_symlink ... ok
+chat: 12 bounded notes
+chat: 12 notes, 12425 text bytes; halo
+test obsidian::tests::context_is_selected_hashed_and_refreshed ... ok
+chat: 24 notes, 18865 text bytes; Buat sistem quest multiplayer dengan reward idempoten dan data pemain
+model3d: 39 bounded notes
+animation: 19 bounded notes
+mixed request: 84 notes, 67323 text bytes
+test obsidian::tests::adaptive_vault_routes_mixed_requests_without_loading_projects ... ok
+model3d: 49 notes, 49051 text bytes; Rekonstruksi hiu merah dari referensi 3D, cocokkan kamera dan silhouette
+vfx: 18 bounded notes
+interface: 23 notes, 15726 text bytes; Buat HUD responsif untuk touch dan gamepad dengan state error
+interface: 19 bounded notes
+music: 20 notes, 14597 text bytes; Buat musik ambience untuk zona hutan
+npc: 17 bounded notes
+test obsidian::tests::learned_and_custom_skills_reach_only_relevant_fresh_task_context ... ok
+cutscene: 21 bounded notes
+music: 19 bounded notes
+chat: 45 notes, 43128 text bytes; Debug source ForgeKit pada checkpoint dan viewport model 3D
+sfx: 19 bounded notes
+sky: 20 bounded notes
+gfx: 18 bounded notes
+icon: 18 bounded notes
+broad chat: 89 notes, 73893 text bytes
+clothing: 18 bounded notes
+texture: 13 bounded notes
+test obsidian::tests::configured_vault_supports_every_prompt_domain ... ok
+broad model3d: 81 notes, 64048 text bytes
+broad interface: 72 notes, 53203 text bytes
+broad npc: 72 notes, 53005 text bytes
+broad animation: 70 notes, 50412 text bytes
+broad vfx: 71 notes, 51719 text bytes
+broad music: 70 notes, 50328 text bytes
+broad sfx: 70 notes, 50213 text bytes
+broad sky: 71 notes, 51678 text bytes
+broad gfx: 70 notes, 50477 text bytes
+broad icon: 70 notes, 50403 text bytes
+broad clothing: 70 notes, 50523 text bytes
+broad texture: 69 notes, 48128 text bytes
+broad cutscene: 70 notes, 50349 text bytes
+test obsidian::tests::configured_knowledge_graph_routes_systems_and_3d_within_budget ... ok
+
+test result: ok. 8 passed; 0 failed; 0 ignored; 0 measured; 158 filtered out; finished in 0.30s
+
+     Running unittests src/main.rs (target/debug/deps/forgekit_desktop-06153872cf4dfda9)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

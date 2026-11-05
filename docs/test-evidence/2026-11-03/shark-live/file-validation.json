@@ -1,0 +1,76 @@
+{
+  "bundle": "/Users/ariardianto/Library/Application Support/dev.forgekit.studio/workspace/exports/blender/545ceb7b179e4267fa0a7887dbc1d0d644c0e5dfd6216819328f35360e4acd01",
+  "metrics": {
+    "blendReopened": true,
+    "blenderVersion": "5.2.3 LTS",
+    "bounds": {
+      "max": [
+        4.521925926208496,
+        3.3940000534057617,
+        5.450146198272705
+      ],
+      "min": [
+        -4.521925926208496,
+        -2.3852779865264893,
+        -7.799999713897705
+      ]
+    },
+    "materials": 14,
+    "parts": 41,
+    "reconstructions": [],
+    "referenceImagesPacked": 1,
+    "textureImagesPacked": 0,
+    "triangles": 9154,
+    "vertices": 4837,
+    "views": [
+      "front",
+      "back",
+      "right",
+      "left",
+      "top",
+      "bottom"
+    ]
+  },
+  "files": [
+    {
+      "name": "model.blend",
+      "bytes": 1700024,
+      "hashMatches": true
+    },
+    {
+      "name": "preview.json",
+      "bytes": 1684203,
+      "hashMatches": true
+    },
+    {
+      "name": "view-front.png",
+      "bytes": 446846,
+      "hashMatches": true
+    },
+    {
+      "name": "view-back.png",
+      "bytes": 445797,
+      "hashMatches": true
+    },
+    {
+      "name": "view-right.png",
+      "bytes": 458751,
+      "hashMatches": true
+    },
+    {
+      "name": "view-left.png",
+      "bytes": 457653,
+      "hashMatches": true
+    },
+    {
+      "name": "view-top.png",
+      "bytes": 460445,
+      "hashMatches": true
+    },
+    {
+      "name": "view-bottom.png",
+      "bytes": 461018,
+      "hashMatches": true
+    }
+  ]
+}

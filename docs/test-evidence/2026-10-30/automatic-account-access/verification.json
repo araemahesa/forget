@@ -1,0 +1,45 @@
+{
+  "checkedAt": "2026-10-30T09:40:52.244282+00:00",
+  "version": "0.1.11",
+  "status": "complete_for_connected_codex_accounts",
+  "newSourceChangesInContinuation": false,
+  "priorFinalSuite": {
+    "typecheck": "passed",
+    "contracts": 53,
+    "desktop": 281,
+    "rust": 133,
+    "rustIgnored": 3,
+    "build": "passed",
+    "totalPassed": 467,
+    "note": "Tests/build completed in source chat; logs reviewed, not rerun during documentation/native continuation."
+  },
+  "freshChecks": {
+    "bundleVerified": true,
+    "installedMatchesBundle": true,
+    "codexAccountsWithLiveModelsAndUsage": 2,
+    "coldStartChat": "passed",
+    "manualAuthorizationUsed": false,
+    "existingDatabaseRowsPreserved": true,
+    "integrity": "ok"
+  },
+  "evidence": {
+    "tests": [
+      "typecheck.log",
+      "frontend-final.log",
+      "rust-serial.log",
+      "build.log",
+      "release.log"
+    ],
+    "native": "continuation-native-chat.json",
+    "usage": "continuation-live-usage.json",
+    "databaseBefore": "continuation-restart-before.json",
+    "bundle": "continuation-bundle.json",
+    "installation": "installation.json"
+  },
+  "limitations": [
+    "API/Gemini/gateway new-account credentials not available for live tests.",
+    "macOS-required Keychain/provider consent remains in force.",
+    "New browser login not repeated in this continuation; source login and automated account-add coverage retained.",
+    "Ad-hoc signature; notarization and clean-machine installation not tested."
+  ]
+}

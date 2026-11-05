@@ -1,0 +1,67 @@
+{
+  "id": "d21432d9-9de5-40cf-9f59-a87b40465aee",
+  "ok": true,
+  "result": {
+    "snapshot": {
+      "app": {
+        "name": "ForgeKit Studio",
+        "pid": 95368,
+        "bundleId": "dev.forgekit.studio"
+      },
+      "treeText": "App=dev.forgekit.studio (pid 95368)\nWindow: \"ForgeKit Studio\", App: ForgeKit Studio.\n\n0 standard window ForgeKit Studio\n\t1 scroll area\n\t\t2 HTML content ForgeKit Studio\n\t\t\t3 container Navigasi utama\n\t\t\t\t4 link AI Chat\n\t\t\t\t5 button Studio Kreatif\n\t\t\t\t6 link Pengaturan\n\t\t\t7 container, Text: ForgeKit Studio Model 3D Studio belum terhubung Membuka Model 3D...\n\t8 close button\n\t9 full screen button, Secondary Actions: zoom the window\n\t10 minimize button\n\t11 text ForgeKit Studio\n\nThe focused UI element is 5 button Studio Kreatif.",
+      "focusedElementId": 5,
+      "coordinateSpace": "window",
+      "truncation": {
+        "maxDepthReached": false,
+        "truncated": false,
+        "maxDepth": 64,
+        "maxNodes": 1200
+      },
+      "window": {
+        "height": 813,
+        "screenIndex": 0,
+        "x": 80,
+        "title": "ForgeKit Studio",
+        "isMinimized": false,
+        "width": 1280,
+        "isOffscreen": false,
+        "platform": {
+          "layer": 0
+        },
+        "y": 31,
+        "id": 6437
+      },
+      "id": "4BFEE3B5-F662-4B89-B8E6-4CFE028E301F",
+      "elementCount": 12
+    },
+    "screenshotStatus": {
+      "state": "captured",
+      "metadata": {
+        "engine": "screenCaptureKit",
+        "windowId": 6437
+      }
+    },
+    "action": {
+      "targetWindowId": 6437,
+      "fallbackReason": null,
+      "actionName": "AXPress",
+      "path": "accessibility",
+      "verification": {
+        "state": "unverified",
+        "reason": "accessibility_action_unasserted"
+      }
+    },
+    "screenshot": {
+      "scale": 2,
+      "height": 1626,
+      "width": 2560,
+      "format": "png",
+      "path": "/var/folders/fl/fr6n4s1n6hbdx3gvn4t6k6kc0000gn/T/orca-computer-use/d21432d9-9de5-40cf-9f59-a87b40465aee-screenshot.png",
+      "dataOmitted": true,
+      "expiresAt": "2026-11-03T16:30:24.256Z"
+    }
+  },
+  "_meta": {
+    "runtimeId": "77c228cf-b781-44b9-9269-1ae7b7191b40"
+  }
+}

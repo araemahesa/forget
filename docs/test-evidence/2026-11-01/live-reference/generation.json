@@ -1,0 +1,352 @@
+{
+  "task": {
+    "id": "000da471-7e66-466f-a9ca-d992168f8590",
+    "status": "preview_ready",
+    "error": null,
+    "version_id": "creative-version-1793536619336-3",
+    "created_at": "1793536454454",
+    "updated_at": "1793536619346"
+  },
+  "checkpoint": {
+    "adapter": "openai",
+    "fingerprint": "66f762a0cbc0862f8a5bfcc622003760f2d2b0a95bb7c48be21649f33bec3988",
+    "budget": {
+      "class": "complex",
+      "turns": 24,
+      "calls": 40,
+      "reserveTurns": 2,
+      "durationMs": 600000,
+      "requestSeconds": 120,
+      "contextBytes": 262144,
+      "outputTokens": 24576,
+      "totalOutputEstimate": 131072
+    },
+    "turns": 3,
+    "calls": 0,
+    "repairs": 0,
+    "phase": "reference_checked",
+    "validation": "passed",
+    "candidateHash": "50d68ed0b9035a998ca6bd6244dae2319ae94789662ff9e5e262c0acc770b2a4",
+    "modelReview": {
+      "candidate": {
+        "kind": "model3d",
+        "recipe": {
+          "category": "prop",
+          "exportFormat": "blend",
+          "name": "Botol Biru dan Tetrahedron Asimetris",
+          "parts": [
+            {
+              "color": "#327BC4",
+              "id": "botol_biru",
+              "lathe": {
+                "points": [
+                  [
+                    0,
+                    -1
+                  ],
+                  [
+                    0.8,
+                    -1
+                  ],
+                  [
+                    1,
+                    -0.7
+                  ],
+                  [
+                    1,
+                    0.2
+                  ],
+                  [
+                    0.4,
+                    0.7
+                  ],
+                  [
+                    0.4,
+                    1
+                  ],
+                  [
+                    0,
+                    1
+                  ]
+                ]
+              },
+              "material": "Plastic",
+              "metalness": 0,
+              "name": "Botol Biru",
+              "opacity": 1,
+              "position": [
+                -2,
+                2,
+                0
+              ],
+              "primitive": "lathe",
+              "rotation": [
+                0,
+                0,
+                0
+              ],
+              "roughness": 0.5,
+              "segments": 64,
+              "size": [
+                2,
+                4,
+                2
+              ],
+              "smooth": true
+            },
+            {
+              "color": "#327BC4",
+              "id": "tetrahedron_asimetris",
+              "material": "Plastic",
+              "mesh": {
+                "faces": [
+                  [
+                    0,
+                    2,
+                    1
+                  ],
+                  [
+                    0,
+                    1,
+                    3
+                  ],
+                  [
+                    1,
+                    2,
+                    3
+                  ],
+                  [
+                    2,
+                    0,
+                    3
+                  ]
+                ],
+                "vertices": [
+                  [
+                    -1,
+                    -1,
+                    1
+                  ],
+                  [
+                    1,
+                    -1,
+                    1
+                  ],
+                  [
+                    1,
+                    -1,
+                    -1
+                  ],
+                  [
+                    0.4,
+                    1,
+                    0
+                  ]
+                ]
+              },
+              "metalness": 0,
+              "name": "Tetrahedron Asimetris Biru",
+              "opacity": 1,
+              "position": [
+                2,
+                2,
+                0
+              ],
+              "primitive": "mesh",
+              "rotation": [
+                0,
+                0,
+                0
+              ],
+              "roughness": 0.5,
+              "size": [
+                2,
+                4,
+                2
+              ],
+              "smooth": true
+            }
+          ],
+          "seed": 20261101
+        }
+      },
+      "evaluations": [
+        {
+          "decision": "revise",
+          "differences": [
+            "Siluet, proporsi, posisi relatif, profil botol, dan asimetri tetrahedron tampak sesuai pada ketiga sudut; geometri dan transform dipertahankan.",
+            "Highlight kandidat lebih tajam dan terkonsentrasi, terutama pada leher botol dan bagian tengah tetrahedron. Referensi memperlihatkan pantulan lebih lebar dan lembut; roughness kedua objek dinaikkan dari 0.32 menjadi 0.5.",
+            "Area biru bernada menengah pada kandidat tampak lebih sian dibandingkan referensi. Warna dasar kedua objek disesuaikan sedikit ke arah biru, tanpa menyalin highlight terang atau bayangan gelap menjadi warna geometri. Kecocokan penyesuaian ini perlu diperiksa pada render berikutnya."
+          ],
+          "recipe": {
+            "category": "prop",
+            "exportFormat": "blend",
+            "name": "Botol Biru dan Tetrahedron Asimetris",
+            "parts": [
+              {
+                "color": "#327BC4",
+                "id": "botol_biru",
+                "lathe": {
+                  "points": [
+                    [
+                      0,
+                      -1
+                    ],
+                    [
+                      0.8,
+                      -1
+                    ],
+                    [
+                      1,
+                      -0.7
+                    ],
+                    [
+                      1,
+                      0.2
+                    ],
+                    [
+                      0.4,
+                      0.7
+                    ],
+                    [
+                      0.4,
+                      1
+                    ],
+                    [
+                      0,
+                      1
+                    ]
+                  ]
+                },
+                "material": "Plastic",
+                "metalness": 0,
+                "name": "Botol Biru",
+                "opacity": 1,
+                "position": [
+                  -2,
+                  2,
+                  0
+                ],
+                "primitive": "lathe",
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "roughness": 0.5,
+                "segments": 64,
+                "size": [
+                  2,
+                  4,
+                  2
+                ],
+                "smooth": true
+              },
+              {
+                "color": "#327BC4",
+                "id": "tetrahedron_asimetris",
+                "material": "Plastic",
+                "mesh": {
+                  "faces": [
+                    [
+                      0,
+                      2,
+                      1
+                    ],
+                    [
+                      0,
+                      1,
+                      3
+                    ],
+                    [
+                      1,
+                      2,
+                      3
+                    ],
+                    [
+                      2,
+                      0,
+                      3
+                    ]
+                  ],
+                  "vertices": [
+                    [
+                      -1,
+                      -1,
+                      1
+                    ],
+                    [
+                      1,
+                      -1,
+                      1
+                    ],
+                    [
+                      1,
+                      -1,
+                      -1
+                    ],
+                    [
+                      0.4,
+                      1,
+                      0
+                    ]
+                  ]
+                },
+                "metalness": 0,
+                "name": "Tetrahedron Asimetris Biru",
+                "opacity": 1,
+                "position": [
+                  2,
+                  2,
+                  0
+                ],
+                "primitive": "mesh",
+                "rotation": [
+                  0,
+                  0,
+                  0
+                ],
+                "roughness": 0.5,
+                "size": [
+                  2,
+                  4,
+                  2
+                ],
+                "smooth": true
+              }
+            ],
+            "seed": 20261101
+          },
+          "unseen": [
+            "Permukaan bawah kedua objek tidak terlihat langsung.",
+            "Sisi belakang tidak seluruhnya teramati; detail permukaannya tidak dapat dipastikan.",
+            "Bagian dalam dan ketebalan dinding botol tidak dapat diamati. Tampak atas pada perspektif tidak menunjukkan bukaan yang jelas, sehingga permukaan atas kandidat tetap tertutup.",
+            "Ukuran absolut dan parameter bahan asli tidak dapat ditentukan secara pasti dari gambar; nilai material merupakan pendekatan visual."
+          ]
+        },
+        {
+          "decision": "accept",
+          "differences": [],
+          "recipe": null,
+          "unseen": [
+            "Permukaan bawah kedua objek dan sebagian sisi belakang tidak terlihat langsung pada ketiga referensi.",
+            "Rongga internal serta ketebalan dinding botol tidak dapat diamati. Tampak perspektif tidak menunjukkan bukaan yang jelas; permukaan atas tertutup dipertahankan.",
+            "Ukuran absolut dan parameter material asli tidak dapat dipastikan dari gambar. Warna dan respons pantulan dinilai secara visual, bukan melalui pengukuran albedo atau pencahayaan.",
+            "Pemeriksaan terbatas pada tiga render kandidat dibandingkan dengan tiga referensi asli. Integritas file .blend, topologi internal, dan kemampuan membuka ulang file tidak diuji dalam pemeriksaan ini."
+          ]
+        }
+      ],
+      "pending": false,
+      "complete": true
+    }
+  },
+  "version": {
+    "id": "creative-version-1793536619336-3",
+    "task_id": "000da471-7e66-466f-a9ca-d992168f8590",
+    "kind": "model3d",
+    "parent_version_id": null,
+    "engine_version": 1,
+    "artifact_json": "{\"relativePath\":\"creative/creative-version-1793536619336-3/recipe.json\",\"sha256\":\"50d68ed0b9035a998ca6bd6244dae2319ae94789662ff9e5e262c0acc770b2a4\",\"byteLength\":780}",
+    "created_at": "1793536619346"
+  }
+}

@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-get-google-oauth-config"
+description = "Enables the get_google_oauth_config command without any pre-configured scope."
+commands.allow = ["get_google_oauth_config"]
+
+[[permission]]
+identifier = "deny-get-google-oauth-config"
+description = "Denies the get_google_oauth_config command without any pre-configured scope."
+commands.deny = ["get_google_oauth_config"]

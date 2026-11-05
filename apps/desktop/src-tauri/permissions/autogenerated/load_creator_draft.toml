@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-load-creator-draft"
+description = "Enables the load_creator_draft command without any pre-configured scope."
+commands.allow = ["load_creator_draft"]
+
+[[permission]]
+identifier = "deny-load-creator-draft"
+description = "Denies the load_creator_draft command without any pre-configured scope."
+commands.deny = ["load_creator_draft"]

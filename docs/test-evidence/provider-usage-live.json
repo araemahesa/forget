@@ -1,0 +1,12 @@
+[
+  {
+    "checkedAt": 1793157984,
+    "message": "Koneksi Sign in with ChatGPT ini belum menyediakan pembacaan limit 5 jam/mingguan. Periksa ChatGPT → Pengaturan → Usage.",
+    "mode": "direct",
+    "planType": null,
+    "provider": "openai",
+    "source": "none",
+    "status": "unavailable",
+    "windows": []
+  }
+]

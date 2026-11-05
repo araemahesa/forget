@@ -1,0 +1,58 @@
+{
+  "ok": true,
+  "providerTested": false,
+  "studioTested": false,
+  "workshop": {
+    "blenderVersion": "5.2.3 LTS",
+    "parts": 17,
+    "materials": 8,
+    "vertices": 1296,
+    "triangles": 2500,
+    "bounds": {
+      "min": [
+        -3.0,
+        0.0,
+        -1.5
+      ],
+      "max": [
+        3.0,
+        4.559999942779541,
+        1.5
+      ]
+    },
+    "referenceImagesPacked": 0,
+    "views": [],
+    "blendReopened": true
+  },
+  "reopened": {
+    "blend": true,
+    "dimensions": true,
+    "materialValues": true,
+    "openingPreserved": true
+  },
+  "partBudget": {
+    "blenderVersion": "5.2.3 LTS",
+    "parts": 128,
+    "materials": 1,
+    "vertices": 12288,
+    "triangles": 24064,
+    "bounds": {
+      "min": [
+        -0.25,
+        -0.25,
+        -0.05000000074505806
+      ],
+      "max": [
+        15.25,
+        7.25,
+        0.05000000074505806
+      ]
+    },
+    "referenceImagesPacked": 0,
+    "views": [],
+    "blendReopened": true
+  },
+  "triangleLimitEnforced": true,
+  "blendAlbedoAndPbrMatched": true,
+  "noModelExports": true
+}

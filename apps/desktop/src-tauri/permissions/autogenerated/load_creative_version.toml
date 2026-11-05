@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-load-creative-version"
+description = "Enables the load_creative_version command without any pre-configured scope."
+commands.allow = ["load_creative_version"]
+
+[[permission]]
+identifier = "deny-load-creative-version"
+description = "Denies the load_creative_version command without any pre-configured scope."
+commands.deny = ["load_creative_version"]

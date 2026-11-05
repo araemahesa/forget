@@ -1,0 +1,139 @@
+{
+  "version": "0.1.8",
+  "installed": "/Applications/ForgeKit Studio.app",
+  "binarySha256": "eab812047c663dc7e1ed42e4c9ecc459ec42cfd394f5b2bd01ec3576473d04df",
+  "matchesVerifiedBundle": true,
+  "previousAppInTrash": "/Users/ariardianto/.Trash/ForgeKit Studio-0.1.8-before-final-1793345008584407000.app",
+  "databaseIntegrity": "ok",
+  "allTablesUnchanged": true,
+  "tables": {
+    "workspace": {
+      "count": 1,
+      "unchanged": true
+    },
+    "collection_item": {
+      "count": 1,
+      "unchanged": true
+    },
+    "gfx_version": {
+      "count": 4,
+      "unchanged": true
+    },
+    "artifact": {
+      "count": 8,
+      "unchanged": true
+    },
+    "task_input": {
+      "count": 4,
+      "unchanged": true
+    },
+    "task": {
+      "count": 4,
+      "unchanged": true
+    },
+    "editor_draft": {
+      "count": 1,
+      "unchanged": true
+    },
+    "sfx_version": {
+      "count": 1,
+      "unchanged": true
+    },
+    "image_version": {
+      "count": 1,
+      "unchanged": true
+    },
+    "image_artifact": {
+      "count": 2,
+      "unchanged": true
+    },
+    "creator_draft": {
+      "count": 0,
+      "unchanged": true
+    },
+    "work_task": {
+      "count": 0,
+      "unchanged": true
+    },
+    "work_event": {
+      "count": 0,
+      "unchanged": true
+    },
+    "library_visibility": {
+      "count": 0,
+      "unchanged": true
+    },
+    "ai_provider_profile": {
+      "count": 1,
+      "unchanged": true
+    },
+    "chat_thread": {
+      "count": 12,
+      "unchanged": true
+    },
+    "chat_message": {
+      "count": 27,
+      "unchanged": true
+    },
+    "mcp_connector_config": {
+      "count": 0,
+      "unchanged": true
+    },
+    "creative_task": {
+      "count": 16,
+      "unchanged": true
+    },
+    "creative_event": {
+      "count": 72,
+      "unchanged": true
+    },
+    "chat_turn": {
+      "count": 14,
+      "unchanged": true
+    },
+    "context_snapshot": {
+      "count": 13,
+      "unchanged": true
+    },
+    "tool_receipt": {
+      "count": 5,
+      "unchanged": true
+    },
+    "connection_profile": {
+      "count": 1,
+      "unchanged": true
+    },
+    "router_connection": {
+      "count": 0,
+      "unchanged": true
+    },
+    "fallback_policy": {
+      "count": 0,
+      "unchanged": true
+    },
+    "task_attempt": {
+      "count": 16,
+      "unchanged": true
+    },
+    "connection_verification": {
+      "count": 1,
+      "unchanged": true
+    },
+    "connection_cooldown": {
+      "count": 0,
+      "unchanged": true
+    },
+    "creative_version": {
+      "count": 0,
+      "unchanged": true
+    },
+    "creative_export": {
+      "count": 0,
+      "unchanged": true
+    },
+    "ai_checkpoint": {
+      "count": 6,
+      "unchanged": true
+    }
+  }
+}

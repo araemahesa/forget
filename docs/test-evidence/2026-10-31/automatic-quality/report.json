@@ -1,0 +1,98 @@
+{
+  "ok": true,
+  "layoutCases": 336,
+  "qualityChecks": [
+    {
+      "kind": "model3d",
+      "refine": false,
+      "quality": "high"
+    },
+    {
+      "kind": "model3d",
+      "refine": true,
+      "quality": "high"
+    },
+    {
+      "kind": "animation",
+      "refine": false,
+      "quality": "high"
+    },
+    {
+      "kind": "animation",
+      "refine": true,
+      "quality": "high"
+    },
+    {
+      "kind": "vfx",
+      "refine": false,
+      "quality": "high"
+    },
+    {
+      "kind": "vfx",
+      "refine": true,
+      "quality": "high"
+    },
+    {
+      "kind": "interface",
+      "refine": false,
+      "quality": "high"
+    },
+    {
+      "kind": "interface",
+      "refine": true,
+      "quality": "high"
+    },
+    {
+      "kind": "npc",
+      "refine": false,
+      "quality": "high"
+    },
+    {
+      "kind": "npc",
+      "refine": true,
+      "quality": "high"
+    },
+    {
+      "kind": "cutscene",
+      "refine": false,
+      "quality": "high"
+    },
+    {
+      "kind": "cutscene",
+      "refine": true,
+      "quality": "high"
+    },
+    {
+      "kind": "material",
+      "refine": false,
+      "quality": "high"
+    },
+    {
+      "kind": "material",
+      "refine": true,
+      "quality": "high"
+    },
+    {
+      "kind": "music",
+      "refine": false,
+      "quality": "high"
+    },
+    {
+      "kind": "music",
+      "refine": true,
+      "quality": "high"
+    },
+    {
+      "kind": "sky",
+      "refine": false,
+      "quality": "high"
+    },
+    {
+      "kind": "sky",
+      "refine": true,
+      "quality": "high"
+    }
+  ],
+  "verification": "Actual React components and useCreativeTask; provider, IPC and recipe validators are fixtures.",
+  "nativeAppUpdated": false
+}

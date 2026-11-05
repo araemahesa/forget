@@ -1,0 +1,12 @@
+<!doctype html><html><meta charset="utf-8"><title>ForgeKit texture fixture</title><style>body{margin:0;background:#151518;color:#eee;font:16px system-ui}canvas{display:block}pre{position:absolute;top:5px;left:10px;pointer-events:none}</style><pre id="result">Loading actual Blender preview…</pre><script type="module">
+import * as THREE from 'three';
+import {buildBlenderPreview} from './src/features/creators3d/blenderPreview.ts';
+const data=await(await fetch('/texture-fixture.json')).json();
+const group=buildBlenderPreview(data),scene=new THREE.Scene();scene.background=new THREE.Color('#151518');scene.add(group);
+const renderer=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true});renderer.setSize(900,800);renderer.setPixelRatio(1);document.body.append(renderer.domElement);
+renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.NoToneMapping;
+const camera=new THREE.OrthographicCamera(-1.9,1.9,1.7,-1.7,.01,50);camera.position.set(0,0,10);camera.lookAt(0,0,0);
+scene.add(new THREE.AmbientLight(0xffffff,3));
+let frames=0;
+function frame(){renderer.render(scene,camera);frames++;const material=group.children[0].material;const ready=material.map?.image?.complete;if(ready&&frames>3){window.textureCheck={textureLoaded:true,uvCount:group.children[0].geometry.attributes.uv.count,triangles:group.children[0].geometry.attributes.position.count/3,colorSpace:material.map.colorSpace,vertexColors:material.vertexColors,glError:renderer.getContext().getError()};document.querySelector('#result').textContent=JSON.stringify(window.textureCheck);document.title='Texture verified';}requestAnimationFrame(frame);}frame();
+</script></html>

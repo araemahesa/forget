@@ -1,0 +1,983 @@
+{
+  "status": "partial_recovery_not_buildable",
+  "restoredFiles": 104,
+  "source": "Codex tool history and Antigravity editor snapshots",
+  "folder": "/Users/ariardianto/Documents/ForgeKIT/CODE",
+  "originalBrokenTarget": "/Users/ariardianto/Documents/Codex/2026-10-28/https-chatgpt-com-s-cx-6ae17a5323b88191b2592bae190e0bbd/outputs/ForgeKit/CODE",
+  "versionsMayDiffer": true,
+  "applicationBuildPerformed": false,
+  "verification": {
+    "typescriptJavascriptSyntaxFiles": 58,
+    "syntaxFailures": 0,
+    "rustSyntaxFiles": 20,
+    "jsonConfigurationParsed": true
+  },
+  "missingRequiredFiles": [
+    "pnpm-workspace.yaml",
+    "pnpm-lock.yaml",
+    "apps/desktop/index.html",
+    "apps/desktop/vite.config.ts",
+    "apps/desktop/vitest.config.ts",
+    "packages/contracts/package.json",
+    "packages/contracts/src/index.ts",
+    "apps/desktop/src-tauri/build.rs",
+    "apps/desktop/src-tauri/src/lib.rs",
+    "apps/desktop/src-tauri/src/main.rs",
+    "apps/desktop/src-tauri/Cargo.lock"
+  ],
+  "missingRelativeImports": [
+    "apps/desktop/src/app/FloatingNavigation",
+    "apps/desktop/src/app/featureRegistry",
+    "apps/desktop/src/app/global.css",
+    "apps/desktop/src/design-system/BrandMark",
+    "apps/desktop/src/design-system/Button",
+    "apps/desktop/src/design-system/Status",
+    "apps/desktop/src/design-system/controls.css",
+    "apps/desktop/src/features/LibraryPage",
+    "apps/desktop/src/features/chat/MessageContent",
+    "apps/desktop/src/features/create/ThreeViewport",
+    "apps/desktop/src/features/settings/GoogleOAuthSetup",
+    "apps/desktop/src/features/settings/StudioConnection",
+    "apps/desktop/src/features/shared/MessageAvatar",
+    "apps/desktop/src/features/shared/OrcaUsagePanel",
+    "apps/desktop/src/features/studio/ExplorerProperties",
+    "apps/desktop/src/services/accountState",
+    "apps/desktop/src/services/ai",
+    "apps/desktop/src/services/creatorWorkspace",
+    "apps/desktop/src/services/editorAi",
+    "apps/desktop/src/services/studioExplorer",
+    "apps/desktop/src/tests/selectChoice",
+    "packages/contracts/src/ai"
+  ],
+  "missingRustModules": [
+    "apps/desktop/src-tauri/src/ai.rs",
+    "apps/desktop/src-tauri/src/artifacts.rs",
+    "apps/desktop/src-tauri/src/connections.rs",
+    "apps/desktop/src-tauri/src/connectors.rs",
+    "apps/desktop/src-tauri/src/context.rs",
+    "apps/desktop/src-tauri/src/creator_workspace.rs",
+    "apps/desktop/src-tauri/src/discord.rs",
+    "apps/desktop/src-tauri/src/gfx_assets.rs",
+    "apps/desktop/src-tauri/src/google_auth.rs",
+    "apps/desktop/src-tauri/src/images.rs",
+    "apps/desktop/src-tauri/src/routing.rs",
+    "apps/desktop/src-tauri/src/runtime_acceptance.rs",
+    "apps/desktop/src-tauri/src/sfx.rs",
+    "apps/desktop/src-tauri/src/tools.rs"
+  ],
+  "excludedEvidence": [
+    {
+      "path": "docs/test-evidence/provider-usage-live-20261028.json",
+      "reason": "historical runtime evidence retained separately"
+    },
+    {
+      "path": "docs/test-evidence/provider-usage-live.json",
+      "reason": "historical runtime evidence retained separately"
+    },
+    {
+      "path": "docs/test-evidence/codex-login-live-20261028.json",
+      "reason": "historical runtime evidence retained separately"
+    },
+    {
+      "path": "apps/desktop/src-tauri/target/runtime-acceptance/provider-only-live.json",
+      "reason": "historical runtime evidence retained separately"
+    },
+    {
+      "path": "apps/desktop/src-tauri/target/runtime-acceptance/provider-only-studio.json",
+      "reason": "historical runtime evidence retained separately"
+    },
+    {
+      "path": "apps/desktop/src-tauri/target/runtime-acceptance/provider-only-review-progress.json",
+      "reason": "historical runtime evidence retained separately"
+    },
+    {
+      "path": "docs/test-evidence/2026-10-28/provider-only/source-change-manifest.json",
+      "reason": "historical runtime evidence retained separately"
+    },
+    {
+      "path": "docs/test-evidence/2026-10-28/provider-only/native-provider-live.json",
+      "reason": "historical runtime evidence retained separately"
+    },
+    {
+      "path": "docs/test-evidence/2026-10-28/provider-only/provider-usage-live-final.json",
+      "reason": "historical runtime evidence retained separately"
+    },
+    {
+      "path": "docs/test-evidence/2026-10-28/provider-only/EVIDENCE_INDEX.md",
+      "reason": "historical runtime evidence retained separately"
+    },
+    {
+      "path": "docs/test-evidence/2026-10-29/connection-repair/installed-build.json",
+      "reason": "historical runtime evidence retained separately"
+    },
+    {
+      "path": "docs/test-evidence/2026-10-29/connection-repair/native-ui-verification.json",
+      "reason": "historical runtime evidence retained separately"
+    },
+    {
+      "path": "docs/test-evidence/2026-10-29/cleanup/verification.json",
+      "reason": "historical runtime evidence retained separately"
+    },
+    {
+      "path": "docs/test-evidence/2026-10-29/prompt-quality/browser-layout.json",
+      "reason": "historical runtime evidence retained separately"
+    },
+    {
+      "path": "docs/test-evidence/2026-10-29/prompt-quality/verification.json",
+      "reason": "historical runtime evidence retained separately"
+    },
+    {
+      "path": "docs/test-evidence/2026-10-29/prompt-quality/data-after-native-launch.json",
+      "reason": "historical runtime evidence retained separately"
+    },
+    {
+      "path": "docs/test-evidence/2026-10-29/prompt-quality/0.1.3/studio-runtime-independent.json",
+      "reason": "historical runtime evidence retained separately"
+    },
+    {
+      "path": "docs/test-evidence/2026-10-29/prompt-quality/0.1.3/data-after-native-verification.json",
+      "reason": "historical runtime evidence retained separately"
+    },
+    {
+      "path": "docs/test-evidence/2026-10-29/prompt-quality/0.1.4/live-model-readback.json",
+      "reason": "historical runtime evidence retained separately"
+    },
+    {
+      "path": "docs/test-evidence/2026-10-29/prompt-quality/0.1.4/live-roots-readback.json",
+      "reason": "historical runtime evidence retained separately"
+    },
+    {
+      "path": "docs/test-evidence/2026-10-29/prompt-quality/0.1.4/live-script-static.json",
+      "reason": "historical runtime evidence retained separately"
+    },
+    {
+      "path": "docs/test-evidence/2026-10-29/prompt-quality/0.1.4/live-animation-numeric.json",
+      "reason": "historical runtime evidence retained separately"
+    },
+    {
+      "path": "docs/test-evidence/2026-10-29/prompt-quality/0.1.4/live-npc-readback.json",
+      "reason": "historical runtime evidence retained separately"
+    },
+    {
+      "path": "docs/test-evidence/2026-10-29/prompt-quality/0.1.4/native-provider-verification.json",
+      "reason": "historical runtime evidence retained separately"
+    },
+    {
+      "path": "docs/test-evidence/2026-10-29/prompt-quality/0.1.4/verification.json",
+      "reason": "historical runtime evidence retained separately"
+    },
+    {
+      "path": "docs/test-evidence/2026-10-29/prompt-quality/0.1.4/final-studio-state.json",
+      "reason": "historical runtime evidence retained separately"
+    },
+    {
+      "path": "docs/test-evidence/2026-10-29/prompt-quality/0.1.4/data-after-native.json",
+      "reason": "historical runtime evidence retained separately"
+    },
+    {
+      "path": "docs/test-evidence/2026-10-30/attachments/installation.json",
+      "reason": "historical runtime evidence retained separately"
+    },
+    {
+      "path": "docs/test-evidence/2026-10-30/material-removal/frontend-bundle.json",
+      "reason": "historical runtime evidence retained separately"
+    },
+    {
+      "path": "docs/test-evidence/2026-10-30/material-removal/bundle.json",
+      "reason": "historical runtime evidence retained separately"
+    },
+    {
+      "path": "docs/test-evidence/2026-10-30/texture-removal/frontend-bundle.json",
+      "reason": "historical runtime evidence retained separately"
+    },
+    {
+      "path": "docs/test-evidence/2026-10-30/chat-studio-status/visual/fixture-failure.json",
+      "reason": "historical runtime evidence retained separately"
+    },
+    {
+      "path": "docs/test-evidence/2026-10-30/studio-status-position/lock-versions.json",
+      "reason": "historical runtime evidence retained separately"
+    },
+    {
+      "path": "docs/test-evidence/2026-10-30/automatic-account-access/verification.json",
+      "reason": "historical runtime evidence retained separately"
+    },
+    {
+      "path": "docs/test-evidence/2026-10-30/automatic-account-access/continuation-native-chat.json",
+      "reason": "historical runtime evidence retained separately"
+    }
+  ],
+  "files": {
+    "package.json": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/30/rollout-2026-10-30T16-11-24-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a18c14-02b0-7392-b230-97577d4ddc19.jsonl",
+      "time": "2026-10-30T14:18:28.462Z",
+      "kind": "command-read",
+      "sha256": "f78d76a71c9f9e580454b1f3f7396a0f5034532e8f7a6d0fb372ec046a66ea23",
+      "bytes": 415
+    },
+    "apps/desktop/package.json": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/30/rollout-2026-10-30T16-11-24-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a18c14-02b0-7392-b230-97577d4ddc19.jsonl",
+      "time": "2026-10-30T14:28:36.830Z",
+      "kind": "python-write",
+      "sha256": "af178234db994db6823cef249a87c081499ae09f47b5ea09257c21724d1f1cd4",
+      "bytes": 876
+    },
+    "apps/desktop/src/features/shared/ModelControls.tsx": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/30/rollout-2026-10-30T16-11-24-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a18c14-02b0-7392-b230-97577d4ddc19.jsonl",
+      "time": "2026-10-30T09:19:36.096Z",
+      "kind": "command-read",
+      "sha256": "0f870b846c2a75bbbc705da7b92d2edbd64c0b9e9e46a353d94093102ec8350f",
+      "bytes": 3381
+    },
+    "apps/desktop/src/services/providerUsage.ts": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/28/rollout-2026-10-28T10-07-51-01a1807a-75af-7862-bfb2-4dcec2d5ab35.jsonl",
+      "time": "2026-10-29T06:36:53.397Z",
+      "kind": "python-write",
+      "sha256": "9506d2d1c49e039d5145e5976fca16441198459bdf2a6f3d62f45690c19cc865",
+      "bytes": 5517
+    },
+    "apps/desktop/src-tauri/src/provider_usage.rs": {
+      "session": "/Users/ariardianto/.codex-2/sessions/2026/10/28/rollout-2026-10-28T10-07-51-01a1807a-75af-7862-bfb2-4dcec2d5ab35.jsonl",
+      "time": "2026-10-28T12:35:24.132Z",
+      "kind": "patch-update",
+      "sha256": "6987e1a4ecddb5164f1facd6c3202b59e6fbe27f555d17c6d79719a6965c3f90",
+      "bytes": 19599
+    },
+    "docs/PROVIDER_MODEL_SELECTION.md": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/28/rollout-2026-10-28T10-07-51-01a1807a-75af-7862-bfb2-4dcec2d5ab35.jsonl",
+      "time": "2026-10-28T14:17:13.846Z",
+      "kind": "python-write",
+      "sha256": "3831ec0c5c00f10beb4fdc0aa08a2afbdfa959aae38821de64af04888cdf1b95",
+      "bytes": 3884
+    },
+    "apps/desktop/src/design-system/Dropdown.tsx": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-30T08:20:15.753Z",
+      "kind": "python-write",
+      "sha256": "e253d8ad1b600970258bee02c568f192a6bd24de97ff28be428aaaa61f4e735a",
+      "bytes": 9751
+    },
+    "apps/desktop/src/design-system/Dropdown.test.tsx": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-30T08:06:04.565Z",
+      "kind": "python-write",
+      "sha256": "ee83fed03bcd39446818948c4ae3ae781f7d7ce656a7dbde47db3c35bef35b0e",
+      "bytes": 3793
+    },
+    "apps/desktop/src-tauri/tauri.conf.json": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/30/rollout-2026-10-30T16-11-24-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a18c14-02b0-7392-b230-97577d4ddc19.jsonl",
+      "time": "2026-10-30T14:28:36.830Z",
+      "kind": "python-write",
+      "sha256": "25e4ce62748460a3417b0ba3742f5316b279148f9afdc4d681f429f9a28d3b87",
+      "bytes": 1156
+    },
+    "apps/desktop/src/features/shared/ProviderLogo.tsx": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/28/rollout-2026-10-28T10-07-51-01a1807a-75af-7862-bfb2-4dcec2d5ab35.jsonl",
+      "time": "2026-10-28T03:15:43.407Z",
+      "kind": "patch-add",
+      "sha256": "cea7e2a67c1e15003dbee658d6e3dec997dd73c8a4b97e806ce7cf36adcbc4e9",
+      "bytes": 913
+    },
+    "apps/desktop/src/features/shared/ProviderPicker.tsx": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-30T07:54:53.684Z",
+      "kind": "command-read",
+      "sha256": "531681a735f5a91f98892445aad9496f1c78a252ede0cd75e8b5fc644690ac0f",
+      "bytes": 6025
+    },
+    "apps/desktop/src/services/providerUsage.test.tsx": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/30/rollout-2026-10-30T16-11-24-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a18c14-02b0-7392-b230-97577d4ddc19.jsonl",
+      "time": "2026-10-30T09:22:39.399Z",
+      "kind": "python-write",
+      "sha256": "3cf20c4a72d73d9cbcc0fd8c52b2fe5c42b8aa667ba60231f87ef56714cebc4b",
+      "bytes": 7067
+    },
+    "apps/desktop/src/features/shared/ProviderPicker.test.tsx": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-30T07:40:20.869Z",
+      "kind": "python-write",
+      "sha256": "34688da58c9cf34724b343a1f43ace5ce5cc72da962e96d1c90efa6d3901e292",
+      "bytes": 4949
+    },
+    "scripts/verify_macos_bundle.py": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-29T08:43:15.249Z",
+      "kind": "command-read",
+      "sha256": "d8647b4c0287b5605535176150881a85f54a2f3a52a5718d3f448692db37024e",
+      "bytes": 2999
+    },
+    "apps/desktop/src-tauri/examples/provider_usage_probe.rs": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/28/rollout-2026-10-28T10-07-51-01a1807a-75af-7862-bfb2-4dcec2d5ab35.jsonl",
+      "time": "2026-10-28T15:10:00.472Z",
+      "kind": "command-read",
+      "sha256": "b4ddd7fe0adb3169d5087cc16d151d94c67997c7a8f39acd12e7a8d307f99968",
+      "bytes": 2503
+    },
+    "scripts/verify_provider_usage_visual.cjs": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/28/rollout-2026-10-28T10-07-51-01a1807a-75af-7862-bfb2-4dcec2d5ab35.jsonl",
+      "time": "2026-10-28T03:25:52.841Z",
+      "kind": "patch-update",
+      "sha256": "24007ff64a9d541af24d1f37bceafc750d6b9086da57b9cc135c9ef35d0d87d1",
+      "bytes": 10882
+    },
+    "apps/desktop/src/features/create/CreativeControls.tsx": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-30T07:39:38.614Z",
+      "kind": "python-write",
+      "sha256": "6846b3d0809263faac9b467e94bb758b1ee8a191abbb1d933839ef3b68f0092d",
+      "bytes": 7513
+    },
+    "docs/PROVIDER_USAGE_SELECTOR.md": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/28/rollout-2026-10-28T10-07-51-01a1807a-75af-7862-bfb2-4dcec2d5ab35.jsonl",
+      "time": "2026-10-29T06:43:37.103Z",
+      "kind": "python-write",
+      "sha256": "2bbd24ead409c7859836486889de27eb9674d7f8d467a5d4696d5a4423b7d68d",
+      "bytes": 11639
+    },
+    "apps/desktop/src-tauri/Cargo.toml": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/30/rollout-2026-10-30T16-11-24-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a18c14-02b0-7392-b230-97577d4ddc19.jsonl",
+      "time": "2026-10-30T14:28:36.830Z",
+      "kind": "python-write",
+      "sha256": "bb752873e1c5f4405bba5a43713bc7111ca94ea2f6e12d6ac5c8215696c5bb44",
+      "bytes": 810
+    },
+    "apps/desktop/src-tauri/src/provider_usage_http.rs": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/28/rollout-2026-10-28T10-07-51-01a1807a-75af-7862-bfb2-4dcec2d5ab35.jsonl",
+      "time": "2026-10-28T04:26:27.853Z",
+      "kind": "patch-update",
+      "sha256": "6066739279abf16e5be8d080b8a2cbeb7e0452689c341d42095a31cc005dd230",
+      "bytes": 5380
+    },
+    "apps/desktop/src/features/shared/ProviderUsageDetails.tsx": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/28/rollout-2026-10-28T10-07-51-01a1807a-75af-7862-bfb2-4dcec2d5ab35.jsonl",
+      "time": "2026-10-28T15:07:06.939Z",
+      "kind": "command-read",
+      "sha256": "354523f5678ea6a8bab60b341b4676527d8521abf8b09cdad06f72957152412f",
+      "bytes": 3388
+    },
+    "apps/desktop/src/features/shared/ProviderUsageDetails.test.tsx": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/28/rollout-2026-10-28T10-07-51-01a1807a-75af-7862-bfb2-4dcec2d5ab35.jsonl",
+      "time": "2026-10-28T15:07:06.939Z",
+      "kind": "command-read",
+      "sha256": "85a2b886ee2c1579b710ec5b8754b3c9f5c504c2d8613211f9a0c9c902688953",
+      "bytes": 2978
+    },
+    "apps/desktop/src-tauri/src/codex_auth.rs": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/30/rollout-2026-10-30T16-11-24-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a18c14-02b0-7392-b230-97577d4ddc19.jsonl",
+      "time": "2026-10-30T09:21:07.616Z",
+      "kind": "python-write",
+      "sha256": "a7c71e92c78bddf63da8b3cb7ffa676987862d3467d29b36fcbc28d03247a701",
+      "bytes": 22923
+    },
+    "apps/desktop/src-tauri/examples/codex_login.rs": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-30T08:53:35.710Z",
+      "kind": "command-read",
+      "sha256": "55da691a9e1cad99751b31162943a5ca93716b6d55ead367e2b2ff286eb13b5e",
+      "bytes": 2062
+    },
+    "docs/CODEX_LOGIN.md": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/30/rollout-2026-10-30T16-11-24-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a18c14-02b0-7392-b230-97577d4ddc19.jsonl",
+      "time": "2026-10-30T09:27:52.859Z",
+      "kind": "python-write",
+      "sha256": "2b4bf5bc55b0104e9e29bdaafad9874c06e4afbc9cb7104397f5623ef5855731",
+      "bytes": 6581
+    },
+    "apps/desktop/src/features/shared/OrcaUsagePanel.test.tsx": {
+      "session": "/Users/ariardianto/.codex-2/sessions/2026/10/28/rollout-2026-10-28T10-07-51-01a1807a-75af-7862-bfb2-4dcec2d5ab35.jsonl",
+      "time": "2026-10-28T12:47:45.191Z",
+      "kind": "patch-update",
+      "sha256": "30108b151332e277efd7e284e691f36f67eedabbfa890bcb6ca7e1cb126f4ad0",
+      "bytes": 2156
+    },
+    "apps/desktop/src-tauri/src/browser_auth.rs": {
+      "session": "/Users/ariardianto/Library/Application Support/Antigravity IDE/User/History/2c33e224/xGtq.rs",
+      "time": "2026-10-29T06:09:06.273Z",
+      "kind": "editor-history",
+      "sha256": "65b7f4ffbc24bf526f36949926f2e20fce6c949431d7f7f802ca1ed0fbef524d",
+      "bytes": 24524
+    },
+    "apps/desktop/src-tauri/src/editor_ai.rs": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/28/rollout-2026-10-28T10-07-51-01a1807a-75af-7862-bfb2-4dcec2d5ab35.jsonl",
+      "time": "2026-10-28T13:28:08.706Z",
+      "kind": "command-read",
+      "sha256": "9ecb1fb2a9754d6869d4acdc64031606b96d0516d89e946e239ac2efb6c3ccc0",
+      "bytes": 23662
+    },
+    "apps/desktop/src-tauri/src/task_journal.rs": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-29T09:34:07.025Z",
+      "kind": "python-write",
+      "sha256": "1f95e987f6af98698acaa4f380a6f11a077c6b8a28a30fc99446e2f5e3e316e3",
+      "bytes": 31312
+    },
+    "apps/desktop/src-tauri/migrations/0015_provider_only_tasks.sql": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/28/rollout-2026-10-28T10-07-51-01a1807a-75af-7862-bfb2-4dcec2d5ab35.jsonl",
+      "time": "2026-10-28T13:54:46.489Z",
+      "kind": "python-write",
+      "sha256": "c1d1f53e276fb98f8f90cb8f677d90902114fa8c9a94d8d990dc9f5e0a9e7ca1",
+      "bytes": 551
+    },
+    "apps/desktop/src-tauri/src/supervisor.rs": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-29T08:08:21.031Z",
+      "kind": "python-write",
+      "sha256": "227c06a6d8cd5150eed0bac69c9feff8833cac94537f1515033bd7b83611ac6c",
+      "bytes": 20276
+    },
+    "apps/desktop/src/features/settings/ProviderSettings.tsx": {
+      "session": "/Users/ariardianto/.codex-2/sessions/2026/10/28/rollout-2026-10-28T14-18-51-01a18160-3f53-7c20-8488-5686e7b359cd.jsonl",
+      "time": "2026-10-30T09:54:03.410Z",
+      "kind": "patch-update",
+      "sha256": "91f4ca2238a35dd5bdd54e28888979c32b75432aa5af98725be6c050ad352a3d",
+      "bytes": 25020
+    },
+    "apps/desktop/src/features/chat/ChatPage.tsx": {
+      "session": "/Users/ariardianto/.codex-2/sessions/2026/10/28/rollout-2026-10-28T14-18-51-01a18160-3f53-7c20-8488-5686e7b359cd.jsonl",
+      "time": "2026-10-30T11:07:02.952Z",
+      "kind": "python-write",
+      "sha256": "519ff82721b7dc07abdcfe60185d3f1e6d0c50a79f1f112e27425b5011cab813",
+      "bytes": 20178
+    },
+    "apps/desktop/src/features/create/useCreativeTask.ts": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-29T09:27:44.140Z",
+      "kind": "command-read",
+      "sha256": "e4de28f99bc9d20de66fbeb55eacaafe854776e2ba2d8296ccb320833877742a",
+      "bytes": 10856
+    },
+    "apps/desktop/src/services/featureSelection.test.ts": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/28/rollout-2026-10-28T10-07-51-01a1807a-75af-7862-bfb2-4dcec2d5ab35.jsonl",
+      "time": "2026-10-28T13:42:36.601Z",
+      "kind": "command-read",
+      "sha256": "52578caadb28f3d21de477c45c007e05dcdd7739a0fc01ff9c00ef65041acf28",
+      "bytes": 1341
+    },
+    "apps/desktop/src/features/shared/EditorAiPromptBar.tsx": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-30T07:39:38.614Z",
+      "kind": "python-write",
+      "sha256": "d7f0b95308add3ed049aff307262a946812bd65a48f315f49c8badfa6984d406",
+      "bytes": 9668
+    },
+    "apps/desktop/src/features/chat/ChatPage.test.tsx": {
+      "session": "/Users/ariardianto/.codex-2/sessions/2026/10/28/rollout-2026-10-28T14-18-51-01a18160-3f53-7c20-8488-5686e7b359cd.jsonl",
+      "time": "2026-10-30T11:07:02.952Z",
+      "kind": "python-write",
+      "sha256": "ae1c43504306298d5aa18a4719ed2db6abe2d93828f27bf960ad3ecc3a8a5eb3",
+      "bytes": 14646
+    },
+    "apps/desktop/src-tauri/tests/connections-acceptance.js": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/28/rollout-2026-10-28T10-07-51-01a1807a-75af-7862-bfb2-4dcec2d5ab35.jsonl",
+      "time": "2026-10-28T14:06:15.590Z",
+      "kind": "python-write",
+      "sha256": "5b3a351f4bbe9395fae5af8cc58e6aaf4d612cc3156b7a9f6a0be6b9084bace2",
+      "bytes": 4279
+    },
+    "apps/desktop/src/features/shared/TaskRecovery.test.tsx": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-29T11:44:21.311Z",
+      "kind": "command-read",
+      "sha256": "2682e5b13488836b7e6287792d8b3a0141a34612c8cae48ced5c37048bf55b62",
+      "bytes": 5189
+    },
+    "apps/desktop/src-tauri/examples/provider_only_prepare.rs": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-29T08:43:55.701Z",
+      "kind": "command-read",
+      "sha256": "ca2789629dccaf5074d99aee8fcc8779c037fefde0fbde3011a3b2b887695f50",
+      "bytes": 1581
+    },
+    "apps/desktop/src/services/modelCatalog.ts": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/28/rollout-2026-10-28T10-07-51-01a1807a-75af-7862-bfb2-4dcec2d5ab35.jsonl",
+      "time": "2026-10-29T06:13:55.607Z",
+      "kind": "python-write",
+      "sha256": "8743ada7ca8f3ecdd7d66ee20bc8c67754f83081539ed9e916f33183fd46b99e",
+      "bytes": 4657
+    },
+    "apps/desktop/src-tauri/tests/provider-only-live.js": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/28/rollout-2026-10-28T10-07-51-01a1807a-75af-7862-bfb2-4dcec2d5ab35.jsonl",
+      "time": "2026-10-28T15:09:31.211Z",
+      "kind": "command-read",
+      "sha256": "adc495f32fc079945c439825faed5b9d7e63bd03cc57c6774c41df4093aa7ab6",
+      "bytes": 6355
+    },
+    "docs/PROVIDER_ONLY_PIPELINE.md": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-29T13:29:26.393Z",
+      "kind": "python-write",
+      "sha256": "4c0bcb8ed7a059ccff785dfaa52a0ad10168ee3f9dbdcdb5418295031803aec3",
+      "bytes": 21247
+    },
+    "apps/desktop/src-tauri/tests/provider-only-review.js": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/28/rollout-2026-10-28T10-07-51-01a1807a-75af-7862-bfb2-4dcec2d5ab35.jsonl",
+      "time": "2026-10-29T06:13:17.153Z",
+      "kind": "command-read",
+      "sha256": "35ff84bf9b45d1f831a5395e5b83c5febf060f7f017d0485a4f550c7312a7c4f",
+      "bytes": 697
+    },
+    "apps/desktop/src-tauri/tests/provider-only-studio.js": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-29T08:54:12.493Z",
+      "kind": "python-write",
+      "sha256": "d08e143f036285dc8bbe1e2f392cd97b34434b35ad5d43e9961f18e969121110",
+      "bytes": 5119
+    },
+    "apps/desktop/src/features/shared/TaskRecovery.tsx": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-29T07:14:01.023Z",
+      "kind": "python-write",
+      "sha256": "fc6d9e14d2574b8dd6098c7bb210438df9dfde7a4ee3fded31e7558ce655a0e4",
+      "bytes": 4720
+    },
+    "apps/desktop/src-tauri/src/agent.rs": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/28/rollout-2026-10-28T10-07-51-01a1807a-75af-7862-bfb2-4dcec2d5ab35.jsonl",
+      "time": "2026-10-29T07:01:52.517Z",
+      "kind": "python-write",
+      "sha256": "c06cd8ac4eab9147cb9f79a755476da6aed145112fa96434fda4e1d47301e995",
+      "bytes": 13270
+    },
+    "apps/desktop/src-tauri/src/commands.rs": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/30/rollout-2026-10-30T16-11-24-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a18c14-02b0-7392-b230-97577d4ddc19.jsonl",
+      "time": "2026-10-30T09:21:07.616Z",
+      "kind": "python-write",
+      "sha256": "514572602072299aa76681a6cbb06dfaddaedecc725dbcdff100b41bdd1c8ecb",
+      "bytes": 68028
+    },
+    "apps/desktop/src-tauri/src/studio.rs": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/28/rollout-2026-10-28T10-07-51-01a1807a-75af-7862-bfb2-4dcec2d5ab35.jsonl",
+      "time": "2026-10-29T07:06:04.502Z",
+      "kind": "python-write",
+      "sha256": "9d05c372ed56b83dc467daf54d9bc6c506e52a6f1569befecff4da6496767bd2",
+      "bytes": 55629
+    },
+    "apps/desktop/src/app/workspace-layout.css": {
+      "session": "/Users/ariardianto/.codex-2/sessions/2026/10/28/rollout-2026-10-28T14-18-51-01a18160-3f53-7c20-8488-5686e7b359cd.jsonl",
+      "time": "2026-10-30T11:21:10.922Z",
+      "kind": "python-write",
+      "sha256": "cce3893ad8216b21d6e1d3d8b3833ab7fe9e559164f6dc9e21dbd501aedcd106",
+      "bytes": 44507
+    },
+    "apps/desktop/src/design-system/Icon.tsx": {
+      "session": "/Users/ariardianto/.codex-2/sessions/2026/10/28/rollout-2026-10-28T14-18-51-01a18160-3f53-7c20-8488-5686e7b359cd.jsonl",
+      "time": "2026-10-30T09:46:17.688Z",
+      "kind": "patch-update",
+      "sha256": "1cd2db3ccb99cde510f562e065a6f4e6276b5baa5835c9dae9c8f33623aed29a",
+      "bytes": 8478
+    },
+    "apps/desktop/src/features/shared/TaskProgressCard.tsx": {
+      "session": "/Users/ariardianto/Library/Application Support/Antigravity IDE/User/History/-5ceb7d08/sYx8.tsx",
+      "time": "2026-10-29T05:24:57.767Z",
+      "kind": "editor-history",
+      "sha256": "4215810c80d5a1315e829388ea75b28829d53ec8d1f496c5ca60bb8aed6334b1",
+      "bytes": 8075
+    },
+    "apps/desktop/src/features/studio/StudioExplorerPanel.tsx": {
+      "session": "/Users/ariardianto/Library/Application Support/Antigravity IDE/User/History/ce6fcc0/Qt8h.tsx",
+      "time": "2026-10-29T05:24:58.006Z",
+      "kind": "editor-history",
+      "sha256": "426a277ec9c29f594e5f2d784bed3383963e0a10185e8a838aa14eb918c07847",
+      "bytes": 11836
+    },
+    "apps/desktop/src/services/tauri.ts": {
+      "session": "/Users/ariardianto/Library/Application Support/Antigravity IDE/User/History/5c86450c/t5Zu.ts",
+      "time": "2026-10-29T05:24:58.245Z",
+      "kind": "editor-history",
+      "sha256": "94f2b406e2578082e104dbdc8f851b2966df64aad2065017f82851f23f4669b9",
+      "bytes": 7664
+    },
+    "apps/desktop/src-tauri/src/storage.rs": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/28/rollout-2026-10-28T10-07-51-01a1807a-75af-7862-bfb2-4dcec2d5ab35.jsonl",
+      "time": "2026-10-29T06:13:55.607Z",
+      "kind": "python-write",
+      "sha256": "c8a480970c64f58c487d672be7f77d8487a6dca28b22eaee2733add32d88fd65",
+      "bytes": 33141
+    },
+    "apps/desktop/src-tauri/src/backup.rs": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/28/rollout-2026-10-28T10-07-51-01a1807a-75af-7862-bfb2-4dcec2d5ab35.jsonl",
+      "time": "2026-10-29T06:13:55.607Z",
+      "kind": "python-write",
+      "sha256": "584991a4e77c6e97b590b349ccf6496152c33482fddc663c29bf710744188459",
+      "bytes": 12095
+    },
+    "apps/desktop/src-tauri/src/creative.rs": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-29T09:34:07.025Z",
+      "kind": "python-write",
+      "sha256": "dafcedf846f144ea63b5411be6c73f9b3fe0330e40bfa901cc0f650633cab40a",
+      "bytes": 77207
+    },
+    "apps/desktop/src/services/featureSelection.ts": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-30T07:39:38.614Z",
+      "kind": "python-write",
+      "sha256": "0433a468ccc76a351809ad8942074e409304f5e45cbb0bf7a0f933c760274e07",
+      "bytes": 4796
+    },
+    "apps/desktop/src/services/providerState.ts": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/30/rollout-2026-10-30T16-11-24-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a18c14-02b0-7392-b230-97577d4ddc19.jsonl",
+      "time": "2026-10-30T09:23:22.722Z",
+      "kind": "python-write",
+      "sha256": "d24b5968e05e52213a48dadc2749679bd1bfbd3fbf454b1c28d462eaa1049bff",
+      "bytes": 4215
+    },
+    "apps/desktop/src-tauri/src/model_catalog.rs": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/28/rollout-2026-10-28T10-07-51-01a1807a-75af-7862-bfb2-4dcec2d5ab35.jsonl",
+      "time": "2026-10-29T06:11:03.524Z",
+      "kind": "command-read",
+      "sha256": "a632c5c08aa15bc1c12576d31413b1315cacb9badaef5e4de5c6c404fa5628d8",
+      "bytes": 13769
+    },
+    "apps/desktop/src-tauri/migrations/0015_fallback_and_cooldown.sql": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/28/rollout-2026-10-28T10-07-51-01a1807a-75af-7862-bfb2-4dcec2d5ab35.jsonl",
+      "time": "2026-10-29T06:12:30.444Z",
+      "kind": "command-read",
+      "sha256": "d700e1aa54bedac4a6e4808462a2e1c6bbf1363dfaa3bc8235585b3655af2ab4",
+      "bytes": 1031
+    },
+    "apps/desktop/src-tauri/migrations/0016_connection_compatibility.sql": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/28/rollout-2026-10-28T10-07-51-01a1807a-75af-7862-bfb2-4dcec2d5ab35.jsonl",
+      "time": "2026-10-29T06:22:20.236Z",
+      "kind": "command-read",
+      "sha256": "28565bd24c889cfb20d075d592100e9c9ed7f754f6986e4519836685b573d465",
+      "bytes": 648
+    },
+    "apps/desktop/tsconfig.json": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/28/rollout-2026-10-28T10-07-51-01a1807a-75af-7862-bfb2-4dcec2d5ab35.jsonl",
+      "time": "2026-10-29T06:17:26.489Z",
+      "kind": "command-read",
+      "sha256": "836076edf055f3d251bfa208a52b0d81737b787c1da3df35e9558c34a94ebdb8",
+      "bytes": 144
+    },
+    "docs/CONNECTION_REPAIR_2026_10_29.md": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/28/rollout-2026-10-28T10-07-51-01a1807a-75af-7862-bfb2-4dcec2d5ab35.jsonl",
+      "time": "2026-10-29T06:43:37.103Z",
+      "kind": "python-write",
+      "sha256": "a6feccc8ca466503563590240a683edeb2f0f62d06bf750d9af55c46aef44ba1",
+      "bytes": 5609
+    },
+    "apps/desktop/src/app/App.tsx": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-29T11:58:20.959Z",
+      "kind": "command-read",
+      "sha256": "624eca20aa5545519ce9d4a6c1225ee0f088c4620cfb278896315490fcbb689f",
+      "bytes": 9208
+    },
+    "apps/desktop/src/services/studioState.ts": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/28/rollout-2026-10-28T10-07-51-01a1807a-75af-7862-bfb2-4dcec2d5ab35.jsonl",
+      "time": "2026-10-29T06:56:18.676Z",
+      "kind": "command-read",
+      "sha256": "a2a416ca4c03dfa5893da1741bde640b8a528cdc80dbcdaacfd210ff51197b29",
+      "bytes": 3877
+    },
+    "apps/desktop/src/features/shared/TaskAttempts.tsx": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-29T08:20:03.380Z",
+      "kind": "patch-update",
+      "sha256": "25e94460531673c1b0823d124d6aeee1bb5446f5ed7ecf5364c28c8894cdb1d0",
+      "bytes": 6942
+    },
+    "docs/PROMPT_QUALITY_2026_10_29.md": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-29T13:41:43.533Z",
+      "kind": "python-write",
+      "sha256": "b313aa83afbc6aed86471e916d0c253fe5a4115280c349530e67541aba65381a",
+      "bytes": 20867
+    },
+    "apps/desktop/src-tauri/src/explorer.luau": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-29T08:02:42.912Z",
+      "kind": "command-read",
+      "sha256": "28b785b2abeb4d083c455abf9850c9bfb05faf869a903c1f9cc92ecfc52fdbd2",
+      "bytes": 3585
+    },
+    "apps/desktop/src-tauri/src/explorer.rs": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-29T08:14:25.500Z",
+      "kind": "shell-heredoc",
+      "sha256": "16487144649cab324300b274382dda7cd2dc0ae27fc1198af79b6f29efc71e9f",
+      "bytes": 5560
+    },
+    "apps/desktop/src/features/shared/StudioExplorer.test.tsx": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-29T07:48:18.229Z",
+      "kind": "shell-heredoc",
+      "sha256": "381f07d564e2382e54aed5d7bad32c212c614bda03dda41a9b07aaf946f00ba9",
+      "bytes": 3788
+    },
+    "apps/desktop/src/features/shared/StudioExplorer.tsx": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-29T09:08:22.645Z",
+      "kind": "python-write",
+      "sha256": "83d4b0118d1e69eba1bf832ede9be93d16364eb4518e6d18b044d1d62d59a005",
+      "bytes": 11894
+    },
+    "apps/desktop/src-tauri/src/luau_checks.rs": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-29T07:32:15.525Z",
+      "kind": "shell-heredoc",
+      "sha256": "12a1980221541d6af89c9c5d393ea79259f14d562fb14a8167195b61aca16c9b",
+      "bytes": 5773
+    },
+    "apps/desktop/src/services/studioState.test.ts": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-29T07:39:10.197Z",
+      "kind": "shell-heredoc",
+      "sha256": "169161663a21faef00f9ecce3083ddc2f3d5df92038c67997a798c75f0970da7",
+      "bytes": 1947
+    },
+    "apps/desktop/src/features/settings/StudioConnection.test.tsx": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-29T07:41:25.396Z",
+      "kind": "command-read",
+      "sha256": "72c2153c5eb3b206f03200c0c58b7e99564d0730ca287d749331e9d51561c57e",
+      "bytes": 3505
+    },
+    "apps/desktop/src-tauri/src/task_activity.rs": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-29T08:27:55.390Z",
+      "kind": "patch-update",
+      "sha256": "300592733e5a096805330d3701d1521e9c114d2278b49280b63abc3b5c14790f",
+      "bytes": 4755
+    },
+    "packages/contracts/tests/task-activity.test.ts": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-29T08:10:10.145Z",
+      "kind": "shell-heredoc",
+      "sha256": "909129d50c8bf270a64744e9d4dcf8d344365cb34dcc915295bfc1244078a59a",
+      "bytes": 788
+    },
+    "apps/desktop/src/features/create/useCreativeTask.test.tsx": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-29T09:35:45.934Z",
+      "kind": "python-write",
+      "sha256": "3cdc82d7630083f1ec7ed74da8fad1976ea21007bd726771679e3b6b1488c77a",
+      "bytes": 2295
+    },
+    "apps/desktop/src-tauri/tests/provider-all-domains.js": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-29T08:54:12.493Z",
+      "kind": "python-write",
+      "sha256": "0bf9f75c9c687833f34a7292926a66b9818ae5bcd2ccbd7a7c86dac3f3712de6",
+      "bytes": 4572
+    },
+    "apps/desktop/src/features/creators3d/VfxPreview.tsx": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-29T08:54:56.891Z",
+      "kind": "python-write",
+      "sha256": "ad8384fbec2a7854e45e7694edbe337ab0c3a81ff11feb546dc405e946543b7d",
+      "bytes": 3241
+    },
+    "apps/desktop/src/features/creators3d/VfxPreview.test.tsx": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-29T08:37:55.633Z",
+      "kind": "shell-heredoc",
+      "sha256": "dea8abe12d0d17357d7d458de15a4913afb2288005d24e32e035342532a99191",
+      "bytes": 1071
+    },
+    "apps/desktop/src/features/shared/readableError.ts": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-29T09:08:22.645Z",
+      "kind": "python-write",
+      "sha256": "bae51edf1957b1951d511362a293dc686f7532d7d0419c7288350aacd1bb07d1",
+      "bytes": 215
+    },
+    "apps/desktop/src/features/shared/readableError.test.ts": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-29T09:08:22.645Z",
+      "kind": "python-write",
+      "sha256": "9354770c628ebf01baa8368772b68b874a7b81146fa18cec773af3233a0502d4",
+      "bytes": 482
+    },
+    "apps/desktop/src-tauri/tests/provider-apply.js": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-29T13:11:42.253Z",
+      "kind": "patch-update",
+      "sha256": "190266621d2aa40b306b43385ca699b0eb84cc80527b22c93e8739426c5eecfb",
+      "bytes": 3976
+    },
+    "apps/desktop/src/features/create/StudioApply.tsx": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-29T09:39:29.605Z",
+      "kind": "command-read",
+      "sha256": "b2d7c6e0ef1376b43ab120cef6997bb6e2235e6936700c1f266992c774c29d8d",
+      "bytes": 868
+    },
+    "apps/desktop/src/app/App.test.tsx": {
+      "session": "/Users/ariardianto/.codex-2/sessions/2026/10/28/rollout-2026-10-28T14-18-51-01a18160-3f53-7c20-8488-5686e7b359cd.jsonl",
+      "time": "2026-10-30T11:21:10.922Z",
+      "kind": "python-write",
+      "sha256": "a0990db24a9963a12c27f2262ec37c44f0eb2731820fa53f8eb4e0c206143cc5",
+      "bytes": 15107
+    },
+    "apps/desktop/src/services/featureSelectionAccount.test.tsx": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-30T07:40:20.869Z",
+      "kind": "shell-heredoc",
+      "sha256": "f10e37b15157173ebed3a4c590add8f9a207f50c5effb3990fe5248917c2a3e3",
+      "bytes": 1911
+    },
+    "docs/MULTI_ACCOUNT_2026_10_30.md": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-30T08:21:03.223Z",
+      "kind": "python-write",
+      "sha256": "9464026baebd4b14c7a6d2c4863d52e950d701917f554e62adcf99d40b2dc943",
+      "bytes": 4499
+    },
+    "docs/LOGIN_REPAIR_2026_10_30.md": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
+      "time": "2026-10-30T09:01:33.088Z",
+      "kind": "python-write",
+      "sha256": "0c95db01d065c4248344501f8df7d3f11c013aa6e8613f0a34467886d45850f0",
+      "bytes": 2315
+    },
+    "apps/desktop/src/services/providerState.test.tsx": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/30/rollout-2026-10-30T16-11-24-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a18c14-02b0-7392-b230-97577d4ddc19.jsonl",
+      "time": "2026-10-30T09:24:17.645Z",
+      "kind": "python-write",
+      "sha256": "4d27702a04810324cbe7f457acb255360a9604374456527d2202e7ee2794713d",
+      "bytes": 2612
+    },
+    "docs/AUTOMATIC_ACCOUNT_ACCESS_2026_10_30.md": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/30/rollout-2026-10-30T16-11-24-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a18c14-02b0-7392-b230-97577d4ddc19.jsonl",
+      "time": "2026-10-30T09:27:52.859Z",
+      "kind": "python-write",
+      "sha256": "06f82392235933bf2f3b33de7dc70112d0954db7304f03df438a9e4b339cf98c",
+      "bytes": 2802
+    },
+    "scripts/verify_settings_visual.cjs": {
+      "session": "/Users/ariardianto/.codex-2/sessions/2026/10/28/rollout-2026-10-28T14-18-51-01a18160-3f53-7c20-8488-5686e7b359cd.jsonl",
+      "time": "2026-10-30T09:54:38.286Z",
+      "kind": "patch-update",
+      "sha256": "af683214ec2ae5148fae3815823bfb184110140b77c79c272bc690eda96ec912",
+      "bytes": 6142
+    },
+    "docs/MATERIAL_3D_REMOVAL_2026_10_30.md": {
+      "session": "/Users/ariardianto/.codex-2/sessions/2026/10/28/rollout-2026-10-28T14-18-51-01a18160-3f53-7c20-8488-5686e7b359cd.jsonl",
+      "time": "2026-10-30T10:19:08.801Z",
+      "kind": "python-write",
+      "sha256": "6b7fe75f70e6f549936aa4535d5235d6edbb3b632298fefa381692df8d759ef8",
+      "bytes": 2039
+    },
+    "apps/desktop/src/main.tsx": {
+      "session": "/Users/ariardianto/.codex-2/sessions/2026/10/28/rollout-2026-10-28T14-18-51-01a18160-3f53-7c20-8488-5686e7b359cd.jsonl",
+      "time": "2026-10-30T10:17:44.084Z",
+      "kind": "command-read",
+      "sha256": "bd5c287286eda523bd98e1cbb2f56579ec3b6a0e9782ed3463b20f39da6c9f50",
+      "bytes": 320
+    },
+    "docs/TEXTURE_REMOVAL_2026_10_30.md": {
+      "session": "/Users/ariardianto/.codex-2/sessions/2026/10/28/rollout-2026-10-28T14-18-51-01a18160-3f53-7c20-8488-5686e7b359cd.jsonl",
+      "time": "2026-10-30T10:53:45.467Z",
+      "kind": "python-write",
+      "sha256": "df1b6cb27579b7349a533eda52e222a48d024bcb89eca180fc84f29734fbe269",
+      "bytes": 1940
+    },
+    "scripts/verify_chat_studio_status_visual.cjs": {
+      "session": "/Users/ariardianto/.codex-2/sessions/2026/10/28/rollout-2026-10-28T14-18-51-01a18160-3f53-7c20-8488-5686e7b359cd.jsonl",
+      "time": "2026-10-30T11:21:10.922Z",
+      "kind": "python-write",
+      "sha256": "4605ec48972af96319f0bf2815d5119751d960884d2f99071044ae3abb4287e5",
+      "bytes": 4412
+    },
+    "docs/CHAT_STUDIO_STATUS_2026_10_30.md": {
+      "session": "/Users/ariardianto/.codex-2/sessions/2026/10/28/rollout-2026-10-28T14-18-51-01a18160-3f53-7c20-8488-5686e7b359cd.jsonl",
+      "time": "2026-10-30T11:16:44.186Z",
+      "kind": "python-write",
+      "sha256": "1674f9f7d1fcec3402a5a42230bafe6c3c0f055c4f496bd7e210245126fc069d",
+      "bytes": 2917
+    },
+    "docs/STUDIO_STATUS_POSITION_2026_10_30.md": {
+      "session": "/Users/ariardianto/.codex-2/sessions/2026/10/28/rollout-2026-10-28T14-18-51-01a18160-3f53-7c20-8488-5686e7b359cd.jsonl",
+      "time": "2026-10-30T11:24:16.483Z",
+      "kind": "python-write",
+      "sha256": "c707d51b96e4ce1a07bedd6e00b0b26bdbf15ba34891b102159ea90b72cb0dbf",
+      "bytes": 1564
+    },
+    "apps/desktop/src/features/create/viewportCamera.ts": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/30/rollout-2026-10-30T16-11-24-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a18c14-02b0-7392-b230-97577d4ddc19.jsonl",
+      "time": "2026-10-30T14:20:21.098Z",
+      "kind": "patch-add",
+      "sha256": "ebc9ca160f8e9f1823d91b77117211a211cbbea4a053e673a00bdc516a58b49e",
+      "bytes": 389
+    },
+    "apps/desktop/src/features/create/viewportCamera.test.ts": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/30/rollout-2026-10-30T16-11-24-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a18c14-02b0-7392-b230-97577d4ddc19.jsonl",
+      "time": "2026-10-30T14:20:21.098Z",
+      "kind": "patch-add",
+      "sha256": "f1f0961e2af2707ba428e1a9a763d2dae966f4ff7bc907d08f1bde7cab8a839c",
+      "bytes": 1274
+    },
+    "apps/desktop/src/features/create/ThreeViewport.test.tsx": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/30/rollout-2026-10-30T16-11-24-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a18c14-02b0-7392-b230-97577d4ddc19.jsonl",
+      "time": "2026-10-30T14:20:37.653Z",
+      "kind": "patch-add",
+      "sha256": "82450c9e4ddc3e0bea99ea66e3cc05614e1bbe04c12d530c607c1b4603cf9aed",
+      "bytes": 1361
+    },
+    "apps/desktop/src/app/useAppearance.ts": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/30/rollout-2026-10-30T16-11-24-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a18c14-02b0-7392-b230-97577d4ddc19.jsonl",
+      "time": "2026-10-30T14:52:13.048Z",
+      "kind": "command-read",
+      "sha256": "3986c2d9e938af4ad64c807cdcc1da0ff25fc277ff3135e1c51648d6ba89d34f",
+      "bytes": 1973
+    },
+    "apps/desktop/src/features/creators3d/Model3dPage.tsx": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/30/rollout-2026-10-30T16-11-24-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a18c14-02b0-7392-b230-97577d4ddc19.jsonl",
+      "time": "2026-10-30T14:19:32.858Z",
+      "kind": "recovered-complete-command-read",
+      "sha256": "06a48aa367b0bb960f2125e8f46c67b91a1e01326bd678e378da3c1a410e7f12",
+      "subsequentlyModified": true
+    },
+    "apps/desktop/src/features/create/ThreeViewport.tsx": {
+      "session": "/Users/ariardianto/.codex/sessions/2026/10/30/rollout-2026-10-30T16-11-24-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a18c14-02b0-7392-b230-97577d4ddc19.jsonl",
+      "time": "2026-10-30T14:27:53.028Z",
+      "kind": "recovered-complete-command-read",
+      "sha256": "49e9822f4a98e712fa48d8b7b18baa033fe749ee2216dc5069ec87addbe0a05f",
+      "subsequentlyModified": true
+    }
+  },
+  "folderCleanup": {
+    "activeCodeFolder": "/Users/ariardianto/Documents/ForgeKIT/CODE",
+    "oldRecoveryMovedToTrash": "/Users/ariardianto/.Trash/PEMULIHAN_2026-10-30",
+    "verifiedSourceFiles": 102,
+    "sourceFilesChanged": false
+  },
+  "postRecoveryChanges": [
+    {
+      "task": "Prompt layout cleanup, 2026-10-30",
+      "files": [
+        {
+          "path": "apps/desktop/src/features/creators3d/Model3dPage.tsx",
+          "sha256": "159bb15a872d9aacc008681e957a16148a6a46ad7d64fe0dbf828f7910716415"
+        },
+        {
+          "path": "apps/desktop/src/features/create/ThreeViewport.tsx",
+          "sha256": "2ad887c4324d309ada2d295996b7bcc7bac7b133fb91292ae57edfba9a94da04"
+        },
+        {
+          "path": "apps/desktop/src/features/create/CreativeControls.tsx",
+          "sha256": "790717da19809daad4445fa0130b41fecd4cee9ced83e0e3e4403fa534eba154"
+        },
+        {
+          "path": "apps/desktop/src/features/shared/EditorAiPromptBar.tsx",
+          "sha256": "d9ceca1217b9d3799aac71869524df40f17d13c6b3f945771e3c256bdc59d359"
+        },
+        {
+          "path": "apps/desktop/src/features/chat/ChatPage.tsx",
+          "sha256": "f587937c074978affcd0f5ee2980fe1e0cbef5b669c4897d3bf9d727eab8aecd"
+        },
+        {
+          "path": "apps/desktop/src/app/workspace-layout.css",
+          "sha256": "d3f2699d11d7a2eec23403f4e58ff0f4797b29419c07b6a063d6b4ed63aff834"
+        },
+        {
+          "path": "scripts/verify_prompt_layout.cjs",
+          "sha256": "287bc66efd5796cf7586def10d5b9a6ac8325db95ff51ba7626ee48162ee1ac4"
+        }
+      ],
+      "verificationReport": "docs/PROMPT_LAYOUT_2026_10_30.json",
+      "deployed": false
+    }
+  ]
+}

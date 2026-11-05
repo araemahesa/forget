@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-cancel-gfx-task"
+description = "Enables the cancel_gfx_task command without any pre-configured scope."
+commands.allow = ["cancel_gfx_task"]
+
+[[permission]]
+identifier = "deny-cancel-gfx-task"
+description = "Denies the cancel_gfx_task command without any pre-configured scope."
+commands.deny = ["cancel_gfx_task"]

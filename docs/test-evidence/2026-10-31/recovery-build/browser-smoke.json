@@ -1,0 +1,1057 @@
+{
+  "ok": true,
+  "context": "Production frontend in Chrome, no mocked IPC. Native-required states expected. Does not verify native IPC/provider/Studio.",
+  "cases": [
+    {
+      "route": "chat",
+      "width": 1920,
+      "height": 1080,
+      "scrollWidth": 1920,
+      "title": "AI Chat",
+      "composers": [
+        {
+          "width": 1797.921875,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nAI Chat\nStudio belum terhubung\nPilih provider\nAI Chat\nRuang untuk ide berikutnya\n\nRUANG KREASI FORGEKIT\n\nApa yang ingin kamu buat\natau ubah di map ini?\n\nTulis tujuanmu. ForgeKit membaca konteks, memilih tools, lalu mengerjakannya.\n\nPilih provider\n01\nJelaskan struktur map ini dan scri"
+    },
+    {
+      "route": "create/model-3d",
+      "width": 1920,
+      "height": 1080,
+      "scrollWidth": 1920,
+      "title": "Model 3D",
+      "composers": [
+        {
+          "width": 304,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nModel 3D\nStudio belum terhubung\nPilih provider\nModel 3D\n\nBuat bentuk dari prompt dan referensi, lalu periksa hasil Blender. Unit: stud, sumbu Y ke atas.\n\nBlender belum terdeteksi\nPeriksa\nBrief kreatif\n\nMulai dari ide, lanjutkan menjadi karya.\n\nApa yang ingin dibuat?\nTambahkan referen"
+    },
+    {
+      "route": "create/animation",
+      "width": 1920,
+      "height": 1080,
+      "scrollWidth": 1920,
+      "title": "Animasi",
+      "composers": [
+        {
+          "width": 304,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nAnimasi\nStudio belum terhubung\nPilih provider\nAnimasi\n\nBuat gerakan dari prompt, periksa pose dan putar animasi pada rig Roblox R6/R15.\n\nMesh & Motor6D Roblox\nBrief kreatif\n\nMulai dari ide, lanjutkan menjadi karya.\n\nApa yang ingin dibuat?\nTambahkan referensi\n0/3\nFormat & batas lampir"
+    },
+    {
+      "route": "create/vfx",
+      "width": 1920,
+      "height": 1080,
+      "scrollWidth": 1920,
+      "title": "Efek Visual",
+      "composers": [
+        {
+          "width": 304,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nEfek Visual\nStudio belum terhubung\nPilih provider\nEfek Visual (VFX)\n\nPrompt menjadi konfigurasi emitter partikel, beam, dan trail dinamis untuk Roblox Studio.\n\nPartikel, beam & trail 3D\nBrief kreatif\n\nMulai dari ide, lanjutkan menjadi karya.\n\nApa yang ingin dibuat?\nTambahkan referens"
+    },
+    {
+      "route": "create/visual",
+      "width": 1920,
+      "height": 1080,
+      "scrollWidth": 1920,
+      "title": "Desain Visual",
+      "composers": [],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nDesain Visual\nStudio belum terhubung\nPilih provider\nDesain Visual\nJenis output\nGFX\nGFX Creator\nVISUAL STUDIO\n\nRuang untuk komposisi yang punya cerita.\n\nBelum disimpan\nEditor\nVersi\n0\nRender\nSimpan versi\nEkspor SVG\nEkspor PNG\nTerapkan ke Studio\nPenerapan belum tersedia: aset visual mem"
+    },
+    {
+      "route": "create/visual?mode=thumbnail",
+      "width": 1920,
+      "height": 1080,
+      "scrollWidth": 1920,
+      "title": "Desain Visual",
+      "composers": [],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nDesain Visual\nStudio belum terhubung\nPilih provider\nDesain Visual\nJenis output\nThumbnail\nGFX Creator\nVISUAL STUDIO\n\nRuang untuk komposisi yang punya cerita.\n\nBelum disimpan\nEditor\nVersi\n0\nRender\nSimpan versi\nEkspor SVG\nEkspor PNG\nTerapkan ke Studio\nPenerapan belum tersedia: aset visu"
+    },
+    {
+      "route": "create/visual?mode=icon",
+      "width": 1920,
+      "height": 1080,
+      "scrollWidth": 1920,
+      "title": "Desain Visual",
+      "composers": [],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nDesain Visual\nStudio belum terhubung\nPilih provider\nDesain Visual\nJenis output\nIkon\nGenerator Ikon\nGAME UI STUDIO\n\nIkon game Roblox seragam, tajam, dan siap pakai untuk inventory dan action bar.\n\nBelum disimpan\nEditor\nRender\nSimpan versi\nSalin SVG\nEkspor SVG\nEkspor PNG\nTerapkan ke St"
+    },
+    {
+      "route": "create/visual?mode=clothing",
+      "width": 1920,
+      "height": 1080,
+      "scrollWidth": 1920,
+      "title": "Desain Visual",
+      "composers": [],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nDesain Visual\nStudio belum terhubung\nPilih provider\nDesain Visual\nJenis output\nPakaian klasik\nDesainer Pakaian\nROBLOX CLOTHING STUDIO\n\nRancang kemeja, celana, dan kaos grafis dengan template 585×559 dan grafis 512×512. Pemetaan Studio belum diuji.\n\nBelum disimpan\nEditor\nRender\nSimpan"
+    },
+    {
+      "route": "create/audio",
+      "width": 1920,
+      "height": 1080,
+      "scrollWidth": 1920,
+      "title": "Audio",
+      "composers": [],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nAudio\nStudio belum terhubung\nPilih provider\nAudio\nJenis output\nEfek suara\nGenerator Efek Suara\nDSP AUDIO SYNTHESIS\n\nSintesis suara retro, laser, koin, ledakan, dan langkah kaki langsung ke format audio WAV.\n\nBelum disimpan\nEditor\nSintesis\nSimpan versi\nSalin Resep\nEkspor WAV\nTerapkan "
+    },
+    {
+      "route": "create/audio?mode=music",
+      "width": 1920,
+      "height": 1080,
+      "scrollWidth": 1920,
+      "title": "Audio",
+      "composers": [
+        {
+          "width": 304,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nAudio\nStudio belum terhubung\nPilih provider\nAudio\nJenis output\nMusik\nMusik\n\nPrompt menjadi partitur dengan sintesis instrumen lokal, waveform, playback dan ekspor WAV.\n\nSynth lokal, bukan rekaman orkestra\nBrief kreatif\n\nMulai dari ide, lanjutkan menjadi karya.\n\nApa yang ingin dibuat?"
+    },
+    {
+      "route": "create/cutscene",
+      "width": 1920,
+      "height": 1080,
+      "scrollWidth": 1920,
+      "title": "Cutscene",
+      "composers": [
+        {
+          "width": 304,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nCutscene\nStudio belum terhubung\nPilih provider\nCutscene\n\nPrompt menjadi lintasan kamera dengan playback posisi, orientasi, FOV dan easing.\n\nScene referensi lokal\nBrief kreatif\n\nMulai dari ide, lanjutkan menjadi karya.\n\nApa yang ingin dibuat?\nTambahkan referensi\n0/3\nFormat & batas lam"
+    },
+    {
+      "route": "create/interface",
+      "width": 1920,
+      "height": 1080,
+      "scrollWidth": 1920,
+      "title": "Antarmuka Game",
+      "composers": [
+        {
+          "width": 304,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nAntarmuka Game\nStudio belum terhubung\nPilih provider\nAntarmuka Game (GUI)\n\nPrompt menjadi ScreenGui responsif dengan hierarki UDim2 untuk desktop, ponsel, dan tablet.\n\nRoblox ScreenGui: Prosedural\nBrief kreatif\n\nMulai dari ide, lanjutkan menjadi karya.\n\nApa yang ingin dibuat?\nTambahk"
+    },
+    {
+      "route": "create/npc",
+      "width": 1920,
+      "height": 1080,
+      "scrollWidth": 1920,
+      "title": "Karakter & Dialog",
+      "composers": [
+        {
+          "width": 304,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nKarakter & Dialog\nStudio belum terhubung\nPilih provider\nKarakter & Dialog (NPC)\n\nPrompt menjadi graf percakapan bercabang dan skrip dialog interaktif untuk Roblox Studio.\n\nRig Roblox R15 · Dialog bercabang\nBrief kreatif\n\nMulai dari ide, lanjutkan menjadi karya.\n\nApa yang ingin dibuat"
+    },
+    {
+      "route": "create/sky",
+      "width": 1920,
+      "height": 1080,
+      "scrollWidth": 1920,
+      "title": "Langit & Atmosfer",
+      "composers": [
+        {
+          "width": 318,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nLangit & Atmosfer\nStudio belum terhubung\nPilih provider\nGenerator Langit\n\nPrompt menjadi ilustrasi langit enam sisi dan parameter pencahayaan. Revisi dan versi tersimpan bersama task.\n\nDraf belum disimpan\nRender\nSimpan versi\nSalin Skrip Luau\nEkspor Jaring (SVG)\nEkspor 6 Sisi\nTerapkan"
+    },
+    {
+      "route": "settings",
+      "width": 1920,
+      "height": 1080,
+      "scrollWidth": 1920,
+      "title": "Pengaturan",
+      "composers": [],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nPengaturan\nPilih provider\n\nFORGEKIT STUDIO\n\nPengaturan\n\nAkun, provider, koneksi, dan karya pada perangkat ini.\n\nAkun Discord\nProfil percakapan\n\nBelum tersambung\n\nLanjutkan dengan Discord\n\nPenyimpanan lokal memerlukan aplikasi desktop ForgeKit Studio.\n\nKonfigurasi Discord · diperlukan"
+    },
+    {
+      "route": "chat",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1440,
+      "title": "AI Chat",
+      "composers": [
+        {
+          "width": 1329.453125,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nAI Chat\nStudio belum terhubung\nPilih provider\nAI Chat\nRuang untuk ide berikutnya\n\nRUANG KREASI FORGEKIT\n\nApa yang ingin kamu buat\natau ubah di map ini?\n\nTulis tujuanmu. ForgeKit membaca konteks, memilih tools, lalu mengerjakannya.\n\nPilih provider\n01\nJelaskan struktur map ini dan scri"
+    },
+    {
+      "route": "create/model-3d",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1440,
+      "title": "Model 3D",
+      "composers": [
+        {
+          "width": 282,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nModel 3D\nStudio belum terhubung\nPilih provider\nModel 3D\n\nBuat bentuk dari prompt dan referensi, lalu periksa hasil Blender. Unit: stud, sumbu Y ke atas.\n\nBlender belum terdeteksi\nPeriksa\nBrief kreatif\n\nMulai dari ide, lanjutkan menjadi karya.\n\nApa yang ingin dibuat?\nTambahkan referen"
+    },
+    {
+      "route": "create/animation",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1440,
+      "title": "Animasi",
+      "composers": [
+        {
+          "width": 282,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nAnimasi\nStudio belum terhubung\nPilih provider\nAnimasi\n\nBuat gerakan dari prompt, periksa pose dan putar animasi pada rig Roblox R6/R15.\n\nMesh & Motor6D Roblox\nBrief kreatif\n\nMulai dari ide, lanjutkan menjadi karya.\n\nApa yang ingin dibuat?\nTambahkan referensi\n0/3\nFormat & batas lampir"
+    },
+    {
+      "route": "create/vfx",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1440,
+      "title": "Efek Visual",
+      "composers": [
+        {
+          "width": 282,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nEfek Visual\nStudio belum terhubung\nPilih provider\nEfek Visual (VFX)\n\nPrompt menjadi konfigurasi emitter partikel, beam, dan trail dinamis untuk Roblox Studio.\n\nPartikel, beam & trail 3D\nBrief kreatif\n\nMulai dari ide, lanjutkan menjadi karya.\n\nApa yang ingin dibuat?\nTambahkan referens"
+    },
+    {
+      "route": "create/visual",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1440,
+      "title": "Desain Visual",
+      "composers": [],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nDesain Visual\nStudio belum terhubung\nPilih provider\nDesain Visual\nJenis output\nGFX\nGFX Creator\nVISUAL STUDIO\n\nRuang untuk komposisi yang punya cerita.\n\nBelum disimpan\nEditor\nVersi\n0\nRender\nSimpan versi\nEkspor SVG\nEkspor PNG\nTerapkan ke Studio\nPenerapan belum tersedia: aset visual mem"
+    },
+    {
+      "route": "create/visual?mode=thumbnail",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1440,
+      "title": "Desain Visual",
+      "composers": [],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nDesain Visual\nStudio belum terhubung\nPilih provider\nDesain Visual\nJenis output\nThumbnail\nGFX Creator\nVISUAL STUDIO\n\nRuang untuk komposisi yang punya cerita.\n\nBelum disimpan\nEditor\nVersi\n0\nRender\nSimpan versi\nEkspor SVG\nEkspor PNG\nTerapkan ke Studio\nPenerapan belum tersedia: aset visu"
+    },
+    {
+      "route": "create/visual?mode=icon",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1440,
+      "title": "Desain Visual",
+      "composers": [],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nDesain Visual\nStudio belum terhubung\nPilih provider\nDesain Visual\nJenis output\nIkon\nGenerator Ikon\nGAME UI STUDIO\n\nIkon game Roblox seragam, tajam, dan siap pakai untuk inventory dan action bar.\n\nBelum disimpan\nEditor\nRender\nSimpan versi\nSalin SVG\nEkspor SVG\nEkspor PNG\nTerapkan ke St"
+    },
+    {
+      "route": "create/visual?mode=clothing",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1440,
+      "title": "Desain Visual",
+      "composers": [],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nDesain Visual\nStudio belum terhubung\nPilih provider\nDesain Visual\nJenis output\nPakaian klasik\nDesainer Pakaian\nROBLOX CLOTHING STUDIO\n\nRancang kemeja, celana, dan kaos grafis dengan template 585×559 dan grafis 512×512. Pemetaan Studio belum diuji.\n\nBelum disimpan\nEditor\nRender\nSimpan"
+    },
+    {
+      "route": "create/audio",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1440,
+      "title": "Audio",
+      "composers": [],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nAudio\nStudio belum terhubung\nPilih provider\nAudio\nJenis output\nEfek suara\nGenerator Efek Suara\nDSP AUDIO SYNTHESIS\n\nSintesis suara retro, laser, koin, ledakan, dan langkah kaki langsung ke format audio WAV.\n\nBelum disimpan\nEditor\nSintesis\nSimpan versi\nSalin Resep\nEkspor WAV\nTerapkan "
+    },
+    {
+      "route": "create/audio?mode=music",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1440,
+      "title": "Audio",
+      "composers": [
+        {
+          "width": 282,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nAudio\nStudio belum terhubung\nPilih provider\nAudio\nJenis output\nMusik\nMusik\n\nPrompt menjadi partitur dengan sintesis instrumen lokal, waveform, playback dan ekspor WAV.\n\nSynth lokal, bukan rekaman orkestra\nBrief kreatif\n\nMulai dari ide, lanjutkan menjadi karya.\n\nApa yang ingin dibuat?"
+    },
+    {
+      "route": "create/cutscene",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1440,
+      "title": "Cutscene",
+      "composers": [
+        {
+          "width": 282,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nCutscene\nStudio belum terhubung\nPilih provider\nCutscene\n\nPrompt menjadi lintasan kamera dengan playback posisi, orientasi, FOV dan easing.\n\nScene referensi lokal\nBrief kreatif\n\nMulai dari ide, lanjutkan menjadi karya.\n\nApa yang ingin dibuat?\nTambahkan referensi\n0/3\nFormat & batas lam"
+    },
+    {
+      "route": "create/interface",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1440,
+      "title": "Antarmuka Game",
+      "composers": [
+        {
+          "width": 282,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nAntarmuka Game\nStudio belum terhubung\nPilih provider\nAntarmuka Game (GUI)\n\nPrompt menjadi ScreenGui responsif dengan hierarki UDim2 untuk desktop, ponsel, dan tablet.\n\nRoblox ScreenGui: Prosedural\nBrief kreatif\n\nMulai dari ide, lanjutkan menjadi karya.\n\nApa yang ingin dibuat?\nTambahk"
+    },
+    {
+      "route": "create/npc",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1440,
+      "title": "Karakter & Dialog",
+      "composers": [
+        {
+          "width": 282,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nKarakter & Dialog\nStudio belum terhubung\nPilih provider\nKarakter & Dialog (NPC)\n\nPrompt menjadi graf percakapan bercabang dan skrip dialog interaktif untuk Roblox Studio.\n\nRig Roblox R15 · Dialog bercabang\nBrief kreatif\n\nMulai dari ide, lanjutkan menjadi karya.\n\nApa yang ingin dibuat"
+    },
+    {
+      "route": "create/sky",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1440,
+      "title": "Langit & Atmosfer",
+      "composers": [
+        {
+          "width": 318,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nLangit & Atmosfer\nStudio belum terhubung\nPilih provider\nGenerator Langit\n\nPrompt menjadi ilustrasi langit enam sisi dan parameter pencahayaan. Revisi dan versi tersimpan bersama task.\n\nDraf belum disimpan\nRender\nSimpan versi\nSalin Skrip Luau\nEkspor Jaring (SVG)\nEkspor 6 Sisi\nTerapkan"
+    },
+    {
+      "route": "settings",
+      "width": 1440,
+      "height": 900,
+      "scrollWidth": 1440,
+      "title": "Pengaturan",
+      "composers": [],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nPengaturan\nPilih provider\n\nFORGEKIT STUDIO\n\nPengaturan\n\nAkun, provider, koneksi, dan karya pada perangkat ini.\n\nAkun Discord\nProfil percakapan\n\nBelum tersambung\n\nLanjutkan dengan Discord\n\nPenyimpanan lokal memerlukan aplikasi desktop ForgeKit Studio.\n\nKonfigurasi Discord · diperlukan"
+    },
+    {
+      "route": "chat",
+      "width": 1280,
+      "height": 800,
+      "scrollWidth": 1280,
+      "title": "AI Chat",
+      "composers": [
+        {
+          "width": 1173.28125,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nAI Chat\nStudio belum terhubung\nPilih provider\nAI Chat\nRuang untuk ide berikutnya\n\nRUANG KREASI FORGEKIT\n\nApa yang ingin kamu buat\natau ubah di map ini?\n\nTulis tujuanmu. ForgeKit membaca konteks, memilih tools, lalu mengerjakannya.\n\nPilih provider\n01\nJelaskan struktur map ini dan scri"
+    },
+    {
+      "route": "create/model-3d",
+      "width": 1280,
+      "height": 800,
+      "scrollWidth": 1280,
+      "title": "Model 3D",
+      "composers": [
+        {
+          "width": 282,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nModel 3D\nStudio belum terhubung\nPilih provider\nModel 3D\n\nBuat bentuk dari prompt dan referensi, lalu periksa hasil Blender. Unit: stud, sumbu Y ke atas.\n\nBlender belum terdeteksi\nPeriksa\nBrief kreatif\n\nMulai dari ide, lanjutkan menjadi karya.\n\nApa yang ingin dibuat?\nTambahkan referen"
+    },
+    {
+      "route": "create/animation",
+      "width": 1280,
+      "height": 800,
+      "scrollWidth": 1280,
+      "title": "Animasi",
+      "composers": [
+        {
+          "width": 282,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nAnimasi\nStudio belum terhubung\nPilih provider\nAnimasi\n\nBuat gerakan dari prompt, periksa pose dan putar animasi pada rig Roblox R6/R15.\n\nMesh & Motor6D Roblox\nBrief kreatif\n\nMulai dari ide, lanjutkan menjadi karya.\n\nApa yang ingin dibuat?\nTambahkan referensi\n0/3\nFormat & batas lampir"
+    },
+    {
+      "route": "create/vfx",
+      "width": 1280,
+      "height": 800,
+      "scrollWidth": 1280,
+      "title": "Efek Visual",
+      "composers": [
+        {
+          "width": 282,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nEfek Visual\nStudio belum terhubung\nPilih provider\nEfek Visual (VFX)\n\nPrompt menjadi konfigurasi emitter partikel, beam, dan trail dinamis untuk Roblox Studio.\n\nPartikel, beam & trail 3D\nBrief kreatif\n\nMulai dari ide, lanjutkan menjadi karya.\n\nApa yang ingin dibuat?\nTambahkan referens"
+    },
+    {
+      "route": "create/visual",
+      "width": 1280,
+      "height": 800,
+      "scrollWidth": 1280,
+      "title": "Desain Visual",
+      "composers": [],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nDesain Visual\nStudio belum terhubung\nPilih provider\nDesain Visual\nJenis output\nGFX\nGFX Creator\nVISUAL STUDIO\n\nRuang untuk komposisi yang punya cerita.\n\nBelum disimpan\nEditor\nVersi\n0\nRender\nSimpan versi\nEkspor SVG\nEkspor PNG\nTerapkan ke Studio\nPenerapan belum tersedia: aset visual mem"
+    },
+    {
+      "route": "create/visual?mode=thumbnail",
+      "width": 1280,
+      "height": 800,
+      "scrollWidth": 1280,
+      "title": "Desain Visual",
+      "composers": [],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nDesain Visual\nStudio belum terhubung\nPilih provider\nDesain Visual\nJenis output\nThumbnail\nGFX Creator\nVISUAL STUDIO\n\nRuang untuk komposisi yang punya cerita.\n\nBelum disimpan\nEditor\nVersi\n0\nRender\nSimpan versi\nEkspor SVG\nEkspor PNG\nTerapkan ke Studio\nPenerapan belum tersedia: aset visu"
+    },
+    {
+      "route": "create/visual?mode=icon",
+      "width": 1280,
+      "height": 800,
+      "scrollWidth": 1280,
+      "title": "Desain Visual",
+      "composers": [],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nDesain Visual\nStudio belum terhubung\nPilih provider\nDesain Visual\nJenis output\nIkon\nGenerator Ikon\nGAME UI STUDIO\n\nIkon game Roblox seragam, tajam, dan siap pakai untuk inventory dan action bar.\n\nBelum disimpan\nEditor\nRender\nSimpan versi\nSalin SVG\nEkspor SVG\nEkspor PNG\nTerapkan ke St"
+    },
+    {
+      "route": "create/visual?mode=clothing",
+      "width": 1280,
+      "height": 800,
+      "scrollWidth": 1280,
+      "title": "Desain Visual",
+      "composers": [],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nDesain Visual\nStudio belum terhubung\nPilih provider\nDesain Visual\nJenis output\nPakaian klasik\nDesainer Pakaian\nROBLOX CLOTHING STUDIO\n\nRancang kemeja, celana, dan kaos grafis dengan template 585×559 dan grafis 512×512. Pemetaan Studio belum diuji.\n\nBelum disimpan\nEditor\nRender\nSimpan"
+    },
+    {
+      "route": "create/audio",
+      "width": 1280,
+      "height": 800,
+      "scrollWidth": 1280,
+      "title": "Audio",
+      "composers": [],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nAudio\nStudio belum terhubung\nPilih provider\nAudio\nJenis output\nEfek suara\nGenerator Efek Suara\nDSP AUDIO SYNTHESIS\n\nSintesis suara retro, laser, koin, ledakan, dan langkah kaki langsung ke format audio WAV.\n\nBelum disimpan\nEditor\nSintesis\nSimpan versi\nSalin Resep\nEkspor WAV\nTerapkan "
+    },
+    {
+      "route": "create/audio?mode=music",
+      "width": 1280,
+      "height": 800,
+      "scrollWidth": 1280,
+      "title": "Audio",
+      "composers": [
+        {
+          "width": 282,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nAudio\nStudio belum terhubung\nPilih provider\nAudio\nJenis output\nMusik\nMusik\n\nPrompt menjadi partitur dengan sintesis instrumen lokal, waveform, playback dan ekspor WAV.\n\nSynth lokal, bukan rekaman orkestra\nBrief kreatif\n\nMulai dari ide, lanjutkan menjadi karya.\n\nApa yang ingin dibuat?"
+    },
+    {
+      "route": "create/cutscene",
+      "width": 1280,
+      "height": 800,
+      "scrollWidth": 1280,
+      "title": "Cutscene",
+      "composers": [
+        {
+          "width": 282,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nCutscene\nStudio belum terhubung\nPilih provider\nCutscene\n\nPrompt menjadi lintasan kamera dengan playback posisi, orientasi, FOV dan easing.\n\nScene referensi lokal\nBrief kreatif\n\nMulai dari ide, lanjutkan menjadi karya.\n\nApa yang ingin dibuat?\nTambahkan referensi\n0/3\nFormat & batas lam"
+    },
+    {
+      "route": "create/interface",
+      "width": 1280,
+      "height": 800,
+      "scrollWidth": 1280,
+      "title": "Antarmuka Game",
+      "composers": [
+        {
+          "width": 282,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nAntarmuka Game\nStudio belum terhubung\nPilih provider\nAntarmuka Game (GUI)\n\nPrompt menjadi ScreenGui responsif dengan hierarki UDim2 untuk desktop, ponsel, dan tablet.\n\nRoblox ScreenGui: Prosedural\nBrief kreatif\n\nMulai dari ide, lanjutkan menjadi karya.\n\nApa yang ingin dibuat?\nTambahk"
+    },
+    {
+      "route": "create/npc",
+      "width": 1280,
+      "height": 800,
+      "scrollWidth": 1280,
+      "title": "Karakter & Dialog",
+      "composers": [
+        {
+          "width": 282,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nKarakter & Dialog\nStudio belum terhubung\nPilih provider\nKarakter & Dialog (NPC)\n\nPrompt menjadi graf percakapan bercabang dan skrip dialog interaktif untuk Roblox Studio.\n\nRig Roblox R15 · Dialog bercabang\nBrief kreatif\n\nMulai dari ide, lanjutkan menjadi karya.\n\nApa yang ingin dibuat"
+    },
+    {
+      "route": "create/sky",
+      "width": 1280,
+      "height": 800,
+      "scrollWidth": 1280,
+      "title": "Langit & Atmosfer",
+      "composers": [
+        {
+          "width": 318,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nLangit & Atmosfer\nStudio belum terhubung\nPilih provider\nGenerator Langit\n\nPrompt menjadi ilustrasi langit enam sisi dan parameter pencahayaan. Revisi dan versi tersimpan bersama task.\n\nDraf belum disimpan\nRender\nSimpan versi\nSalin Skrip Luau\nEkspor Jaring (SVG)\nEkspor 6 Sisi\nTerapkan"
+    },
+    {
+      "route": "settings",
+      "width": 1280,
+      "height": 800,
+      "scrollWidth": 1280,
+      "title": "Pengaturan",
+      "composers": [],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nPengaturan\nPilih provider\n\nFORGEKIT STUDIO\n\nPengaturan\n\nAkun, provider, koneksi, dan karya pada perangkat ini.\n\nAkun Discord\nProfil percakapan\n\nBelum tersambung\n\nLanjutkan dengan Discord\n\nPenyimpanan lokal memerlukan aplikasi desktop ForgeKit Studio.\n\nKonfigurasi Discord · diperlukan"
+    },
+    {
+      "route": "chat",
+      "width": 1024,
+      "height": 700,
+      "scrollWidth": 1024,
+      "title": "AI Chat",
+      "composers": [
+        {
+          "width": 934,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nAI Chat\nStudio belum terhubung\nPilih provider\nAI Chat\nRuang untuk ide berikutnya\n\nRUANG KREASI FORGEKIT\n\nApa yang ingin kamu buat\natau ubah di map ini?\n\nTulis tujuanmu. ForgeKit membaca konteks, memilih tools, lalu mengerjakannya.\n\nPilih provider\n01\nJelaskan struktur map ini dan scri"
+    },
+    {
+      "route": "create/model-3d",
+      "width": 1024,
+      "height": 700,
+      "scrollWidth": 1024,
+      "title": "Model 3D",
+      "composers": [
+        {
+          "width": 242,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nModel 3D\nStudio belum terhubung\nPilih provider\nModel 3D\n\nBuat bentuk dari prompt dan referensi, lalu periksa hasil Blender. Unit: stud, sumbu Y ke atas.\n\nBlender belum terdeteksi\nPeriksa\nBrief kreatif\n\nMulai dari ide, lanjutkan menjadi karya.\n\nApa yang ingin dibuat?\nTambahkan referen"
+    },
+    {
+      "route": "create/animation",
+      "width": 1024,
+      "height": 700,
+      "scrollWidth": 1024,
+      "title": "Animasi",
+      "composers": [
+        {
+          "width": 242,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nAnimasi\nStudio belum terhubung\nPilih provider\nAnimasi\n\nBuat gerakan dari prompt, periksa pose dan putar animasi pada rig Roblox R6/R15.\n\nMesh & Motor6D Roblox\nBrief kreatif\n\nMulai dari ide, lanjutkan menjadi karya.\n\nApa yang ingin dibuat?\nTambahkan referensi\n0/3\nFormat & batas lampir"
+    },
+    {
+      "route": "create/vfx",
+      "width": 1024,
+      "height": 700,
+      "scrollWidth": 1024,
+      "title": "Efek Visual",
+      "composers": [
+        {
+          "width": 242,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nEfek Visual\nStudio belum terhubung\nPilih provider\nEfek Visual (VFX)\n\nPrompt menjadi konfigurasi emitter partikel, beam, dan trail dinamis untuk Roblox Studio.\n\nPartikel, beam & trail 3D\nBrief kreatif\n\nMulai dari ide, lanjutkan menjadi karya.\n\nApa yang ingin dibuat?\nTambahkan referens"
+    },
+    {
+      "route": "create/visual",
+      "width": 1024,
+      "height": 700,
+      "scrollWidth": 1024,
+      "title": "Desain Visual",
+      "composers": [],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nDesain Visual\nStudio belum terhubung\nPilih provider\nDesain Visual\nJenis output\nGFX\nGFX Creator\n\nRuang untuk komposisi yang punya cerita.\n\nBelum disimpan\nEditor\nVersi\n0\nRender\nSimpan versi\nEkspor SVG\nEkspor PNG\nTerapkan ke Studio\nPenerapan belum tersedia: aset visual memerlukan upload"
+    },
+    {
+      "route": "create/visual?mode=thumbnail",
+      "width": 1024,
+      "height": 700,
+      "scrollWidth": 1024,
+      "title": "Desain Visual",
+      "composers": [],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nDesain Visual\nStudio belum terhubung\nPilih provider\nDesain Visual\nJenis output\nThumbnail\nGFX Creator\n\nRuang untuk komposisi yang punya cerita.\n\nBelum disimpan\nEditor\nVersi\n0\nRender\nSimpan versi\nEkspor SVG\nEkspor PNG\nTerapkan ke Studio\nPenerapan belum tersedia: aset visual memerlukan "
+    },
+    {
+      "route": "create/visual?mode=icon",
+      "width": 1024,
+      "height": 700,
+      "scrollWidth": 1024,
+      "title": "Desain Visual",
+      "composers": [],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nDesain Visual\nStudio belum terhubung\nPilih provider\nDesain Visual\nJenis output\nIkon\nGenerator Ikon\n\nIkon game Roblox seragam, tajam, dan siap pakai untuk inventory dan action bar.\n\nBelum disimpan\nEditor\nRender\nSimpan versi\nSalin SVG\nEkspor SVG\nEkspor PNG\nTerapkan ke Studio\nPenerapan "
+    },
+    {
+      "route": "create/visual?mode=clothing",
+      "width": 1024,
+      "height": 700,
+      "scrollWidth": 1024,
+      "title": "Desain Visual",
+      "composers": [],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nDesain Visual\nStudio belum terhubung\nPilih provider\nDesain Visual\nJenis output\nPakaian klasik\nDesainer Pakaian\n\nRancang kemeja, celana, dan kaos grafis dengan template 585×559 dan grafis 512×512. Pemetaan Studio belum diuji.\n\nBelum disimpan\nEditor\nRender\nSimpan versi\nSalin SVG\nEkspor"
+    },
+    {
+      "route": "create/audio",
+      "width": 1024,
+      "height": 700,
+      "scrollWidth": 1024,
+      "title": "Audio",
+      "composers": [],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nAudio\nStudio belum terhubung\nPilih provider\nAudio\nJenis output\nEfek suara\nGenerator Efek Suara\n\nSintesis suara retro, laser, koin, ledakan, dan langkah kaki langsung ke format audio WAV.\n\nBelum disimpan\nEditor\nSintesis\nSimpan versi\nSalin Resep\nEkspor WAV\nTerapkan ke Studio\nPenerapan "
+    },
+    {
+      "route": "create/audio?mode=music",
+      "width": 1024,
+      "height": 700,
+      "scrollWidth": 1024,
+      "title": "Audio",
+      "composers": [
+        {
+          "width": 242,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nAudio\nStudio belum terhubung\nPilih provider\nAudio\nJenis output\nMusik\nMusik\n\nPrompt menjadi partitur dengan sintesis instrumen lokal, waveform, playback dan ekspor WAV.\n\nSynth lokal, bukan rekaman orkestra\nBrief kreatif\n\nMulai dari ide, lanjutkan menjadi karya.\n\nApa yang ingin dibuat?"
+    },
+    {
+      "route": "create/cutscene",
+      "width": 1024,
+      "height": 700,
+      "scrollWidth": 1024,
+      "title": "Cutscene",
+      "composers": [
+        {
+          "width": 242,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nCutscene\nStudio belum terhubung\nPilih provider\nCutscene\n\nPrompt menjadi lintasan kamera dengan playback posisi, orientasi, FOV dan easing.\n\nScene referensi lokal\nBrief kreatif\n\nMulai dari ide, lanjutkan menjadi karya.\n\nApa yang ingin dibuat?\nTambahkan referensi\n0/3\nFormat & batas lam"
+    },
+    {
+      "route": "create/interface",
+      "width": 1024,
+      "height": 700,
+      "scrollWidth": 1024,
+      "title": "Antarmuka Game",
+      "composers": [
+        {
+          "width": 242,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nAntarmuka Game\nStudio belum terhubung\nPilih provider\nAntarmuka Game (GUI)\n\nPrompt menjadi ScreenGui responsif dengan hierarki UDim2 untuk desktop, ponsel, dan tablet.\n\nRoblox ScreenGui: Prosedural\nBrief kreatif\n\nMulai dari ide, lanjutkan menjadi karya.\n\nApa yang ingin dibuat?\nTambahk"
+    },
+    {
+      "route": "create/npc",
+      "width": 1024,
+      "height": 700,
+      "scrollWidth": 1024,
+      "title": "Karakter & Dialog",
+      "composers": [
+        {
+          "width": 242,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nKarakter & Dialog\nStudio belum terhubung\nPilih provider\nKarakter & Dialog (NPC)\n\nPrompt menjadi graf percakapan bercabang dan skrip dialog interaktif untuk Roblox Studio.\n\nRig Roblox R15 · Dialog bercabang\nBrief kreatif\n\nMulai dari ide, lanjutkan menjadi karya.\n\nApa yang ingin dibuat"
+    },
+    {
+      "route": "create/sky",
+      "width": 1024,
+      "height": 700,
+      "scrollWidth": 1024,
+      "title": "Langit & Atmosfer",
+      "composers": [
+        {
+          "width": 288,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nLangit & Atmosfer\nStudio belum terhubung\nPilih provider\nGenerator Langit\n\nPrompt menjadi ilustrasi langit enam sisi dan parameter pencahayaan. Revisi dan versi tersimpan bersama task.\n\nDraf belum disimpan\nRender\nSimpan versi\nSalin Skrip Luau\nEkspor Jaring (SVG)\nEkspor 6 Sisi\nTerapkan"
+    },
+    {
+      "route": "settings",
+      "width": 1024,
+      "height": 700,
+      "scrollWidth": 1024,
+      "title": "Pengaturan",
+      "composers": [],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nPengaturan\nPilih provider\n\nFORGEKIT STUDIO\n\nPengaturan\n\nAkun, provider, koneksi, dan karya pada perangkat ini.\n\nAkun Discord\nProfil percakapan\n\nBelum tersambung\n\nLanjutkan dengan Discord\n\nPenyimpanan lokal memerlukan aplikasi desktop ForgeKit Studio.\n\nKonfigurasi Discord · diperlukan"
+    },
+    {
+      "route": "chat",
+      "width": 720,
+      "height": 450,
+      "scrollWidth": 720,
+      "title": "AI Chat",
+      "composers": [
+        {
+          "width": 642,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nAI Chat\nStudio belum terhubung\nPilih provider\nAI Chat\nRuang untuk ide berikutnya\n\nRUANG KREASI FORGEKIT\n\nApa yang ingin kamu buat\natau ubah di map ini?\n\nTulis tujuanmu. ForgeKit membaca konteks, memilih tools, lalu mengerjakannya.\n\nPilih provider\n01\nJelaskan struktur map ini dan scri"
+    },
+    {
+      "route": "create/model-3d",
+      "width": 720,
+      "height": 450,
+      "scrollWidth": 720,
+      "title": "Model 3D",
+      "composers": [
+        {
+          "width": 604,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nModel 3D\nStudio belum terhubung\nPilih provider\nModel 3D\n\nBuat bentuk dari prompt dan referensi, lalu periksa hasil Blender. Unit: stud, sumbu Y ke atas.\n\nBlender belum terdeteksi\nPeriksa\nBrief kreatif\n\nMulai dari ide, lanjutkan menjadi karya.\n\nApa yang ingin dibuat?\nTambahkan referen"
+    },
+    {
+      "route": "create/animation",
+      "width": 720,
+      "height": 450,
+      "scrollWidth": 720,
+      "title": "Animasi",
+      "composers": [
+        {
+          "width": 604,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nAnimasi\nStudio belum terhubung\nPilih provider\nAnimasi\n\nBuat gerakan dari prompt, periksa pose dan putar animasi pada rig Roblox R6/R15.\n\nMesh & Motor6D Roblox\nBrief kreatif\n\nMulai dari ide, lanjutkan menjadi karya.\n\nApa yang ingin dibuat?\nTambahkan referensi\n0/3\nFormat & batas lampir"
+    },
+    {
+      "route": "create/vfx",
+      "width": 720,
+      "height": 450,
+      "scrollWidth": 720,
+      "title": "Efek Visual",
+      "composers": [
+        {
+          "width": 604,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nEfek Visual\nStudio belum terhubung\nPilih provider\nEfek Visual (VFX)\n\nPrompt menjadi konfigurasi emitter partikel, beam, dan trail dinamis untuk Roblox Studio.\n\nPartikel, beam & trail 3D\nBrief kreatif\n\nMulai dari ide, lanjutkan menjadi karya.\n\nApa yang ingin dibuat?\nTambahkan referens"
+    },
+    {
+      "route": "create/visual",
+      "width": 720,
+      "height": 450,
+      "scrollWidth": 720,
+      "title": "Desain Visual",
+      "composers": [],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nDesain Visual\nStudio belum terhubung\nPilih provider\nDesain Visual\nJenis output\nGFX\nGFX Creator\n\nRuang untuk komposisi yang punya cerita.\n\nBelum disimpan\nEditor\nVersi\n0\nRender\nSimpan versi\nEkspor SVG\nEkspor PNG\nTerapkan ke Studio\nPenerapan belum tersedia: aset visual memerlukan upload"
+    },
+    {
+      "route": "create/visual?mode=thumbnail",
+      "width": 720,
+      "height": 450,
+      "scrollWidth": 720,
+      "title": "Desain Visual",
+      "composers": [],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nDesain Visual\nStudio belum terhubung\nPilih provider\nDesain Visual\nJenis output\nThumbnail\nGFX Creator\n\nRuang untuk komposisi yang punya cerita.\n\nBelum disimpan\nEditor\nVersi\n0\nRender\nSimpan versi\nEkspor SVG\nEkspor PNG\nTerapkan ke Studio\nPenerapan belum tersedia: aset visual memerlukan "
+    },
+    {
+      "route": "create/visual?mode=icon",
+      "width": 720,
+      "height": 450,
+      "scrollWidth": 720,
+      "title": "Desain Visual",
+      "composers": [],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nDesain Visual\nStudio belum terhubung\nPilih provider\nDesain Visual\nJenis output\nIkon\nGenerator Ikon\n\nIkon game Roblox seragam, tajam, dan siap pakai untuk inventory dan action bar.\n\nBelum disimpan\nEditor\nRender\nSimpan versi\nSalin SVG\nEkspor SVG\nEkspor PNG\nTerapkan ke Studio\nPenerapan "
+    },
+    {
+      "route": "create/visual?mode=clothing",
+      "width": 720,
+      "height": 450,
+      "scrollWidth": 720,
+      "title": "Desain Visual",
+      "composers": [],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nDesain Visual\nStudio belum terhubung\nPilih provider\nDesain Visual\nJenis output\nPakaian klasik\nDesainer Pakaian\n\nRancang kemeja, celana, dan kaos grafis dengan template 585×559 dan grafis 512×512. Pemetaan Studio belum diuji.\n\nBelum disimpan\nEditor\nRender\nSimpan versi\nSalin SVG\nEkspor"
+    },
+    {
+      "route": "create/audio",
+      "width": 720,
+      "height": 450,
+      "scrollWidth": 720,
+      "title": "Audio",
+      "composers": [],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nAudio\nStudio belum terhubung\nPilih provider\nAudio\nJenis output\nEfek suara\nGenerator Efek Suara\n\nSintesis suara retro, laser, koin, ledakan, dan langkah kaki langsung ke format audio WAV.\n\nBelum disimpan\nEditor\nSintesis\nSimpan versi\nSalin Resep\nEkspor WAV\nTerapkan ke Studio\nPenerapan "
+    },
+    {
+      "route": "create/audio?mode=music",
+      "width": 720,
+      "height": 450,
+      "scrollWidth": 720,
+      "title": "Audio",
+      "composers": [
+        {
+          "width": 604,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nAudio\nStudio belum terhubung\nPilih provider\nAudio\nJenis output\nMusik\nMusik\n\nPrompt menjadi partitur dengan sintesis instrumen lokal, waveform, playback dan ekspor WAV.\n\nSynth lokal, bukan rekaman orkestra\nBrief kreatif\n\nMulai dari ide, lanjutkan menjadi karya.\n\nApa yang ingin dibuat?"
+    },
+    {
+      "route": "create/cutscene",
+      "width": 720,
+      "height": 450,
+      "scrollWidth": 720,
+      "title": "Cutscene",
+      "composers": [
+        {
+          "width": 604,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nCutscene\nStudio belum terhubung\nPilih provider\nCutscene\n\nPrompt menjadi lintasan kamera dengan playback posisi, orientasi, FOV dan easing.\n\nScene referensi lokal\nBrief kreatif\n\nMulai dari ide, lanjutkan menjadi karya.\n\nApa yang ingin dibuat?\nTambahkan referensi\n0/3\nFormat & batas lam"
+    },
+    {
+      "route": "create/interface",
+      "width": 720,
+      "height": 450,
+      "scrollWidth": 720,
+      "title": "Antarmuka Game",
+      "composers": [
+        {
+          "width": 604,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nAntarmuka Game\nStudio belum terhubung\nPilih provider\nAntarmuka Game (GUI)\n\nPrompt menjadi ScreenGui responsif dengan hierarki UDim2 untuk desktop, ponsel, dan tablet.\n\nRoblox ScreenGui: Prosedural\nBrief kreatif\n\nMulai dari ide, lanjutkan menjadi karya.\n\nApa yang ingin dibuat?\nTambahk"
+    },
+    {
+      "route": "create/npc",
+      "width": 720,
+      "height": 450,
+      "scrollWidth": 720,
+      "title": "Karakter & Dialog",
+      "composers": [
+        {
+          "width": 604,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nKarakter & Dialog\nStudio belum terhubung\nPilih provider\nKarakter & Dialog (NPC)\n\nPrompt menjadi graf percakapan bercabang dan skrip dialog interaktif untuk Roblox Studio.\n\nRig Roblox R15 · Dialog bercabang\nBrief kreatif\n\nMulai dari ide, lanjutkan menjadi karya.\n\nApa yang ingin dibuat"
+    },
+    {
+      "route": "create/sky",
+      "width": 720,
+      "height": 450,
+      "scrollWidth": 720,
+      "title": "Langit & Atmosfer",
+      "composers": [
+        {
+          "width": 640,
+          "clipped": []
+        }
+      ],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nLangit & Atmosfer\nStudio belum terhubung\nPilih provider\nGenerator Langit\n\nPrompt menjadi ilustrasi langit enam sisi dan parameter pencahayaan. Revisi dan versi tersimpan bersama task.\n\nDraf belum disimpan\nRender\nSimpan versi\nSalin Skrip Luau\nEkspor Jaring (SVG)\nEkspor 6 Sisi\nTerapkan"
+    },
+    {
+      "route": "settings",
+      "width": 720,
+      "height": 450,
+      "scrollWidth": 720,
+      "title": "Pengaturan",
+      "composers": [],
+      "brokenImages": [],
+      "badStages": 0,
+      "body": "ForgeKit Studio\nPengaturan\nPilih provider\n\nFORGEKIT STUDIO\n\nPengaturan\n\nAkun, provider, koneksi, dan karya pada perangkat ini.\n\nAkun Discord\nProfil percakapan\n\nBelum tersambung\n\nLanjutkan dengan Discord\n\nPenyimpanan lokal memerlukan aplikasi desktop ForgeKit Studio.\n\nKonfigurasi Discord · diperlukan"
+    }
+  ],
+  "errors": []
+}

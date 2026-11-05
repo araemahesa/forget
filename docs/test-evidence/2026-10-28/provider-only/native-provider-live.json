@@ -1,0 +1,55 @@
+{
+  "checks": [
+    {
+      "completed": true,
+      "kind": "chat",
+      "nativeIpc": true,
+      "responseLength": 54,
+      "taskId": "28792e3d-d6d8-4b7b-bb72-5f1d0bd41fcb",
+      "uiAction": false
+    },
+    {
+      "artifact": {
+        "byteLength": 390,
+        "relativePath": "creative/creative-version-1793196623027-5/recipe.json",
+        "sha256": "c6885eb442b8ce470d39e07e0c1a0f97e6a906f704347d8b1e2cda903359286e"
+      },
+      "id": "creative-version-1793196623027-5",
+      "kind": "model3d",
+      "taskId": "5b90a22a-7eeb-477d-bbe1-0f07e98c1769",
+      "uiAction": true,
+      "webgl": true
+    },
+    {
+      "artifact": {
+        "byteLength": 390,
+        "relativePath": "creative/creative-version-1793196639078-7/recipe.json",
+        "sha256": "9da711645f97a3d11c241b7267935902c7aec6c4da3e08a671b648f35aedf3ca"
+      },
+      "exactColorOnly": true,
+      "id": "creative-version-1793196639078-7",
+      "kind": "model3d-refine",
+      "parentId": "creative-version-1793196623027-5",
+      "taskId": "27e081ee-bd36-4054-bee9-7ab4a3aadcef",
+      "uiAction": true
+    },
+    {
+      "kind": "gfx",
+      "preview": true,
+      "taskId": "2aa708b4-56ed-49a5-bb2b-c6d58ec2479c",
+      "uiAction": true,
+      "validated": true
+    }
+  ],
+  "isolatedData": true,
+  "native": true,
+  "ok": true,
+  "phase": "provider-only-live",
+  "provider": {
+    "account": "ForgeKit primary (redacted)",
+    "adapter": "openai",
+    "model": "gpt-6.1-sol"
+  },
+  "providerLive": true,
+  "studioLive": false
+}

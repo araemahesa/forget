@@ -1,0 +1,24 @@
+{
+  "version": "0.1.24",
+  "integrity": "ok",
+  "foreignKeyErrors": 0,
+  "counts": {
+    "gfx_version": 4,
+    "sfx_version": 1,
+    "image_version": 1,
+    "chat_thread": 14,
+    "chat_message": 35,
+    "creative_version": 0
+  },
+  "executableSha256": "b53765fc511ae678f90e5140474d59a7fda4c3b783e0a83e8cc94fa340cade4d",
+  "nativePanelsVerified": [
+    "AI Chat Obsidian",
+    "GFX prompt",
+    "Icon prompt",
+    "Clothing prompt",
+    "SFX prompt"
+  ],
+  "providerInferenceTested": false,
+  "studioConnected": false,
+  "countsMatchPriorVerification": true
+}

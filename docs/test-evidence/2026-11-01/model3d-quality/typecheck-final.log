@@ -1,0 +1,2 @@
+$ pnpm --filter @forgekit/desktop typecheck
+$ tsc --noEmit

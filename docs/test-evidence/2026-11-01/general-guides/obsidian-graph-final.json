@@ -1,0 +1,57 @@
+{
+  "id": "9b58862e-a102-4f82-89e3-5cfbbb0b52e7",
+  "ok": true,
+  "result": {
+    "screenshot": {
+      "format": "png",
+      "scale": 2,
+      "width": 2048,
+      "height": 1600,
+      "path": "/var/folders/fl/fr6n4s1n6hbdx3gvn4t6k6kc0000gn/T/orca-computer-use/9b58862e-a102-4f82-89e3-5cfbbb0b52e7-screenshot.png",
+      "dataOmitted": true,
+      "expiresAt": "2026-11-02T10:55:27.448Z"
+    },
+    "snapshot": {
+      "id": "7FC78341-D93F-4F34-89EC-BFDC04110A15",
+      "app": {
+        "bundleId": "md.obsidian",
+        "name": "Obsidian",
+        "pid": 26415
+      },
+      "truncation": {
+        "truncated": false,
+        "maxNodes": 1200,
+        "maxDepthReached": false,
+        "maxDepth": 64
+      },
+      "focusedElementId": null,
+      "window": {
+        "x": 208,
+        "width": 1024,
+        "height": 800,
+        "screenIndex": 0,
+        "y": 31,
+        "platform": {
+          "layer": 0
+        },
+        "title": "Graph view - ForgeKit Studio Vault - Obsidian 1.14.5",
+        "isOffscreen": false,
+        "isMinimized": false,
+        "id": 3365
+      },
+      "treeText": "App=md.obsidian (pid 26415)\nWindow: \"Graph view - ForgeKit Studio Vault - Obsidian 1.14.5\", App: Obsidian.\n\n0 standard window Graph view - ForgeKit Studio Vault - Obsidian 1.14.5\n\t1 container Graph view - ForgeKit Studio Vault - Obsidian 1.14.5\n\t2 close button\n\t3 full screen button, Secondary Actions: zoom the window\n\t4 minimise button\n\nNo UI element is currently focused.",
+      "coordinateSpace": "window",
+      "elementCount": 5
+    },
+    "screenshotStatus": {
+      "state": "captured",
+      "metadata": {
+        "engine": "screenCaptureKit",
+        "windowId": 3365
+      }
+    }
+  },
+  "_meta": {
+    "runtimeId": "710fe79a-e3c7-4077-bc62-9a85d15d879d"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "blend": {
+    "meshCount": 17,
+    "finiteVertices": true,
+    "finiteNormals": true,
+    "dimensionsMatch": true
+  },
+  "glb": {
+    "meshCount": 17,
+    "finiteVertices": true,
+    "finiteNormals": true,
+    "dimensionsMatch": true
+  },
+  "fbx": {
+    "meshCount": 17,
+    "finiteVertices": true,
+    "finiteNormals": true,
+    "dimensionsMatch": true
+  }
+}

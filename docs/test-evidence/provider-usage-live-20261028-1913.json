@@ -1,0 +1,16 @@
+{
+  "accountCount": 1,
+  "account": {
+    "provider": "openai",
+    "authMethod": "oauth_browser",
+    "enabled": true,
+    "accessState": "ready",
+    "modelCatalogReadable": true,
+    "modelCount": 8,
+    "usageStatus": "unavailable",
+    "usageSource": "none",
+    "usageHttpStatus": 401,
+    "usageWindows": []
+  },
+  "method": "Read-only provider_usage_probe against the existing ForgeKit SQLite database and its own saved credential. No inference request, fixture, browser cookie, or credential from another app was used."
+}

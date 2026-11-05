@@ -1,0 +1,14 @@
+$ vitest --run --maxWorkers=1 src/features/shared/TaskRecovery.test.tsx src/features/shared/TaskAttempts.test.tsx src/features/creators3d/Model3dTabs.test.tsx src/features/create/useCreativeTask.test.tsx
+
+ RUN  v5.0.5 /Users/ariardianto/Documents/ForgeKIT/CODE/apps/desktop
+
+
+ Test Files  4 passed (4)
+      Tests  17 passed (17)
+   Start at  21:41:10
+   Duration  13.77s (environment 48%, tests 27%, setup 16%, import 5%, transform 2%, worker 1%)
+
+Environment  jsdom was created 4 times · 5.48s total, 48% of tracked time
+             create it once per worker with pool: 'vmThreads' (keeps per-file isolation) or isolate: false (shares it across files)
+             learn more: https://vitest.dev/guide/improving-performance#test-environments
+

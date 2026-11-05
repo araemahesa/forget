@@ -1,0 +1,12 @@
+
+ RUN  v5.0.5 /Users/ariardianto/Documents/ForgeKIT/CODE/apps/desktop
+
+
+ Test Files  2 passed (2)
+      Tests  7 passed (7)
+   Start at  23:55:29
+   Duration  2.16s (environment 56%, tests 15%, import 13%, setup 12%, transform 4%)
+
+    Isolate  2 workers spawned · ~639ms startup each (spawn + environment, per file)
+             at least ~639ms faster with isolate: false — reuses workers across files instead of one per file
+

@@ -1,0 +1,8 @@
+Scope: all 3 workspace projects
+✓ Lockfile passes supply-chain policies (verified 2d ago)
+Lockfile is up to date, resolution step is skipped
+Already up to date
+
+Done in 748ms using pnpm v11.25.0
+$ pnpm --filter @forgekit/desktop typecheck
+$ tsc --noEmit

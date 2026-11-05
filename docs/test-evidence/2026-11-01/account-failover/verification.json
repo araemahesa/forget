@@ -1,0 +1,37 @@
+{
+  "version": "0.1.31",
+  "frontendTests": {
+    "passed": 324,
+    "failed": 0,
+    "timeoutMs": 20000
+  },
+  "backendTests": {
+    "passed": 150,
+    "failed": 0,
+    "ignored": 6
+  },
+  "blenderIntegrationTests": {
+    "passed": 2,
+    "actualBlender": true,
+    "externalProvider": false
+  },
+  "finalChangedUiTests": {
+    "passed": 20,
+    "failed": 0
+  },
+  "typecheck": "passed",
+  "frontendBuild": "passed",
+  "externalProviderLimitTests": "fixtures; no intentional exhaustion of user accounts",
+  "installed": true,
+  "installedVersion": "0.1.31",
+  "applicationLaunched": true,
+  "signatureVerified": true,
+  "dataTablesMatch": true,
+  "liveUi": {
+    "versionVisible": "0.1.31",
+    "explicitAccountSelection": "verified",
+    "nextAccountButton": "visible",
+    "primaryAccountControls": "removed",
+    "originalSelectionRestored": true
+  }
+}

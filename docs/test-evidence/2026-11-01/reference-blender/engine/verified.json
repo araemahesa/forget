@@ -1,0 +1,15 @@
+{
+  "blendReopened": true,
+  "models": 2,
+  "referencePacked": true,
+  "closedVolumesPositive": {
+    "asymmetric-body": 0.6666666269302368,
+    "bottle": 1.1330845499402766
+  },
+  "savedRenderResolution": [
+    1920,
+    1920
+  ],
+  "savedCyclesSamples": 128,
+  "noModelExports": true
+}
