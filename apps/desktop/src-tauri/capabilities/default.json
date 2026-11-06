@@ -65,6 +65,8 @@
     "allow-test-connection-profile",
     "allow-connect-provider-browser",
     "allow-cancel-provider-browser",
+    "allow-submit-provider-login-code",
+    "allow-open-provider-login-link",
     "allow-list-chat-threads",
     "allow-create-chat-thread",
     "allow-rename-chat-thread",

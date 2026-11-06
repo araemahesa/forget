@@ -2,7 +2,7 @@ import { Icon } from '../../design-system/Icon';
 import type { ProviderUsage } from '../../services/providerUsage';
 
 const sources: Record<ProviderUsage['source'], string> = {
-  codex: 'ChatGPT', provider_api: 'ChatGPT', google_monitoring: 'Google Monitoring',
+  codex: 'ChatGPT', claude_code: 'Claude Code', provider_api: 'ChatGPT', google_monitoring: 'Google Monitoring',
   router_api: '9router', api_headers: 'Respons API', none: 'Provider',
 };
 export function ProviderUsageDetails({ data, loading, error, compact = false }: { compact?: boolean; data: ProviderUsage | null; loading: boolean; error: string }) {
@@ -15,7 +15,7 @@ export function ProviderUsageDetails({ data, loading, error, compact = false }: 
       const expired = reset != null && reset.getTime() <= Date.now();
       const sameDay = reset?.toDateString() === new Date().toDateString();
       const resetLabel = sameDay ? reset?.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }) : reset?.toLocaleDateString('id-ID', { day: 'numeric', month: 'short' });
-      const showScope = window.scope && (!['ChatGPT', 'codex'].includes(window.scope) || window.remaining != null || expired);
+      const showScope = window.scope && (!['ChatGPT', 'codex', 'claude'].includes(window.scope) || window.remaining != null || expired);
       return <span className="provider-usage-window" key={window.id}>
         <span className="provider-usage-row">
           <strong>{window.label === '5 jam' ? '5h' : window.label}</strong>

@@ -10,7 +10,8 @@ import { loadProviderUsage, useProviderUsage } from '../../services/providerUsag
 import { Icon } from '../../design-system/Icon';
 import { ProviderLogo } from '../shared/ProviderLogo';
 import {
-  cancelProviderBrowser, connectProviderBrowser, deleteConnectionProfile, probeRouterModels, saveConnectionProfile,
+  cancelProviderBrowser, connectProviderBrowser, deleteConnectionProfile, openProviderLoginLink, probeRouterModels, saveConnectionProfile,
+  submitProviderLoginCode,
   saveRouterConnection, testConnectionProfile,
 } from '../../services/ai';
 import { refreshProviders, useConnectionProfiles } from '../../services/providerState';
@@ -20,7 +21,7 @@ const endpoints: Record<string, string> = {
   anthropic: 'https://api.anthropic.com/v1', 'google-gemini': 'https://generativelanguage.googleapis.com/v1beta/openai',
   gemini: 'https://generativelanguage.googleapis.com/v1beta/openai', 'local-llm': 'http://127.0.0.1:11434/v1',
 };
-const providerHints: Record<string, string> = { openai: 'Login ChatGPT', claude: 'Koneksi API Claude', 'antigravity-9router': 'Gateway 9router', 'google-gemini': 'Login Google' };
+const providerHints: Record<string, string> = { openai: 'Login ChatGPT', claude: 'Login Claude · Claude Code', 'antigravity-9router': 'Gateway 9router', 'google-gemini': 'Login Google' };
 const message = (error: unknown) => error instanceof Error ? error.message : 'Koneksi belum dapat diperiksa.';
 
 export function ProviderSettings() {
@@ -32,6 +33,8 @@ export function ProviderSettings() {
   const [status, setStatus] = useState('');
   const [busy, setBusy] = useState(false);
   const [browserLogin, setBrowserLogin] = useState<string | null>(null);
+  const [loginProvider, setLoginProvider] = useState<string | null>(null);
+  const [loginCode, setLoginCode] = useState('');
   const login = useRef<string | null>(null);
   useEffect(() => () => { if (login.current) void cancelProviderBrowser(login.current).catch(() => {}); }, []);
   const [routerUrl, setRouterUrl] = useState(routerConnection.baseUrl);
@@ -71,14 +74,14 @@ export function ProviderSettings() {
     if (lock.current) return;
     setDraft(null);
     const sessionId = crypto.randomUUID();
-    login.current = sessionId; setBrowserLogin(sessionId);
+    login.current = sessionId; setBrowserLogin(sessionId); setLoginProvider(providerId); setLoginCode('');
     void act(async () => {
-      setStatus(providerId === 'openai' ? 'Membuka login ChatGPT melalui Codex. Selesaikan login di browser; akun dan usage akan dibaca otomatis ke ForgeKit.' : providerId === 'google-gemini' ? 'Membuka login resmi Google. Selesaikan persetujuan akses Gemini di browser.' : 'Membuka Claude Console resmi. Akses ForgeKit memakai API resmi Claude.');
+      setStatus(providerId === 'openai' ? 'Membuka login ChatGPT melalui Codex. Selesaikan login di browser; akun dan usage akan dibaca otomatis ke ForgeKit.' : providerId === 'google-gemini' ? 'Membuka login resmi Google. Selesaikan persetujuan akses Gemini di browser.' : 'Membuka login Claude melalui Claude Code. Selesaikan login di browser; token dikelola Claude Code dalam profil khusus ForgeKit.');
       try {
         const session = await connectProviderBrowser(providerId, undefined, sessionId);
         await refreshProviders(true);
         setStatus(session.message ?? 'Browser resmi dibuka.');
-      } finally { login.current = null; setBrowserLogin(null); }
+      } finally { login.current = null; setBrowserLogin(null); setLoginProvider(null); setLoginCode(''); }
     });
   }
   async function checkRouter() {
@@ -135,7 +138,7 @@ export function ProviderSettings() {
           <p className="provider-card-desc" title={item.description}>{providerHints[item.id] ?? item.badge}</p>
           {item.riskNotice && <details className="notice-deprecated"><summary>Dukungan terbatas</summary><p>{item.riskNotice}</p><small>Versi gateway: {routerConnection.detectedVersion ?? 'belum diperiksa'}.</small></details>}
         </div>
-        <div className="provider-connect-actions"><button type="button" className="button primary-button connect-btn" disabled={busy} onClick={(e) => item.path === 'router' || item.id === 'claude' ? connect(item.id, e.currentTarget) : connectInBrowser(item.id)}><Icon name="link" />{profiles.some((p) => p.providerId === item.id) ? 'Tambah akun' : 'Connect'}</button>
+        <div className="provider-connect-actions"><button type="button" className="button primary-button connect-btn" disabled={busy} onClick={(e) => item.path === 'router' ? connect(item.id, e.currentTarget) : connectInBrowser(item.id)}><Icon name="link" />{profiles.some((p) => p.providerId === item.id) ? 'Tambah akun' : 'Connect'}</button>
           {item.path === 'direct' && <button type="button" className="provider-advanced-button" disabled={busy} aria-label={`Koneksi API lanjutan untuk ${item.name}`} title="Koneksi API lanjutan" onClick={(e) => connect(item.id, e.currentTarget)}><Icon name="settings" /></button>}</div>
       </div>)}
     </div>
@@ -149,13 +152,13 @@ export function ProviderSettings() {
         {gatewayForm(true)}
         {dashboardOpened && <p role="status">Dashboard dibuka. Menutup browser tidak membuktikan login atau pembatalan. Tekan Periksa koneksi setelah selesai.</p>}
         <p>Akun dikelola 9router. Identitas upstream belum tersedia. Urutan akun, Add Connection, dan fallback upstream diatur pada dashboard. ForgeKit tidak menjalankan rotasi kedua.</p>
-      </> : <p>{['oauth_browser', 'codex_oauth'].includes(draft.authMethod) ? 'Akun ini menggunakan login browser. Token dikelola otomatis oleh ForgeKit.' : `Pengaturan lanjutan · ${draft.providerId === 'local-llm' ? 'runtime lokal' : 'koneksi API'}. Credential disimpan di Keychain perangkat.`}</p>}
-      {draft.providerId === 'claude' && <button className="button secondary-button" type="button" disabled={busy} onClick={() => void act(async () => { const result = await connectProviderBrowser('claude'); setStatus(result.message ?? 'Claude Console dibuka.'); })}>Buka Claude Console</button>}
+      </> : <p>{['oauth_browser', 'codex_oauth', 'claude_code'].includes(draft.authMethod) ? 'Akun ini menggunakan login browser. Token dikelola otomatis oleh ForgeKit.' : `Pengaturan lanjutan · ${draft.providerId === 'local-llm' ? 'runtime lokal' : 'koneksi API'}. Credential disimpan di Keychain perangkat.`}</p>}
+      {draft.providerId === 'claude' && draft.authMethod === 'api_key' && <p>Koneksi API memakai kunci dari Claude Console (platform.claude.com → Settings → API keys) dan ditagih per penggunaan API. Untuk memakai langganan Claude, gunakan tombol Connect.</p>}
       <form className="provider-modal-form" onSubmit={submitConnection}>
         <label>Nama akun<input value={draft.label} maxLength={100} required disabled={busy} onChange={(e) => setDraft({ ...draft, label: e.target.value })} /></label>
         {routerDraft ? <label>Model tersedia<Dropdown value={draft.model} disabled={busy || !probe} required onChange={(e) => setDraft({ ...draft, model: e.target.value })}><option value="">Pilih model dari katalog</option>{knownModels.map((id) => <option key={id} value={id}>{id}</option>)}</Dropdown></label>
           : <label>Model<input value={draft.model} maxLength={200} required disabled={busy} placeholder="ID model yang tersedia pada akun" onChange={(e) => setDraft({ ...draft, model: e.target.value })} /></label>}
-        {!routerDraft && !['oauth_browser', 'codex_oauth'].includes(draft.authMethod) && <label>Kunci API (disimpan di Keychain)<input name="secret" type="password" autoComplete="off" disabled={busy} required={draft.providerId !== 'local-llm' && !profiles.some((p) => p.id === draft.id)} placeholder={profiles.some((p) => p.id === draft.id) ? 'Kosongkan untuk mempertahankan kunci' : ''} /></label>}
+        {!routerDraft && !['oauth_browser', 'codex_oauth', 'claude_code'].includes(draft.authMethod) && <label>Kunci API (disimpan di Keychain)<input name="secret" type="password" autoComplete="off" disabled={busy} required={draft.providerId !== 'local-llm' && !profiles.some((p) => p.id === draft.id)} placeholder={profiles.some((p) => p.id === draft.id) ? 'Kosongkan untuk mempertahankan kunci' : ''} /></label>}
         <details><summary>Koneksi lanjutan</summary>
           {!routerDraft && !endpoints[draft.providerId] && <label>Endpoint HTTPS / loopback<input type="url" required value={draft.baseUrl} disabled={busy} onChange={(e) => setDraft({ ...draft, baseUrl: e.target.value })} /></label>}
           {draft.providerId === 'local-llm' && <label>Endpoint lokal<input type="url" required value={draft.baseUrl} disabled={busy} onChange={(e) => setDraft({ ...draft, baseUrl: e.target.value })} /></label>}
@@ -167,7 +170,15 @@ export function ProviderSettings() {
       </form>
     </section>}
 
-    {status && <div className="provider-browser-status"><p className="provider-status-message" role="status">{status}</p>{browserLogin && <button type="button" className="button secondary-button" onClick={() => { void cancelProviderBrowser(browserLogin).catch((error) => setStatus(message(error))); }}>Batalkan login</button>}</div>}
+    {status && <div className="provider-browser-status"><p className="provider-status-message" role="status">{status}</p>{browserLogin && <button type="button" className="button secondary-button" onClick={() => { void cancelProviderBrowser(browserLogin).catch((error) => setStatus(message(error))); }}>Batalkan login</button>}
+      {browserLogin && loginProvider === 'claude' && <details className="claude-login-fallback"><summary>Browser tidak kembali ke ForgeKit?</summary>
+        <p>Buka login manual, selesaikan di browser, lalu salin kode yang ditampilkan Claude dan tempel di sini.</p>
+        <button type="button" className="button secondary-button" onClick={() => { void openProviderLoginLink(browserLogin).catch((error) => setStatus(message(error))); }}>Buka login manual</button>
+        <form onSubmit={(event) => { event.preventDefault(); const code = loginCode.trim(); if (!code) return; void submitProviderLoginCode(browserLogin, code).then(() => { setLoginCode(''); setStatus('Kode dikirim ke Claude Code. Menunggu konfirmasi login…'); }).catch((error) => setStatus(message(error))); }}>
+          <label>Kode login Claude<input value={loginCode} autoComplete="off" spellCheck={false} maxLength={1024} onChange={(event) => setLoginCode(event.target.value)} /></label>
+          <button type="submit" className="button primary-button" disabled={!loginCode.trim()}>Kirim kode</button>
+        </form>
+      </details>}</div>}
     <div className="connected-accounts-section"><div className="section-header"><h3>Akun tersambung</h3><button className="button secondary-button" type="button" disabled={accountUsage.some((entry) => entry.loading) || !usageProfiles.length} onClick={() => usageProfiles.forEach((profile) => void loadProviderUsage(profile, true))}><Icon name="refresh" />Perbarui usage</button></div>
       {loading && <p role="status">Memuat akun…</p>}
       {!loading && !profiles.length && <p>Hubungkan akun untuk mulai menggunakan AI.</p>}

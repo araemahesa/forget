@@ -2,7 +2,7 @@ import { useEffect, useSyncExternalStore } from 'react';
 import type { AiProviderProfile } from '@forgekit/contracts';
 import { call } from './tauri';
 export type UsageWindow = { id: string; label: string; scope: string; usedPercent: number; windowDurationMins: number | null; resetsAt: number | null; remaining: number | null; limit: number | null; unit: string | null };
-export type ProviderUsage = { profileId: string; status: 'available' | 'unavailable'; source: 'codex' | 'provider_api' | 'google_monitoring' | 'router_api' | 'api_headers' | 'none'; observedAt: number | null; checkedAt: number; planType: string | null; windows: UsageWindow[]; message: string | null };
+export type ProviderUsage = { profileId: string; status: 'available' | 'unavailable'; source: 'codex' | 'claude_code' | 'provider_api' | 'google_monitoring' | 'router_api' | 'api_headers' | 'none'; observedAt: number | null; checkedAt: number; planType: string | null; windows: UsageWindow[]; message: string | null };
 type Entry = { data: ProviderUsage | null; loading: boolean; error: string; fetchedAt: number };
 const empty: Entry = { data: null, loading: false, error: '', fetchedAt: 0 };
 const entries = new Map<string, Entry>();
@@ -14,7 +14,7 @@ const keyOf = (p: AiProviderProfile) => JSON.stringify([p.id, p.providerType, p.
 function emit() { revision++; listeners.forEach((fn) => fn()); }
 export function validUsage(data: ProviderUsage, id: string): boolean {
   return !!data && data.profileId === id && ['available', 'unavailable'].includes(data.status) && Array.isArray(data.windows) && data.windows.length <= 48
-    && ['codex', 'provider_api', 'google_monitoring', 'router_api', 'api_headers', 'none'].includes(data.source) && Number.isFinite(data.checkedAt) && data.checkedAt > 0
+    && ['codex', 'claude_code', 'provider_api', 'google_monitoring', 'router_api', 'api_headers', 'none'].includes(data.source) && Number.isFinite(data.checkedAt) && data.checkedAt > 0
     && (data.message == null || typeof data.message === 'string') && (data.planType == null || typeof data.planType === 'string')
     && data.windows.every((w) => w && typeof w.id === 'string' && typeof w.label === 'string' && typeof w.scope === 'string' && Number.isFinite(w.usedPercent) && w.usedPercent >= 0
       && (w.windowDurationMins == null || (Number.isFinite(w.windowDurationMins) && w.windowDurationMins > 0))

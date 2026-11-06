@@ -883,6 +883,9 @@ pub async fn delete_connection_profile(app: AppHandle, id: String) -> Result<(),
                     if p.auth_method == "codex_oauth" {
                         // Codex tokens live in the account's private CODEX_HOME, not the Keychain.
                         crate::auth::codex::disconnect(&key_ref).map_err(native_error)?;
+                    } else if p.auth_method == "claude_code" {
+                        // Claude Code keeps its login in the account's private CLAUDE_CONFIG_DIR.
+                        crate::auth::claude::disconnect(&key_ref).map_err(native_error)?;
                     } else {
                         crate::ai::delete_keychain_secret(&key_ref).map_err(native_error)?;
                     }
@@ -1156,6 +1159,17 @@ pub fn cancel_provider_browser(session_id: String) {
     crate::auth::browser::cancel(&session_id);
 }
 
+/// Claude Code fallback when the browser cannot return to the CLI: the user pastes the code.
+#[tauri::command]
+pub fn submit_provider_login_code(session_id: String, code: String) -> Result<(), CommandError> {
+    crate::auth::claude::submit_code(&session_id, &code).map_err(native_error)
+}
+
+#[tauri::command]
+pub fn open_provider_login_link(session_id: String) -> Result<(), CommandError> {
+    crate::auth::claude::open_manual_link(&session_id).map_err(native_error)
+}
+
 #[tauri::command]
 pub async fn connect_provider_browser(
     app: AppHandle,
@@ -1166,7 +1180,7 @@ pub async fn connect_provider_browser(
     tauri::async_runtime::spawn_blocking(move || {
         let id = session_id.ok_or_else(|| native_error("ID sesi login tidak tersedia."))?;
         if id.len() > 100 || id.is_empty() || !id.chars().all(|c| c.is_ascii_alphanumeric() || c == '-') { return Err(native_error("ID sesi login tidak sah.")); }
-        if provider_id == "claude" || provider_id == "antigravity-9router" {
+        if provider_id == "antigravity-9router" {
             let base = if provider_id == "antigravity-9router" { Some(with_storage(&app, &app.state::<AppState>(), Storage::get_router_connection)?.base_url) } else { None };
             let session = crate::ai::create_connect_session(&provider_id, base.as_deref()).map_err(native_error)?;
             if !std::process::Command::new("/usr/bin/open").arg(&session.auth_url).status().is_ok_and(|s| s.success()) { return Err(native_error("Browser sistem tidak dapat dibuka.")); }
@@ -1174,6 +1188,8 @@ pub async fn connect_provider_browser(
         }
         let mut profile = if provider_id == "openai" {
             crate::auth::codex::sign_in(&id)
+        } else if provider_id == "claude" {
+            crate::auth::claude::sign_in(&id)
         } else {
             if provider_id != "google-gemini" { return Err(native_error("Provider browser tidak didukung.")); }
             crate::auth::google::sign_in(&id)

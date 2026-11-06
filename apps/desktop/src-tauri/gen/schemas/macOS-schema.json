@@ -657,6 +657,12 @@
           "markdownDescription": "Enables the open_blender_model command without any pre-configured scope."
         },
         {
+          "description": "Enables the open_provider_login_link command without any pre-configured scope.",
+          "type": "string",
+          "const": "allow-open-provider-login-link",
+          "markdownDescription": "Enables the open_provider_login_link command without any pre-configured scope."
+        },
+        {
           "description": "Enables the prepare_attachment command without any pre-configured scope.",
           "type": "string",
           "const": "allow-prepare-attachment",
@@ -805,6 +811,12 @@
           "type": "string",
           "const": "allow-set-primary-profile",
           "markdownDescription": "Enables the set_primary_profile command without any pre-configured scope."
+        },
+        {
+          "description": "Enables the submit_provider_login_code command without any pre-configured scope.",
+          "type": "string",
+          "const": "allow-submit-provider-login-code",
+          "markdownDescription": "Enables the submit_provider_login_code command without any pre-configured scope."
         },
         {
           "description": "Enables the test_ai_provider command without any pre-configured scope.",
@@ -1323,6 +1335,12 @@
           "markdownDescription": "Denies the open_blender_model command without any pre-configured scope."
         },
         {
+          "description": "Denies the open_provider_login_link command without any pre-configured scope.",
+          "type": "string",
+          "const": "deny-open-provider-login-link",
+          "markdownDescription": "Denies the open_provider_login_link command without any pre-configured scope."
+        },
+        {
           "description": "Denies the prepare_attachment command without any pre-configured scope.",
           "type": "string",
           "const": "deny-prepare-attachment",
@@ -1471,6 +1489,12 @@
           "type": "string",
           "const": "deny-set-primary-profile",
           "markdownDescription": "Denies the set_primary_profile command without any pre-configured scope."
+        },
+        {
+          "description": "Denies the submit_provider_login_code command without any pre-configured scope.",
+          "type": "string",
+          "const": "deny-submit-provider-login-code",
+          "markdownDescription": "Denies the submit_provider_login_code command without any pre-configured scope."
         },
         {
           "description": "Denies the test_ai_provider command without any pre-configured scope.",

@@ -42,6 +42,8 @@ export const testConnectionProfile = (profile: ConnectionProfile) =>
 export const connectProviderBrowser = (providerId: string, routerBaseUrl?: string, sessionId?: string) =>
   call<ProviderConnectSession>('connect_provider_browser', { providerId, routerBaseUrl, sessionId });
 export const cancelProviderBrowser = (sessionId: string) => call<void>('cancel_provider_browser', { sessionId });
+export const submitProviderLoginCode = (sessionId: string, code: string) => call<void>('submit_provider_login_code', { sessionId, code });
+export const openProviderLoginLink = (sessionId: string) => call<void>('open_provider_login_link', { sessionId });
 
 
 

@@ -62,6 +62,8 @@ fn main() {
         "logout_discord",
         "connect_provider_browser",
         "cancel_provider_browser",
+        "submit_provider_login_code",
+        "open_provider_login_link",
         "list_chat_threads",
         "create_chat_thread",
         "rename_chat_thread",

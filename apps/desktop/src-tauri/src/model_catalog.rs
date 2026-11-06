@@ -179,6 +179,10 @@ pub fn catalog(profile: &AiProviderProfile, refresh: bool) -> Result<Vec<Provide
             }
         }
     }
+    if crate::auth::claude::is_claude_code(profile) {
+        crate::auth::claude::account_home(&profile.key_reference)?;
+        return Ok(crate::auth::claude::models());
+    }
     if crate::auth::codex::is_codex(profile) {
         let rows = crate::auth::codex::models(&profile.key_reference)?;
         CACHE

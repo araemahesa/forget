@@ -103,7 +103,7 @@ export function ProviderPicker({
                   <span className="provider-account-subtitle">
                     {(connection?.connectionMode === 'router'
                         ? 'via 9router'
-                        : connection?.authMethod === 'oauth_browser' || connection?.authMethod === 'codex_oauth'
+                        : connection?.authMethod === 'oauth_browser' || connection?.authMethod === 'codex_oauth' || connection?.authMethod === 'claude_code'
                           ? 'Akun terhubung'
                           : 'Koneksi API')}
                   </span>

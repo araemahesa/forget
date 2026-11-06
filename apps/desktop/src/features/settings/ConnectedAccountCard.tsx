@@ -10,11 +10,12 @@ export const accessLabels = { pending: 'Akses belum diperiksa', ready: 'Respons 
 const unusable = ['revoked', 'identity_only', 'reauth_required'];
 
 function connectionMode(account: ConnectionProfile) {
-  return account.connectionMode === 'router' ? 'via 9router' : account.authMethod === 'codex_oauth' ? 'ChatGPT · Codex' : account.authMethod === 'oauth_browser' ? 'Login browser' : 'Koneksi API';
+  return account.connectionMode === 'router' ? 'via 9router' : account.authMethod === 'codex_oauth' ? 'ChatGPT · Codex' : account.authMethod === 'claude_code' ? 'Claude · Claude Code' : account.authMethod === 'oauth_browser' ? 'Login browser' : 'Koneksi API';
 }
 function accessDescription(account: ConnectionProfile) {
   if (account.connectionMode === 'router') return 'Otomatis via 9router · Akun upstream tidak diketahui';
   if (account.authMethod === 'codex_oauth') return 'Login dan pembaruan token dikelola Codex dalam profil khusus ForgeKit. Usage dibaca dari akun ini.';
+  if (account.authMethod === 'claude_code') return 'Login langganan Claude dikelola Claude Code dalam profil khusus ForgeKit; ForgeKit tidak membaca tokennya. Memakai limit paket akun ini.';
   if (account.authMethod === 'oauth_browser') return `Identitas akun diverifikasi saat login resmi ${account.providerId === 'google-gemini' ? 'Google' : account.providerId === 'claude' ? 'Claude' : 'ChatGPT'}.`;
   return 'Identitas akun belum diverifikasi; nama adalah label lokal.';
 }

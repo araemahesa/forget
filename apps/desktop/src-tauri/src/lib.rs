@@ -77,6 +77,8 @@ macro_rules! app_commands {
             logout_discord,
             connect_provider_browser,
             cancel_provider_browser,
+            submit_provider_login_code,
+            open_provider_login_link,
             list_chat_threads,
             create_chat_thread,
             rename_chat_thread,
@@ -170,6 +172,7 @@ pub fn run() {
             if matches!(event, tauri::RunEvent::Exit) {
                 ai::shutdown();
                 auth::codex::shutdown();
+                auth::claude::shutdown();
                 studio::shutdown();
             }
             if let tauri::RunEvent::ExitRequested {

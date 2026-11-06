@@ -2431,6 +2431,12 @@ textarea.text-input {
 .provider-advanced-button .icon { width: 16px; height: 16px; }
 .provider-browser-status { display: flex; align-items: center; gap: 16px; margin-block: 16px; }
 .provider-browser-status .provider-status-message { margin: 0; flex: 1; }
+.provider-browser-status { flex-wrap: wrap; }
+.claude-login-fallback { flex-basis: 100%; display: grid; gap: 8px; }
+.claude-login-fallback summary { cursor: pointer; color: var(--text-secondary); }
+.claude-login-fallback p { margin: 0; color: var(--text-secondary); }
+.claude-login-fallback form { display: flex; align-items: flex-end; gap: 8px; flex-wrap: wrap; }
+.claude-login-fallback label { display: grid; gap: 4px; flex: 1 1 260px; }
 @media (max-width: 639px) { .provider-browser-status { align-items: flex-start; flex-direction: column; } }
 
 /* A single chat rhythm: avatar column, readable content, aligned composer. */

@@ -349,6 +349,12 @@ pub fn read(profile: &AiProviderProfile) -> Result<ProviderUsage, String> {
         }
         return Ok(cached_after_failure(profile, usage));
     }
+    if crate::auth::claude::is_claude_code(profile) {
+        let mut usage = cached(profile).unwrap_or_else(|| unavailable(profile,
+            "Limit 5 jam dan mingguan paket Claude ditampilkan setelah tugas pertama melalui akun ini."));
+        usage.plan_type = crate::auth::claude::plan(&profile.key_reference).or(usage.plan_type);
+        return Ok(usage);
+    }
     if profile.provider_type != "openai" {
         return Ok(unavailable(
             profile,
@@ -653,6 +659,30 @@ pub fn observe_event(profile: &AiProviderProfile, payload: &str) {
     }
 }
 
+/// Claude Code reports the subscription windows (from Anthropic's unified rate-limit headers,
+/// utilization 0..1) on every turn; nothing else is requested to read them.
+pub fn observe_claude_code(profile: &AiProviderProfile, info: &Value) {
+    let mut usage = unavailable(profile, "");
+    for (key, label, minutes) in [("five_hour", "5 jam", 300_u64), ("seven_day", "Mingguan", 10_080)] {
+        let w = &info["unifiedWindows"][key];
+        let Some(utilization) = w["utilization"].as_f64().filter(|v| v.is_finite() && *v >= 0.) else { continue };
+        let rejected = w["status"] == "rejected" || (info["status"] == "rejected" && info["rateLimitType"] == key);
+        usage.windows.push(UsageWindow {
+            id: format!("claude:{key}"), label: label.into(), scope: "claude".into(),
+            used_percent: if rejected { 100. } else { (utilization * 100.).clamp(0., 100.) },
+            window_duration_mins: Some(minutes),
+            resets_at: w["resetsAt"].as_u64().filter(|v| *v > 0 && *v <= 8_640_000_000_000),
+            remaining: None, limit: None, unit: None,
+        });
+    }
+    let mut usage = available(usage, "claude_code");
+    if usage.status == "available" {
+        usage.plan_type = cached(profile).and_then(|u| u.plan_type);
+        usage.message = Some("Limit paket dikirim Claude Code pada respons tugas terakhir.".into());
+        if let Ok(mut cache) = HEADERS.lock() { cache.insert(key(profile), usage); }
+    }
+}
+
 fn cached(profile: &AiProviderProfile) -> Option<ProviderUsage> {
     HEADERS
         .lock()
@@ -714,7 +744,7 @@ pub fn blocked_until_ms(profile: &AiProviderProfile) -> u64 {
 fn exhausted_until(usage: &ProviderUsage, model: &str, current: u64) -> u64 {
     if usage.status != "available" || usage.observed_at.is_none_or(|at| current.saturating_sub(at) > 90) { return 0; }
     usage.windows.iter().filter(|w| {
-        (w.scope == model || (usage.source == "codex" && w.scope == "codex"))
+        (w.scope == model || (usage.source == "codex" && w.scope == "codex") || (usage.source == "claude_code" && w.scope == "claude"))
             && w.used_percent >= 100. && w.resets_at.is_some_and(|at| at > current)
     }).filter_map(|w| w.resets_at).max().unwrap_or(0).saturating_mul(1000)
 }
