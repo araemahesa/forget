@@ -1,6 +1,6 @@
 //! One model turn through the official Claude Code CLI (`claude -p`) in the account's private
 //! profile. Claude Code's own tools, MCP servers, skills and settings are disabled: it acts only
-//! as the model. ForgeKit tools keep running in ForgeKit's loop (approvals, budgets, receipts);
+//! as the model. ForgeKit tools keep running in ForgeKit's loop (budgets, receipts, undo recording);
 //! the model requests them with a tagged JSON block that is parsed here into ordinary tool calls.
 use super::{protocol::Turn, StreamLease};
 use crate::tools::{ToolCall, ToolDefinition};

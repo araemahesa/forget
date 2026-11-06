@@ -1379,19 +1379,6 @@ fn run_connected<T>(
 }
 
 /// Blocks a changing tool call until the user approves it in the app.
-fn require_approval(
-    app: &AppHandle,
-    task_id: &str,
-    call: &crate::tools::ToolCall,
-    title: &str,
-    lease: &crate::ai::StreamLease,
-) -> Result<(), String> {
-    use tauri::Emitter;
-    crate::approval::request(task_id, call, title, &|| lease.is_cancelled(), &|event, payload| {
-        let _ = app.emit(event, payload);
-    })
-}
-
 fn run_studio_tool(
     app: &AppHandle,
     task_id: &str,
@@ -1415,15 +1402,9 @@ fn run_studio_tool(
     let result = if let Some(value) = prior {
         Ok(value)
     } else {
-        // Ask only for calls that will really be sent; a replayed receipt above needs no approval.
-        let approval = if writable && crate::studio::is_write(&call.name) {
-            require_approval(app, task_id, call, &format!("Ubah map \"{}\" di Roblox Studio", target.name), lease)
-        } else {
-            Ok(())
-        };
-        let (result, not_executed) = if let Err(rejected) = approval {
-            (Err(rejected), true)
-        } else if lease.is_cancelled() {
+        // Map changes run without a confirmation dialog; each write is still recorded as one
+        // ChangeHistory step in Studio, so it can be undone there.
+        let (result, not_executed) = if lease.is_cancelled() {
             (Err("[CANCELLED][TOOL_NOT_DISPATCHED] Permintaan dibatalkan sebelum operasi.".into()), true)
         } else {
             match crate::studio::agent_call(target, call, writable) {
@@ -1515,7 +1496,7 @@ pub async fn send_chat_message(
                 messages.push(serde_json::json!({"role":"system","content":attachment.0}));
             }
             if mode != "auto" { messages.push(serde_json::json!({"role":"system","content":"Percakapan lama ini hanya baca. Jangan melakukan perubahan."})); }
-            else { messages.push(serde_json::json!({"role":"system","content":"Tentukan sendiri dari prompt pengguna apa yang diminta: pertanyaan atau penjelasan dijawab langsung; permintaan rencana dijawab dengan rencana tanpa mengubah apa pun; permintaan membuat, mengubah, memperbaiki atau menerapkan sesuatu dikerjakan sampai selesai dengan tool yang tersedia. Baca konteks yang relevan sebelum menulis. Setiap perubahan pada map atau sistem tetap meminta izin pengguna; jika ditolak, jangan ulangi dan jelaskan alternatifnya. Bila prompt ambigu dan perubahan berisiko, tanyakan satu hal paling penting sebelum menulis."})); }
+            else { messages.push(serde_json::json!({"role":"system","content":"Tentukan sendiri dari prompt pengguna apa yang diminta: pertanyaan atau penjelasan dijawab langsung; permintaan rencana dijawab dengan rencana tanpa mengubah apa pun; permintaan membuat, mengubah, memperbaiki atau menerapkan sesuatu dikerjakan sampai selesai dengan tool yang tersedia. Baca konteks yang relevan sebelum menulis. Perubahan map dijalankan langsung tanpa dialog konfirmasi dan setiap penulisan tercatat sebagai satu langkah Undo di Roblox Studio, jadi ubah hanya yang diminta dan sebutkan apa yang diubah di jawaban akhir. Bila prompt ambigu dan perubahan berisiko (misalnya menghapus banyak objek), tanyakan satu hal paling penting sebelum menulis."})); }
             for message in &history {
                 let mut value = serde_json::json!({"role":message.role,"content":message.content});
                 if message.role == "user" {
@@ -1530,20 +1511,6 @@ pub async fn send_chat_message(
                 definitions.extend(crate::studio::luau_checks::definitions());
                 definitions.extend(crate::model3d::blender::definitions());
             }
-            // User-configured MCP servers live only for this request; dropping the set stops them.
-            let connectors = with_storage(&app, &app.state::<AppState>(), Storage::list_mcp_connectors)?;
-            let mut mcp = if connectors.iter().any(|c| c.is_enabled) {
-                crate::mcp::Toolset::start(&connectors, mode == "auto", &|| lease.is_cancelled())
-            } else {
-                crate::mcp::Toolset::default()
-            };
-            definitions.extend(mcp.definitions.iter().cloned());
-            if !mcp.warnings.is_empty() {
-                messages.insert(1, serde_json::json!({"role":"system","content":format!(
-                    "Sebagian konektor MCP tidak dapat dijalankan dan tool-nya tidak tersedia: {}",
-                    mcp.warnings.join("; ")
-                )}));
-            }
             with_storage(&app, &app.state::<AppState>(), |s| s.creative_stage(&request_id,"streaming",None))?;
             let content = run_connected(&app,&request_id,&provider,&lease,true,|active,_seconds| {
                 let mut cp = checkpoint_for(&app,&request_id,active,&messages,!definitions.is_empty(),true)?;
@@ -1557,14 +1524,6 @@ pub async fn send_chat_message(
                     if crate::model3d::blender::handles(call) { return run_blender_tool(&app,&request_id,&user_content,active,call,&lease); }
                     if call.name.starts_with("forgekit_studio_") {
                         return run_studio_tool(&app,&request_id,frozen.as_ref().ok_or("Tidak ada target Studio.")?,call,&lease,true,mode == "auto");
-                    }
-                    if crate::mcp::handles(call) {
-                        let tool = mcp.definitions.iter().find(|d| d.wire_name == call.name).map(|d| d.name.clone()).unwrap_or_default();
-                        require_approval(&app, &request_id, call, &format!("Jalankan tool MCP \"{tool}\""), &lease)?;
-                        with_storage(&app, &app.state::<AppState>(), |s| s.creative_stage(&request_id,"tool_running",None)).map_err(|e|e.message)?;
-                        let output = mcp.call(call, &|| lease.is_cancelled());
-                        with_storage(&app, &app.state::<AppState>(), |s| s.creative_stage(&request_id,"streaming",None)).map_err(|e|e.message)?;
-                        return output;
                     }
                     use tauri::Emitter;
                     let snapshot = context.as_ref().ok_or("Tidak ada snapshot map.")?;
@@ -1901,91 +1860,6 @@ pub async fn export_creative_audio(
     bytes: Vec<u8>,
 ) -> Result<ArtifactResult, CommandError> {
     export_creative_geometry(app, version_id, "wav".into(), bytes).await
-}
-
-#[tauri::command]
-pub async fn list_mcp_connectors(
-    app: AppHandle,
-) -> Result<Vec<crate::connectors::McpConnectorConfig>, CommandError> {
-    tauri::async_runtime::spawn_blocking(move || {
-        with_storage(&app, &app.state::<AppState>(), Storage::list_mcp_connectors)
-    })
-    .await
-    .map_err(native_error)?
-}
-
-#[tauri::command]
-pub async fn save_mcp_connector(
-    app: AppHandle,
-    config: crate::connectors::McpConnectorConfig,
-) -> Result<(), CommandError> {
-    tauri::async_runtime::spawn_blocking(move || {
-        with_storage(&app, &app.state::<AppState>(), |storage| {
-            storage.save_mcp_connector(&config)
-        })
-    })
-    .await
-    .map_err(native_error)?
-}
-
-#[tauri::command]
-pub async fn toggle_mcp_connector(
-    app: AppHandle,
-    id: String,
-    enabled: bool,
-) -> Result<(), CommandError> {
-    tauri::async_runtime::spawn_blocking(move || {
-        with_storage(&app, &app.state::<AppState>(), |storage| {
-            storage.toggle_mcp_connector(&id, enabled)
-        })
-    })
-    .await
-    .map_err(native_error)?
-}
-
-#[tauri::command]
-pub fn resolve_tool_approval(task_id: String, call_id: String, approved: bool) -> Result<(), CommandError> {
-    crate::approval::resolve(&task_id, &call_id, approved).map_err(native_error)
-}
-
-#[tauri::command]
-pub fn list_tool_approvals() -> Vec<crate::approval::ApprovalRequest> {
-    crate::approval::pending()
-}
-
-#[tauri::command]
-pub async fn delete_mcp_connector(app: AppHandle, id: String) -> Result<(), CommandError> {
-    tauri::async_runtime::spawn_blocking(move || {
-        with_storage(&app, &app.state::<AppState>(), |storage| storage.delete_mcp_connector(&id))
-    })
-    .await
-    .map_err(native_error)?
-}
-
-/// Starts the given connector (or every enabled one) and reports the tools it really exposes.
-#[tauri::command]
-pub async fn list_available_mcp_tools(
-    app: AppHandle,
-    config: Option<crate::connectors::McpConnectorConfig>,
-) -> Result<Vec<crate::connectors::McpToolInfo>, CommandError> {
-    tauri::async_runtime::spawn_blocking(move || {
-        if let Some(config) = config {
-            // Testing one connector reports its exact error to the settings UI.
-            crate::connectors::validate(&config).map_err(native_error)?;
-            return crate::mcp::discover(&config).map_err(native_error);
-        }
-        // Across all enabled connectors a broken server must not hide the working ones,
-        // matching how chat skips a connector that fails to start.
-        let configs = with_storage(&app, &app.state::<AppState>(), Storage::list_mcp_connectors)?;
-        Ok(configs
-            .iter()
-            .filter(|c| c.is_enabled)
-            .filter_map(|config| crate::mcp::discover(config).ok())
-            .flatten()
-            .collect())
-    })
-    .await
-    .map_err(native_error)?
 }
 
 #[tauri::command]

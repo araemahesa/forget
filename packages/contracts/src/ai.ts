@@ -98,27 +98,6 @@ export type ProviderTestResult = {
   modelCount?: number;
 };
 
-export type McpConnectorConfig = {
-  id: string;
-  name: string;
-  transport: 'stdio';
-  /** Executable started over stdio: a bare name on PATH (e.g. `npx`) or an absolute path. */
-  command: string;
-  args: string[];
-  isEnabled: boolean;
-  /** Empty means every tool the server lists. */
-  allowedTools: string[];
-  createdAt: string;
-  updatedAt: string;
-};
-
-export type McpToolInfo = {
-  name: string;
-  description: string;
-  category: string;
-  isWrite: boolean;
-};
-
 export type ConnectionMode = 'direct' | 'router';
 export type CredentialOwner = 'forgekit' | 'router';
 export type Support = 'supported' | 'unsupported' | 'unknown';

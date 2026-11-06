@@ -19,7 +19,7 @@ const models = [
 const thread = { id: 'mock-thread', title: 'Sistem checkpoint obby', providerId: 'mock-claude', model: 'opus', createdAt: '1', updatedAt: '1' };
 const messages = [
   { id: 'm1', threadId: thread.id, sequence: 1, role: 'user', content: 'Buat sistem checkpoint untuk obby di area yang saya pilih.', createdAt: '1' },
-  { id: 'm2', threadId: thread.id, sequence: 2, role: 'assistant', createdAt: '2', content: '## Rencana checkpoint\n\nSaya akan membuat **5 checkpoint** di jalur obby:\n\n- Part `Checkpoint` transparan dengan atribut `Stage`.\n- Script server yang menyimpan stage terakhir per pemain.\n- Respawn otomatis ke checkpoint terakhir.\n\n```lua\nlocal Players = game:GetService("Players")\n```\n\nSetiap perubahan pada map akan meminta izinmu dulu.' },
+  { id: 'm2', threadId: thread.id, sequence: 2, role: 'assistant', createdAt: '2', content: '## Rencana checkpoint\n\nSaya akan membuat **5 checkpoint** di jalur obby:\n\n- Part `Checkpoint` transparan dengan atribut `Stage`.\n- Script server yang menyimpan stage terakhir per pemain.\n- Respawn otomatis ke checkpoint terakhir.\n\n```lua\nlocal Players = game:GetService("Players")\n```\n\nSetiap perubahan tercatat sebagai satu langkah Undo di Studio.' },
 ];
 const usage = {
   profileId: 'mock-claude', status: 'available', source: 'claude_code', observedAt: now, checkedAt: now, planType: 'max', message: null,
@@ -45,6 +45,7 @@ const fixtures: Record<string, (args: Args) => unknown> = {
   get_discord_account: () => ({ clientId: null, redirectUri: 'http://127.0.0.1:38473/auth/callback', profile: null }),
   get_workspace_info: () => ({ rootPath: '/Users/kreator/Library/Application Support/dev.forgekit.studio', orphanArtifacts: [] }),
   blender_status: () => ({ available: true }),
+  probe_studio: () => ({ executable: 'StudioMCP', protocolVersion: '2025-06-18', serverName: 'Studio', checkedAt: String(Date.now()), availability: 'mcp_ready', readTools: [], studios: [{ studioId: 'studio-1', name: 'Obby Hutan', placeId: 7, target: { studioId: 'studio-1', placeId: '7', mode: 'edit' } }] }),
   get_google_oauth_config: () => ({ clientId: null, configured: false }),
   hunyuan_load_config: () => ({ endpoint: '', hasToken: false, configured: false }),
   hunyuan_health: () => ({ ok: false }),

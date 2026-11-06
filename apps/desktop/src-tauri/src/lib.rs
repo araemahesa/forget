@@ -107,13 +107,6 @@ macro_rules! app_commands {
             generate_editor_recipe,
             export_creative_geometry,
             export_creative_audio,
-            list_mcp_connectors,
-            save_mcp_connector,
-            toggle_mcp_connector,
-            list_available_mcp_tools,
-            delete_mcp_connector,
-            resolve_tool_approval,
-            list_tool_approvals,
             $($extra,)*
         ]
     };
@@ -121,7 +114,6 @@ macro_rules! app_commands {
 
 mod agent;
 pub mod animation;
-pub mod approval;
 pub mod ai;
 pub mod artifacts;
 mod attachments;
@@ -129,7 +121,6 @@ pub mod auth;
 pub mod backup;
 pub mod commands;
 pub mod connections;
-pub mod connectors;
 pub mod context;
 pub mod creative;
 pub mod creator_workspace;
@@ -138,7 +129,6 @@ pub mod editor_ai;
 mod gfx_assets;
 pub mod images;
 mod model3d;
-pub mod mcp;
 pub mod model_catalog;
 mod obsidian;
 pub mod provider_usage;

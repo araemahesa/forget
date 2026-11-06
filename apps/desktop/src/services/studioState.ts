@@ -18,6 +18,25 @@ let timer: ReturnType<typeof setTimeout> | undefined;
 const listeners = new Set<() => void>();
 const subscribe = (listener: () => void) => { listeners.add(listener); return () => { listeners.delete(listener); }; };
 const notify = () => listeners.forEach((listener) => listener());
+// The map last used is reconnected automatically after a restart; it is matched by place, not by
+// the per-session instance ID.
+const rememberedKey = 'forgekit:studio-target';
+type Remembered = { name: string; placeId: string };
+const placeKey = (studio: StudioReport['studios'][number]) => String(studio.placeId ?? '');
+function remembered(): Remembered | null {
+  try { const value = JSON.parse(localStorage.getItem(rememberedKey) ?? 'null'); return value && typeof value.name === 'string' && typeof value.placeId === 'string' ? value : null; } catch { return null; }
+}
+function remember(studio: StudioReport['studios'][number]) {
+  try { localStorage.setItem(rememberedKey, JSON.stringify({ name: studio.name, placeId: placeKey(studio) })); } catch { /* Memory only. */ }
+}
+/** Picks the target without asking: the chosen instance, else the map used last, else the first open map. */
+export function autoTarget(studios: StudioReport['studios'], chosen: string | null): StudioReport['studios'][number] | null {
+  const usable = studios.filter((studio) => studio.name.trim() && !studio.verificationError);
+  const last = remembered();
+  return usable.find((s) => s.studioId === chosen)
+    ?? (last ? usable.find((s) => placeKey(s) === last.placeId && s.name === last.name) ?? usable.find((s) => last.placeId !== '' && placeKey(s) === last.placeId) : undefined)
+    ?? usable[0] ?? null;
+}
 export function setStudioSnapshot(value: StudioSnapshot | null) { snapshot = value; notify(); }
 export function getStudioSnapshot() { return snapshot; }
 export function useStudioSnapshot() { return useSyncExternalStore(subscribe, () => snapshot); }
@@ -25,6 +44,8 @@ export function useStudioDiscovery() { return useSyncExternalStore(subscribe, ()
 export function selectStudioTarget(id: string) {
   if (!discovery.studios.some((studio) => studio.studioId === id) || tasks) return;
   selectedId = id; generation++; setStudioSnapshot(null);
+  const chosen = discovery.studios.find((studio) => studio.studioId === id);
+  if (chosen) remember(chosen);
   void refreshStudioContext();
 }
 export function acquireStudioTask() { tasks++; let released = false; return () => { if (!released) { released = true; tasks--; } }; }
@@ -41,7 +62,7 @@ export function refreshStudioContext(): Promise<StudioSnapshot | null> {
     try {
       const report = await probeStudio();
       if (revision !== generation) return snapshot;
-      const target = report.studios.find((s) => s.studioId === selectedId) ?? (report.studios.length === 1 ? report.studios[0] : null);
+      const target = autoTarget(report.studios, selectedId);
       discovery = { studios: report.studios, status: target ? 'connected' : report.studios.length ? 'choose' : 'offline' };
       if (!target) { selectedId = null; setStudioSnapshot(null); return null; }
       if (tasks && snapshot) {
@@ -57,6 +78,7 @@ export function refreshStudioContext(): Promise<StudioSnapshot | null> {
       }
       if (revision !== generation) return snapshot;
       selectedId = target.studioId;
+      remember(target);
       // Never retain another map's hierarchy when a target disappears or changes.
       snapshot = { studio: target, checkedAt: report.checkedAt };
       notify();

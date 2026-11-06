@@ -216,7 +216,7 @@ pub fn run(
                 let arguments = serde_json::from_str::<Value>(&call.arguments).map(|v| v.to_string()).unwrap_or_else(|_| call.arguments.clone());
                 let intent_hash=sha256_hex(format!("{}:{}",call.name,arguments).as_bytes());
                 let repeated=state.operations.values().any(|o|o.intent_hash==intent_hash);
-                let write=crate::studio::is_write(&call.name) || crate::mcp::is_write(&call.name);
+                let write=crate::studio::is_write(&call.name);
                 let uncertain=state.operations.values().any(|o|o.write && o.dispatched && o.output.as_ref().is_none_or(|v|v["outcomeUnknown"]==true));
                 if reject || (uncertain && write) || !tools.iter().any(|t|t.wire_name==call.name) || (write && state.operations.values().any(|o| o.intent_hash == intent_hash && o.dispatched)){
                     outputs.push(json!({"isError":true,"notExecuted":true,"message":"Operasi tidak diterima: batas kerja, fase finalisasi, duplikasi write, atau tool tidak tersedia."}));

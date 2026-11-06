@@ -881,26 +881,6 @@ impl Storage {
         )
     }
 
-    pub fn list_mcp_connectors(
-        &self,
-    ) -> Result<Vec<crate::connectors::McpConnectorConfig>, StorageError> {
-        crate::connectors::list_connectors(&self.connection)
-    }
-
-    pub fn save_mcp_connector(
-        &self,
-        config: &crate::connectors::McpConnectorConfig,
-    ) -> Result<(), StorageError> {
-        crate::connectors::save_connector(&self.connection, config)
-    }
-
-    pub fn toggle_mcp_connector(&self, id: &str, enabled: bool) -> Result<(), StorageError> {
-        crate::connectors::toggle_connector(&self.connection, id, enabled)
-    }
-
-    pub fn delete_mcp_connector(&self, id: &str) -> Result<(), StorageError> {
-        crate::connectors::delete_connector(&self.connection, id)
-    }
 }
 
 pub(crate) fn next_id(prefix: &str) -> String {

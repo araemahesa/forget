@@ -111,13 +111,6 @@
     "allow-cancel-blender-model",
     "allow-resume-ai-task",
     "allow-generate-editor-recipe",
-    "allow-list-mcp-connectors",
-    "allow-save-mcp-connector",
-    "allow-toggle-mcp-connector",
-    "allow-list-available-mcp-tools",
-    "allow-delete-mcp-connector",
-    "allow-resolve-tool-approval",
-    "allow-list-tool-approvals",
     "allow-obsidian-status",
     "allow-open-blender-model"
   ]
