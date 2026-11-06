@@ -1,61 +1,8 @@
-mod provider_usage_http;
-mod attachments;
-mod references;
-mod blender;
-mod blender_insert;
-mod reference_model;
-mod hunyuan_remote;
-mod hunyuan_edit;
-mod model_profile;
-mod agent;
-mod obsidian;
-mod obsidian_learning;
-pub mod ai;
-mod ai_protocol;
-pub mod artifacts;
-pub mod backup;
-mod browser_auth;
-pub mod codex_auth;
-pub mod commands;
-pub mod connections;
-pub mod connectors;
-pub mod context;
-pub mod creative;
-pub mod creator_workspace;
-mod discord;
-pub mod editor_ai;
-mod explorer;
-mod gfx_assets;
-mod google_auth;
-pub mod images;
-mod luau_checks;
-pub mod model_catalog;
-pub mod provider_usage;
-pub mod routing;
-#[cfg(feature = "runtime-acceptance")]
-mod runtime_acceptance;
-pub mod sfx;
-pub mod storage;
-pub mod studio;
-pub mod supervisor;
-mod task_activity;
-pub mod task_journal;
-pub mod tasks;
-pub mod tools;
-
-use commands::*;
-use tauri::{Emitter, Manager};
-
-pub fn run() {
-    let context = tauri::generate_context!();
-    #[cfg(feature = "runtime-acceptance")]
-    if runtime_acceptance::requested() {
-        runtime_acceptance::run(context);
-        return;
-    }
-    tauri::Builder::default()
-        .manage(AppState::default())
-        .invoke_handler(tauri::generate_handler![
+/// Every IPC command exposed to the frontend. Shared by the normal app and the
+/// opt-in acceptance harness so both always register the same command set.
+macro_rules! app_commands {
+    ($($extra:ident),* $(,)?) => {
+        tauri::generate_handler![
             hunyuan_load_config,
             hunyuan_save_config,
             hunyuan_health,
@@ -149,7 +96,6 @@ pub fn run() {
             open_blender_model,
             insert_blender_model,
             cancel_blender_model,
-
             get_creative_task,
             resume_ai_task,
             list_creative_versions,
@@ -162,14 +108,62 @@ pub fn run() {
             list_mcp_connectors,
             save_mcp_connector,
             toggle_mcp_connector,
-            list_available_mcp_tools
-        ])
+            list_available_mcp_tools,
+            $($extra,)*
+        ]
+    };
+}
+
+mod agent;
+pub mod ai;
+pub mod artifacts;
+mod attachments;
+pub mod auth;
+pub mod backup;
+pub mod commands;
+pub mod connections;
+pub mod connectors;
+pub mod context;
+pub mod creative;
+pub mod creator_workspace;
+mod discord;
+pub mod editor_ai;
+mod gfx_assets;
+pub mod images;
+mod model3d;
+pub mod model_catalog;
+mod obsidian;
+pub mod provider_usage;
+mod references;
+pub mod routing;
+#[cfg(feature = "runtime-acceptance")]
+mod runtime_acceptance;
+pub mod sfx;
+pub mod storage;
+pub mod studio;
+pub mod supervisor;
+pub mod tasks;
+pub mod tools;
+
+use commands::*;
+use tauri::{Emitter, Manager};
+
+pub fn run() {
+    let context = tauri::generate_context!();
+    #[cfg(feature = "runtime-acceptance")]
+    if runtime_acceptance::requested() {
+        runtime_acceptance::run(context);
+        return;
+    }
+    tauri::Builder::default()
+        .manage(AppState::default())
+        .invoke_handler(app_commands!())
         .build(context)
         .expect("error while building ForgeKit Studio")
         .run(|app, event| {
             if matches!(event, tauri::RunEvent::Exit) {
                 ai::shutdown();
-                codex_auth::shutdown();
+                auth::codex::shutdown();
                 studio::shutdown();
             }
             if let tauri::RunEvent::ExitRequested {
@@ -188,5 +182,3 @@ pub fn run() {
         });
 }
 
-#[cfg(test)]
-mod storage_tests;

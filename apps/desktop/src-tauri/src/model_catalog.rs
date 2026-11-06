@@ -179,8 +179,8 @@ pub fn catalog(profile: &AiProviderProfile, refresh: bool) -> Result<Vec<Provide
             }
         }
     }
-    if crate::codex_auth::is_codex(profile) {
-        let rows = crate::codex_auth::models(&profile.key_reference)?;
+    if crate::auth::codex::is_codex(profile) {
+        let rows = crate::auth::codex::models(&profile.key_reference)?;
         CACHE
             .lock()
             .map_err(|_| "Cache katalog terkunci.")?
@@ -191,7 +191,7 @@ pub fn catalog(profile: &AiProviderProfile, refresh: bool) -> Result<Vec<Provide
         .map(|_| ai::get_keychain_secret(&profile.key_reference))
         .transpose()?;
     let project = if profile.provider_type == "gemini" {
-        crate::google_auth::quota_project(&profile.key_reference)?
+        crate::auth::google::quota_project(&profile.key_reference)?
     } else {
         None
     };

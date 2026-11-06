@@ -193,7 +193,7 @@ export function useCreativeTask(kind: ProceduralKind, session?: { id: string; in
       const studio = document ? null : await refreshStudioContext();
       if (active.current !== id || cancelled.current) return;
       if (applyVersionId) {
-        if (!studio) throw new Error('Hubungkan dan verifikasi map tujuan di Roblox Studio terlebih dahulu.');
+        if (!studio?.context) throw new Error('Hubungkan dan verifikasi map tujuan di Roblox Studio terlebih dahulu.');
         const thread = await call<{ id: string }>('create_chat_thread', { title: `Terapkan ${kind}`, providerId: choiceSnapshot.providerId, model: choiceSnapshot.modelId, systemPrompt: null });
         activeThread.current = thread.id;
         if (cancelled.current || active.current !== id) return;

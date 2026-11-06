@@ -675,6 +675,12 @@
           "markdownDescription": "Enables the read_studio_explorer command without any pre-configured scope."
         },
         {
+          "description": "Enables the record_runtime_acceptance command without any pre-configured scope.",
+          "type": "string",
+          "const": "allow-record-runtime-acceptance",
+          "markdownDescription": "Enables the record_runtime_acceptance command without any pre-configured scope."
+        },
+        {
           "description": "Enables the rename_chat_thread command without any pre-configured scope.",
           "type": "string",
           "const": "allow-rename-chat-thread",
@@ -1315,6 +1321,12 @@
           "type": "string",
           "const": "deny-read-studio-explorer",
           "markdownDescription": "Denies the read_studio_explorer command without any pre-configured scope."
+        },
+        {
+          "description": "Denies the record_runtime_acceptance command without any pre-configured scope.",
+          "type": "string",
+          "const": "deny-record-runtime-acceptance",
+          "markdownDescription": "Denies the record_runtime_acceptance command without any pre-configured scope."
         },
         {
           "description": "Denies the rename_chat_thread command without any pre-configured scope.",

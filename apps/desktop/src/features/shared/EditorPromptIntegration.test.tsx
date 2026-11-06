@@ -1,4 +1,4 @@
-import { resetImageMocks } from '../imageTestSupport';
+import { resetImageMocks } from './imageTestSupport';
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { beforeEach, expect, it, vi } from 'vitest';
 import { GfxPage } from '../gfx/GfxPage';

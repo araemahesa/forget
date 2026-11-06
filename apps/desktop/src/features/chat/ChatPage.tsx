@@ -162,7 +162,9 @@ export function ChatPage(_props: Pick<WorkspacePageProps, 'onOpenVersion'>) {
       if (request.cancelled) return;
       const freshContext = retry ? studio : await refreshStudioContext();
       if (request.cancelled) return;
-      const result = await sendChatMessage(request.threadId, text, capturedProvider, request.requestId, mode, freshContext?.context?.id, freshContext?.studio.studioId, referenceImages);
+      // A Studio target is only usable with a verified map snapshot; without one this is a plain chat.
+      const mapContext = freshContext?.context ? freshContext : null;
+      const result = await sendChatMessage(request.threadId, text, capturedProvider, request.requestId, mode, mapContext?.context?.id, mapContext?.studio.studioId, referenceImages);
       // Only a persisted native response completes the task; stream termination alone cannot.
       if (alive.current && !request.cancelled) {
         const saved = await loadChatThread(request.threadId);

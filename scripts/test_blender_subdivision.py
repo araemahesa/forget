@@ -7,7 +7,7 @@ with tempfile.TemporaryDirectory(prefix='forgekit-subdivision-') as work:
         dest = work / str(level)
         dest.mkdir()
         for name in ('blender_build.py', 'blender_reference.py', 'blender_reconstruction.py', 'blender_texture.py'):
-            shutil.copy2(root / 'apps/desktop/src-tauri/src' / name, dest / name)
+            shutil.copy2(root / 'apps/desktop/src-tauri/scripts/blender' / name, dest / name)
         shutil.copy2(root / 'packages/contracts/src/model3d-materials.json', dest)
         part = dict(id='body', name='Organic cage', primitive='mesh', position=[0,0,0], size=[4,2,2], rotation=[0,0,0], color='#404550', material='Plastic', subdivision=level, mesh=dict(vertices=[[-1,-1,-1],[1,-1,-1],[1,1,-1],[-1,1,-1],[-1,-1,1],[1,-1,1],[1,1,1],[-1,1,1]], faces=[[0,3,2,1],[4,5,6,7],[0,1,5,4],[1,2,6,5],[2,3,7,6],[3,0,4,7]]))
         (dest/'recipe.json').write_text(json.dumps(dict(name='Subdivision fixture', category='creature', seed=0, exportFormat='blend', parts=[part])))

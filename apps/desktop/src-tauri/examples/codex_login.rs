@@ -1,6 +1,6 @@
 //! Explicit live acceptance: starts ForgeKit-owned login, then saves a NEW account.
 //! Never imports an existing Orca/Codex/browser credential. Output is redacted.
-use forgekit_desktop_lib::{ai, codex_auth, connections, model_catalog, provider_usage};
+use forgekit_desktop_lib::{ai, auth, connections, model_catalog, provider_usage};
 use rusqlite::{Connection, OpenFlags};
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let db_path = std::env::args()
@@ -14,10 +14,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             .as_nanos()
     );
     eprintln!("ForgeKit is opening its own ChatGPT login. Complete sign-in in the browser.");
-    let mut account = codex_auth::sign_in(&id)?;
+    let mut account = auth::codex::sign_in(&id)?;
     account.is_default = ai::list_connection_profiles(&db)?.is_empty();
     if let Err(e) = ai::save_connection_profile(&db, &account) {
-        let _ = codex_auth::disconnect(account.credential_ref.as_deref().unwrap());
+        let _ = auth::codex::disconnect(account.credential_ref.as_deref().unwrap());
         return Err(e.into());
     }
     let profile = connections::legacy(&account, None)?;

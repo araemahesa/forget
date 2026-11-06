@@ -3,7 +3,7 @@ import type { TextureSpec } from '@forgekit/contracts';
 import { Button } from '../../design-system/Button';
 import { Icon } from '../../design-system/Icon';
 import { Status } from '../../design-system/Status';
-import { ImageHistory, useImageDocument } from '../useImageDocument';
+import { ImageHistory, useImageDocument } from '../shared/useImageDocument';
 import type { TextureMapType } from '@forgekit/contracts';
 import { renderTextureSvg, type TilingMode } from '../../engines/textures/render';
 import { TextureForm } from './TextureForm';

@@ -1,5 +1,5 @@
 //! Discord identity uses a registered public desktop client and PKCE. No client secret in the app.
-use crate::{ai, browser_auth as auth};
+use crate::{ai, auth::browser as auth};
 use base64::{engine::general_purpose::URL_SAFE_NO_PAD, Engine};
 use serde::{Deserialize, Serialize};
 use serde_json::Value;

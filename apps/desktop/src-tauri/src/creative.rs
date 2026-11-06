@@ -159,8 +159,8 @@ pub fn validate_document(document: &Value, budget: usize) -> Result<(), StorageE
                 }
                 if p.get("subdivision").is_some() && (p["primitive"] != "mesh" || !p["subdivision"].as_u64().is_some_and(|n| n <= 2)) {return Err(invalid("Subdivision mesh harus integer 0-2."));}
                 if p.get("smooth").is_some() && !p["smooth"].is_boolean() { return Err(invalid("Smooth harus boolean.")); }
-                if !crate::model_profile::valid_custom_shape(p) {return Err(invalid("Geometri mesh/lathe tidak sah, degenerat, atau melampaui batas."));}
-                if p["primitive"] == "reconstruction" && (!crate::model_profile::valid_reconstruction(&p["reconstruction"]) || parts.iter().filter(|p|p["primitive"]=="reconstruction").count()>4) {
+                if !crate::model3d::profile::valid_custom_shape(p) {return Err(invalid("Geometri mesh/lathe tidak sah, degenerat, atau melampaui batas."));}
+                if p["primitive"] == "reconstruction" && (!crate::model3d::profile::valid_reconstruction(&p["reconstruction"]) || parts.iter().filter(|p|p["primitive"]=="reconstruction").count()>4) {
                     return Err(invalid("Rekonstruksi memerlukan 2-6 sudut pada minimal dua sumbu, crop/background sah, resolution 64/96/128, maksimal empat komponen."));
                 }
                 if p["primitive"] == "profile" {
@@ -179,7 +179,7 @@ pub fn validate_document(document: &Value, budget: usize) -> Result<(), StorageE
                     let rings: Vec<Vec<[f64;2]>> = std::iter::once(&profile["outline"]).chain(profile["holes"].as_array().unwrap()).map(|ring|ring.as_array().unwrap().iter().map(|p|[p[0].as_f64().unwrap(),p[1].as_f64().unwrap()]).collect()).collect();
                     profile_points += rings.iter().map(Vec::len).sum::<usize>();
                     if profile_points > 8192 {return Err(invalid("Total titik kontur model maksimal 8192."));}
-                    if !crate::model_profile::valid(&rings) {return Err(invalid("Kontur bersilangan, titik berulang, atau rongga keluar/bertumpuk/menyentuh batas."));}
+                    if !crate::model3d::profile::valid(&rings) {return Err(invalid("Kontur bersilangan, titik berulang, atau rongga keluar/bertumpuk/menyentuh batas."));}
                 }
             }
         }
@@ -1258,7 +1258,7 @@ impl Storage {
         let provider = provider.map(|p| json!({"profileId":p.id,"adapterId":p.provider_type,"modelId":p.model,"reasoningEffort":p.reasoning_effort,"authMode":if p.provider_type == "local-llm" {"local"} else {"api_key"}}));
         let snapshot = json!({"id":request.task_id,"kind":request.kind,"prompt":request.prompt,"quality":request.quality,"parentVersionId":request.parent_version_id,"provider":provider,"skill":skill,"studioId":studio,"contextSnapshotId":context,"referenceImages":request.reference_images});
         let tx = self.connection.unchecked_transaction()?;
-        crate::task_journal::begin(&tx, &request.task_id, &snapshot)?;
+        crate::tasks::journal::begin(&tx, &request.task_id, &snapshot)?;
         tx.commit()?;
         Ok(())
     }
@@ -1270,7 +1270,7 @@ impl Storage {
         error: Option<&str>,
     ) -> Result<(), StorageError> {
         let tx = self.connection.unchecked_transaction()?;
-        crate::task_journal::stage(&tx, id, stage, error)?;
+        crate::tasks::journal::stage(&tx, id, stage, error)?;
         tx.commit()?;
         Ok(())
     }
@@ -1302,7 +1302,7 @@ impl Storage {
             || operation.call != *call || !cp.pending.as_ref().is_some_and(|turn| turn.calls.contains(call))
             || parent_task["provider"]["profileId"].as_str() != request.provider_id.as_deref()
             || parent_task["provider"]["modelId"].as_str() != request.model_id.as_deref()
-            || crate::blender::input(call).map_err(StorageError::InvalidInput)? != *document {
+            || crate::model3d::blender::input(call).map_err(StorageError::InvalidInput)? != *document {
             return Err(invalid("Bukti provider, operasi, atau recipe Blender tidak cocok."));
         }
         let result = self.save_creative_document(root, request, document)?;
@@ -1365,7 +1365,7 @@ impl Storage {
             value["recovery"] = cp.recovery();
             value["candidate"] = json!(cp.final_text);
         }
-        value["activity"] = serde_json::to_value(crate::task_activity::activity(&value, checkpoint.as_ref()))?;
+        value["activity"] = serde_json::to_value(crate::tasks::activity::activity(&value, checkpoint.as_ref()))?;
         Ok(value)
     }
     pub fn load_creative_version(&self, id: &str) -> Result<Value, StorageError> {

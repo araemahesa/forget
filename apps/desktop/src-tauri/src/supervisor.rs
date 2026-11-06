@@ -1,5 +1,5 @@
 //! Shared, durable provider execution. The backend owns budgets and receipts.
-use crate::{ai::AiProviderProfile, ai_protocol::Turn, artifacts::sha256_hex, routing::now_ms, tools::{ToolCall, ToolDefinition}};
+use crate::{ai::AiProviderProfile, ai::protocol::Turn, artifacts::sha256_hex, routing::now_ms, tools::{ToolCall, ToolDefinition}};
 use serde::{Deserialize, Serialize};
 use serde_json::{json, Value};
 use std::collections::BTreeMap;
@@ -59,7 +59,7 @@ pub struct Checkpoint {
     pub validation: String,
     pub repairs: usize,
     #[serde(default, skip_serializing_if="Option::is_none")]
-    pub model_review: Option<crate::reference_model::ReviewState>,
+    pub model_review: Option<crate::model3d::reference_model::ReviewState>,
 }
 pub fn fingerprint(p:&AiProviderProfile)->String {
     sha256_hex(json!([p.id,p.provider_type,p.model,p.reasoning_effort,p.base_url,p.key_reference,p.updated_at]).to_string().as_bytes())
@@ -138,7 +138,7 @@ impl Checkpoint {
                     .as_ref()
                     .is_none_or(|v| v["outcomeUnknown"] == true)
         });
-        let history = if self.model_review.is_some() {crate::reference_model::context_history(&self.history)} else {self.history.clone()};
+        let history = if self.model_review.is_some() {crate::model3d::reference_model::context_history(&self.history)} else {self.history.clone()};
         let room = self.turns < self.budget.turns
             && self.output_estimate < self.budget.total_output_estimate
             && crate::references::context_size(&history)

@@ -8,4 +8,4 @@ Perbaikan meliputi jalur executor Chat/generator, checkpoint pemulihan, pembatas
 
 Build yang berhasil bukan bukti seluruh kebutuhan kualitas media atau integrasi live selesai. Login/kuota semua provider, write/playtest Roblox Studio, map besar dan kualitas hasil provider masih memerlukan verifikasi langsung tersendiri. Jangan menjalankan migrasi SQL manual. Verifikasi migrasi dilakukan dahulu pada salinan database, lalu aplikasi menjalankan migrasi yang didukung saat dibuka.
 
-Bukti terbaru: `docs/test-evidence/2026-10-31/recovery-build/`. Catatan implementasi dan batas verifikasi: `docs/RECOVERY_BUILD_2026_10_31.md`.
+Bukti terbaru: `docs/test-evidence/2026-10-31/recovery-build/`. Catatan implementasi dan batas verifikasi: `docs/changelog/RECOVERY_BUILD_2026_10_31.md`.

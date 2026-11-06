@@ -3,7 +3,6 @@ use base64::{engine::general_purpose::STANDARD, Engine};
 use std::{fs, path::{Path, PathBuf}, process::{Command, Stdio}, time::{Duration, Instant}};
 use crate::references::ReferenceImage;
 
-static PROCESSING: std::sync::Mutex<()> = std::sync::Mutex::new(());
 const LIMIT: usize = 32 * 1024 * 1024;
 fn executable(name: &str) -> Result<PathBuf, String> {
     for directory in ["/opt/homebrew/bin", "/usr/local/bin", "/usr/bin"] {
@@ -105,8 +104,8 @@ pub fn prepare(name: &str, encoded: &str) -> Result<ReferenceImage,String> {
                 attachment.text = match transcript(&input,&dir) { Ok(value)=> value, Err(error)=>format!("Audio video tidak dianalisis (tidak ada trek suara atau transkripsi gagal): {error}") };
             }
             "model3d" => {
-                let blender = crate::blender::binary().ok_or("Pasang Blender untuk memproses model 3D.")?;
-                let script = dir.join("inspect.py"); fs::write(&script, include_str!("attachment_model.py")).map_err(|_| "Pemroses 3D tidak tersedia.")?;
+                let blender = crate::model3d::blender::binary().ok_or("Pasang Blender untuk memproses model 3D.")?;
+                let script = dir.join("inspect.py"); fs::write(&script, include_str!("../scripts/blender/attachment_model.py")).map_err(|_| "Pemroses 3D tidak tersedia.")?;
                 run(Command::new(blender).args(["--background","--factory-startup","--disable-autoexec","--python-exit-code","1","--python"]).arg(script).arg("--").arg(&input).arg(&dir), 120)?;
                 attachment.text = text(&dir.join("model.txt"))?;
                 for index in 0..3 { attachment.frames.push(image(&dir.join(format!("view-{index}.png")))?); }

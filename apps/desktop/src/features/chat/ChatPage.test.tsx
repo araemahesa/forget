@@ -258,3 +258,11 @@ it('opens the live map explorer from the folder beside new chat without a duplic
   expect(screen.getByRole('tree', { name: 'Hierarki Studio live' })).toBeVisible();
   expect(screen.queryByRole('button', { name: 'Explorer map bersama' })).toBeNull();
 });
+
+it('sends plain chat without a Studio target when the map snapshot is not verified', async () => {
+  mocks.send.mockResolvedValue(answer);
+  setStudioSnapshot({ studio: { studioId: 'unverified-map', name: 'Place', placeId: null }, checkedAt: '1' });
+  await start();
+  expect(mocks.send.mock.calls[0][5]).toBeUndefined();
+  expect(mocks.send.mock.calls[0][6]).toBeUndefined();
+});

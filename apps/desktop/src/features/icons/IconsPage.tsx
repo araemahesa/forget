@@ -3,7 +3,7 @@ import type { IconSpec } from '@forgekit/contracts';
 import { Button } from '../../design-system/Button';
 import { Icon } from '../../design-system/Icon';
 import { Status } from '../../design-system/Status';
-import { ImageHistory, useImageDocument } from '../useImageDocument';
+import { ImageHistory, useImageDocument } from '../shared/useImageDocument';
 import { IconForm } from './IconForm';
 import { IconPreview } from './IconPreview';
 

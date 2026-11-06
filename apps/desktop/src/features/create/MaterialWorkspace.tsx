@@ -1,5 +1,5 @@
 import type { WorkspacePageProps } from '../../app/featureRegistry';
-import { Texture3dPage } from '../creators3d/Texture3dPage';
+import { Texture3dPage } from '../model3d/Texture3dPage';
 import { TexturesPage } from '../textures/TexturesPage';
 import { EditorModes } from './EditorModes';
 
