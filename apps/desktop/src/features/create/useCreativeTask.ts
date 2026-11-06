@@ -2,7 +2,7 @@ import type { ReferenceImage } from '../../services/references';
 import { useEffect, useRef, useState } from 'react';
 import {
   validateAnimationRecipe, validateCutsceneRecipe, validateGuiRecipe,
-  validateModel3dRecipe, validateMusicRecipe, validateNpcDialogueRecipe,
+  validateModel3dRecipe, validateMusicRecipe, validateNpcDialogueRecipe, validateAnimationDocument, isAnimationDocument,
   validateTexture3dRecipe, validateVfxRecipe, validateSkyboxRecipe,
   type CreativeSpecification, type CreativeTask, type CreativeVersion,
   type ProceduralKind, type QualityProfileId,
@@ -17,7 +17,7 @@ export function validateCreativeVersion(value: CreativeVersion, kind: Procedural
   if (!value || value.document?.kind !== kind || value.engineVersion !== 1 || typeof value.id !== 'string' || !value.artifact?.sha256) throw new Error('Versi artefak tidak sah atau engine belum didukung.');
   const issues =
     value.document.kind === 'model3d' ? validateModel3dRecipe(value.document.recipe) :
-    value.document.kind === 'animation' ? validateAnimationRecipe(value.document.recipe) :
+    value.document.kind === 'animation' ? (isAnimationDocument(value.document.recipe) ? validateAnimationDocument(value.document.recipe) : validateAnimationRecipe(value.document.recipe)) :
     value.document.kind === 'vfx' ? validateVfxRecipe(value.document.recipe) :
     value.document.kind === 'interface' ? validateGuiRecipe(value.document.recipe) :
     value.document.kind === 'npc' ? validateNpcDialogueRecipe(value.document.recipe) :
@@ -51,6 +51,8 @@ export function useCreativeTask(kind: ProceduralKind, session?: { id: string; in
   const [notice, setNotice] = useState('');
   const [applicationResult, setApplicationResult] = useState('');
   const activeThread = useRef<string | null>(null);
+  // Feature-specific request fields (e.g. animation mode and controls) sent with the next generation.
+  const requestExtras = useRef<Record<string, unknown>>({});
   const cancelled = useRef(false);
   const active = useRef<string | null>(null);
   const restored = useRef<string | null>(null);
@@ -228,6 +230,7 @@ export function useCreativeTask(kind: ProceduralKind, session?: { id: string; in
               reasoningEffort: choiceSnapshot.reasoningEffort,
               parentVersionId,
               referenceImages,
+              ...requestExtras.current,
             },
           });
       if (alive.current && active.current === id && !cancelled.current) {
@@ -298,6 +301,7 @@ export function useCreativeTask(kind: ProceduralKind, session?: { id: string; in
 
   return {
     storageKey,
+    setRequestExtras: (extras: Record<string, unknown>) => { requestExtras.current = extras; },
     referenceImages, setReferenceImages, attachmentsBusy, setAttachmentsBusy,
     submittedPrompt,
     applicationResult,

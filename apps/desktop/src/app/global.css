@@ -2557,3 +2557,40 @@ textarea.text-input {
 .approval-dialog .status-error { margin: 8px 20px 0; }
 .approval-actions { display: flex; justify-content: flex-end; gap: 8px; padding: 16px 20px 18px; }
 .approval-toast { position: fixed; right: 16px; bottom: 16px; z-index: 50; max-width: min(420px, calc(100vw - 32px)); margin: 0; padding: 10px 12px; border: 1px solid var(--border-control); border-radius: 8px; background: var(--surface-raised); color: var(--text); font-size: 12px; box-shadow: 0 12px 40px var(--shadow); }
+
+/* Animation Studio */
+.animation-modes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 0 0 18px; }
+.animation-modes button { display: grid; gap: 4px; text-align: left; padding: 12px 14px; border: 1px solid var(--border-control); border-radius: 10px; background: var(--surface); color: var(--text-secondary); cursor: pointer; }
+.animation-modes button strong { color: var(--text); font-size: 13px; }
+.animation-modes button span { font-size: 11px; }
+.animation-modes button[aria-selected="true"] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); background: var(--accent-subtle); }
+.animation-layout { grid-template-columns: 300px minmax(0, 1fr) 300px; }
+.animation-options label { display: grid; gap: 4px; margin-top: 8px; }
+.animation-options input { border: 1px solid var(--border-control); border-radius: 8px; background: var(--surface); color: var(--text); padding: 8px; font: inherit; }
+.animation-empty { display: grid; place-items: center; min-height: 360px; border: 1px dashed var(--border-control); border-radius: 12px; color: var(--text-muted); font-size: 12px; padding: 24px; text-align: center; }
+.animation-timeline { flex-wrap: wrap; align-items: center; }
+.animation-timeline .motion-scrubber { position: relative; flex: 1 1 220px; padding-bottom: 18px; }
+.animation-timeline .motion-scrubber input { width: 100%; }
+.timeline-markers { position: absolute; left: 0; right: 0; bottom: 0; height: 16px; }
+.timeline-markers button { position: absolute; transform: translateX(-50%); border: 0; border-radius: 4px; padding: 0 4px; font-size: 9px; background: var(--accent-subtle); color: var(--text); cursor: pointer; white-space: nowrap; }
+.animation-report { display: grid; gap: 16px; align-content: start; min-width: 0; font-size: 12px; }
+.animation-report header { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.animation-report h2 { margin: 0; font-size: 14px; }
+.animation-report h3 { margin: 0 0 6px; font-size: 12px; color: var(--text-secondary); }
+.animation-report ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.animation-report section > ul:not(.requirement-list):not(.check-list):not(.stage-list) li { color: var(--text-secondary); }
+.requirement-list li, .check-list li { display: grid; gap: 2px; padding: 8px; border: 1px solid var(--border); border-radius: 8px; border-left-width: 3px; }
+.requirement-list q { color: var(--text-secondary); font-style: italic; }
+.requirement-list small, .check-list small { color: var(--text-muted); overflow-wrap: anywhere; }
+.requirement-status { font-size: 10px; text-transform: uppercase; letter-spacing: .04em; color: var(--text-muted); }
+.is-satisfied, .is-pass { border-left-color: var(--success) !important; }
+.is-partial, .is-unverifiable, .is-warn { border-left-color: #d6a33a !important; }
+.is-unsatisfied, .is-fail { border-left-color: var(--accent) !important; }
+.is-not_checked { border-left-color: var(--border-control) !important; }
+.quality-badge { font-size: 10px; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--border-control); color: var(--text-secondary); }
+.quality-badge.is-technically_verified { border-color: var(--success); color: var(--success); }
+.quality-badge.is-needs_revision { border-color: var(--accent); color: var(--accent); }
+.stage-list li { color: var(--text-muted); }
+.stage-list li[data-done="true"] { color: var(--text); }
+@media (max-width: 1280px) { .animation-layout { grid-template-columns: 280px minmax(0, 1fr); } .animation-report { grid-column: 1 / -1; } }
+@media (max-width: 860px) { .animation-modes, .animation-layout { grid-template-columns: 1fr; } }

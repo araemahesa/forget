@@ -36,7 +36,7 @@ export function getRecipeName(doc: CreativeSpecification): string {
   }
 }
 
-export function CreativeControls({ task, initialPrompt }: { task: ReturnType<typeof useCreativeTask>; initialPrompt: string }) {
+export function CreativeControls({ task, initialPrompt, promptLabel = 'Apa yang ingin dibuat?', promptPlaceholder = 'Jelaskan yang ingin dibuat…', children }: { task: ReturnType<typeof useCreativeTask>; initialPrompt: string; promptLabel?: string; promptPlaceholder?: string; children?: import('react').ReactNode }) {
   const { account } = useDiscordAccount();
   const draftKey = task.storageKey ?? task.kind;
   const [prompt, setPrompt] = useState(() => safeGetItem(`forgekit:prompt:${draftKey}`) ?? initialPrompt); const [refine, setRefine] = useState(() => safeGetItem(`forgekit:refine:${draftKey}`) ?? '');
@@ -55,8 +55,9 @@ export function CreativeControls({ task, initialPrompt }: { task: ReturnType<typ
         <button type="button" aria-pressed={imageOnly} disabled={task.busy} onClick={() => setImageOnly(true)}>Dari gambar</button>
         <button type="button" aria-pressed={!imageOnly} disabled={task.busy} onClick={() => setImageOnly(false)}>Dengan prompt</button>
       </div>}
-      {!imageOnly && <><label className="prompt-label" htmlFor={`${draftKey}-prompt`}>Apa yang ingin dibuat?</label>
-      <textarea className="prompt-input" id={`${draftKey}-prompt`} placeholder="Jelaskan yang ingin dibuat…" value={prompt} onChange={(e) => { draftTouched.current = true; setPrompt(e.target.value); }} rows={3} maxLength={16000} disabled={task.busy} /></>}
+      {!imageOnly && <><label className="prompt-label" htmlFor={`${draftKey}-prompt`}>{promptLabel}</label>
+      <textarea className="prompt-input" id={`${draftKey}-prompt`} placeholder={promptPlaceholder} value={prompt} onChange={(e) => { draftTouched.current = true; setPrompt(e.target.value); }} rows={3} maxLength={16000} disabled={task.busy} /></>}
+        {children}
         <ObsidianContext />
       <ReferenceImages maxFiles={imageOnly ? 1 : 3} imagesOnly={imageOnly} value={task.referenceImages ?? []} onChange={task.setReferenceImages} disabled={task.busy} onBusyChange={task.setAttachmentsBusy} />
       {task.kind === 'model3d' && <p className="generator-caption">Belakang dan sisi yang tidak terlihat dilengkapi secara interpretatif.</p>}

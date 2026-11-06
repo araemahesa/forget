@@ -118,6 +118,7 @@ macro_rules! app_commands {
 }
 
 mod agent;
+pub mod animation;
 pub mod approval;
 pub mod ai;
 pub mod artifacts;

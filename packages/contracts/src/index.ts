@@ -3,6 +3,8 @@ export * from './media';
 export * from './textures';
 export * from './skybox';
 export * from './motionAudio';
+export * from './animation';
+export * from './animationQuality';
 export * from './creative';
 export * from './creators3d';
 export * from './ai';
