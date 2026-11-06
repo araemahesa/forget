@@ -1,0 +1,74 @@
+{
+  "version": "0.1.49",
+  "installed": "/Applications/ForgeKit Studio.app",
+  "previousVersion": "0.1.48",
+  "previousApp": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-06-release-0.1.49-1793969581917967000/ForgeKit Studio 0.1.48.app",
+  "databaseBackup": "/Users/ariardianto/Library/Application Support/ForgeKit Recovery/2026-11-06-release-0.1.49-1793969581917967000/forgekit.sqlite",
+  "executableSha256": "244fbfc9b32755ca4a489c13a555c92011510b176386f3f5fdd6244533cb45d7",
+  "signature": "ad-hoc verified",
+  "schemaBefore": 16,
+  "schemaAfter": 16,
+  "databaseBefore": {
+    "userVersion": 16,
+    "integrity": "ok",
+    "foreignKeyErrors": 0,
+    "tables": {
+      "chat_thread": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "chat_message": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "gfx_version": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "sfx_version": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "image_version": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "creative_version": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    }
+  },
+  "databaseAfter": {
+    "userVersion": 16,
+    "integrity": "ok",
+    "foreignKeyErrors": 0,
+    "tables": {
+      "chat_thread": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "chat_message": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "gfx_version": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "sfx_version": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "image_version": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "creative_version": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    }
+  },
+  "dataTablesMatch": true
+}
