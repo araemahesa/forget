@@ -81,6 +81,21 @@ it('uses the logged-in Discord identity for user messages and ForgeKit branding 
   expect(screen.queryByText('Membaca map')).toBeNull();
 });
 
+it('starts a new conversation instead of sending to a remembered thread that no longer exists', async () => {
+  localStorage.setItem('forgekit:active-chat', 'thread-from-a-wiped-database');
+  mocks.list.mockResolvedValue([]);
+  mocks.send.mockResolvedValue(answer);
+  render(<ChatPage onOpenVersion={vi.fn()} />);
+  await waitFor(() => expect(mocks.list).toHaveBeenCalled());
+  await waitFor(() => expect(localStorage.getItem('forgekit:active-chat')).toBeNull());
+  const user = userEvent.setup();
+  await user.type(screen.getByLabelText('Input pesan chat'), 'hi');
+  await user.click(screen.getByRole('button', { name: 'Kirim' }));
+  await waitFor(() => expect(mocks.send).toHaveBeenCalledTimes(1));
+  expect(mocks.create).toHaveBeenCalledTimes(1);
+  expect(mocks.send.mock.calls[0][0]).toBe('thread-one');
+});
+
 it('captures provider for running request and waits for native persistence', async () => {
   const pending = deferred<typeof answer>(); mocks.send.mockReturnValue(pending.promise);
   await start();
@@ -236,6 +251,7 @@ it('shows prompt and Discord profile immediately while thread creation is still 
 
 it('restores the same durable running turn after navigation without sending again', async () => {
   localStorage.setItem('forgekit:active-chat', 'thread-one');
+  mocks.list.mockResolvedValue([{ id: 'thread-one', title: 'Percakapan', model: 'configured-model' }]);
   mocks.load.mockResolvedValue([{ ...answer, id: 'user', role: 'user', content: 'Prompt tersimpan' }]);
   mocks.latest.mockResolvedValue({ id: 'running-turn', status: 'tool_running', threadId: 'thread-one' });
   const view=render(<ChatPage onOpenVersion={vi.fn()} />);

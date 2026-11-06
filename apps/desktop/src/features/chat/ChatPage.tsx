@@ -76,11 +76,18 @@ export function ChatPage(_props: Pick<WorkspacePageProps, 'onOpenVersion'>) {
   const log = useRef<HTMLDivElement>(null);
   const follow = useRef(true);
   const alive = useRef(true);
+  // Saved thread IDs once loaded; a remembered thread that no longer exists is never sent to.
+  const knownThreads = useRef<Set<string> | null>(null);
 
   useEffect(() => {
     alive.current = true;
     let current = true;
-    void listChatThreads().then((items) => { if (current) setThreads(items); }).catch((error: unknown) => { if (current) setNotice(failureMessage(error)); });
+    void listChatThreads().then((items) => {
+      if (!current) return;
+      knownThreads.current = new Set(items.map((thread) => thread.id));
+      setThreads(items);
+      setActiveThreadId((id) => id && !knownThreads.current?.has(id) ? null : id);
+    }).catch((error: unknown) => { if (current) setNotice(failureMessage(error)); });
     return () => { current = false; alive.current = false; };
   }, []);
   useEffect(() => {
@@ -157,6 +164,7 @@ export function ChatPage(_props: Pick<WorkspacePageProps, 'onOpenVersion'>) {
     if (activeRequest.current || recovering || !window.confirm(`Hapus percakapan "${thread.title}" beserta pesannya?`)) return;
     try {
       await deleteChatThread(thread.id);
+      knownThreads.current?.delete(thread.id);
       setThreads((items) => items.filter((item) => item.id !== thread.id));
       if (activeThreadId === thread.id) newConversation();
     } catch (error) { setError(failureMessage(error)); }
@@ -170,7 +178,8 @@ export function ChatPage(_props: Pick<WorkspacePageProps, 'onOpenVersion'>) {
     // Ask/Plan never receive write tools; the backend enforces this, not only the UI.
     const mode = chatMode;
     const retry = false;
-    const request = { threadId: activeThreadId, requestId: crypto.randomUUID(), cancelled: false };
+    const stale = !!activeThreadId && !!knownThreads.current && !knownThreads.current.has(activeThreadId);
+    const request = { threadId: stale ? null : activeThreadId, requestId: crypto.randomUUID(), cancelled: false };
     activeRequest.current = request;
     const releaseStudio = acquireStudioTask();
     setMessages((items) => retry ? items : [...items, { id: `pending-${request.requestId}`, threadId: request.threadId ?? '', sequence: items.length + 1, role: 'user', content: text, createdAt: String(Date.now()) }]);
@@ -181,6 +190,7 @@ export function ChatPage(_props: Pick<WorkspacePageProps, 'onOpenVersion'>) {
       if (!request.threadId) {
         const thread = await createChatThread(text.slice(0, 80), capturedProvider.model, capturedProvider.id);
         request.threadId = thread.id;
+        knownThreads.current?.add(thread.id);
         localStorage.setItem('forgekit:active-chat', thread.id);
         if (alive.current) { setThreads((items) => [thread, ...items]); setActiveThreadId(thread.id); }
       }

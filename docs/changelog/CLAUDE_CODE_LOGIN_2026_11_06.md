@@ -21,6 +21,16 @@ Sebelumnya, Claude di ForgeKit hanya bisa dihubungkan dengan kunci API dari Clau
 6. **Limit.** Event `rate_limit_event` dari Claude Code (jendela 5 jam dan mingguan) ditampilkan di panel usage. Status `rejected` dipetakan ke `[RATE_LIMIT]` dengan waktu reset.
 7. **Putuskan akun.** ForgeKit menjalankan `claude auth logout` di profil itu, lalu menghapus direktorinya.
 
+## Perbaikan 0.1.51 (setelah uji login pertama)
+
+- **Model asli akun langsung terbaca saat tersambung.** ForgeKit menjalankan perintah lokal Claude Code `/model` di profil akun (tanpa request ke model). Daftarnya disimpan di profil dan dibaca ulang saat tombol refresh ditekan. Contoh: Opus 5.5, Sonnet 5.5, Haiku 5.5, Fable 5.1, beserta varian konteks 1M.
+- **Usage paket langsung terbaca, tanpa menunggu chat pertama.** Dibaca dari `/usage` Claude Code: sesi 5 jam, mingguan, dan mingguan per model (misalnya Fable), lengkap dengan waktu reset dan nama paket. Hasilnya disimpan 60 detik dan diperbarui oleh event limit setiap tugas.
+- **Usage tidak hilang setelah profil diedit.** Cache usage kini memakai akun Claude Code sebagai kunci, bukan waktu `updated_at` profil.
+- **Chat tidak lagi gagal dengan `FOREIGN KEY constraint failed`.**
+  - Penyebabnya, halaman chat mengingat ID percakapan dari database yang sudah terhapus.
+  - Sekarang ID yang tidak ada di daftar percakapan diabaikan dan percakapan baru dibuat otomatis.
+  - Backend juga menolak dengan pesan yang jelas, bukan galat SQLite mentah.
+
 ## Batas yang diketahui
 
 - Claude Code harus sudah terpasang (`~/.local/bin/claude`, Homebrew, atau `PATH`). ForgeKit tidak mengunduhnya.

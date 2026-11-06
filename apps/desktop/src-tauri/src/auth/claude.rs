@@ -20,12 +20,12 @@ use std::{
 pub const BASE_URL: &str = "https://claude.ai/claude-code";
 const LOGIN_TIMEOUT: Duration = Duration::from_secs(600);
 const COMMAND_TIMEOUT: Duration = Duration::from_secs(30);
-/// Aliases resolved by the installed CLI to the newest model of each family.
-const MODELS: &[(&str, &str)] = &[
-    ("opus", "Claude Opus · terbaru (Claude Code)"),
-    ("sonnet", "Claude Sonnet · terbaru (Claude Code)"),
-    ("haiku", "Claude Haiku · terbaru (Claude Code)"),
-];
+/// Used only until the account's own catalog (`/model` in Claude Code) has been read.
+const FALLBACK_MODELS: &[(&str, &str)] = &[("opus", "Claude Opus"), ("sonnet", "Claude Sonnet"), ("haiku", "Claude Haiku")];
+/// Meta aliases that are not a model of their own.
+const META_ALIASES: &[&str] = &["best", "default", "opusplan"];
+const MODEL_CACHE: &str = "forgekit-models.json";
+const MODEL_CACHE_SECONDS: u64 = 24 * 3600;
 pub const EFFORTS: &[&str] = &["low", "medium", "high", "xhigh", "max"];
 
 static LOCKS: LazyLock<Mutex<HashMap<String, Arc<Mutex<()>>>>> = LazyLock::new(|| Mutex::new(HashMap::new()));
@@ -92,18 +92,21 @@ pub(crate) fn account_home(key_ref: &str) -> Result<PathBuf, String> {
 pub fn is_claude_code(profile: &ai::AiProviderProfile) -> bool {
     profile.provider_type == "anthropic" && profile.base_url.trim_end_matches('/') == BASE_URL
 }
+/// CLI aliases (`opus`, `sonnet[1m]`) or full model IDs; nothing that could read as a flag.
 pub fn valid_model(model: &str) -> bool {
-    MODELS.iter().any(|(id, _)| *id == model)
+    let alias = model.strip_suffix("[1m]").unwrap_or(model);
+    (!alias.is_empty() && alias.len() <= 40 && alias.bytes().all(|c| c.is_ascii_lowercase() || c.is_ascii_digit()) && !META_ALIASES.contains(&alias))
         || (model.starts_with("claude-") && model.len() <= 100
             && model.bytes().all(|c| c.is_ascii_alphanumeric() || b"-.[]".contains(&c)))
 }
-pub fn models() -> Vec<ProviderModel> {
-    MODELS.iter().map(|(id, name)| ProviderModel {
-        id: (*id).into(), display_name: (*name).into(),
+fn model_row(id: &str, name: &str) -> ProviderModel {
+    ProviderModel {
+        id: id.into(), display_name: name.into(),
         reasoning_efforts: EFFORTS.iter().map(|e| (*e).into()).collect(), default_reasoning_effort: None,
         tool_calling: "supported".into(),
-    }).collect()
+    }
 }
+fn fallback_models() -> Vec<ProviderModel> { FALLBACK_MODELS.iter().map(|(id, name)| model_row(id, name)).collect() }
 
 /// The installed official CLI. ForgeKit does not download or bundle it.
 pub fn runtime() -> Result<PathBuf, String> {
@@ -132,15 +135,16 @@ pub(crate) fn command(exe: &Path, home: &Path) -> Command {
     }
     cmd
 }
-fn reader(mut source: impl Read + Send + 'static, sink: Arc<Mutex<String>>) -> JoinHandle<()> {
+fn reader(source: impl Read + Send + 'static, sink: Arc<Mutex<String>>) -> JoinHandle<()> { capped_reader(source, sink, 16_384) }
+fn capped_reader(mut source: impl Read + Send + 'static, sink: Arc<Mutex<String>>, cap: usize) -> JoinHandle<()> {
     std::thread::spawn(move || {
         let mut buffer = [0u8; 4096];
         while let Ok(n) = source.read(&mut buffer) {
             if n == 0 { break; }
             if let Ok(mut text) = sink.lock() {
                 text.push_str(&String::from_utf8_lossy(&buffer[..n]));
-                if text.len() > 16_384 {
-                    let cut = text.len() - 8192;
+                if text.len() > cap {
+                    let cut = text.len() - cap / 2;
                     let cut = (cut..text.len()).find(|i| text.is_char_boundary(*i)).unwrap_or(0);
                     text.drain(..cut);
                 }
@@ -156,14 +160,15 @@ fn reap(mut child: Child, readers: Vec<JoinHandle<()>>) -> Option<ExitStatus> {
     for r in readers { let _ = r.join(); }
     status
 }
-/// Runs a short CLI command (status, logout) with a deadline; output is capped.
+/// Runs a short CLI command (status, logout, local slash commands) with a deadline; output is capped.
 fn run(exe: &Path, home: &Path, args: &[&str]) -> Result<(ExitStatus, String), String> {
     if stopping() { return Err("ForgeKit sedang ditutup.".into()); }
-    let mut child = command(exe, home).args(args).stdin(Stdio::null()).stdout(Stdio::piped()).stderr(Stdio::null())
+    // UTC keeps reset times printed by `/usage` unambiguous.
+    let mut child = command(exe, home).env("TZ", "UTC").args(args).stdin(Stdio::null()).stdout(Stdio::piped()).stderr(Stdio::null())
         .spawn().map_err(|_| "Claude Code gagal dijalankan.")?;
     track(child.id(), true);
     let output = Arc::new(Mutex::new(String::new()));
-    let out = reader(child.stdout.take().ok_or("Output Claude Code tidak tersedia.")?, output.clone());
+    let out = capped_reader(child.stdout.take().ok_or("Output Claude Code tidak tersedia.")?, output.clone(), 512 * 1024);
     let deadline = Instant::now() + COMMAND_TIMEOUT;
     loop {
         match child.try_wait() {
@@ -180,6 +185,124 @@ fn status(exe: &Path, home: &Path) -> Result<Value, String> {
     let (_, text) = run(exe, home, &["auth", "status", "--json"])?;
     serde_json::from_str(text.trim()).map_err(|_| "Status login Claude Code tidak dapat dibaca.".into())
 }
+/// A local Claude Code command (`/model`, `/usage`) in print mode. These read the account's own
+/// catalog and plan usage without sending a model request.
+fn slash(exe: &Path, home: &Path, command: &str, model: Option<&str>) -> Result<String, String> {
+    let mut args = vec!["-p", command, "--output-format", "json", "--no-session-persistence", "--safe-mode"];
+    if let Some(model) = model { args.extend(["--model", model]); }
+    let (_, text) = run(exe, home, &args)?;
+    let v: Value = serde_json::from_str(text.trim()).map_err(|_| "Respons Claude Code tidak dapat dibaca.")?;
+    if v["is_error"] != false || v["subtype"] != "success" { return Err("Claude Code menolak perintah akun.".into()); }
+    v["result"].as_str().map(str::to_owned).ok_or_else(|| "Respons Claude Code kosong.".into())
+}
+/// `Available: sonnet, opus, haiku, …, or a full model ID.` → model aliases for this account.
+fn available_aliases(text: &str) -> Vec<String> {
+    let Some(list) = text.split("Available:").nth(1) else { return vec![] };
+    let list = list.split(", or ").next().unwrap_or(list);
+    let mut seen = HashSet::new();
+    list.split(',').map(|a| a.trim().trim_end_matches('.').to_owned())
+        .filter(|a| valid_model(a) && !a.starts_with("claude-") && seen.insert(a.clone())).take(16).collect()
+}
+/// `Current model: `Opus 5.5 (default)`` → `Claude Opus 5.5`.
+fn current_model_name(text: &str, alias: &str) -> Option<String> {
+    let name = text.split("Current model:").nth(1)?.split('`').nth(1)?.trim();
+    let name = name.strip_suffix("(default)").unwrap_or(name).trim();
+    if name.is_empty() || name.len() > 80 || name.chars().any(char::is_control) { return None; }
+    let name = if name.to_ascii_lowercase().starts_with("claude") { name.to_owned() } else { format!("Claude {name}") };
+    Some(if alias.ends_with("[1m]") { format!("{name} · konteks 1M") } else { name })
+}
+/// Reads the account's model catalog from Claude Code and caches it in the profile.
+fn probe_models(exe: &Path, home: &Path) -> Result<Vec<ProviderModel>, String> {
+    let aliases = available_aliases(&slash(exe, home, "/model", None)?);
+    if aliases.is_empty() { return Err("Claude Code belum memberikan daftar model akun.".into()); }
+    let names: Vec<Option<String>> = std::thread::scope(|scope| {
+        let jobs: Vec<_> = aliases.iter().map(|alias| scope.spawn(move || {
+            slash(exe, home, "/model", Some(alias)).ok().and_then(|text| current_model_name(&text, alias))
+        })).collect();
+        jobs.into_iter().map(|job| job.join().ok().flatten()).collect()
+    });
+    let rows: Vec<ProviderModel> = aliases.iter().zip(names).filter_map(|(alias, name)| name.map(|n| model_row(alias, &n))).collect();
+    if rows.is_empty() { return Err("Nama model akun Claude tidak dapat dibaca.".into()); }
+    let stamp = SystemTime::now().duration_since(UNIX_EPOCH).unwrap_or_default().as_secs();
+    let cache = json!({"checkedAt": stamp, "models": rows.iter().map(|m| json!({"id": m.id, "displayName": m.display_name})).collect::<Vec<_>>()});
+    let _ = fs::write(home.join(MODEL_CACHE), cache.to_string());
+    Ok(rows)
+}
+fn cached_models(home: &Path, max_age: Option<u64>) -> Option<Vec<ProviderModel>> {
+    let file = home.join(MODEL_CACHE);
+    fs::symlink_metadata(&file).ok().filter(|m| m.is_file() && m.len() <= 65_536)?;
+    let v: Value = serde_json::from_slice(&fs::read(file).ok()?).ok()?;
+    let now = SystemTime::now().duration_since(UNIX_EPOCH).unwrap_or_default().as_secs();
+    if max_age.is_some_and(|age| now.saturating_sub(v["checkedAt"].as_u64().unwrap_or(0)) > age) { return None; }
+    let rows: Vec<_> = v["models"].as_array()?.iter().filter_map(|m| {
+        let id = m["id"].as_str().filter(|id| valid_model(id))?;
+        let name = clean(&m["displayName"], 120)?;
+        Some(model_row(id, &name))
+    }).collect();
+    (!rows.is_empty()).then_some(rows)
+}
+/// The account's models: cached for a day, re-read on refresh, last good list if Claude Code is unavailable.
+pub fn models(key_ref: &str, refresh: bool) -> Result<Vec<ProviderModel>, String> {
+    let home = account_home(key_ref)?;
+    if !refresh { if let Some(rows) = cached_models(&home, Some(MODEL_CACHE_SECONDS)) { return Ok(rows); } }
+    match runtime().and_then(|exe| probe_models(&exe, &home)) {
+        Ok(rows) => Ok(rows),
+        Err(error) => cached_models(&home, None).ok_or(error).or_else(|_| Ok(fallback_models())),
+    }
+}
+
+#[derive(Debug, Clone, PartialEq)]
+pub struct PlanWindow { pub id: String, pub label: String, pub scope: String, pub used_percent: f64, pub resets_at: Option<u64>, pub window_minutes: u64 }
+/// `Nov 6 at 3:30pm` (UTC, printed with TZ=UTC) → Unix seconds, choosing the year closest after `now`.
+fn reset_time(text: &str, now: u64) -> Option<u64> {
+    use chrono::{Datelike, NaiveDate};
+    let mut parts = text.split_whitespace();
+    let name = parts.next()?.to_ascii_lowercase();
+    let month = ["jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"].iter()
+        .position(|m| name.starts_with(m))? as u32 + 1;
+    let day: u32 = parts.next()?.trim_end_matches(',').parse().ok()?;
+    if parts.next()? != "at" { return None; }
+    let clock = parts.next()?.to_ascii_lowercase();
+    let (clock, pm) = if let Some(c) = clock.strip_suffix("pm") { (c.to_owned(), true) } else { (clock.strip_suffix("am")?.to_owned(), false) };
+    let (hour, minute) = match clock.split_once(':') { Some((h, m)) => (h.parse::<u32>().ok()?, m.parse::<u32>().ok()?), None => (clock.parse::<u32>().ok()?, 0) };
+    if !(1..=12).contains(&hour) { return None; }
+    let hour = hour % 12 + if pm { 12 } else { 0 };
+    let year = chrono::DateTime::from_timestamp(now as i64, 0)?.year();
+    [year - 1, year, year + 1].into_iter().filter_map(|y| NaiveDate::from_ymd_opt(y, month, day)?.and_hms_opt(hour, minute, 0))
+        .map(|t| t.and_utc().timestamp()).filter(|t| *t > 0).map(|t| t as u64)
+        .filter(|t| *t + 86_400 >= now).min_by_key(|t| t.abs_diff(now))
+}
+fn plan_windows(text: &str, now: u64) -> Vec<PlanWindow> {
+    text.lines().filter_map(|line| {
+        let line = line.trim();
+        let (id, label, scope, minutes, rest) = if let Some(rest) = line.strip_prefix("Current session:") {
+            ("claude:session".to_owned(), "5 jam".to_owned(), "claude".to_owned(), 300, rest)
+        } else {
+            let rest = line.strip_prefix("Current week (")?;
+            let (name, rest) = rest.split_once("):")?;
+            if name.eq_ignore_ascii_case("all models") { ("claude:week".into(), "Mingguan".into(), "claude".into(), 10_080, rest) } else {
+                let scope = name.to_ascii_lowercase();
+                if scope.is_empty() || scope.len() > 40 || !scope.bytes().all(|c| c.is_ascii_alphanumeric() || b" -.".contains(&c)) { return None; }
+                (format!("claude:week:{scope}"), format!("Mingguan · {name}"), scope, 10_080, rest)
+            }
+        };
+        let used: f64 = rest.trim().split('%').next()?.trim().parse().ok().filter(|v: &f64| v.is_finite() && *v >= 0.)?;
+        let resets_at = rest.split("resets").nth(1).and_then(|r| reset_time(r.split('(').next().unwrap_or(r).trim(), now));
+        Some(PlanWindow { id, label, scope, used_percent: used.min(100.), resets_at, window_minutes: minutes })
+    }).take(12).collect()
+}
+/// Plan usage (5-hour session, weekly, per-model weekly) and plan name, read from Claude Code's
+/// own `/usage`; no model request is sent and ForgeKit never sees the credential.
+pub fn usage(key_ref: &str) -> Result<(Vec<PlanWindow>, Option<String>), String> {
+    let home = account_home(key_ref)?;
+    let exe = runtime()?;
+    let now = SystemTime::now().duration_since(UNIX_EPOCH).unwrap_or_default().as_secs();
+    let windows = plan_windows(&slash(&exe, &home, "/usage", None)?, now);
+    if windows.is_empty() { return Err("Claude Code belum memberikan usage paket untuk akun ini.".into()); }
+    let plan = status(&exe, &home).ok().and_then(|s| clean(&s["subscriptionType"], 40));
+    Ok((windows, plan))
+}
+
 fn clean(value: &Value, limit: usize) -> Option<String> {
     value.as_str().filter(|s| !s.is_empty() && s.len() <= limit && !s.chars().any(char::is_control)).map(str::to_owned)
 }
@@ -286,13 +409,16 @@ pub fn sign_in(login_id: &str) -> Result<ai::ConnectionProfile, String> {
             let email = clean(&state["email"], 200);
             let subject = clean(&state["orgId"], 200).or_else(|| email.clone()).ok_or("Identitas akun Claude tidak tersedia.")?;
             let label = format!("{} · Claude Code", email.as_deref().unwrap_or("Claude").chars().take(80).collect::<String>());
+            // Read the account's real catalog now, so models are listed right after connecting.
+            let catalog = probe_models(&exe, &path).unwrap_or_else(|_| fallback_models());
+            let model = catalog.iter().find(|m| m.id == "opus").or(catalog.first()).map(|m| m.id.clone()).unwrap_or_else(|| "opus".into());
             let stamp = SystemTime::now().duration_since(UNIX_EPOCH).unwrap_or_default().as_secs().to_string();
             serde_json::from_value(json!({
                 "id":login_id,"providerId":"claude","connectionMode":"direct","credentialOwner":"forgekit","authMethod":"claude_code",
                 "label":label,"identity":{"issuer":"https://claude.ai","subject":subject,"email":email},
                 "registrationRef":"claude_code_managed","credentialRef":key_ref,"accessState":"pending","enabled":true,
                 "fallbackEligible":"unknown","priority":0,"quotaBucketRefs":[format!("claude:{subject}")],
-                "baseUrl":BASE_URL,"model":MODELS[0].0,"isDefault":false,"createdAt":stamp,"updatedAt":stamp
+                "baseUrl":BASE_URL,"model":model,"isDefault":false,"createdAt":stamp,"updatedAt":stamp
             })).map_err(|_| "Profil Claude gagal dibuat.".into())
         })();
         if result.is_err() {
@@ -312,11 +438,6 @@ pub fn disconnect(key_ref: &str) -> Result<(), String> {
         fs::remove_dir_all(&path).map_err(|_| "Profil Claude belum dapat dilepas.")?;
     }
     Ok(())
-}
-/// Plan name for the usage panel, read from the CLI (never from its credential store).
-pub fn plan(key_ref: &str) -> Option<String> {
-    let path = account_home(key_ref).ok()?;
-    clean(&status(&runtime().ok()?, &path).ok()?["subscriptionType"], 40)
 }
 
 #[cfg(test)]
@@ -362,9 +483,28 @@ mod tests {
         assert!(ai::validate_connection_profile(&p).is_err());
     }
     #[test] fn models_are_cli_aliases_and_custom_ids_are_bounded() {
-        assert!(models().iter().all(|m| valid_model(&m.id) && m.tool_calling == "supported"));
-        assert!(valid_model("claude-sonnet-5-5") && valid_model("claude-opus-5-5[1m]"));
-        for bad in ["", "gpt-5", "claude-a b", "claude-x;rm", "--dangerously-skip-permissions"] { assert!(!valid_model(bad)); }
+        assert!(fallback_models().iter().all(|m| valid_model(&m.id) && m.tool_calling == "supported"));
+        assert!(valid_model("claude-sonnet-5-5") && valid_model("claude-opus-5-5[1m]") && valid_model("sonnet[1m]") && valid_model("fable"));
+        for bad in ["", "gpt-5", "claude-a b", "claude-x;rm", "--dangerously-skip-permissions", "best", "default", "opusplan", "Opus"] { assert!(!valid_model(bad)); }
+    }
+    #[test] fn account_catalog_is_parsed_from_claude_code() {
+        let text = "Current model: `Opus 5.5 (default)`\nUsage: /model <name>. Available: sonnet, opus, haiku, fable, best, sonnet[1m], opus[1m], opusplan, default, or a full model ID.";
+        assert_eq!(available_aliases(text), ["sonnet", "opus", "haiku", "fable", "sonnet[1m]", "opus[1m]"]);
+        assert_eq!(current_model_name(text, "opus").as_deref(), Some("Claude Opus 5.5"));
+        assert_eq!(current_model_name("Current model: `Sonnet 5.5`", "sonnet[1m]").as_deref(), Some("Claude Sonnet 5.5 · konteks 1M"));
+        assert!(available_aliases("no list").is_empty() && current_model_name("Current model: ``", "opus").is_none());
+    }
+    #[test] fn plan_usage_is_parsed_from_claude_code() {
+        let now = 1_793_970_000; // 6 Nov 2026, 13:40 UTC
+        let text = "You are currently using your subscription to power your Claude Code usage\n\nCurrent session: 12% used · resets Nov 6 at 3:30pm (UTC)\nCurrent week (all models): 9.5% used · resets Nov 11 at 9am (UTC)\nCurrent week (Fable): 0% used · resets Nov 11 at 9am (UTC)\n\nLast 24h · 1239 requests";
+        let w = plan_windows(text, now);
+        assert_eq!(w.len(), 3);
+        assert_eq!((w[0].id.as_str(), w[0].label.as_str(), w[0].scope.as_str(), w[0].used_percent, w[0].window_minutes), ("claude:session", "5 jam", "claude", 12., 300));
+        assert_eq!(w[0].resets_at, Some(1_793_979_000));
+        assert_eq!((w[1].label.as_str(), w[1].used_percent, w[1].resets_at), ("Mingguan", 9.5, Some(1_794_387_600)));
+        assert_eq!((w[2].id.as_str(), w[2].label.as_str(), w[2].scope.as_str()), ("claude:week:fable", "Mingguan · Fable", "fable"));
+        assert_eq!(reset_time("Jan 2 at 12am", 1_798_700_000), Some(1_798_848_000)); // year rollover: 2 Jan 2027 00:00 UTC
+        assert!(plan_windows("Total cost: $0.0000", now).is_empty());
     }
     #[cfg(unix)]
     #[test] fn commands_run_with_a_clean_isolated_environment() {
