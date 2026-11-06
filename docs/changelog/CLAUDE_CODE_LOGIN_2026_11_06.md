@@ -31,6 +31,16 @@ Sebelumnya, Claude di ForgeKit hanya bisa dihubungkan dengan kunci API dari Clau
   - Sekarang ID yang tidak ada di daftar percakapan diabaikan dan percakapan baru dibuat otomatis.
   - Backend juga menolak dengan pesan yang jelas, bukan galat SQLite mentah.
 
+## Perbaikan 0.1.52
+
+- **Semua model akun tampil.**
+  - Selain alias (Opus, Sonnet, Haiku, Fable, dan varian konteks 1M), ForgeKit memeriksa model ber-ID tetap yang dikenal Claude Code (Opus 5/4.8/4.7/4.6/4.5, Sonnet 5/4.6/4.5, Haiku 4.5, dan seterusnya) dengan `/model <id>` dalam satu sesi Claude Code, tanpa request ke model.
+  - Model yang tidak tersedia untuk akun ("not found") atau yang dialihkan diam-diam ke model lain tidak ditampilkan.
+  - Pada akun uji terbaca 16 model.
+- **Mode chat (Kerjakan / Tanya / Rencanakan) dihapus.**
+  - Semua prompt dikirim dalam satu mode otomatis. AI menentukan dari prompt apakah perlu menjawab, membuat rencana, atau mengerjakan perubahan.
+  - Setiap perubahan pada map atau sistem tetap meminta izin pengguna.
+
 ## Batas yang diketahui
 
 - Claude Code harus sudah terpasang (`~/.local/bin/claude`, Homebrew, atau `PATH`). ForgeKit tidak mengunduhnya.

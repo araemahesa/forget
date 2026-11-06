@@ -24,6 +24,15 @@ const COMMAND_TIMEOUT: Duration = Duration::from_secs(30);
 const FALLBACK_MODELS: &[(&str, &str)] = &[("opus", "Claude Opus"), ("sonnet", "Claude Sonnet"), ("haiku", "Claude Haiku")];
 /// Meta aliases that are not a model of their own.
 const META_ALIASES: &[&str] = &["best", "default", "opusplan"];
+/// Pinned model IDs Claude Code knows, newest first. Each is checked against the account with
+/// `/model <id>` (no model request); IDs the account cannot use, or that Claude Code silently
+/// maps to another model, are left out.
+const PINNED_MODELS: &[&str] = &[
+    "claude-opus-5-5", "claude-sonnet-5-5", "claude-haiku-5-5", "claude-fable-5-1",
+    "claude-opus-5", "claude-sonnet-5", "claude-opus-4-8", "claude-opus-4-7", "claude-opus-4-6",
+    "claude-sonnet-4-6", "claude-opus-4-5", "claude-sonnet-4-5", "claude-haiku-4-5",
+    "claude-opus-4-1", "claude-opus-4-0", "claude-sonnet-4-0", "claude-3-7-sonnet-latest", "claude-3-5-haiku-latest",
+];
 const MODEL_CACHE: &str = "forgekit-models.json";
 const MODEL_CACHE_SECONDS: u64 = 24 * 3600;
 pub const EFFORTS: &[&str] = &["low", "medium", "high", "xhigh", "max"];
@@ -161,15 +170,20 @@ fn reap(mut child: Child, readers: Vec<JoinHandle<()>>) -> Option<ExitStatus> {
     status
 }
 /// Runs a short CLI command (status, logout, local slash commands) with a deadline; output is capped.
-fn run(exe: &Path, home: &Path, args: &[&str]) -> Result<(ExitStatus, String), String> {
+fn run(exe: &Path, home: &Path, args: &[&str]) -> Result<(ExitStatus, String), String> { run_input(exe, home, args, None, COMMAND_TIMEOUT) }
+fn run_input(exe: &Path, home: &Path, args: &[&str], input: Option<&str>, timeout: Duration) -> Result<(ExitStatus, String), String> {
     if stopping() { return Err("ForgeKit sedang ditutup.".into()); }
     // UTC keeps reset times printed by `/usage` unambiguous.
-    let mut child = command(exe, home).env("TZ", "UTC").args(args).stdin(Stdio::null()).stdout(Stdio::piped()).stderr(Stdio::null())
+    let mut child = command(exe, home).env("TZ", "UTC").args(args)
+        .stdin(if input.is_some() { Stdio::piped() } else { Stdio::null() }).stdout(Stdio::piped()).stderr(Stdio::null())
         .spawn().map_err(|_| "Claude Code gagal dijalankan.")?;
     track(child.id(), true);
     let output = Arc::new(Mutex::new(String::new()));
     let out = capped_reader(child.stdout.take().ok_or("Output Claude Code tidak tersedia.")?, output.clone(), 512 * 1024);
-    let deadline = Instant::now() + COMMAND_TIMEOUT;
+    if let (Some(text), Some(mut stdin)) = (input, child.stdin.take()) {
+        if stdin.write_all(text.as_bytes()).is_err() { reap(child, vec![out]); return Err("Input Claude Code tertutup.".into()); }
+    }
+    let deadline = Instant::now() + timeout;
     loop {
         match child.try_wait() {
             Ok(Some(_)) => break,
@@ -203,25 +217,63 @@ fn available_aliases(text: &str) -> Vec<String> {
     list.split(',').map(|a| a.trim().trim_end_matches('.').to_owned())
         .filter(|a| valid_model(a) && !a.starts_with("claude-") && seen.insert(a.clone())).take(16).collect()
 }
-/// `Current model: `Opus 5.5 (default)`` → `Claude Opus 5.5`.
+/// Several local commands in one Claude Code session (one start-up instead of one per command);
+/// returns each command's reply in order.
+fn session_commands(exe: &Path, home: &Path, commands: &[String]) -> Result<Vec<String>, String> {
+    let input: String = commands.iter().map(|c| format!("{}\n", json!({"type":"user","message":{"role":"user","content":c}}))).collect();
+    let (_, text) = run_input(exe, home, &["-p", "--input-format", "stream-json", "--output-format", "stream-json", "--verbose",
+        "--no-session-persistence", "--safe-mode"], Some(&input), Duration::from_secs(90))?;
+    let replies: Vec<String> = text.lines().filter_map(|l| serde_json::from_str::<Value>(l).ok())
+        .filter(|v| v["type"] == "result").map(|v| v["result"].as_str().unwrap_or("").to_owned()).collect();
+    if replies.len() != commands.len() { return Err("Claude Code tidak menjawab semua pemeriksaan model.".into()); }
+    Ok(replies)
+}
+/// `Current model: `Opus 5.5 (default)`` or `Set model to `Opus 4.8` for this session only`
+/// → `Claude Opus 4.8`; `Model 'x' not found` → None.
 fn current_model_name(text: &str, alias: &str) -> Option<String> {
-    let name = text.split("Current model:").nth(1)?.split('`').nth(1)?.trim();
+    let after = text.split("Current model:").nth(1).or_else(|| text.split("Set model to").nth(1))?;
+    let name = after.split('`').nth(1)?.trim();
     let name = name.strip_suffix("(default)").unwrap_or(name).trim();
     if name.is_empty() || name.len() > 80 || name.chars().any(char::is_control) { return None; }
     let name = if name.to_ascii_lowercase().starts_with("claude") { name.to_owned() } else { format!("Claude {name}") };
     Some(if alias.ends_with("[1m]") { format!("{name} · konteks 1M") } else { name })
 }
-/// Reads the account's model catalog from Claude Code and caches it in the profile.
+/// `claude-opus-4-8` → ("opus", "4.8"); `claude-3-7-sonnet-latest` → ("sonnet", "3.7").
+fn pinned_family_version(id: &str) -> Option<(String, String)> {
+    let parts: Vec<&str> = id.strip_prefix("claude-")?.trim_end_matches("-latest").split('-').collect();
+    let (family, numbers): (&str, Vec<&str>) = match parts.iter().position(|p| p.chars().all(|c| c.is_ascii_alphabetic())) {
+        Some(0) => (parts[0], parts[1..].to_vec()),
+        Some(i) => (parts[i], parts[..i].to_vec()),
+        None => return None,
+    };
+    let numbers: Vec<&str> = numbers.into_iter().filter(|n| n.len() <= 2 && n.chars().all(|c| c.is_ascii_digit())).collect();
+    let version = match numbers.as_slice() { [major] | [major, "0"] => major.to_string(), [major, minor] => format!("{major}.{minor}"), _ => return None };
+    Some((family.into(), version))
+}
+/// Orders aliases the way people pick them: newest Opus/Sonnet/Haiku/Fable first, 1M variants after.
+fn alias_rank(alias: &str) -> (bool, usize) {
+    let base = alias.strip_suffix("[1m]").unwrap_or(alias);
+    (alias.ends_with("[1m]"), ["opus", "sonnet", "haiku", "fable"].iter().position(|f| *f == base).unwrap_or(9))
+}
+/// Every model the account can use, checked in one Claude Code session, cached in the profile.
 fn probe_models(exe: &Path, home: &Path) -> Result<Vec<ProviderModel>, String> {
-    let aliases = available_aliases(&slash(exe, home, "/model", None)?);
+    let mut aliases = available_aliases(&slash(exe, home, "/model", None)?);
     if aliases.is_empty() { return Err("Claude Code belum memberikan daftar model akun.".into()); }
-    let names: Vec<Option<String>> = std::thread::scope(|scope| {
-        let jobs: Vec<_> = aliases.iter().map(|alias| scope.spawn(move || {
-            slash(exe, home, "/model", Some(alias)).ok().and_then(|text| current_model_name(&text, alias))
-        })).collect();
-        jobs.into_iter().map(|job| job.join().ok().flatten()).collect()
-    });
-    let rows: Vec<ProviderModel> = aliases.iter().zip(names).filter_map(|(alias, name)| name.map(|n| model_row(alias, &n))).collect();
+    aliases.sort_by_key(|a| alias_rank(a));
+    let ids: Vec<String> = aliases.iter().cloned().chain(PINNED_MODELS.iter().map(|m| (*m).to_owned())).collect();
+    let replies = session_commands(exe, home, &ids.iter().map(|id| format!("/model {id}")).collect::<Vec<_>>())?;
+    let mut rows: Vec<ProviderModel> = vec![];
+    for (id, reply) in ids.iter().zip(replies) {
+        let Some(name) = current_model_name(&reply, id) else { continue };
+        if id.starts_with("claude-") {
+            // Claude Code may silently serve a retired ID with a newer model; list only true matches.
+            let Some((family, version)) = pinned_family_version(id) else { continue };
+            let shown = name.to_ascii_lowercase();
+            if !shown.contains(&family) || !shown.split(|c: char| c.is_whitespace()).any(|w| w == version || w == format!("{version}.0")) { continue; }
+        }
+        if rows.iter().any(|r| r.display_name == name) { continue; }
+        rows.push(model_row(id, &name));
+    }
     if rows.is_empty() { return Err("Nama model akun Claude tidak dapat dibaca.".into()); }
     let stamp = SystemTime::now().duration_since(UNIX_EPOCH).unwrap_or_default().as_secs();
     let cache = json!({"checkedAt": stamp, "models": rows.iter().map(|m| json!({"id": m.id, "displayName": m.display_name})).collect::<Vec<_>>()});
@@ -493,6 +545,15 @@ mod tests {
         assert_eq!(current_model_name(text, "opus").as_deref(), Some("Claude Opus 5.5"));
         assert_eq!(current_model_name("Current model: `Sonnet 5.5`", "sonnet[1m]").as_deref(), Some("Claude Sonnet 5.5 · konteks 1M"));
         assert!(available_aliases("no list").is_empty() && current_model_name("Current model: ``", "opus").is_none());
+        assert_eq!(current_model_name("Set model to `Opus 4.8` for this session only", "claude-opus-4-8").as_deref(), Some("Claude Opus 4.8"));
+        assert!(current_model_name("Model 'claude-opus-4-1' not found", "claude-opus-4-1").is_none());
+        assert_eq!(pinned_family_version("claude-opus-4-8"), Some(("opus".into(), "4.8".into())));
+        assert_eq!(pinned_family_version("claude-sonnet-4-0"), Some(("sonnet".into(), "4".into())));
+        assert_eq!(pinned_family_version("claude-opus-5"), Some(("opus".into(), "5".into())));
+        assert_eq!(pinned_family_version("claude-3-7-sonnet-latest"), Some(("sonnet".into(), "3.7".into())));
+        let mut aliases = vec!["sonnet[1m]", "sonnet", "fable", "opus", "haiku", "opus[1m]"];
+        aliases.sort_by_key(|a| alias_rank(a));
+        assert_eq!(aliases, ["opus", "sonnet", "haiku", "fable", "opus[1m]", "sonnet[1m]"]);
     }
     #[test] fn plan_usage_is_parsed_from_claude_code() {
         let now = 1_793_970_000; // 6 Nov 2026, 13:40 UTC

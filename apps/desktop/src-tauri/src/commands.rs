@@ -1515,6 +1515,7 @@ pub async fn send_chat_message(
                 messages.push(serde_json::json!({"role":"system","content":attachment.0}));
             }
             if mode != "auto" { messages.push(serde_json::json!({"role":"system","content":"Percakapan lama ini hanya baca. Jangan melakukan perubahan."})); }
+            else { messages.push(serde_json::json!({"role":"system","content":"Tentukan sendiri dari prompt pengguna apa yang diminta: pertanyaan atau penjelasan dijawab langsung; permintaan rencana dijawab dengan rencana tanpa mengubah apa pun; permintaan membuat, mengubah, memperbaiki atau menerapkan sesuatu dikerjakan sampai selesai dengan tool yang tersedia. Baca konteks yang relevan sebelum menulis. Setiap perubahan pada map atau sistem tetap meminta izin pengguna; jika ditolak, jangan ulangi dan jelaskan alternatifnya. Bila prompt ambigu dan perubahan berisiko, tanyakan satu hal paling penting sebelum menulis."})); }
             for message in &history {
                 let mut value = serde_json::json!({"role":message.role,"content":message.content});
                 if message.role == "user" {
