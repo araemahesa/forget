@@ -8,13 +8,13 @@ export function ModelControls({ selection, disabled = false }: { selection: Retu
   const levels = selection.selected?.reasoningEfforts ?? [];
   const needsAccess = selection.error.includes('[KEYCHAIN_LOCKED]');
   return <div className="ai-model-controls">
-    <label><span>Model</span><Dropdown aria-label="Model AI" value={selection.modelId} disabled={disabled || selection.loading || needsAccess || !selection.models.length} onChange={(e) => selection.setModel(e.target.value)}
+    <label><span>Model</span><Dropdown aria-label="Model AI" value={selection.modelId} disabled={disabled || needsAccess || !selection.models.length} onChange={(e) => selection.setModel(e.target.value)}
       triggerContent={<span className="model-choice"><ProviderLogo provider={selection.account.providerType} /><span>{selection.selected?.displayName ?? selection.modelId}</span></span>}
       renderChoice={(choice) => <span className="model-choice"><ProviderLogo provider={selection.account!.providerType} /><span>{choice.label}</span></span>}>
       {(!selection.models.length || !selection.selected) && <option value={selection.modelId}>{selection.loading ? 'Memuat model…' : selection.modelId || 'Model belum tersedia'}</option>}
       {selection.models.map((model) => <option key={model.id} value={model.id}>{model.displayName}</option>)}
     </Dropdown></label>
-    <label><span>Penalaran</span><Dropdown aria-label="Tingkat penalaran AI" value={selection.effort} disabled={disabled || selection.loading || needsAccess || !levels.length} title={!levels.length ? 'Provider belum menginformasikan pengaturan penalaran untuk model ini.' : undefined} onChange={(e) => selection.setEffort(e.target.value)}>
+    <label><span>Penalaran</span><Dropdown aria-label="Tingkat penalaran AI" value={selection.effort} disabled={disabled || needsAccess || !levels.length} title={!levels.length ? 'Provider belum menginformasikan pengaturan penalaran untuk model ini.' : undefined} onChange={(e) => selection.setEffort(e.target.value)}>
       <option value="">Otomatis{selection.selected?.defaultReasoningEffort ? ` · ${selection.selected.defaultReasoningEffort}` : ''}</option>
       {levels.map((level) => <option key={level} value={level}>{level[0].toUpperCase() + level.slice(1)}</option>)}
     </Dropdown></label>

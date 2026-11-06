@@ -294,9 +294,13 @@ fn cached_models(home: &Path, max_age: Option<u64>) -> Option<Vec<ProviderModel>
     (!rows.is_empty()).then_some(rows)
 }
 /// The account's models: cached for a day, re-read on refresh, last good list if Claude Code is unavailable.
+/// One read runs per account at a time; callers that waited get the list the first one just read.
 pub fn models(key_ref: &str, refresh: bool) -> Result<Vec<ProviderModel>, String> {
     let home = account_home(key_ref)?;
     if !refresh { if let Some(rows) = cached_models(&home, Some(MODEL_CACHE_SECONDS)) { return Ok(rows); } }
+    let lock = account_lock(&profile_id(key_ref)?)?;
+    let _reading = lock.lock().map_err(|_| "Akun Claude sedang sibuk.")?;
+    if let Some(rows) = cached_models(&home, Some(if refresh { 60 } else { MODEL_CACHE_SECONDS })) { return Ok(rows); }
     match runtime().and_then(|exe| probe_models(&exe, &home)) {
         Ok(rows) => Ok(rows),
         Err(error) => cached_models(&home, None).ok_or(error).or_else(|_| Ok(fallback_models())),
@@ -348,6 +352,9 @@ fn plan_windows(text: &str, now: u64) -> Vec<PlanWindow> {
 pub fn usage(key_ref: &str) -> Result<(Vec<PlanWindow>, Option<String>), String> {
     let home = account_home(key_ref)?;
     let exe = runtime()?;
+    // Never run beside a model-list read of the same account: both share Claude Code's config lock.
+    let lock = account_lock(&profile_id(key_ref)?)?;
+    let _reading = lock.lock().map_err(|_| "Akun Claude sedang sibuk.")?;
     let now = SystemTime::now().duration_since(UNIX_EPOCH).unwrap_or_default().as_secs();
     let windows = plan_windows(&slash(&exe, &home, "/usage", None)?, now);
     if windows.is_empty() { return Err("Claude Code belum memberikan usage paket untuk akun ini.".into()); }

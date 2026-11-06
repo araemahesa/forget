@@ -1060,13 +1060,16 @@ pub async fn get_provider_model_catalog(
     app: AppHandle,
     profile_id: String,
     authorize: Option<bool>,
+    refresh: Option<bool>,
 ) -> Result<Vec<crate::model_catalog::ProviderModel>, CommandError> {
     tauri::async_runtime::spawn_blocking(move || {
         let profile = saved_ai_profile(&app, &profile_id)?;
         if authorize == Some(true) {
             crate::ai::authorize_provider_access(&profile).map_err(native_error)?;
         }
-        crate::model_catalog::catalog(&profile, true).map_err(native_error)
+        // Only an explicit refresh re-reads the provider; ordinary loads use the account's cache,
+        // so opening a page never blocks model selection behind a slow catalog read.
+        crate::model_catalog::catalog(&profile, refresh == Some(true) || authorize == Some(true)).map_err(native_error)
     })
     .await
     .map_err(native_error)?
