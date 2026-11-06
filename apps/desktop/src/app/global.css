@@ -2556,3 +2556,4 @@ textarea.text-input {
 .approval-note { margin: 8px 20px 0; color: var(--text-muted); font-size: 11px; }
 .approval-dialog .status-error { margin: 8px 20px 0; }
 .approval-actions { display: flex; justify-content: flex-end; gap: 8px; padding: 16px 20px 18px; }
+.approval-toast { position: fixed; right: 16px; bottom: 16px; z-index: 50; max-width: min(420px, calc(100vw - 32px)); margin: 0; padding: 10px 12px; border: 1px solid var(--border-control); border-radius: 8px; background: var(--surface-raised); color: var(--text); font-size: 12px; box-shadow: 0 12px 40px var(--shadow); }

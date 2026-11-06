@@ -104,3 +104,15 @@ it('keeps only the 20 most recent revision histories in localStorage', async () 
   expect(localStorage.getItem(`forgekit:model-edit:${revised.relativePath}`)).toContain('Selesai tersimpan');
   expect(JSON.parse(localStorage.getItem('forgekit:model-edit-index')!).at(-1)).toBe(revised.relativePath);
 });
+
+it('adopts existing histories on the first save after upgrade instead of deleting them', async () => {
+  localStorage.clear();
+  for (const path of ['legacy/a.glb', 'legacy/b.glb']) localStorage.setItem(`forgekit:model-edit:${path}`, '[]');
+  vi.mocked(call).mockResolvedValue({ model: revised, summary: 'Selesai tersimpan.' });
+  const callbacks = props(); render(<ModelEditChat {...callbacks} />); type();
+  fireEvent.click(screen.getByRole('button', { name: 'Kirim perubahan' }));
+  await waitFor(() => expect(callbacks.onEdited).toHaveBeenCalledWith(revised));
+  expect(localStorage.getItem('forgekit:model-edit:legacy/a.glb')).toBe('[]');
+  expect(localStorage.getItem('forgekit:model-edit:legacy/b.glb')).toBe('[]');
+  expect(JSON.parse(localStorage.getItem('forgekit:model-edit-index')!)).toEqual(expect.arrayContaining(['legacy/a.glb', 'legacy/b.glb', revised.relativePath]));
+});

@@ -1388,10 +1388,6 @@ fn run_studio_tool(
     if lease.is_cancelled() {
         return Err("[CANCELLED][TOOL_NOT_DISPATCHED] Permintaan dibatalkan sebelum operasi.".into());
     }
-    if writable && crate::studio::is_write(&call.name) {
-        // Ask before anything is recorded or sent, so a rejection leaves no write receipt.
-        require_approval(app, task_id, call, &format!("Ubah map \"{}\" di Roblox Studio", target.name), lease)?;
-    }
     with_storage(app, &app.state::<AppState>(), |s| {
         s.creative_stage(task_id, "tool_running", None)
     })
@@ -1403,7 +1399,15 @@ fn run_studio_tool(
     let result = if let Some(value) = prior {
         Ok(value)
     } else {
-        let (result, not_executed) = if lease.is_cancelled() {
+        // Ask only for calls that will really be sent; a replayed receipt above needs no approval.
+        let approval = if writable && crate::studio::is_write(&call.name) {
+            require_approval(app, task_id, call, &format!("Ubah map \"{}\" di Roblox Studio", target.name), lease)
+        } else {
+            Ok(())
+        };
+        let (result, not_executed) = if let Err(rejected) = approval {
+            (Err(rejected), true)
+        } else if lease.is_cancelled() {
             (Err("[CANCELLED][TOOL_NOT_DISPATCHED] Permintaan dibatalkan sebelum operasi.".into()), true)
         } else {
             match crate::studio::agent_call(target, call, writable) {

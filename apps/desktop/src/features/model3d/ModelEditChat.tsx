@@ -20,8 +20,11 @@ function history(path: string): Entry[] {
 const historyLimit = 20;
 const indexKey = 'forgekit:model-edit-index';
 function persist(path: string, entries: Entry[]) {
-  let recent: string[] = [];
-  try { const value: unknown = JSON.parse(safeGetItem(indexKey) ?? '[]'); if (Array.isArray(value)) recent = value.filter((item): item is string => typeof item === 'string'); } catch { /* Rebuild a damaged index. */ }
+  let recent: string[] | null = null;
+  try { const value: unknown = JSON.parse(safeGetItem(indexKey) ?? 'null'); if (Array.isArray(value)) recent = value.filter((item): item is string => typeof item === 'string'); } catch { /* Rebuild a damaged index. */ }
+  // No index yet (first save after upgrade, or a damaged index): adopt existing histories
+  // instead of deleting them; the cap below still bounds how many are kept.
+  recent ??= safeKeys(key('')).map((stored) => stored.slice(key('').length));
   recent = [...recent.filter(item => item !== path), path].slice(-historyLimit);
   const kept = new Set(recent.map(key));
   for (const stored of safeKeys(key(''))) if (!kept.has(stored)) safeRemoveItem(stored);

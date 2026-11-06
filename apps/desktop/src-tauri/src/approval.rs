@@ -28,9 +28,11 @@ pub struct ApprovalRequest {
 }
 
 struct Pending {
+    sequence: u64,
     request: ApprovalRequest,
     answer: SyncSender<bool>,
 }
+static SEQUENCE: std::sync::atomic::AtomicU64 = std::sync::atomic::AtomicU64::new(0);
 
 static PENDING: Mutex<Option<HashMap<String, Pending>>> = Mutex::new(None);
 
@@ -57,12 +59,12 @@ fn preview(call: &crate::tools::ToolCall) -> (String, bool) {
     (text[..end].to_owned(), true)
 }
 
+/// Waiting requests in the order the AI raised them.
 pub fn pending() -> Vec<ApprovalRequest> {
-    PENDING
-        .lock()
-        .ok()
-        .and_then(|map| map.as_ref().map(|m| m.values().map(|p| p.request.clone()).collect()))
-        .unwrap_or_default()
+    let Ok(map) = PENDING.lock() else { return vec![] };
+    let mut items: Vec<_> = map.as_ref().map(|m| m.values().map(|p| (p.sequence, p.request.clone())).collect()).unwrap_or_default();
+    items.sort_by_key(|(sequence, _)| *sequence);
+    items.into_iter().map(|(_, request)| request).collect()
 }
 
 /// Delivers the user's decision. Unknown or already-answered calls are an error.
@@ -103,7 +105,7 @@ pub fn request(
         .lock()
         .map_err(|_| "[TOOL_NOT_DISPATCHED] Antrian persetujuan rusak.")?
         .get_or_insert_with(HashMap::new)
-        .insert(id.clone(), Pending { request: request.clone(), answer });
+        .insert(id.clone(), Pending { sequence: SEQUENCE.fetch_add(1, std::sync::atomic::Ordering::Relaxed), request: request.clone(), answer });
     notify("forgekit:approval-request", json!(request));
     let deadline = Instant::now() + TIMEOUT;
     let outcome = loop {

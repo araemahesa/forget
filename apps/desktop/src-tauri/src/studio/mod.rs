@@ -1128,9 +1128,20 @@ pub fn agent_call(
         // Losing the response mid-write would leave the outcome unknown, so match insert_blender.
         session.deadline = Instant::now() + WRITE_TIMEOUT;
     }
-    let result = session
-        .request("tools/call", json!({"name":name,"arguments":arguments}))
-        .map_err(AgentCallError::Unknown)?;
+    let result = match session.request("tools/call", json!({"name":name,"arguments":arguments})) {
+        Ok(result) => result,
+        Err(error) => {
+            if is_write(name) {
+                // Outcome unknown: best-effort close the recording, committing (never rolling
+                // back) whatever ran. If this also fails, the next write commits it instead.
+                session.deadline = Instant::now() + Duration::from_secs(20);
+                let input = json!({"code": finish_recording(true)}).to_string();
+                let _ = agent_arguments(entry, studio_id, &input)
+                    .and_then(|arguments| session.request("tools/call", json!({"name":"execute_luau","arguments":arguments})));
+            }
+            return Err(AgentCallError::Unknown(error));
+        }
+    };
     session.deadline = Instant::now() + Duration::from_secs(20);
     let mut recording = None;
     if is_write(name) {
@@ -1186,9 +1197,11 @@ fn identity_from(value: &Value) -> Result<DocumentIdentity, String> {
 
 /// Prefixes provider Luau with statements that run before it: refuse Play mode or a different
 /// document, then open a ChangeHistory recording kept in `_G`. Nothing wraps the provider code,
-/// so its text cannot close a wrapper and run outside the guard. [`FINISH_RECORDING`] then
-/// commits on success or cancels (rolls back) on error. If another plugin already holds a
-/// recording, `TryBeginRecording` returns nil and the code runs inside that one instead.
+/// so its text cannot close a wrapper and run outside the guard. [`finish_recording`] then
+/// commits on success or cancels (rolls back) on error. A recording left open by an earlier
+/// write whose response was lost is committed, never cancelled: rolling it back would silently
+/// undo that write and any edits made since. If another plugin already holds a recording,
+/// `TryBeginRecording` returns nil and the code runs inside that one instead.
 fn guarded_luau(code: &str, identity: &DocumentIdentity) -> Result<String, String> {
     if code.trim().is_empty() || code.len() > 60_000 {
         return Err("Kode Luau kosong atau terlalu besar.".into());
@@ -1200,7 +1213,7 @@ assert(tostring(game.PlaceId) == \"{place}\", 'ForgeKit: place berubah; penulisa
 do\n\
 \tlocal history = game:GetService('ChangeHistoryService')\n\
 \tlocal stale = _G.__ForgeKitRecording\n\
-\tif stale then _G.__ForgeKitRecording = nil; pcall(history.FinishRecording, history, stale.id, Enum.FinishRecordingOperation.Cancel) end\n\
+\tif stale and stale.document == game:GetDebugId(32) .. ':' .. workspace:GetDebugId(32) then _G.__ForgeKitRecording = nil; pcall(history.FinishRecording, history, stale.id, Enum.FinishRecordingOperation.Commit) end\n\
 \tlocal id = history:TryBeginRecording('ForgeKit AI')\n\
 \tif id then _G.__ForgeKitRecording = {{id = id, document = \"{document}\"}} end\n\
 end\n\
@@ -1215,9 +1228,9 @@ end\n\
 fn finish_recording(succeeded: bool) -> String {
     format!(
         "local recording = _G.__ForgeKitRecording\n\
-_G.__ForgeKitRecording = nil\n\
 if not recording then return 'none' end\n\
 if game:GetDebugId(32) .. ':' .. workspace:GetDebugId(32) ~= recording.document then return 'other-map' end\n\
+_G.__ForgeKitRecording = nil\n\
 game:GetService('ChangeHistoryService'):FinishRecording(recording.id, Enum.FinishRecordingOperation.{})\n\
 return '{}'\n",
         if succeeded { "Commit" } else { "Cancel" },
@@ -1598,6 +1611,10 @@ mod write_guard_tests {
         assert!(finish_recording(true).contains("FinishRecordingOperation.Commit"));
         assert!(finish_recording(false).contains("FinishRecordingOperation.Cancel"));
         assert!(finish_recording(false).contains("other-map"), "never finishes a different map's recording");
+        let other = finish_recording(true);
+        assert!(other.find("other-map").unwrap() < other.find("_G.__ForgeKitRecording = nil").unwrap(), "another map's recording stays tracked");
+        assert!(code.contains("stale.id, Enum.FinishRecordingOperation.Commit") && !code.contains("stale.id, Enum.FinishRecordingOperation.Cancel"),
+            "a recording left by a lost response is committed, never rolled back");
     }
 
     #[test]

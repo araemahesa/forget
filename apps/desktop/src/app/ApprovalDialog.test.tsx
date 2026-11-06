@@ -60,3 +60,14 @@ it('drops a request the task already resolved elsewhere', async () => {
   await waitFor(() => expect(screen.queryByRole('heading', { name: write.title })).toBeNull());
   expect(mocks.resolve).not.toHaveBeenCalled();
 });
+
+it('tells the user when the task stopped waiting before the answer arrived', async () => {
+  const user = userEvent.setup();
+  mocks.pending = [write];
+  mocks.resolve.mockRejectedValueOnce(new Error('Permintaan persetujuan sudah tidak aktif.'));
+  render(<ApprovalDialog />);
+  await user.click(await screen.findByRole('button', { name: 'Izinkan' }));
+  expect(await screen.findByRole('alert')).toHaveTextContent('Perubahan tidak dijalankan: Permintaan persetujuan sudah tidak aktif.');
+  await user.click(screen.getByRole('button', { name: 'Tutup pesan' }));
+  expect(screen.queryByRole('alert')).toBeNull();
+});

@@ -32,7 +32,6 @@ export function ApprovalDialog() {
   useEffect(() => {
     if (current && !dialog.current?.open) dialog.current?.showModal?.();
     if (!current && dialog.current?.open) dialog.current.close();
-    setError('');
   }, [current]);
 
   async function answer(approved: boolean) {
@@ -42,13 +41,14 @@ export function ApprovalDialog() {
       await resolveToolApproval(current.taskId, current.callId, approved);
       setQueue((items) => items.filter((item) => keyOf(item) !== keyOf(current)));
     } catch (failure) {
-      // The task already stopped waiting (cancelled or timed out): drop the stale request.
-      setError(failure instanceof Error ? failure.message : 'Jawaban tidak terkirim.');
+      // The task already stopped waiting (cancelled or timed out): drop the stale request and
+      // say so, because the change the user just answered did not run.
+      setError(`Perubahan tidak dijalankan: ${failure instanceof Error ? failure.message : 'jawaban tidak terkirim.'}`);
       setQueue((items) => items.filter((item) => keyOf(item) !== keyOf(current)));
     } finally { setBusy(false); }
   }
 
-  return <dialog ref={dialog} className="command-palette approval-dialog" aria-labelledby="approval-title"
+  return <>{error && !current && <p role="alert" className="approval-toast">{error} <button type="button" className="theme-button" aria-label="Tutup pesan" onClick={() => setError('')}>×</button></p>}<dialog ref={dialog} className="command-palette approval-dialog" aria-labelledby="approval-title"
     onCancel={(event) => { event.preventDefault(); void answer(false); }}>
     {current && <>
       <header className="approval-header"><p className="eyebrow">PERSETUJUAN DIPERLUKAN</p><h2 id="approval-title">{current.title}</h2>
@@ -56,11 +56,10 @@ export function ApprovalDialog() {
       <pre className="approval-preview" aria-label="Isi perubahan">{current.preview}</pre>
       {current.truncated && <p className="approval-note">Pratinjau dipotong; isi lengkap lebih panjang.</p>}
       {queue.length > 1 && <p className="approval-note">{queue.length - 1} permintaan lain menunggu.</p>}
-      {error && <p role="alert" className="status-error">{error}</p>}
       <footer className="approval-actions">
         <button className="button secondary-button" type="button" disabled={busy} onClick={() => void answer(false)}>Tolak</button>
         <button className="button primary-button" type="button" disabled={busy} onClick={() => void answer(true)}>Izinkan</button>
       </footer>
     </>}
-  </dialog>;
+  </dialog></>;
 }
