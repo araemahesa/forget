@@ -1791,7 +1791,7 @@ pub async fn save_creative_revision(
             model_id: None,
             reasoning_effort: None,
             parent_version_id,
-            reference_images, blender: false,
+            reference_images, blender: false, animation: None,
         };
         let root = workspace_root(&app)?;
         with_storage(&app, &app.state::<AppState>(), |s| {
@@ -2037,7 +2037,7 @@ fn run_blender_tool(app:&AppHandle,task_id:&str,prompt:&str,provider:&crate::ai:
         let id=format!("blender-{}",crate::artifacts::sha256_hex(format!("{task_id}:{}",call.id).as_bytes()));
         let version=with_storage(app,&app.state::<AppState>(),|s| {
             if let Ok(task)=s.get_creative_task(&id) { if let Some(version)=task["versionId"].as_str() {return s.load_creative_version(version);} }
-            let request=crate::creative::CreativeRequest {task_id:id,kind:"model3d".into(),prompt:prompt.chars().take(4000).collect(),quality:"high".into(),provider_id:Some(provider.id.clone()),model_id:Some(provider.model.clone()),reasoning_effort:provider.reasoning_effort.clone(),parent_version_id:None,reference_images:references.clone(),blender:true};
+            let request=crate::creative::CreativeRequest {task_id:id,kind:"model3d".into(),prompt:prompt.chars().take(4000).collect(),quality:"high".into(),provider_id:Some(provider.id.clone()),model_id:Some(provider.model.clone()),reasoning_effort:provider.reasoning_effort.clone(),parent_version_id:None,reference_images:references.clone(),blender:true,animation:None};
             s.create_creative_task(&request,Some(provider))?;s.creative_stage(&request.task_id,"planning",None)?;s.creative_stage(&request.task_id,"validating",None)?;
             s.save_blender_tool_result(&root,&request,&document,task_id,call)
         }).map_err(|e|e.message)?;
@@ -2194,7 +2194,7 @@ pub async fn resume_ai_task(
                 return Ok(serde_json::json!({"message":message}));
             }
             let editor=matches!(kind,"gfx"|"icon"|"clothing"|"texture"|"sfx");
-            let request=crate::creative::CreativeRequest{task_id:id.clone(),kind:kind.into(),prompt:task["prompt"].as_str().unwrap_or("").into(),quality:task["quality"].as_str().unwrap_or("balanced").into(),provider_id:Some(provider.id.clone()),model_id:Some(provider.model.clone()),reasoning_effort:provider.reasoning_effort.clone(),parent_version_id:task["parentVersionId"].as_str().map(str::to_owned),reference_images:serde_json::from_value(task.get("referenceImages").cloned().unwrap_or_else(||serde_json::json!([]))).map_err(native_error)?,blender:false};
+            let request=crate::creative::CreativeRequest{task_id:id.clone(),kind:kind.into(),prompt:task["prompt"].as_str().unwrap_or("").into(),quality:task["quality"].as_str().unwrap_or("balanced").into(),provider_id:Some(provider.id.clone()),model_id:Some(provider.model.clone()),reasoning_effort:provider.reasoning_effort.clone(),parent_version_id:task["parentVersionId"].as_str().map(str::to_owned),reference_images:serde_json::from_value(task.get("referenceImages").cloned().unwrap_or_else(||serde_json::json!([]))).map_err(native_error)?,blender:false,animation:task.get("animation").cloned().and_then(|v|serde_json::from_value(v).ok())};
             let value=run_connected(&app,&id,&provider,&lease,false,|active,_|{
                 let value=if let Some(state)=cp.model_review.as_ref(){state.candidate.clone()}else{crate::ai::execute_recipe_checkpoint(active,&lease,&[],crate::creative::output_tokens(&request.kind,&request.quality),&mut cp,|_|Err("Tools tidak tersedia pada finalisasi.".into()),|cp|persist_checkpoint(&app,&id,active,cp),|raw|if editor{crate::editor_ai::parse(kind,raw)}else{crate::creative::parse(&request,raw)})?};
                 if kind=="model3d" && !crate::model3d::blender::visual_references(&request.reference_images).is_empty(){crate::model3d::reference_model::refine(&workspace_root(&app).map_err(|e|e.message)?,&request,active,&lease,&mut cp,value,|cp|persist_checkpoint(&app,&id,active,cp))}else{Ok(value)}

@@ -69,7 +69,7 @@ pub static SKILL_REGISTRY: &[SkillEntry] = &[
     SkillEntry {
         id: "animation-motion",
         domain: "animation",
-        version: "1.4.0",
+        version: "2.0.0",
         keywords: &["animasi", "motion", "pose", "gerak", "rig", "walk", "lari", "serangan", "attack", "jump", "idle", "keyframe", "animation", "animations", "running", "walking", "jumping", "movement"],
         content: include_str!("../../../../skills/animation-motion/SKILL.md"),
     },
