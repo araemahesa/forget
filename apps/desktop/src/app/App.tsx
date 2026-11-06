@@ -5,6 +5,7 @@ import { FloatingNavigation } from './FloatingNavigation';
 import { featureRegistry, resolveRoute, routeForVersion, type WorkspaceRoute } from './featureRegistry';
 import { useAppearance } from './useAppearance';
 import { startStudioDiscovery, useStudioSnapshot } from '../services/studioState';
+import { StudioTargetPicker } from './StudioTargetPicker';
 import type { LibraryKind } from '../services/creatorWorkspace';
 
 const pages = new Map(featureRegistry.map((feature) => [feature.id, lazy(feature.load)]));
@@ -81,7 +82,7 @@ export function App() {
       <header className="topbar">
         <div className="topbar-leading"><a className="topbar-brand" href="#chat" aria-label="ForgeKit Studio"><BrandMark /><span>ForgeKit Studio</span></a>
           <span className="topbar-divider" /><div className="breadcrumb">{studio && <><span>{studio.studio.name || 'Studio'}</span><Icon name="chevron" /></>}<strong>{route.feature.label}</strong></div>
-          {route.feature.id !== 'settings' && <span className="studio-status" role="status" aria-label="Status koneksi Roblox Studio" data-connected={!!studio} title={studio?.studio.name || 'Deteksi Studio otomatis'}><Icon name="link" />{studio ? 'Studio terhubung' : 'Studio belum terhubung'}</span>}</div>
+          <span className="studio-status" role="status" aria-label="Status koneksi Roblox Studio" data-connected={!!studio} title={studio?.studio.name || 'Deteksi Studio otomatis'}><Icon name="link" />{studio ? 'Studio terhubung' : 'Studio belum terhubung'}</span><StudioTargetPicker /></div>
 
       </header>
       <div className={`page-body${route.feature.id === 'chat' ? ' is-chat' : ''}`} id={route.feature.id}>

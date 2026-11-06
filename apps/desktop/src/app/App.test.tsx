@@ -83,7 +83,8 @@ it('shows one live Studio status in the top bar immediately after the AI Chat br
   expect(offline).toHaveTextContent('Studio belum terhubung');
   await userEvent.click(within(nav()).getByRole('link', { name: 'Pengaturan' }));
   await screen.findByRole('heading', { name: 'Pengaturan' }, { timeout: 10000 });
-  expect(screen.queryByRole('status', { name: 'Status koneksi Roblox Studio' })).toBeNull();
+  expect(screen.getAllByRole('status', { name: 'Status koneksi Roblox Studio' })).toHaveLength(1);
+  expect(screen.queryByText('Koneksi Studio & penyimpanan')).toBeNull();
 });
 
 describe('Chat home and inline navigation', () => {
@@ -199,8 +200,7 @@ it('shows account, providers and appearance together without retired settings ta
   expect(screen.queryByRole('group', { name: 'Bagian pengaturan' })).toBeNull();
   for (const name of ['Roblox Studio', 'Kualitas & Anggaran', 'Tools & Skills', 'Penyimpanan & Diagnostik']) {
     expect(screen.queryByRole('button', { name })).toBeNull();
-    if (name === 'Roblox Studio') expect(screen.getByRole('heading', { name })).not.toBeVisible();
-    else expect(screen.queryByRole('heading', { name })).toBeNull();
+    expect(screen.queryByRole('heading', { name })).toBeNull();
   }
   await waitFor(() => expect(location.hash).toBe('#settings'));
 });

@@ -61,8 +61,6 @@
 .settings-page .account-row > .action-row .button { min-height: 30px; padding-inline: 10px; font-size: 10px; }
 
 .settings-page .advanced-disclosure { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
-.settings-page .settings-advanced { padding: 16px 20px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); color: var(--text-secondary); font-size: 12px; }
-.settings-page .settings-advanced[open] > .settings-section { padding-top: 20px; }
 .settings-page .settings-about { display: flex; align-items: center; gap: 10px; margin-top: 24px; padding: 0 0 8px; font-size: 11px; color: var(--text-muted); }
 .settings-page .settings-about .brand-mark { width: 24px; height: 24px; flex-basis: 24px; }
 .settings-page .settings-about > span { margin-left: auto; }
