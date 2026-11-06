@@ -59,13 +59,7 @@
 .settings-page .account-access-details p { margin: 10px 0 0; font-size: 11px; line-height: 1.7; overflow-wrap: anywhere; }
 .settings-page .account-row > .action-row { padding-top: 0; margin: 0; gap: 6px; }
 .settings-page .account-row > .action-row .button { min-height: 30px; padding-inline: 10px; font-size: 10px; }
-.settings-page .fallback-control-card { margin-top: 20px; padding: 16px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface-raised); }
-.settings-page .fallback-header { display: flex; align-items: center; gap: 12px; font-size: 12px; }
-.settings-page .fallback-header > span { font-size: 11px; color: var(--text-muted); }
-.settings-page .fallback-header .button { margin-left: auto; min-height: 30px; font-size: 11px; }
-.settings-page .fallback-help { margin-top: 12px; font-size: 11px; color: var(--text-muted); }
-.settings-page .fallback-help p { margin: 12px 0 8px; }
-.settings-page .fallback-help small { line-height: 1.7; }
+
 .settings-page .advanced-disclosure { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
 .settings-page .settings-advanced { padding: 16px 20px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); color: var(--text-secondary); font-size: 12px; }
 .settings-page .settings-advanced[open] > .settings-section { padding-top: 20px; }

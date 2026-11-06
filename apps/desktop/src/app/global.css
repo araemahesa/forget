@@ -605,7 +605,6 @@ h2 { margin-bottom: 0; font-size: 15px; font-weight: 600; letter-spacing: -.025e
   color: var(--text-secondary);
 }
 
-
 /* Texture Generator Styles */
 .texture-page {
   animation: fade-in var(--motion-panel) var(--ease-out) both;
@@ -819,7 +818,6 @@ h2 { margin-bottom: 0; font-size: 15px; font-weight: 600; letter-spacing: -.025e
   transform: scale(0.95);
 }
 
-
 /* Clothing Creator Styles */
 .clothing-page {
   animation: fade-in var(--motion-panel) var(--ease-out) both;
@@ -975,7 +973,6 @@ h2 { margin-bottom: 0; font-size: 15px; font-weight: 600; letter-spacing: -.025e
   color: var(--text-secondary);
   font-weight: 550;
 }
-
 
 /* SFX Generator Styles */
 .sfx-page {
@@ -2268,50 +2265,7 @@ textarea.text-input {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.fallback-control-card {
-  margin-top: 20px;
-  padding: 14px 16px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: var(--surface-raised);
-}
-.fallback-header {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-.fallback-toggle-label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  font-size: 12px;
-}
-.fallback-toggle-label input {
-  width: 16px;
-  height: 16px;
-  accent-color: var(--accent);
-}
-.fallback-summary {
-  flex: 1;
-  min-width: 0;
-  font-size: 13px;
-  color: var(--text-secondary);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.fallback-editor-form {
-  margin-top: 14px;
-  padding-top: 14px;
-  border-top: 1px solid var(--border);
-  display: grid;
-  gap: 12px;
-}
-.fallback-editor-form h4 {
-  font-size: 12px;
-  margin: 0;
-}
+
 .editor-explainer {
   font-size: 13px;
   color: var(--text-secondary);
@@ -2327,20 +2281,7 @@ textarea.text-input {
 .checkbox-field input {
   accent-color: var(--accent);
 }
-.fallback-editor-form label {
-  display: grid;
-  gap: 4px;
-  font-size: 13px;
-  color: var(--text-secondary);
-}
-.fallback-editor-form .dropdown,
-.fallback-editor-form input[type='number'] {
-  background: var(--surface);
-  color: var(--text);
-  border: 1px solid var(--border-control);
-  border-radius: 6px;
-  padding: 6px 8px;
-}
+
 .advanced-disclosure {
   margin-top: 20px;
   border-top: 1px solid var(--border);
@@ -2451,7 +2392,7 @@ textarea.text-input {
 .provider-connect-workflow:focus-visible { outline: 2px solid var(--focus); outline-offset: 4px; }
 .provider-connect-workflow .section-header { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
 .provider-connect-workflow form { margin-block: 16px; }
-.provider-connect-workflow label, .fallback-editor-form > label { display: grid; gap: 8px; }
+.provider-connect-workflow label { display: grid; gap: 8px; }
 .provider-connect-workflow input, .provider-connect-workflow .dropdown { width: 100%; min-width: 0; }
 .provider-connect-workflow small { display: block; color: var(--text-secondary); line-height: 1.6; }
 .provider-connect-workflow details > label { margin-top: 16px; }
@@ -2468,10 +2409,7 @@ textarea.text-input {
 .provider-card-main { min-width: 0; }
 .provider-card .notice-deprecated { white-space: normal; }
 .provider-card .notice-deprecated summary { cursor: pointer; }
-.fallback-order li { display: flex; align-items: center; gap: 8px; padding-block: 8px; }
-.fallback-order li > span { flex: 1; overflow-wrap: anywhere; }
-.fallback-order button { min-height: 40px; padding: 8px 12px; }
-.fallback-editor-form .checkbox-field { display: flex; align-items: flex-start; }
+
 @media (max-width: 1100px) { .account-row { align-items: flex-start; flex-direction: column; } .account-row .action-row { flex-wrap: wrap; } }
 @media (max-width: 720px) { .provider-connect-workflow { padding: 16px; } .provider-card { flex-wrap: wrap; } }
 .music-output { display: grid; gap: 16px; padding: 20px; min-width: 0; }

@@ -201,12 +201,6 @@ export function ProviderSettings() {
       </div>)}</div>
     </div>
 
-    <div className="fallback-control-card">
-      <div className="fallback-header"><strong>Pergantian akun</strong><span>Otomatis pada provider yang sama</span></div>
-      <p>Saat akun mencapai limit, ForgeKit mencoba akun terhubung berikutnya pada provider dan model yang sama. Akun dengan kuota bersama dilewati.</p>
-      <p>Pilih provider dan akun melalui pemilih pada setiap generator atau AI Chat. Gunakan Pakai akun untuk memilih akun bagi tugas baru.</p>
-      <small>Pergantian otomatis berlaku sebelum hasil atau operasi tool diterima. Maksimum lima percobaan. Jika seluruh akun tidak tersedia, proses berhenti dengan pesan. Akun upstream 9router dikelola oleh router.</small>
-    </div>
     <details className="advanced-disclosure"><summary>Pengaturan lanjutan</summary><div className="advanced-body"><GoogleOAuthSetup /><h3>Gateway 9router</h3><details><summary>Akun dan kuota</summary><p>Pilih akun lain pada composer untuk tugas baru. Tugas berjalan tetap memakai akun semula. Kunci API dalam project yang sama dapat berbagi kuota.</p></details>{!routerDraft && gatewayForm}<p>Kuota upstream dibaca melalui API dashboard jika akses tersedia. Kelola akun dan izin dashboard melalui 9router. Putuskan dari ForgeKit hanya melepas profil lokal.</p><p>Keychain macOS menyimpan credential per koneksi. Login Discord, provider AI, dan map Studio terpisah.</p></div></details>
   </section>;
 }
