@@ -110,12 +110,15 @@ macro_rules! app_commands {
             toggle_mcp_connector,
             list_available_mcp_tools,
             delete_mcp_connector,
+            resolve_tool_approval,
+            list_tool_approvals,
             $($extra,)*
         ]
     };
 }
 
 mod agent;
+pub mod approval;
 pub mod ai;
 pub mod artifacts;
 mod attachments;

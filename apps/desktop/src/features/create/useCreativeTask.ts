@@ -9,6 +9,7 @@ import {
 } from '@forgekit/contracts';
 import { acquireStudioTask, refreshStudioContext } from '../../services/studioState';
 import { call } from '../../services/tauri';
+import { safeGetItem, safeSetItem } from '../../services/safeStorage';
 import { refreshUsageAfterTask } from '../../services/providerUsage';
 import { getFeatureChoice, useFeatureProviderSelection } from '../../services/featureSelection';
 
@@ -41,7 +42,7 @@ export function useCreativeTask(kind: ProceduralKind, session?: { id: string; in
   const [version, setVersion] = useState<CreativeVersion | null>(null);
   const [versions, setVersions] = useState<CreativeVersion[]>([]);
   const [task, setTask] = useState<CreativeTask | null>(null);
-  const [attemptTaskId, setAttemptTaskId] = useState<string | null>(() => localStorage.getItem(`forgekit:creative-task:${storageKey}`));
+  const [attemptTaskId, setAttemptTaskId] = useState<string | null>(() => safeGetItem(`forgekit:creative-task:${storageKey}`));
   const [submittedPrompt, setSubmittedPrompt] = useState('');
   const [busy, setBusy] = useState(false);
   const [recovering, setRecovering] = useState(false);
@@ -56,9 +57,15 @@ export function useCreativeTask(kind: ProceduralKind, session?: { id: string; in
   const alive = useRef(true);
   const loadRevision = useRef(0);
 
+  const shownFallback = useRef('');
   useEffect(() => {
     if (selection.fallbackNotice) {
+      shownFallback.current = selection.fallbackNotice;
       setNotice(selection.fallbackNotice);
+    } else if (shownFallback.current) {
+      // Clear only the fallback text; task notices set meanwhile stay visible.
+      const stale = shownFallback.current; shownFallback.current = '';
+      setNotice((current) => current === stale ? '' : current);
     }
   }, [selection.fallbackNotice]);
 
@@ -177,7 +184,7 @@ export function useCreativeTask(kind: ProceduralKind, session?: { id: string; in
     const id = crypto.randomUUID();
     active.current = id;
     cancelled.current = false;
-    setAttemptTaskId(id); localStorage.setItem(`forgekit:creative-task:${storageKey}`, id);
+    setAttemptTaskId(id); safeSetItem(`forgekit:creative-task:${storageKey}`, id);
     if (!document) setSubmittedPrompt(prompt);
     const releaseStudio = acquireStudioTask();
     loadRevision.current++;
@@ -280,7 +287,7 @@ export function useCreativeTask(kind: ProceduralKind, session?: { id: string; in
       if (alive.current && revision === loadRevision.current) {
         setVersion(loaded);
         setAttemptTaskId(loaded.taskId);
-        localStorage.setItem(`forgekit:creative-task:${storageKey}`, loaded.taskId);
+        safeSetItem(`forgekit:creative-task:${storageKey}`, loaded.taskId);
         setSubmittedPrompt('');
         setTask(null);
       }
@@ -303,7 +310,6 @@ export function useCreativeTask(kind: ProceduralKind, session?: { id: string; in
     modelSelection,
     providerChoice,
     setProviderChoice: selection.setChoice,
-    promoteToPrimary: selection.promoteToPrimary,
     isCustomOverride: selection.isCustomOverride,
     isInherited: selection.isInherited,
     selection,

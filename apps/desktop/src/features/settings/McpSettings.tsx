@@ -63,7 +63,7 @@ export function McpSettings() {
 
   return <section className="settings-section mcp-settings" id="settings-connectors" aria-labelledby="mcp-heading">
     <h2 id="mcp-heading" tabIndex={-1}>Konektor MCP</h2>
-    <p>Server MCP dijalankan di komputer ini selama satu permintaan chat, lalu dihentikan. Tool baca selalu tersedia; tool yang dapat mengubah data hanya dipakai pada mode kerja otomatis.</p>
+    <p>Server MCP dijalankan di komputer ini selama satu permintaan chat, lalu dihentikan. Setiap kali AI memanggil tool MCP, ForgeKit meminta persetujuan Anda dulu. Label baca/tulis berasal dari server dan hanya informasi.</p>
     {error && <p role="alert" className="status-error">{error}</p>}
     {status && <p role="status">{status}</p>}
     <ul className="mcp-list" aria-label="Konektor tersimpan">

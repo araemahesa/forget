@@ -217,6 +217,20 @@ fn validate_draft(spec: &serde_json::Value) -> Result<(), StorageError> {
 
 pub const SCHEMA_VERSION: i64 = 16;
 
+/// Map snapshots are only usable for two minutes; a new row is stored whenever the map
+/// changes. Keep the ones a task still references (its audit trail) and the last week.
+const SNAPSHOT_RETENTION_MS: i64 = 7 * 24 * 60 * 60 * 1000;
+fn prune_context_snapshots(connection: &Connection) -> Result<(), StorageError> {
+    let cutoff = now_string().parse::<i64>().unwrap_or(0) - SNAPSHOT_RETENTION_MS;
+    connection.execute(
+        "DELETE FROM context_snapshot WHERE CAST(created_at AS INTEGER) < ?1 AND id NOT IN (
+            SELECT json_extract(request_json, '$.contextSnapshotId') FROM creative_task
+            WHERE json_extract(request_json, '$.contextSnapshotId') IS NOT NULL)",
+        params![cutoff],
+    )?;
+    Ok(())
+}
+
 impl Storage {
     pub fn open(path: impl AsRef<Path>) -> Result<Self, StorageError> {
         let path = path.as_ref();
@@ -325,6 +339,9 @@ impl Storage {
         }
         let connection = storage.connection;
         connection.execute("UPDATE task SET status = 'interrupted', error = 'Aplikasi berhenti sebelum tugas selesai', updated_at = ?1 WHERE status IN ('queued', 'running')", params![now_string()])?;
+        // An attempt still "started" outlived its process; record it as interrupted.
+        connection.execute("UPDATE task_attempt SET status = 'interrupted', completed_at = ?1, error = COALESCE(error, 'Aplikasi berhenti sebelum percobaan selesai.') WHERE status = 'started'", params![now_string()])?;
+        prune_context_snapshots(&connection)?;
         Ok(Self { connection })
     }
 

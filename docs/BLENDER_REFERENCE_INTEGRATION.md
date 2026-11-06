@@ -1,12 +1,12 @@
 # Blender and visual references — ForgeKit 0.1.5
 
-Model 3D and AI Chat share a bounded Blender builder. The selected AI provider interprets uploaded reference images and produces a validated declarative model. ForgeKit runs its own fixed Python builder in Blender, validates the exported files, and saves a source `.blend`, a self-contained `.glb`, and an `.fbx`.
+Model 3D and AI Chat share a bounded Blender builder. The selected AI provider interprets uploaded reference images and produces a validated declarative model. ForgeKit runs its own fixed Python builder in Blender, validates the exported files, and saves a source `.blend`, a `preview.json` mesh for the in-app viewport, and PNG renders used for visual review. No `.glb` or `.fbx` is produced by this path.
 
 ## Model 3D
 
 Open **Kreasi → Model 3D**. Attach up to three PNG/JPG/WebP references and keep **Bangun hasil dengan Blender** enabled. Generate uses the already selected provider, model and reasoning setting. Blender must be installed; a missing engine produces an explicit error rather than a silent fallback.
 
-After generation, **Hasil Blender** displays the actual exported GLB. You can switch to the recipe preview, inspect from different angles, or open the folder containing all three files. **Bangun di Blender** also builds an existing saved model. An active local build has a stop control; cancellation kills the owned child process. Cached results are integrity checked before reuse.
+After generation, **Hasil Blender** displays the mesh from `preview.json`. You can switch to the recipe preview, inspect from different angles, or open the folder containing the `.blend` and renders. **Bangun di Blender** also builds an existing saved model. An active local build has a stop control; cancellation kills the owned child process. Cached results are integrity checked before reuse.
 
 ## AI Chat
 
@@ -20,7 +20,7 @@ Selected PNG/JPG/WebP files are converted locally to PNG, capped at 1536 pixels 
 
 ## Roblox import and scope
 
-Use **Buka folder Blender / FBX**, then **File → Import** in Roblox Studio to import `model.fbx` or `model.glb`. Check materials, scale, grip and effects in Studio. Custom profiles cannot use the older primitive-only Apply path; the UI and backend reject that substitution. Existing primitive Apply actions remain available.
+Insert the model into the open Studio place with the Blender insert action: ForgeKit uploads the preview mesh through `AssetService:CreateAssetAsync`/`CreateMeshPartAsync` in fixed chunks, checking the map identity at every step, and parents the result inside one undo recording. To edit further, open `model.blend` in Blender and export from there yourself. Check materials, scale, grip and effects in Studio. The chat "Apply" path does not apply Model 3D versions; use the insert action instead.
 
 This is reference-guided procedural modeling. It is not a neural image-to-3D service and cannot guarantee 100% likeness, hidden-side reconstruction, production UV maps, baked PBR textures, rigging or playable weapon behavior. Those require their own production and verification. Blender source materials and the Roblox render can differ.
 

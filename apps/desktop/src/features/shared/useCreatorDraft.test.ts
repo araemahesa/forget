@@ -72,7 +72,8 @@ it('rejects future engine drafts and keeps browser persistence status honest', a
   await waitFor(() => expect(hook.result.current.error).toBe(true));
   expect(hook.result.current.ready).toBe(false);
   expect(restore).not.toHaveBeenCalled();
-  await expect(flushPendingDraft()).rejects.toThrow('belum berhasil dimuat');
+  // Nothing pending: a failed load must not keep the window from closing.
+  await expect(flushPendingDraft()).resolves.toBeUndefined();
   hook.unmount();
   vi.mocked(isTauri).mockReturnValue(false);
   const browser = renderHook(() => useCreatorDraft('icon', restore));

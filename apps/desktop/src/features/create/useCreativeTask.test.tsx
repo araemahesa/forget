@@ -3,10 +3,11 @@ import { beforeEach, expect, it, vi } from 'vitest';
 import { useCreativeTask } from './useCreativeTask';
 import { call } from '../../services/tauri';
 vi.mock('../../services/tauri', () => ({ call: vi.fn() }));
-vi.mock('../../services/featureSelection', () => ({ getFeatureChoice: () => 'account', useFeatureProviderSelection: () => ({ profiles: [], modelSelection: { provider: { id: 'account' } }, snapshot: vi.fn(() => ({providerId: 'account', modelId: 'fixture-model', reasoningEffort: 'high'})) }) }));
+const selectionState = vi.hoisted(() => ({ fallbackNotice: '' }));
+vi.mock('../../services/featureSelection', () => ({ getFeatureChoice: () => 'account', useFeatureProviderSelection: () => ({ profiles: [], fallbackNotice: selectionState.fallbackNotice, modelSelection: { provider: { id: 'account' } }, snapshot: vi.fn(() => ({providerId: 'account', modelId: 'fixture-model', reasoningEffort: 'high'})) }) }));
 vi.mock('../../services/studioState', () => ({ acquireStudioTask: () => vi.fn(), refreshStudioContext: vi.fn() }));
 vi.mock('../../services/providerUsage', () => ({ refreshUsageAfterTask: vi.fn() }));
-beforeEach(() => { localStorage.clear(); vi.clearAllMocks(); });
+beforeEach(() => { localStorage.clear(); vi.clearAllMocks(); selectionState.fallbackNotice = ''; });
 it('restores and cancels the same journal task after navigation without generating again', async () => {
   localStorage.setItem('forgekit:creative-task:model3d', 'saved-task');
   vi.mocked(call).mockImplementation(async (command) => command === 'get_creative_task' ? { id: 'saved-task', status: 'planning', versionId: null } : []);
@@ -85,4 +86,13 @@ it('does not start an image request while attachment processing is active', asyn
   await act(async()=>{await result.current.run('',null);});
   expect(result.current.error).toContain('selesai diproses');
   expect(call).not.toHaveBeenCalledWith('generate_creative',expect.anything());
+});
+
+it('clears the account fallback notice once the selection becomes valid again', async () => {
+  vi.mocked(call).mockResolvedValue([]);
+  selectionState.fallbackNotice = 'Akun pilihan sebelumnya tidak tersedia.';
+  const { result, rerender } = renderHook(() => useCreativeTask('model3d', { id: 'notice-tab' }));
+  await waitFor(() => expect(result.current.notice).toBe('Akun pilihan sebelumnya tidak tersedia.'));
+  selectionState.fallbackNotice = ''; rerender();
+  await waitFor(() => expect(result.current.notice).toBe(''));
 });

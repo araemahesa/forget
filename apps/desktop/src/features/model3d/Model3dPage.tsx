@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import type { CreativeVersion } from '@forgekit/contracts';
 import { Icon } from '../../design-system/Icon';
 import { call } from '../../services/tauri';
+import { safeSetItem } from '../../services/safeStorage';
 import { validateCreativeVersion } from '../create/useCreativeTask';
 import { BlenderConnection } from '../shared/BlenderConnection';
 import { Model3dEditor } from './Model3dEditor';
@@ -34,7 +35,7 @@ export function Model3dPage({ mode }: { mode?: string } = {}) {
   const [historyLoading, setHistoryLoading] = useState(false);
   const [error, setError] = useState('');
   useEffect(() => {
-    localStorage.setItem(key, JSON.stringify({ ...workspace, tabs: workspace.tabs.map(({ busy: _busy, ...tab }) => tab) }));
+    safeSetItem(key, JSON.stringify({ ...workspace, tabs: workspace.tabs.map(({ busy: _busy, ...tab }) => tab) }));
   }, [workspace]);
   const update = useCallback((id: string, state: { name?: string; versionId?: string; busy: boolean }) => {
     setWorkspace(previous => {

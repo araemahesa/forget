@@ -114,6 +114,8 @@
     "allow-toggle-mcp-connector",
     "allow-list-available-mcp-tools",
     "allow-delete-mcp-connector",
+    "allow-resolve-tool-approval",
+    "allow-list-tool-approvals",
     "allow-obsidian-status",
     "allow-open-blender-model"
   ]

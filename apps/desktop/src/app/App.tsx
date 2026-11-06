@@ -6,6 +6,7 @@ import { featureRegistry, resolveRoute, routeForVersion, type WorkspaceRoute } f
 import { useAppearance } from './useAppearance';
 import { startStudioDiscovery, useStudioSnapshot } from '../services/studioState';
 import { StudioTargetPicker } from './StudioTargetPicker';
+import { ApprovalDialog } from './ApprovalDialog';
 import type { LibraryKind } from '../services/creatorWorkspace';
 
 const pages = new Map(featureRegistry.map((feature) => [feature.id, lazy(feature.load)]));
@@ -111,5 +112,6 @@ export function App() {
       <div className="palette-results" id="palette-results" role="listbox" aria-label="Perintah">{filtered.map((action, index) => <button type="button" id={`palette-action-${index}`} tabIndex={-1} key={action.label} role="option" aria-selected={index === paletteIndex} className={index === paletteIndex ? 'is-selected' : ''} onClick={() => choose(action)}><Icon name={action.icon} /><span>{action.label}</span><Icon name="arrow" /></button>)}{!filtered.length && <p className="palette-empty" role="status">Tidak ada perintah yang cocok.</p>}</div>
       <footer className="palette-footer"><span>↑ ↓ Navigasi</span><span>Enter pilih</span></footer>
     </dialog>
+    <ApprovalDialog />
   </div>;
 }

@@ -22,8 +22,9 @@ export function useCreatorDraft<T>(kind: CreatorKind, restore: (draft: CreatorDr
     clearTimeout(timer.current);
     if (!native) return;
     if (running.current) { await running.current; return flush(); }
-    if (!initialized.current) throw new Error(`Draf ${kind} belum berhasil dimuat.`);
+    // Nothing to save must never block window close or backup, even after a failed load.
     if (!pending.current) return;
+    if (!initialized.current) throw new Error(`Draf ${kind} belum berhasil dimuat.`);
     const operation = (async () => {
       while (pending.current) {
         const snapshot = pending.current;

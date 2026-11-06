@@ -65,6 +65,10 @@ export const saveMcpConnector = (config: McpConnectorConfig) =>
   call<void>('save_mcp_connector', { config });
 export const toggleMcpConnector = (id: string, enabled: boolean) =>
   call<void>('toggle_mcp_connector', { id, enabled });
+export type ToolApprovalRequest = { taskId: string; callId: string; tool: string; title: string; preview: string; truncated: boolean };
+export const listToolApprovals = () => call<ToolApprovalRequest[]>('list_tool_approvals', {});
+export const resolveToolApproval = (taskId: string, callId: string, approved: boolean) =>
+  call<void>('resolve_tool_approval', { taskId, callId, approved });
 export const deleteMcpConnector = (id: string) => call<void>('delete_mcp_connector', { id });
 /** Starts the connector (or every enabled one) and returns the tools it really exposes. */
 export const listAvailableMcpTools = (config?: McpConnectorConfig) =>

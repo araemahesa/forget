@@ -32,6 +32,11 @@ export function TaskRecovery({ taskId, disabled = false, showCandidate = false, 
     catch (e) { if (alive.current && currentId.current === id) setError(e instanceof Error ? e.message : 'Finalisasi belum selesai.'); }
     finally { if (selected) void refreshUsageAfterTask(profiles, id, selected); if (alive.current) { setBusy(false); onBusyChange?.(false); } }
   }
+  async function cancel() {
+    const id = taskId;
+    try { await call(task?.kind === 'chat' ? 'cancel_chat_stream' : 'cancel_creative', task?.kind === 'chat' ? { threadId: task.threadId } : { id }); }
+    catch (e) { if (alive.current && currentId.current === id) setError(`Pembatalan gagal: ${e instanceof Error ? e.message : 'finalisasi belum dapat dihentikan.'}`); }
+  }
   return <section className="task-recovery" aria-label="Pemulihan tugas" aria-busy={busy}>
     {busy && <TaskAttempts taskId={taskId} running visual={compact} />}
     <p>{compact ? 'Lanjutkan dari proses tersimpan.' : <><strong>Status sistem · </strong>{recovery?.hasUnknownEffects ? 'Sebagian operasi belum dapat dipastikan. Penulisan tidak diulang; periksa hasil di Studio.' : recovery?.hasEffects ? 'Operasi map telah tercatat. Receipt belum membuktikan hasil map terverifikasi; tinjau hasil dan jawaban provider.' : completed ? 'Kandidat provider telah diperiksa dan tersimpan untuk ditinjau.' : task.status === 'failed' && task.error ? `Tugas gagal: ${taskError(task.error)}` : 'Tugas belum selesai. Hasil sebelumnya dipertahankan.'}</>}</p>
@@ -39,7 +44,7 @@ export function TaskRecovery({ taskId, disabled = false, showCandidate = false, 
     {recovery?.canFinalize && <button className="button secondary-button" type="button" disabled={busy} onClick={() => void finalize()}>{busy ? 'Menyelesaikan…' : 'Selesaikan jawaban'}</button>}
     {recovery?.canResumeEdit && <><p>Menunggu mode Edit</p><button className="button secondary-button" type="button" disabled={busy} onClick={() => void finalize('stop_play')}>Hentikan Play dan lanjutkan</button></>}
     {recovery?.canVerify && <button className="button secondary-button" type="button" disabled={busy} onClick={() => void finalize('verify')}>Periksa hasil tanpa mengulang write</button>}
-    {busy && <button className="button secondary-button" type="button" onClick={() => void call(task.kind === 'chat' ? 'cancel_chat_stream' : 'cancel_creative', task.kind === 'chat' ? { threadId: task.threadId } : { id: taskId })}>Batalkan finalisasi</button>}
+    {busy && <button className="button secondary-button" type="button" onClick={() => void cancel()}>Batalkan finalisasi</button>}
     {completed && <details><summary>Tinjau kandidat dan rincian</summary>
       <p>{task.error}</p>
       {recovery && <p>{recovery.turnsUsed}/{recovery.turnsLimit} putaran · {recovery.callsUsed}/{recovery.callsLimit} operasi · pemeriksaan: {recovery.verification} · {recovery.reason}</p>}

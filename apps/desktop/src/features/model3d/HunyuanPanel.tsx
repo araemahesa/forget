@@ -92,7 +92,7 @@ export function HunyuanPanel({ active }: { active: boolean }) {
   async function start() {
     await perform('start', async () => {
       if (!image?.dataUrl) throw new Error('Pilih satu gambar terlebih dahulu.');
-      if (!config?.configured) throw new Error('Simpan koneksi worker terlebih dahulu.');
+      if (!config?.configured) throw new Error('Isi endpoint dan token worker di Pengaturan → Worker GPU Hunyuan terlebih dahulu.');
       if (pendingId) throw new Error('Simpan hasil atau lepaskan job lokal sebelum membuat model baru.');
       const health = await call<{ ready: boolean; cuda_available: boolean }>('hunyuan_health', {});
       if (!health.ready || !health.cuda_available) throw new Error('Worker belum siap. Periksa CUDA dan model di server sebelum mengirim gambar.');

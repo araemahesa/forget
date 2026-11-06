@@ -88,8 +88,8 @@ Set ForgeKit worker URL to `http://127.0.0.1:8765`. Replace `USER`, `GPU_HOST` a
 
 ## Pemakaian di ForgeKit
 
-1. Buka **Studio Kreatif → Model 3D**, halaman **Generator** setelah worker pada host berizin berjalan dan tunnel SSH aktif. Isi endpoint `http://127.0.0.1:8765` dan token worker di kolom privat; jangan gunakan token cloud/provider atau membagikan screenshot token.
-2. Jalankan pemeriksaan health. `ready:true` dan `cuda_available:true` berarti pemeriksaan awal tersedia, **bukan** bukti inference bertekstur lengkap sudah berhasil.
+1. Setelah worker pada host berizin berjalan dan tunnel SSH aktif, buka **Pengaturan → Worker GPU Hunyuan**. Isi endpoint `http://127.0.0.1:8765` dan token worker di kolom privat, lalu **Simpan koneksi**; jangan gunakan token cloud/provider atau membagikan screenshot token.
+2. Tekan **Tes koneksi** di bagian yang sama. `ready:true` dan `cuda_available:true` berarti pemeriksaan awal tersedia, **bukan** bukti inference bertekstur lengkap sudah berhasil.
 3. Pilih referensi PNG/JPEG/WebP, isi seed dan steps sesuai batas di atas, tekstur warna selalu aktif pada halaman Generator. Tunggu job selesai; pengiriman job belum berarti model berhasil dibuat.
 4. Setelah berhasil, tekan **Simpan & pratinjau GLB**. ForgeKit mengunduh GLB nyata, menyimpannya secara lokal beserta hash/informasi hasil, lalu menampilkan hasil di galeri. Buka hasil melalui Blender atau folder lokal untuk memeriksa geometri dan material. Simpan/backup workspace aplikasi agar hasil lokal tetap tersedia.
 
@@ -160,7 +160,7 @@ Live Canada acceptance completed: health CUDA true, demo image submitted with `t
 
 Instance 58969879, host Kanada, RTX3090 24GB, endpoint SSH `96.20.36.104:40042`. Aktual container Ubuntu24.04, compiler CUDA12.6 dan driver555.58.02; label template12.4 bukan inventaris aktual. Operasi CUDA awal berhasil. Python3.10 dipasang terpisah melalui `uv`, tanpa mengganti Python/PyTorch bawaan. Script memilih wheel cu126 agar compiler extension dan wheel cocok. Driver host tidak diganti. Pemasangan dependensi/model dan satu inference image-to-3D bertekstur lengkap sudah berhasil (exit 0).
 
-Tunnel foreground untuk sesi ini sudah berjalan. Setelah tunnel terputus atau Mac reboot, klik dua kali [connect-mac.command](../services/hunyuan3d/connect-mac.command), lalu biarkan jendela Terminal terbuka saat memakai ForgeKit; passphrase dimasukkan di Terminal jika diminta. Jangan membuka tunnel kedua selama tunnel pertama aktif: keduanya akan berebut bind `127.0.0.1:8765`. Tidak ada private key atau token di script. Script memerlukan host key sudah diverifikasi. Host/port harus diperbarui bila instance berganti. Tidak ada auto-start tunnel pada Mac; supervisor GPU terpisah dan memulai worker otomatis saat supervisor instance aktif.
+Tunnel foreground untuk sesi ini sudah berjalan. Setelah tunnel terputus atau Mac reboot, klik dua kali [connect-mac.command](../services/hunyuan3d/connect-mac.command), lalu biarkan jendela Terminal terbuka saat memakai ForgeKit; passphrase dimasukkan di Terminal jika diminta. Jangan membuka tunnel kedua selama tunnel pertama aktif: keduanya akan berebut bind `127.0.0.1:8765`. Tidak ada private key atau token di script. Script memerlukan host key sudah diverifikasi. Host dan port dibaca dari `~/.config/forgekit/hunyuan-worker.env` (`FORGEKIT_WORKER_HOST=root@HOST` dan `FORGEKIT_WORKER_PORT=PORT`); perbarui file itu setiap kali instance berganti, script tidak perlu diedit. Tidak ada auto-start tunnel pada Mac; supervisor GPU terpisah dan memulai worker otomatis saat supervisor instance aktif.
 
 ### Managed service dan batas data
 

@@ -63,7 +63,13 @@ export function GuiPage() {
   const task = useCreativeTask('interface');
   const [recipe, setRecipe] = useState<GuiRecipe>(defaultRecipe);
   const [viewMode, setViewMode] = useState('3d');
-  const scene = useMemo(() => buildGuiScene(recipe), [recipe]);
+  // Typing edits the recipe per keystroke; rebuild the 3D scene (and its WebGL renderer) only once input settles.
+  const [sceneRecipe, setSceneRecipe] = useState(recipe);
+  useEffect(() => {
+    const timer = setTimeout(() => setSceneRecipe(recipe), 250);
+    return () => clearTimeout(timer);
+  }, [recipe]);
+  const scene = useMemo(() => buildGuiScene(sceneRecipe), [sceneRecipe]);
   useEffect(() => () => disposeGeometry(scene), [scene]);
   const [selectedElementId, setSelectedElementId] = useState<string>('e1');
 

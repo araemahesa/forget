@@ -13,6 +13,7 @@ import { TaskAttempts } from '../shared/TaskAttempts';
 import { ProviderPicker } from '../shared/ProviderPicker';
 import { OrcaUsagePanel } from '../shared/OrcaUsagePanel';
 import { taskError } from '../shared/taskError';
+import { safeGetItem, safeSetItem } from '../../services/safeStorage';
 
 export function getRecipeName(doc: CreativeSpecification): string {
   switch (doc.kind) {
@@ -38,11 +39,11 @@ export function getRecipeName(doc: CreativeSpecification): string {
 export function CreativeControls({ task, initialPrompt }: { task: ReturnType<typeof useCreativeTask>; initialPrompt: string }) {
   const { account } = useDiscordAccount();
   const draftKey = task.storageKey ?? task.kind;
-  const [prompt, setPrompt] = useState(() => localStorage.getItem(`forgekit:prompt:${draftKey}`) ?? initialPrompt); const [refine, setRefine] = useState(() => localStorage.getItem(`forgekit:refine:${draftKey}`) ?? '');
-  const draftTouched = useRef(localStorage.getItem(`forgekit:prompt:${draftKey}`) !== null);
+  const [prompt, setPrompt] = useState(() => safeGetItem(`forgekit:prompt:${draftKey}`) ?? initialPrompt); const [refine, setRefine] = useState(() => safeGetItem(`forgekit:refine:${draftKey}`) ?? '');
+  const draftTouched = useRef(safeGetItem(`forgekit:prompt:${draftKey}`) !== null);
   useEffect(() => { if (!draftTouched.current && task.submittedPrompt) setPrompt(task.submittedPrompt); }, [task.submittedPrompt]);
   const [usageOpen, setUsageOpen] = useState(false);
-  useEffect(() => { localStorage.setItem(`forgekit:prompt:${draftKey}`, prompt); localStorage.setItem(`forgekit:refine:${draftKey}`, refine); }, [prompt, refine, draftKey]);
+  useEffect(() => { safeSetItem(`forgekit:prompt:${draftKey}`, prompt); safeSetItem(`forgekit:refine:${draftKey}`, refine); }, [prompt, refine, draftKey]);
   const [imageOnly, setImageOnly] = useState(task.kind === 'model3d');
   const hasImage = task.referenceImages?.length === 1 && task.referenceImages.some(image => !!image.dataUrl && (!image.kind || image.kind === 'image'));
   const ready = !!task.provider && !!task.modelSelection.modelId;
@@ -62,7 +63,7 @@ export function CreativeControls({ task, initialPrompt }: { task: ReturnType<typ
       {imageOnly && (task.referenceImages?.length ?? 0) > 1 && <p role="status" className="generator-caption">Sisakan satu gambar atau gunakan Dengan prompt.</p>}
       <div className="prompt-toolbar">
         <div className="prompt-options">
-          <ProviderPicker label="Provider generator" profiles={task.profiles} connections={task.connectionProfiles} value={task.providerChoice} onChange={task.setProviderChoice} disabled={task.busy} primaryProfile={task.defaultProvider} isCustomOverride={task.isCustomOverride} onPromotePrimary={task.promoteToPrimary} onOpenUsage={() => setUsageOpen(true)} />
+          <ProviderPicker label="Provider generator" profiles={task.profiles} connections={task.connectionProfiles} value={task.providerChoice} onChange={task.setProviderChoice} disabled={task.busy} primaryProfile={task.defaultProvider} isCustomOverride={task.isCustomOverride} onOpenUsage={() => setUsageOpen(true)} />
           <ModelControls selection={task.modelSelection} disabled={task.busy} />
         </div>
         <div className="prompt-actions">

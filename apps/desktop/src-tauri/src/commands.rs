@@ -1362,6 +1362,20 @@ fn run_connected<T>(
     )
 }
 
+/// Blocks a changing tool call until the user approves it in the app.
+fn require_approval(
+    app: &AppHandle,
+    task_id: &str,
+    call: &crate::tools::ToolCall,
+    title: &str,
+    lease: &crate::ai::StreamLease,
+) -> Result<(), String> {
+    use tauri::Emitter;
+    crate::approval::request(task_id, call, title, &|| lease.is_cancelled(), &|event, payload| {
+        let _ = app.emit(event, payload);
+    })
+}
+
 fn run_studio_tool(
     app: &AppHandle,
     task_id: &str,
@@ -1373,6 +1387,10 @@ fn run_studio_tool(
 ) -> Result<serde_json::Value, String> {
     if lease.is_cancelled() {
         return Err("[CANCELLED][TOOL_NOT_DISPATCHED] Permintaan dibatalkan sebelum operasi.".into());
+    }
+    if writable && crate::studio::is_write(&call.name) {
+        // Ask before anything is recorded or sent, so a rejection leaves no write receipt.
+        require_approval(app, task_id, call, &format!("Ubah map \"{}\" di Roblox Studio", target.name), lease)?;
     }
     with_storage(app, &app.state::<AppState>(), |s| {
         s.creative_stage(task_id, "tool_running", None)
@@ -1520,6 +1538,8 @@ pub async fn send_chat_message(
                         return run_studio_tool(&app,&request_id,frozen.as_ref().ok_or("Tidak ada target Studio.")?,call,&lease,true,mode == "auto");
                     }
                     if crate::mcp::handles(call) {
+                        let tool = mcp.definitions.iter().find(|d| d.wire_name == call.name).map(|d| d.name.clone()).unwrap_or_default();
+                        require_approval(&app, &request_id, call, &format!("Jalankan tool MCP \"{tool}\""), &lease)?;
                         with_storage(&app, &app.state::<AppState>(), |s| s.creative_stage(&request_id,"tool_running",None)).map_err(|e|e.message)?;
                         let output = mcp.call(call, &|| lease.is_cancelled());
                         with_storage(&app, &app.state::<AppState>(), |s| s.creative_stage(&request_id,"streaming",None)).map_err(|e|e.message)?;
@@ -1900,6 +1920,16 @@ pub async fn toggle_mcp_connector(
     })
     .await
     .map_err(native_error)?
+}
+
+#[tauri::command]
+pub fn resolve_tool_approval(task_id: String, call_id: String, approved: bool) -> Result<(), CommandError> {
+    crate::approval::resolve(&task_id, &call_id, approved).map_err(native_error)
+}
+
+#[tauri::command]
+pub fn list_tool_approvals() -> Vec<crate::approval::ApprovalRequest> {
+    crate::approval::pending()
 }
 
 #[tauri::command]

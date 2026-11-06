@@ -561,6 +561,12 @@
           "markdownDescription": "Enables the list_task_attempts command without any pre-configured scope."
         },
         {
+          "description": "Enables the list_tool_approvals command without any pre-configured scope.",
+          "type": "string",
+          "const": "allow-list-tool-approvals",
+          "markdownDescription": "Enables the list_tool_approvals command without any pre-configured scope."
+        },
+        {
           "description": "Enables the list_work_tasks command without any pre-configured scope.",
           "type": "string",
           "const": "allow-list-work-tasks",
@@ -691,6 +697,12 @@
           "type": "string",
           "const": "allow-rename-chat-thread",
           "markdownDescription": "Enables the rename_chat_thread command without any pre-configured scope."
+        },
+        {
+          "description": "Enables the resolve_tool_approval command without any pre-configured scope.",
+          "type": "string",
+          "const": "allow-resolve-tool-approval",
+          "markdownDescription": "Enables the resolve_tool_approval command without any pre-configured scope."
         },
         {
           "description": "Enables the restore_workspace_backup command without any pre-configured scope.",
@@ -1215,6 +1227,12 @@
           "markdownDescription": "Denies the list_task_attempts command without any pre-configured scope."
         },
         {
+          "description": "Denies the list_tool_approvals command without any pre-configured scope.",
+          "type": "string",
+          "const": "deny-list-tool-approvals",
+          "markdownDescription": "Denies the list_tool_approvals command without any pre-configured scope."
+        },
+        {
           "description": "Denies the list_work_tasks command without any pre-configured scope.",
           "type": "string",
           "const": "deny-list-work-tasks",
@@ -1345,6 +1363,12 @@
           "type": "string",
           "const": "deny-rename-chat-thread",
           "markdownDescription": "Denies the rename_chat_thread command without any pre-configured scope."
+        },
+        {
+          "description": "Denies the resolve_tool_approval command without any pre-configured scope.",
+          "type": "string",
+          "const": "deny-resolve-tool-approval",
+          "markdownDescription": "Denies the resolve_tool_approval command without any pre-configured scope."
         },
         {
           "description": "Denies the restore_workspace_backup command without any pre-configured scope.",

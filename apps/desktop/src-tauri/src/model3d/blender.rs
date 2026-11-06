@@ -105,11 +105,14 @@ pub fn build(root:&Path,document:&Value,references:&[ReferenceImage],cancelled:i
     let executable=binary().ok_or("Blender belum ditemukan. Pasang dari blender.org.")?;
     if cancelled(){return Err("[CANCELLED] Pembuatan Blender dibatalkan.".into());}
     let base=folder(document,references);
+    // Take the build lock before touching recipe.json: two identical builds racing to create it
+    // would otherwise fail with "already exists" instead of the clear "already building" message.
+    let folder=crate::artifacts::ensure_safe_parent(root,Some(Path::new(&base)),true).map_err(|e|e.to_string())?;
+    let lock=fs::OpenOptions::new().read(true).write(true).create(true).truncate(false).open(folder.join("build.lock")).map_err(|e|e.to_string())?;
+    lock.try_lock().map_err(|_|"Model yang sama sedang dibangun. Tunggu lalu periksa hasil.")?;
     let recipe_path=format!("{base}/recipe.json");let recipe_bytes=document["recipe"].to_string().into_bytes();
     if root.join(&recipe_path).exists() {read_artifact(root,&recipe_path,&sha256_hex(&recipe_bytes),recipe_bytes.len()).map_err(|e|e.to_string())?;}
     else {write_artifact(root,&recipe_path,&recipe_bytes).map_err(|e|e.to_string())?;}
-    let lock=fs::OpenOptions::new().read(true).write(true).create(true).truncate(false).open(root.join(format!("{base}/build.lock"))).map_err(|e|e.to_string())?;
-    lock.try_lock().map_err(|_|"Model yang sama sedang dibangun. Tunggu lalu periksa hasil.")?;
     if let Some(receipt)=cached(root,document,references)? {return Ok(receipt);}
     let scratch=Scratch(std::env::temp_dir().join(crate::storage::next_id("forgekit-blender")));
     fs::create_dir(&scratch.0).map_err(|e|e.to_string())?;
@@ -167,7 +170,7 @@ pub fn open_model(root:&Path,document:&Value,references:&[ReferenceImage])->Resu
 }
 pub fn reveal(root:&Path,document:&Value,references:&[ReferenceImage])->Result<(),String>{
     cached(root,document,references)?.ok_or("Model belum dibangun melalui Blender.")?;
-    Command::new(if cfg!(target_os="macos"){ "open" }else if cfg!(windows){"explorer"}else{"xdg-open"}).arg(root.join(folder(document,references))).spawn().map_err(|e|e.to_string())?;Ok(())
+    Command::new(if cfg!(target_os="macos"){ "/usr/bin/open" }else if cfg!(windows){"explorer"}else{"xdg-open"}).arg(root.join(folder(document,references))).spawn().map_err(|e|e.to_string())?;Ok(())
 }
 #[cfg(test)]
 mod tests {

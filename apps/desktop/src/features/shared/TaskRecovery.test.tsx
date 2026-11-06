@@ -72,3 +72,15 @@ it('shows the native failure reason instead of a generic unfinished status', asy
   expect(await screen.findByText(/Tugas gagal: Konteks map terverifikasi diperlukan\./)).toBeVisible();
   expect(screen.queryByText(/Tugas belum selesai/)).toBeNull();
 });
+
+it('reports a failed finalization cancel instead of leaving an unhandled rejection', async () => {
+  let resolve!: (value: unknown) => void;
+  const pending = new Promise(r => { resolve = r; });
+  vi.mocked(call).mockImplementation(async command => command === 'get_creative_task' ? task : command === 'resume_ai_task' ? pending : Promise.reject(new Error('Stream tidak ditemukan')));
+  render(<TaskRecovery taskId="task-one" onRecovered={vi.fn()} />);
+  await userEvent.click(await screen.findByRole('button', { name: 'Selesaikan jawaban' }));
+  await userEvent.click(screen.getByRole('button', { name: 'Batalkan finalisasi' }));
+  expect(call).toHaveBeenCalledWith('cancel_chat_stream', { threadId: 'thread-one' });
+  expect(await screen.findByRole('alert')).toHaveTextContent('Pembatalan gagal: Stream tidak ditemukan');
+  await act(async () => resolve({ message: {} }));
+});

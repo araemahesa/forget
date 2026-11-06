@@ -98,7 +98,8 @@ export function useFeatureProviderSelection(featureKey: string) {
   const isInherited = false;
   const isCustomOverride = !!choice && choice !== primaryProfile?.id;
   const effectiveAccount: AiProviderProfile | null = profiles.find((p) => p.id === choice) ?? null;
-  const invalidChoice = !!choice && !effectiveAccount;
+  // Providers still loading: the saved account is not known yet, so it is not "missing".
+  const invalidChoice = !providersLoading && !!choice && !effectiveAccount;
   useEffect(() => {
     setFallbackNotice(invalidChoice ? 'Akun pilihan sebelumnya tidak tersedia. Pilih akun lain untuk tugas baru.' : '');
   }, [invalidChoice]);
