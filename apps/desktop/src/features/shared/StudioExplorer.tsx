@@ -143,7 +143,7 @@ export function StudioExplorer({ inline = false }: { inline?: boolean }) {
           </div>)}
         </div>
       </div>
-      {query && search?.more && <button className="button secondary-button" type="button" onClick={() => void request('search', [], search.nodes.length, query).then(value => setSearch({ ...value, nodes: [...search.nodes, ...value.nodes] })).catch(failure => setError(String(failure)))}>Hasil berikutnya</button>}
+      {query && search?.more && <button className="button secondary-button" type="button" onClick={() => void request('search', [], search.nodes.length, query.trim()).then(value => setSearch({ ...value, nodes: [...search.nodes, ...value.nodes] })).catch(failure => setError(failure instanceof Error ? failure.message : String(failure)))}>Hasil berikutnya</button>}
       <details className="explorer-properties" open><summary>Properties</summary><small>Properti inti yang dapat dibaca · source script tidak dikirim ke provider</small>{selected ? <><p className="explorer-breadcrumb" title={selected.displayPath}>{selected.displayPath}</p>{propertyError ? <p role="alert">{propertyError}</p> : Object.keys(properties).length ? <dl>{Object.entries(properties).map(([name, value]) => <div key={name}><dt>{name}</dt><dd>{value}</dd></div>)}</dl> : <p>Memuat properti…</p>}</> : <p>Pilih objek untuk memeriksa properti live.</p>}</details>
       <footer><small>{branches[rootKey]?.nodes.length ?? 0}{branches[rootKey]?.total !== undefined ? ` / ${branches[rootKey].total}` : ''} root termuat · cabang dimuat saat dibuka</small></footer>
     </aside>}

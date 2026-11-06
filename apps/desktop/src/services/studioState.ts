@@ -9,9 +9,11 @@ let snapshot: StudioSnapshot | null = null;
 let discovery: StudioDiscovery = { studios: [], status: 'searching' };
 let selectedId: string | null = null;
 let inFlight: Promise<StudioSnapshot | null> | null = null;
+let inFlightRevision = -1;
 let tasks = 0;
 let generation = 0;
 let polling = false;
+let pollToken = 0;
 let timer: ReturnType<typeof setTimeout> | undefined;
 const listeners = new Set<() => void>();
 const subscribe = (listener: () => void) => { listeners.add(listener); return () => { listeners.delete(listener); }; };
@@ -28,8 +30,13 @@ export function selectStudioTarget(id: string) {
 export function acquireStudioTask() { tasks++; let released = false; return () => { if (!released) { released = true; tasks--; } }; }
 export function refreshStudioContext(): Promise<StudioSnapshot | null> {
   if (!isTauri()) return Promise.resolve(snapshot);
-  if (inFlight) return inFlight;
+  if (inFlight) {
+    if (inFlightRevision === generation) return inFlight;
+    // A probe from an older generation discards its result; probe again once it settles.
+    return inFlight.then(() => refreshStudioContext(), () => refreshStudioContext());
+  }
   const revision = generation;
+  inFlightRevision = revision;
   inFlight = (async () => {
     try {
       const report = await probeStudio();
@@ -71,12 +78,17 @@ export function refreshStudioContext(): Promise<StudioSnapshot | null> {
 export function startStudioDiscovery() {
   if (!isTauri() || polling) return () => {};
   polling = true;
+  // Each start owns its loop; a tick resuming after a StrictMode stop/start must not spawn a second loop.
+  const token = ++pollToken;
   async function tick() {
-    if (!polling) return;
+    if (token !== pollToken) return;
     // Active jobs own the pinned target and MCP session, including verification.
     if (!tasks) await refreshStudioContext();
-    if (polling) timer = setTimeout(() => void tick(), 8000);
+    if (token === pollToken) timer = setTimeout(() => void tick(), 8000);
   }
   void tick();
-  return () => { polling = false; generation++; clearTimeout(timer); };
+  return () => {
+    if (token !== pollToken) return;
+    polling = false; pollToken++; generation++; clearTimeout(timer);
+  };
 }

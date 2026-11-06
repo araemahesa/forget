@@ -12,6 +12,14 @@ import { useFeatureProviderSelection, type FeatureChoice } from '../../services/
 import { generateEditorRecipe, type EditorKind } from '../../services/editorAi';
 import { refreshUsageAfterTask } from '../../services/providerUsage';
 import { call } from '../../services/tauri';
+import { safeGetItem, safeKeys, safeRemoveItem, safeSetItem } from '../../services/safeStorage';
+
+const parentKey = (taskId: string) => `forgekit:editor-parent:${taskId}`;
+/** Parent snapshots are only needed while their task can still be auto-applied; drop ones no editor tracks. */
+function pruneParentSnapshots() {
+  const tracked = new Set(safeKeys('forgekit:editor-task:').map(safeGetItem));
+  for (const key of safeKeys('forgekit:editor-parent:')) if (!tracked.has(key.slice('forgekit:editor-parent:'.length))) safeRemoveItem(key);
+}
 
 export type EditorAiPromptBarProps<T> = {
   kind: EditorKind;
@@ -30,14 +38,14 @@ export function EditorAiPromptBar<T>({
 }: EditorAiPromptBarProps<T>) {
   const selection = useFeatureProviderSelection(kind);
   const [usageOpen, setUsageOpen] = useState(false);
-  const [prompt, setPrompt] = useState(() => localStorage.getItem(`forgekit:editor-prompt:${kind}`) ?? '');
-  const [recoveryId, setRecoveryId] = useState<string | null>(() => localStorage.getItem(`forgekit:editor-task:${kind}`));
+  const [prompt, setPrompt] = useState(() => safeGetItem(`forgekit:editor-prompt:${kind}`) ?? '');
+  const [recoveryId, setRecoveryId] = useState<string | null>(() => safeGetItem(`forgekit:editor-task:${kind}`));
   const current = useRef(currentSpec); current.current = currentSpec;
   const apply = useRef(onApplySpec); apply.current = onApplySpec;
   const applying = useRef<AbortController | null>(null);
   const alive = useRef(true);
-  useEffect(() => { alive.current = true; return () => { alive.current = false; applying.current?.abort(); }; }, []);
-  useEffect(() => { localStorage.setItem(`forgekit:editor-prompt:${kind}`, prompt); }, [kind, prompt]);
+  useEffect(() => { alive.current = true; pruneParentSnapshots(); return () => { alive.current = false; applying.current?.abort(); }; }, []);
+  useEffect(() => { safeSetItem(`forgekit:editor-prompt:${kind}`, prompt); }, [kind, prompt]);
   const [generating, setBusy] = useState(false);
   const [checking, setChecking] = useState(!!recoveryId);
   const [recovering, setRecovering] = useState(false);
@@ -71,12 +79,14 @@ export function EditorAiPromptBar<T>({
           timer = setTimeout(() => void poll(), 600);
         } else if (restored) {
           if (task.status === 'completed' && task.candidate) {
-            if (JSON.stringify(current.current ?? null) !== localStorage.getItem(`forgekit:editor-parent:${id}`)) {
+            if (JSON.stringify(current.current ?? null) !== safeGetItem(parentKey(id))) {
               setError('Editor berubah. Hasil tersimpan tersedia pada rincian tugas untuk ditinjau.');
             } else {
               await applyResult(JSON.parse(task.candidate) as T, 'Disusun provider dari tugas tersimpan');
               setNotice('Hasil tugas tersimpan dipulihkan. Pratinjau diperbarui.');
             }
+            // Completed: the candidate stays reviewable in task details; the snapshot is no longer needed.
+            safeRemoveItem(parentKey(id));
           }
           activeTaskId.current = null; setBusy(false);
         }
@@ -102,10 +112,11 @@ export function EditorAiPromptBar<T>({
     setBusy(true);
 
     const taskId = crypto.randomUUID();
+    if (recoveryId) safeRemoveItem(parentKey(recoveryId));
     activeTaskId.current = taskId; setRecoveryId(taskId);
-    localStorage.setItem(`forgekit:editor-task:${kind}`, taskId);
+    safeSetItem(`forgekit:editor-task:${kind}`, taskId);
     const parentSnapshot = JSON.stringify(currentSpec ?? null);
-    localStorage.setItem(`forgekit:editor-parent:${taskId}`, parentSnapshot ?? 'null');
+    safeSetItem(parentKey(taskId), parentSnapshot ?? 'null');
     const choiceSnapshot = selection.snapshot();
 
     try {
@@ -121,6 +132,7 @@ export function EditorAiPromptBar<T>({
       if (JSON.stringify(current.current ?? null) !== parentSnapshot) throw new Error('Editor berubah selama proses. Kandidat disimpan untuk ditinjau; edit terbaru dipertahankan.');
       const attribution = `Disusun oleh ${result.provider?.adapterId ?? choiceSnapshot.providerType} / ${result.provider?.modelId ?? choiceSnapshot.modelId}`;
       await applyResult(result.spec, attribution);
+      safeRemoveItem(parentKey(taskId));
       setNotice(`${attribution}. Pratinjau diperbarui.`);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Penyusunan spesifikasi gagal.');
@@ -133,14 +145,20 @@ export function EditorAiPromptBar<T>({
 
   const handleCancel = async () => {
     applying.current?.abort();
-    if (recovering && recoveryId) { await call('cancel_creative', { id: recoveryId }); return; }
+    const failed = (err: unknown) => { if (alive.current) setError(`Pembatalan gagal: ${err instanceof Error ? err.message : 'tugas belum dapat dihentikan.'}`); };
+    if (recovering && recoveryId) {
+      try { await call('cancel_creative', { id: recoveryId }); } catch (err) { failed(err); }
+      return;
+    }
     if (!activeTaskId.current) return;
+    const id = activeTaskId.current; activeTaskId.current = null;
     try {
-      const id = activeTaskId.current; activeTaskId.current = null;
       await call('cancel_creative', { id });
-      setNotice('Penyusunan dibatalkan.');
-    } catch {
-      // Stream cancellation best effort
+      if (alive.current) setNotice('Penyusunan dibatalkan.');
+    } catch (err) {
+      // The task keeps running when cancellation fails; keep tracking it so its result is not dropped.
+      if (activeTaskId.current === null) activeTaskId.current = id;
+      failed(err);
     }
   };
 
@@ -172,7 +190,6 @@ export function EditorAiPromptBar<T>({
               label="Koneksi AI Fitur Ini"
               onOpenUsage={() => setUsageOpen(true)}
               isCustomOverride={selection.isCustomOverride}
-              onPromotePrimary={() => void selection.promoteToPrimary()}
               disabled={busy || disabled}
             />
             <ModelControls selection={selection.modelSelection} disabled={busy || disabled} />
@@ -182,6 +199,7 @@ export function EditorAiPromptBar<T>({
             <Button
               type="button"
               className="secondary-button editor-ai-cancel-btn"
+              disabled={checking && !generating}
               onClick={() => void handleCancel()}
             >
               Stop
@@ -221,10 +239,10 @@ export function EditorAiPromptBar<T>({
         <TaskRecovery taskId={recoveryId} disabled={generating || checking} showCandidate onBusyChange={setRecovering} onRecovered={async (value) => {
           if (!alive.current) return;
           const result = value as { spec?: T };
-          if (JSON.stringify(current.current ?? null) !== localStorage.getItem(`forgekit:editor-parent:${recoveryId}`)) {
+          if (!recoveryId || JSON.stringify(current.current ?? null) !== safeGetItem(parentKey(recoveryId))) {
             setError('Kandidat tersedia pada rincian tugas. Editor berubah; hasil tidak diterapkan otomatis.'); return;
           }
-          if (result.spec) await applyResult(result.spec, 'Disusun provider dari checkpoint tugas');
+          if (result.spec) { await applyResult(result.spec, 'Disusun provider dari checkpoint tugas'); safeRemoveItem(parentKey(recoveryId)); }
         }} />
       </form>
       <OrcaUsagePanel isOpen={usageOpen} onClose={() => setUsageOpen(false)} profiles={selection.profiles} connections={selection.connectionProfiles} defaultSelectedId={selection.modelSelection.provider?.id} />

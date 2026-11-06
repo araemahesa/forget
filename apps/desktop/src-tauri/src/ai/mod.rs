@@ -1131,6 +1131,7 @@ pub fn delete_thread(conn: &Connection, id: &str) -> Result<(), StorageError> {
         .collect::<Result<Vec<_>, _>>()?;
     tx.execute("DELETE FROM chat_turn WHERE thread_id=?1", [id])?;
     for request in requests {
+        tx.execute("DELETE FROM task_attempt WHERE task_id=?1", [&request])?;
         tx.execute("DELETE FROM ai_checkpoint WHERE task_id=?1", [&request])?;
         tx.execute("DELETE FROM creative_event WHERE task_id=?1", [&request])?;
         tx.execute("DELETE FROM creative_task WHERE id=?1", [&request])?;

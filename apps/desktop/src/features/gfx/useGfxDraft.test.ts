@@ -1,3 +1,4 @@
+import { StrictMode } from 'react';
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import type { GfxSpec } from '@forgekit/contracts';
@@ -9,20 +10,23 @@ const native = vi.hoisted(() => ({
   close: undefined as undefined | ((event: { preventDefault: () => void }) => Promise<void>),
   quit: undefined as undefined | (() => Promise<void>),
   destroy: vi.fn(),
+  registered: 0,
+  stopped: 0,
 }));
 vi.mock('@tauri-apps/api/core', () => ({ isTauri: vi.fn() }));
 vi.mock('@tauri-apps/api/window', () => ({ getCurrentWindow: () => ({
   destroy: native.destroy,
-  onCloseRequested: async (handler: typeof native.close) => { native.close = handler; return () => {}; },
+  onCloseRequested: async (handler: typeof native.close) => { native.close = handler; native.registered++; return () => { native.stopped++; }; },
 }) }));
 vi.mock('@tauri-apps/api/event', () => ({ listen: async (_: string, handler: typeof native.quit) => {
-  native.quit = handler; return () => {};
+  native.quit = handler; native.registered++; return () => { native.stopped++; };
 } }));
 vi.mock('../../services/tauri', () => ({ loadGfxDraft: vi.fn(), saveGfxDraft: vi.fn(), finishAppExit: vi.fn() }));
 const spec: GfxSpec = { schemaVersion: 1, title: '', subtitle: 'Belum selesai', width: -0.5, height: 800, background: '#', accent: '#ff0033', layout: 'centered' };
 
 beforeEach(() => {
   vi.resetAllMocks();
+  native.registered = 0; native.stopped = 0;
   vi.mocked(isTauri).mockReturnValue(false);
   vi.mocked(loadGfxDraft).mockResolvedValue(null);
   vi.mocked(saveGfxDraft).mockImplementation(async (value, baselineVersionId, revision) => ({
@@ -97,4 +101,26 @@ it.each(['close', 'quit'] as const)('flushes before native %s and prevents exit 
   expect(saveGfxDraft).toHaveBeenLastCalledWith(spec, null, 0);
   expect(action === 'close' ? native.destroy : finishAppExit).toHaveBeenCalledTimes(1);
   if (action === 'close') expect(preventDefault).toHaveBeenCalledTimes(2);
+});
+
+it('allows native close when the draft failed to load and nothing is pending', async () => {
+  vi.mocked(isTauri).mockReturnValue(true);
+  vi.mocked(loadGfxDraft).mockRejectedValue(new Error('Berkas rusak'));
+  const { result } = renderHook(() => useGfxDraft(async () => {}));
+  await waitFor(() => expect(result.current.error).toBe(true));
+  expect(result.current.ready).toBe(false);
+  await waitFor(() => expect(native.close).toBeDefined());
+  await act(async () => { await native.close!({ preventDefault: vi.fn() }); });
+  expect(native.destroy).toHaveBeenCalledTimes(1);
+  await expect(flushPendingDraft()).resolves.toBeUndefined();
+});
+
+it('releases close and exit listeners registered by a StrictMode double effect', async () => {
+  vi.mocked(isTauri).mockReturnValue(true);
+  const hook = renderHook(() => useGfxDraft(async () => {}), { wrapper: StrictMode });
+  await waitFor(() => expect(hook.result.current.ready).toBe(true));
+  expect(native.registered).toBe(4);
+  expect(native.stopped).toBe(2);
+  hook.unmount();
+  expect(native.stopped).toBe(4);
 });

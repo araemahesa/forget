@@ -35,8 +35,9 @@ export function useGfxDraft(restore: (draft: GfxDraft) => Promise<void>) {
       await running.current;
       return flush();
     }
-    if (!initialized.current) throw new Error('Draf lokal belum berhasil dimuat.');
+    // Nothing to save must never block window close or exit, even after a failed load.
     if (!pending.current) return;
+    if (!initialized.current) throw new Error('Draf lokal belum berhasil dimuat.');
     const operation = (async () => {
       while (pending.current) {
         const snapshot = pending.current;
@@ -94,13 +95,15 @@ export function useGfxDraft(restore: (draft: GfxDraft) => Promise<void>) {
     document.addEventListener('visibilitychange', onVisibility);
     let unlisten: (() => void) | undefined;
     let stopQuit: (() => void) | undefined;
+    // Per-effect flag: under StrictMode the shared mounted ref is true again before the first registration resolves.
+    let disposed = false;
     if (isTauri()) {
       void listen('forgekit:exit-requested', async () => {
         try { await flushPendingDraft(); await finishAppExit(); }
         catch (failure) {
           if (mounted.current) { setNotice(`Aplikasi tetap terbuka: ${reason(failure)}`); setError(true); }
         }
-      }).then((stop) => { if (mounted.current) stopQuit = stop; else stop(); }).catch((failure: unknown) => {
+      }).then((stop) => { if (disposed) stop(); else stopQuit = stop; }).catch((failure: unknown) => {
         if (mounted.current) { setNotice(`Pengaman keluar gagal: ${reason(failure)}`); setError(true); }
       });
       void getCurrentWindow().onCloseRequested(async (event) => {
@@ -109,11 +112,12 @@ export function useGfxDraft(restore: (draft: GfxDraft) => Promise<void>) {
         catch (failure) {
           if (mounted.current) { setNotice(`Jendela tetap terbuka: ${reason(failure)}`); setError(true); }
         }
-      }).then((stop) => { if (mounted.current) unlisten = stop; else stop(); }).catch((failure: unknown) => {
+      }).then((stop) => { if (disposed) stop(); else unlisten = stop; }).catch((failure: unknown) => {
         if (mounted.current) { setNotice(`Pengaman tutup gagal: ${reason(failure)}`); setError(true); }
       });
     }
     return () => {
+      disposed = true;
       mounted.current = false;
       loadSequence.current++;
       window.removeEventListener('forgekit:flush-draft', onFlush);

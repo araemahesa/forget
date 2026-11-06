@@ -4,6 +4,7 @@ import { Appearance } from './Appearance';
 import { ProviderSettings } from './ProviderSettings';
 import { AccountSettings } from './AccountSettings';
 import { McpSettings } from './McpSettings';
+import { HunyuanSettings } from './HunyuanSettings';
 import { BrandMark } from '../../design-system/BrandMark';
 import { version } from '../../../package.json';
 
@@ -14,7 +15,7 @@ export function SettingsPage({ appearance, section }: WorkspacePageProps) {
   }, [section]);
   return <section className="catalog-page settings-page">
     <header className="catalog-heading"><h1>Pengaturan</h1><p>Akun, AI, konektor, dan tampilan.</p></header>
-    <div ref={root} className="settings-content"><div className="settings-preferences"><AccountSettings /><Appearance appearance={appearance} /></div><ProviderSettings /><McpSettings /></div>
+    <div ref={root} className="settings-content"><div className="settings-preferences"><AccountSettings /><Appearance appearance={appearance} /></div><ProviderSettings /><McpSettings /><HunyuanSettings /></div>
     <div className="settings-about"><BrandMark /><div><strong>ForgeKit Studio</strong></div><span>v{version}</span></div>
   </section>;
 }

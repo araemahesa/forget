@@ -87,3 +87,32 @@ it('keeps secondary settings collapsed and primary edit controls visible', () =>
   fireEvent.click(screen.getByText('Pengaturan AI'));
   expect(settings).toHaveAttribute('open');
 });
+it('keeps only the 20 most recent revision histories in localStorage', async () => {
+  const older = Array.from({ length: 20 }, (_, index) => `old/${index}.glb`);
+  for (const path of older) localStorage.setItem(`forgekit:model-edit:${path}`, '[]');
+  localStorage.setItem('forgekit:model-edit-index', JSON.stringify(older));
+  localStorage.setItem('forgekit:model-edit:untracked.glb', '[]');
+  vi.mocked(call).mockResolvedValue({ model: revised, summary: 'Selesai tersimpan.' });
+  const callbacks = props(); render(<ModelEditChat {...callbacks} />); type();
+  fireEvent.click(screen.getByRole('button', { name: 'Kirim perubahan' }));
+  await waitFor(() => expect(callbacks.onEdited).toHaveBeenCalledWith(revised));
+  const keys = Object.keys(localStorage).filter(key => key.startsWith('forgekit:model-edit:'));
+  expect(keys).toHaveLength(20);
+  expect(localStorage.getItem('forgekit:model-edit:old/0.glb')).toBeNull();
+  expect(localStorage.getItem('forgekit:model-edit:old/1.glb')).toBeNull();
+  expect(localStorage.getItem('forgekit:model-edit:untracked.glb')).toBeNull();
+  expect(localStorage.getItem(`forgekit:model-edit:${revised.relativePath}`)).toContain('Selesai tersimpan');
+  expect(JSON.parse(localStorage.getItem('forgekit:model-edit-index')!).at(-1)).toBe(revised.relativePath);
+});
+
+it('adopts existing histories on the first save after upgrade instead of deleting them', async () => {
+  localStorage.clear();
+  for (const path of ['legacy/a.glb', 'legacy/b.glb']) localStorage.setItem(`forgekit:model-edit:${path}`, '[]');
+  vi.mocked(call).mockResolvedValue({ model: revised, summary: 'Selesai tersimpan.' });
+  const callbacks = props(); render(<ModelEditChat {...callbacks} />); type();
+  fireEvent.click(screen.getByRole('button', { name: 'Kirim perubahan' }));
+  await waitFor(() => expect(callbacks.onEdited).toHaveBeenCalledWith(revised));
+  expect(localStorage.getItem('forgekit:model-edit:legacy/a.glb')).toBe('[]');
+  expect(localStorage.getItem('forgekit:model-edit:legacy/b.glb')).toBe('[]');
+  expect(JSON.parse(localStorage.getItem('forgekit:model-edit-index')!)).toEqual(expect.arrayContaining(['legacy/a.glb', 'legacy/b.glb', revised.relativePath]));
+});

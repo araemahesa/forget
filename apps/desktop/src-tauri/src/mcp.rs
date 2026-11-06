@@ -1,9 +1,9 @@
 //! Minimal MCP client for user-configured connectors (stdio, newline-delimited JSON-RPC).
 //!
 //! A connector is started only for the duration of one chat request and killed afterwards.
-//! Tools are exposed to the provider as `mcp_r<n>_<tool>` (read-only per the server's
-//! `readOnlyHint`) or `mcp_w<n>_<tool>` (everything else); write tools get the supervisor's
-//! duplicate-intent and unknown-outcome protection.
+//! Tools are exposed to the provider as `mcp_<n>_<tool>`. A server's `readOnlyHint` is its own
+//! claim, so ForgeKit never relies on it: every MCP call is treated as a write (user approval,
+//! supervisor duplicate-intent and unknown-outcome protection) and none run in read-only modes.
 
 use crate::connectors::McpConnectorConfig;
 use crate::tools::{ToolCall, ToolDefinition};
@@ -23,10 +23,10 @@ const START_TIMEOUT: Duration = Duration::from_secs(20);
 const CALL_TIMEOUT: Duration = Duration::from_secs(90);
 
 pub fn is_write(wire_name: &str) -> bool {
-    wire_name.starts_with("mcp_w")
+    wire_name.starts_with("mcp_")
 }
 pub fn handles(call: &ToolCall) -> bool {
-    call.name.starts_with("mcp_r") || call.name.starts_with("mcp_w")
+    is_write(&call.name)
 }
 
 /// macOS GUI apps get a minimal PATH; add the usual tool locations so `npx`, `uvx`, etc. resolve.
@@ -301,10 +301,13 @@ pub struct Toolset {
 }
 
 impl Toolset {
-    /// `writable=false` (ask/plan mode) exposes only tools the server marks read-only.
+    /// `writable=false` (ask/plan mode) exposes no MCP tools, since none are trusted as read-only.
     /// `cancelled` lets Stop interrupt a slow server start instead of waiting it out.
     pub fn start(configs: &[McpConnectorConfig], writable: bool, cancelled: &dyn Fn() -> bool) -> Self {
         let mut set = Toolset::default();
+        if !writable {
+            return set;
+        }
         for config in configs.iter().filter(|c| c.is_enabled) {
             if cancelled() {
                 break;
@@ -326,11 +329,7 @@ impl Toolset {
                 if !config.allowed_tools.is_empty() && !config.allowed_tools.iter().any(|t| t == name) {
                     continue;
                 }
-                let reads = read_only(tool);
-                if !writable && !reads {
-                    continue;
-                }
-                let prefix = format!("mcp_{}{}_", if reads { 'r' } else { 'w' }, index);
+                let prefix = format!("mcp_{index}_");
                 let mut wire: String = format!("{prefix}{}", sanitize(name)).chars().take(64).collect();
                 let mut n = 2;
                 while set.routes.contains_key(&wire) {
@@ -344,9 +343,8 @@ impl Toolset {
                     json!({"type": "object", "properties": {}})
                 };
                 let description = format!(
-                    "[MCP · {}{}] {}",
+                    "[MCP · {} · setiap panggilan perlu persetujuan pengguna] {}",
                     config.name,
-                    if reads { "" } else { " · dapat mengubah data" },
                     tool["description"].as_str().unwrap_or(name)
                 );
                 set.definitions.push(ToolDefinition {
@@ -444,15 +442,15 @@ done
 
     #[test]
     fn exposes_tools_by_mode_and_routes_calls() {
+        // A server's readOnlyHint is not trusted: read-only modes get no MCP tools at all.
         let read_only = Toolset::start(&[fixture(SERVER)], false, &|| false);
-        assert!(read_only.warnings.is_empty(), "{:?}", read_only.warnings);
-        assert_eq!(read_only.definitions.iter().map(|d| d.wire_name.as_str()).collect::<Vec<_>>(), ["mcp_r0_read_notes"]);
+        assert!(read_only.definitions.is_empty() && read_only.warnings.is_empty());
 
         let mut set = Toolset::start(&[fixture(SERVER)], true, &|| false);
         let wires: Vec<_> = set.definitions.iter().map(|d| d.wire_name.clone()).collect();
-        assert_eq!(wires, ["mcp_r0_read_notes", "mcp_w0_write_note"]);
-        assert!(is_write("mcp_w0_write_note") && !is_write("mcp_r0_read_notes"));
-        let call = ToolCall { id: "1".into(), name: "mcp_w0_write_note".into(), arguments: "{\"text\":\"x\"}".into() };
+        assert_eq!(wires, ["mcp_0_read_notes", "mcp_0_write_note"]);
+        assert!(is_write("mcp_0_read_notes") && is_write("mcp_0_write_note"), "hinted reads are still writes");
+        let call = ToolCall { id: "1".into(), name: "mcp_0_write_note".into(), arguments: "{\"text\":\"x\"}".into() };
         assert!(handles(&call));
         let output = set.call(&call, &|| false).unwrap();
         assert_eq!(output["content"], "halo\n[konten image tidak diteruskan]");

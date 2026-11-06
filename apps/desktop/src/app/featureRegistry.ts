@@ -60,7 +60,7 @@ export function resolveRoute(hash: string): WorkspaceRoute {
   const requestedMode = legacyModes[path] ?? params.get('mode');
   const mode = feature.modes?.includes(requestedMode ?? '') ? requestedMode! : feature.modes?.[0];
   const requestedSection = params.get('section');
-  const section = feature.id === 'settings' && ['account', 'providers', 'connectors', 'appearance'].includes(requestedSection ?? '') ? requestedSection! : undefined;
+  const section = feature.id === 'settings' && ['account', 'providers', 'connectors', 'hunyuan', 'appearance'].includes(requestedSection ?? '') ? requestedSection! : undefined;
   const canonical = new URLSearchParams();
   if (mode && mode !== feature.modes?.[0]) canonical.set('mode', mode);
   if (section) canonical.set('section', section);

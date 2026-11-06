@@ -7,7 +7,7 @@ pub struct Segment { pub name: String, pub id: String }
 #[serde(rename_all = "camelCase", deny_unknown_fields)]
 pub struct Query { pub action: String, pub path: Vec<Segment>, pub offset: usize, pub search: String, pub epoch: Option<String> }
 pub fn code(query: &Query) -> Result<String, String> {
-    if !["children", "properties", "search"].contains(&query.action.as_str()) || query.path.len() > 256 || query.offset > 1_000_000 || query.search.len() > 256 || query.path.iter().any(|s| s.name.len() > 512 || s.id.len() > 128 || s.id.is_empty()) { return Err("Requête Explorer tidak sah.".into()); }
+    if !["children", "properties", "search"].contains(&query.action.as_str()) || query.path.len() > 256 || query.offset > 1_000_000 || query.search.len() > 256 || query.path.iter().any(|s| s.name.len() > 512 || s.id.len() > 128 || s.id.is_empty()) { return Err("Permintaan Explorer tidak sah.".into()); }
     let encoded = serde_json::to_string(query).map_err(|e|e.to_string())?;
     let literal = serde_json::to_string(&encoded).map_err(|e|e.to_string())?;
     Ok(include_str!("../../scripts/luau/explorer.luau").replace("QUERY_JSON", &literal))

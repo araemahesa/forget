@@ -1,5 +1,6 @@
 import { useEffect, useId, useRef, useState } from 'react';
 import { call } from '../../services/tauri';
+import { safeGetItem, safeKeys, safeRemoveItem, safeSetItem } from '../../services/safeStorage';
 import { useFeatureProviderSelection } from '../../services/featureSelection';
 import { loadProviderUsage } from '../../services/providerUsage';
 import { ProviderPicker } from '../shared/ProviderPicker';
@@ -11,12 +12,25 @@ type Entry = { role: 'user' | 'assistant'; content: string };
 const key = (path: string) => `forgekit:model-edit:${path}`;
 function history(path: string): Entry[] {
   try {
-    const value: unknown = JSON.parse(localStorage.getItem(key(path)) ?? '[]');
+    const value: unknown = JSON.parse(safeGetItem(key(path)) ?? '[]');
     return Array.isArray(value) ? value.filter((item): item is Entry => item && ['user', 'assistant'].includes(item.role) && typeof item.content === 'string' && item.content.length <= 16000).slice(-40) : [];
   } catch { return []; }
 }
+// Every revision gets its own history key; keep only the most recently written ones so storage stays bounded.
+const historyLimit = 20;
+const indexKey = 'forgekit:model-edit-index';
 function persist(path: string, entries: Entry[]) {
-  try { localStorage.setItem(key(path), JSON.stringify(entries.slice(-40))); } catch { /* Saved GLB remains available if UI history storage is full. */ }
+  let recent: string[] | null = null;
+  try { const value: unknown = JSON.parse(safeGetItem(indexKey) ?? 'null'); if (Array.isArray(value)) recent = value.filter((item): item is string => typeof item === 'string'); } catch { /* Rebuild a damaged index. */ }
+  // No index yet (first save after upgrade, or a damaged index): adopt existing histories
+  // instead of deleting them; the cap below still bounds how many are kept.
+  recent ??= safeKeys(key('')).map((stored) => stored.slice(key('').length));
+  recent = [...recent.filter(item => item !== path), path].slice(-historyLimit);
+  const kept = new Set(recent.map(key));
+  for (const stored of safeKeys(key(''))) if (!kept.has(stored)) safeRemoveItem(stored);
+  safeSetItem(indexKey, JSON.stringify(recent));
+  // Saved GLB remains available if UI history storage is full.
+  safeSetItem(key(path), JSON.stringify(entries.slice(-40)));
 }
 
 export function ModelEditChat({ model, disabled, onBusyChange, onEdited }: {

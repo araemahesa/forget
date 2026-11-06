@@ -48,3 +48,16 @@ it('closes by Escape, restores focus and shows both connected accounts in its ow
   expect(close).toHaveBeenCalled();
   view.unmount(); expect(trigger).toHaveFocus(); trigger.remove();
 });
+
+it('keeps focus where the user put it when the parent re-renders with a new inline onClose', async () => {
+  const user = userEvent.setup();
+  const view = render(<OrcaUsagePanel isOpen onClose={() => {}} profiles={profiles} connections={connections} />);
+  const codex = screen.getByRole('option', { name: /OpenAI · Codex/ });
+  await user.click(codex);
+  codex.focus();
+  const latest = vi.fn();
+  view.rerender(<OrcaUsagePanel isOpen onClose={latest} profiles={profiles} connections={connections} />);
+  expect(codex).toHaveFocus();
+  await user.keyboard('{Escape}');
+  expect(latest).toHaveBeenCalledTimes(1);
+});

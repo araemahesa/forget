@@ -12,7 +12,6 @@ export interface ProviderPickerProps {
   disabled?: boolean;
   label: string;
   primaryProfile?: AiProviderProfile | ConnectionProfile | null;
-  onPromotePrimary?: () => void;
   onOpenUsage?: () => void;
   isCustomOverride?: boolean;
 }

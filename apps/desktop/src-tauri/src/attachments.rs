@@ -41,9 +41,23 @@ fn text(path: &Path) -> Result<String,String> {
 fn image(path: &Path) -> Result<String,String> {
     Ok(format!("data:image/png;base64,{}", STANDARD.encode(bounded_read(path, 450 * 1024)?)))
 }
+/// Pins ffmpeg's demuxer to the file's declared container so content sniffing can never pick a
+/// playlist/concat demuxer that would read other local files into the provider request.
+fn demuxer(input: &Path) -> Result<&'static str, String> {
+    match input.extension().and_then(|e| e.to_str()).unwrap_or("") {
+        "mp4" | "mov" | "m4a" => Ok("mov"),
+        "webm" | "mkv" => Ok("matroska"),
+        "mp3" => Ok("mp3"),
+        "wav" => Ok("wav"),
+        "ogg" => Ok("ogg"),
+        "flac" => Ok("flac"),
+        "aac" => Ok("aac"),
+        _ => Err("Format media tidak didukung.".into()),
+    }
+}
 fn transcript(input: &Path, dir: &Path) -> Result<String,String> {
     let wave = dir.join("voice.wav");
-    run(Command::new(executable("ffmpeg")?).args(["-nostdin","-v","error","-y","-protocol_whitelist","file,pipe","-i"]).arg(input)
+    run(Command::new(executable("ffmpeg")?).args(["-nostdin","-v","error","-y","-protocol_whitelist","file,pipe","-f",demuxer(input)?,"-i"]).arg(input)
         .args(["-t","120","-vn","-ar","16000","-ac","1","-c:a","pcm_s16le"]).arg(&wave), 45)?;
     let model = std::env::var_os("HOME").map(PathBuf::from).ok_or("Folder pengguna tidak tersedia.")?
         .join("Library/Application Support/dev.forgekit.studio/models/ggml-base.bin");
@@ -94,7 +108,7 @@ pub fn prepare(name: &str, encoded: &str) -> Result<ReferenceImage,String> {
                 // Fixed thumbnail filters sample the first 120 seconds without loading the full video into memory.
                 for (index, position) in [0, 5, 15].iter().enumerate() {
                     let output = dir.join(format!("frame-{index}.png"));
-                    let result = run(Command::new(executable("ffmpeg")?).args(["-nostdin","-v","error","-y","-protocol_whitelist","file,pipe","-i"]).arg(&input)
+                    let result = run(Command::new(executable("ffmpeg")?).args(["-nostdin","-v","error","-y","-protocol_whitelist","file,pipe","-f",demuxer(&input)?,"-i"]).arg(&input)
                         .args(["-ss",&position.to_string(),"-frames:v","1","-vf","scale=900:900:force_original_aspect_ratio=decrease"]).arg(&output), 30);
                     if index==0 { result?; }
                     if output.is_file() { attachment.frames.push(image(&output)?); }

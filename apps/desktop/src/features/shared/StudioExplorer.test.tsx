@@ -51,3 +51,18 @@ it('focuses the narrow drawer and restores its toggle when Escape closes it', as
   expect(screen.queryByRole('complementary',{name:'Explorer dan Properties'})).toBeNull();
   expect(screen.getByRole('button',{name:'Explorer map bersama'})).toHaveFocus();
 });
+it('requests the next search page with the trimmed query and shows readable failures', async () => {
+  vi.mocked(call).mockImplementation(async (command, args) => {
+    if (command !== 'read_studio_explorer') return {};
+    const q = args?.query as { action: string; offset: number; path: unknown[] };
+    if (q.action === 'search' && q.offset > 0) throw new Error('Batas inspeksi tercapai');
+    return { epoch: 'edit-one', nodes: [node(`hit-${q.offset}`, 'Part', 0)], total: 5, more: q.action === 'search', partial: false };
+  });
+  render(<StudioExplorer />);
+  fireEvent.change(await screen.findByLabelText('Cari objek map'), { target: { value: '  Part  ' } });
+  fireEvent.click(await screen.findByRole('button', { name: 'Hasil berikutnya' }, { timeout: 2000 }));
+  expect(await screen.findByRole('alert')).toHaveTextContent('Batas inspeksi tercapai');
+  expect(screen.getByRole('alert')).not.toHaveTextContent('Error:');
+  const searches = vi.mocked(call).mock.calls.map(([, args]) => (args as { query: { action: string; search: string } }).query).filter(q => q.action === 'search');
+  expect(searches.map(q => q.search)).toEqual(['Part', 'Part']);
+});

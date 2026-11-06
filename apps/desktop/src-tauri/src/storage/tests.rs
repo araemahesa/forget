@@ -489,3 +489,30 @@ fn xml_accepts_legal_brief_text_with_non_bmp_characters() {
     let saved = storage.save_gfx_version("default-gfx-item", &spec).unwrap();
     assert_eq!(saved.spec, spec);
 }
+
+#[test]
+fn reopening_prunes_stale_snapshots_and_interrupts_orphaned_attempts() {
+    let root = temp_root();
+    let database = root.join("forgekit.sqlite");
+    let storage = Storage::open(&database).unwrap();
+    storage.connection.execute_batch("
+        INSERT INTO context_snapshot VALUES ('old-unused','{}','x','1000');
+        INSERT INTO context_snapshot VALUES ('old-referenced','{}','x','1000');
+        INSERT INTO context_snapshot VALUES ('fresh', '{}','x', CAST(unixepoch() * 1000 AS TEXT));
+        INSERT INTO creative_task (id,request_json,request_hash,status,created_at,updated_at)
+            VALUES ('task-1','{\"kind\":\"chat\",\"contextSnapshotId\":\"old-referenced\"}','h','completed','1','1');
+        INSERT INTO task_attempt (id,task_id,profile_id,provider_id,model_id,checkpoint_id,status,started_at)
+            VALUES ('attempt-1','task-1','p','openai','m','c','started','1'),
+                   ('attempt-2','task-1','p','openai','m','c','succeeded','1');
+    ").unwrap();
+    drop(storage);
+    let reopened = Storage::open(&database).unwrap();
+    let ids: Vec<String> = reopened.connection.prepare("SELECT id FROM context_snapshot ORDER BY id").unwrap()
+        .query_map([], |r| r.get(0)).unwrap().collect::<Result<_, _>>().unwrap();
+    assert_eq!(ids, ["fresh", "old-referenced"], "only an old snapshot no task references is removed");
+    let statuses: Vec<String> = reopened.connection.prepare("SELECT status FROM task_attempt ORDER BY id").unwrap()
+        .query_map([], |r| r.get(0)).unwrap().collect::<Result<_, _>>().unwrap();
+    assert_eq!(statuses, ["interrupted", "succeeded"]);
+    drop(reopened);
+    let _ = fs::remove_dir_all(root);
+}

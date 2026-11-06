@@ -74,6 +74,9 @@ export function OrcaUsagePanel({
   );
   const [isRefreshing, setIsRefreshing] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
+  // Callers pass onClose inline; reading it through a ref keeps focus from jumping on every re-render.
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose;
 
   const usageEntries = useProviderUsage(profiles, isOpen);
 
@@ -103,12 +106,12 @@ export function OrcaUsagePanel({
       }
       if (e.key === 'Escape') {
         e.preventDefault();
-        onClose();
+        onCloseRef.current();
       }
     };
     const handleClickOutside = (e: MouseEvent) => {
       if (panelRef.current && !panelRef.current.contains(e.target as Node)) {
-        onClose();
+        onCloseRef.current();
       }
     };
     document.addEventListener('keydown', handleKeyDown);
@@ -118,7 +121,7 @@ export function OrcaUsagePanel({
       document.removeEventListener('mousedown', handleClickOutside);
       previousFocus?.focus();
     };
-  }, [isOpen, onClose]);
+  }, [isOpen]);
 
   if (!isOpen) return null;
 

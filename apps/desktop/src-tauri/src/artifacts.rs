@@ -52,7 +52,7 @@ pub fn sha256_hex(bytes: &[u8]) -> String {
     digest.iter().map(|byte| format!("{byte:02x}")).collect()
 }
 
-fn ensure_safe_parent(
+pub(crate) fn ensure_safe_parent(
     root: &Path,
     relative_parent: Option<&Path>,
     create: bool,

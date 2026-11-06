@@ -264,7 +264,6 @@ export function ChatPage(_props: Pick<WorkspacePageProps, 'onOpenVersion'>) {
               onChange={selection.setChoice}
               primaryProfile={defaultProvider}
               isCustomOverride={selection.isCustomOverride}
-              onPromotePrimary={selection.promoteToPrimary}
               onOpenUsage={() => setUsageOpen(true)}
             />
             <ModelControls selection={modelSelection} disabled={running} />

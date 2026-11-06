@@ -92,9 +92,15 @@ fn collect(config: &Config, prompt: &str, kind: &str, has_context: bool) -> Resu
     }
     names.sort(); names.dedup();
     if names.len() > 96 { return Err("Terlalu banyak panduan relevan. Ringkas manifest vault sebelum melanjutkan.".into()); }
-    let mut notes = vec![]; let mut total = 0;
+    let mut notes = vec![]; let mut total = 0; let mut missing = vec![];
     for name in names {
-        let text = read(root, &name)?;
+        // A guide the manifest names but the vault lacks is skipped, not fatal: one deleted note
+        // must not stop every AI task. Unsafe notes (symlinks, size, credentials) still fail.
+        let text = match read(root, &name) {
+            Ok(text) => text,
+            Err(error) if error.starts_with("Catatan tidak ditemukan") => { missing.push(name); continue; }
+            Err(error) => return Err(error),
+        };
         if text.contains("-----BEGIN ") || text.contains("access_token") || text.contains("refresh_token") || text.contains("sk-proj-") {
             return Err(format!("Hapus credential dari catatan {name} sebelum melanjutkan."));
         }
@@ -111,7 +117,7 @@ fn collect(config: &Config, prompt: &str, kind: &str, has_context: bool) -> Resu
         if total>98_304 {return Err("Konteks vault terlalu besar. Ringkas panduan sebelum mengirim ulang.".into());}
     }
     // Project selectors in older configuration never bind a new request to an example project.
-    Ok(json!({"source": "Obsidian", "mode": "adaptive", "project": null, "notes": notes}))
+    Ok(json!({"source": "Obsidian", "mode": "adaptive", "project": null, "notes": notes, "missingNotes": missing}))
 }
 pub fn context(prompt:&str,kind:&str,has_context:bool)->Result<String,String> {
     let Some(c)=config()? else{return Ok(String::new())};
@@ -137,6 +143,19 @@ pub fn sync_learning(connection:&rusqlite::Connection)->Result<Value,String> {
 }
 #[cfg(test)] mod tests {
  use super::*;
+ #[test] fn missing_notes_are_skipped_but_credentials_still_block() {
+ let root=std::env::temp_dir().join(crate::storage::next_id("vault-missing-notes"));
+ fs::create_dir_all(root.join("90 Sistem")).unwrap();fs::create_dir_all(root.join("10 Fondasi")).unwrap();
+ fs::write(root.join("10 Fondasi/Style.md"),"Gunakan warna kontras").unwrap();
+ fs::write(root.join("90 Sistem/vault-manifest.json"),json!({"automaticGuides":["10 Fondasi/Style.md","10 Fondasi/Dihapus.md"]}).to_string()).unwrap();
+ let c=Config{vault:root.clone(),_legacy_project:None};
+ let packet=collect(&c,"buat ikon","icon",false).unwrap();
+ assert!(packet["notes"].as_array().unwrap().iter().any(|n|n["note"]=="10 Fondasi/Style.md"));
+ assert!(packet["missingNotes"].as_array().unwrap().iter().any(|n|n=="10 Fondasi/Dihapus.md"));
+ fs::write(root.join("10 Fondasi/Style.md"),"refresh_token=abc").unwrap();
+ assert!(collect(&c,"buat ikon","icon",false).unwrap_err().contains("credential"));
+ fs::remove_dir_all(root).unwrap();
+ }
  #[test] fn learned_and_custom_skills_reach_only_relevant_fresh_task_context() {
  let root=std::env::temp_dir().join(crate::storage::next_id("vault-learning-context"));
  for folder in ["90 Sistem","50 Sistem/Skills","35 Pengetahuan"] {fs::create_dir_all(root.join(folder)).unwrap();}
@@ -264,6 +283,6 @@ pub fn sync_learning(connection:&rusqlite::Connection)->Result<Value,String> {
  for s in crate::agent::select_skills("wind","vfx",false){fs::write(root.join(format!("50 Sistem/Skills/{}.md",s.id)),s.content).unwrap();}
  let c=Config{vault:root.clone(),_legacy_project:Some("40 Proyek/Tidak Harus Ada.md".into())};let a=collect(&c,"wind","vfx",false).unwrap();assert!(a.to_string().contains("fade"));assert_eq!(a["mode"],"adaptive");assert!(a["project"].is_null());assert!(!a.to_string().contains("music.md"));
  fs::write(root.join("10 Fondasi/Style Bible.md"),"red stone").unwrap();let b=collect(&c,"wind","vfx",false).unwrap();assert_ne!(a,b);assert!(a.to_string().contains("blue stone"));
- fs::remove_file(root.join("20 Produksi/Quality Gate.md")).unwrap();assert!(collect(&c,"wind","vfx",false).is_err());fs::remove_dir_all(root).unwrap();
+ fs::remove_file(root.join("20 Produksi/Quality Gate.md")).unwrap();let c2=collect(&c,"wind","vfx",false).unwrap();assert!(c2["missingNotes"].as_array().unwrap().iter().any(|n|n=="20 Produksi/Quality Gate.md"));assert!(c2.to_string().contains("fade"));fs::remove_dir_all(root).unwrap();
  }
 }
