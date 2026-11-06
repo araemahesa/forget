@@ -93,20 +93,27 @@ it('captures provider for running request and waits for native persistence', asy
   expect(screen.getByLabelText('Input pesan chat')).toHaveValue('');
 });
 
-it('ignores events from old requests and terminal events without a native receipt', async () => {
+it('streams a live draft for the active request only and completes on the native receipt', async () => {
   const pending = deferred<typeof answer>(); mocks.send.mockReturnValue(pending.promise);
   await start();
   const requestId = mocks.send.mock.calls[0][3] as string;
   act(() => {
     mocks.chunk?.({ payload: { threadId: 'thread-one', requestId: 'stale', chunk: 'Salah', done: false } });
-    mocks.chunk?.({ payload: { threadId: 'thread-one', requestId, chunk: 'Sedang streaming', done: false } });
-    mocks.chunk?.({ payload: { threadId: 'thread-one', requestId, chunk: '', done: true } });
+    mocks.chunk?.({ payload: { threadId: 'thread-one', requestId, chunk: 'Akun lama', done: false } });
+    mocks.chunk?.({ payload: { threadId: 'thread-one', requestId, chunk: '', done: false, reset: true } });
+    mocks.chunk?.({ payload: { threadId: 'thread-one', requestId, chunk: 'Sedang ', done: false } });
+    mocks.chunk?.({ payload: { threadId: 'thread-one', requestId, chunk: 'streaming', done: false } });
   });
   expect(screen.queryByText('Salah')).toBeNull();
-  expect(screen.queryByText('Sedang streaming')).toBeNull();
+  expect(screen.queryByText('Akun lama')).toBeNull();
+  expect(screen.getByText('Sedang streaming')).toBeVisible();
+  expect(screen.getByText(/draf belum tersimpan/)).toBeVisible();
+  act(() => { mocks.chunk?.({ payload: { threadId: 'thread-one', requestId, chunk: '', done: true } }); });
+  // A terminal stream event alone never completes the task.
   expect(screen.getByRole('button', { name: 'Stop' })).toBeEnabled();
   await act(async () => pending.resolve(answer));
   expect(await screen.findByText('Jawaban tersimpan')).toBeVisible();
+  expect(screen.queryByText('Sedang streaming')).toBeNull();
 });
 
 it('reloads committed messages when Stop races with a completed native response', async () => {

@@ -1491,15 +1491,39 @@ pub async fn send_chat_message(
                 definitions.extend(crate::studio::luau_checks::definitions());
                 definitions.extend(crate::model3d::blender::definitions());
             }
+            // User-configured MCP servers live only for this request; dropping the set stops them.
+            let connectors = with_storage(&app, &app.state::<AppState>(), Storage::list_mcp_connectors)?;
+            let mut mcp = if connectors.iter().any(|c| c.is_enabled) {
+                crate::mcp::Toolset::start(&connectors, mode == "auto")
+            } else {
+                crate::mcp::Toolset::default()
+            };
+            definitions.extend(mcp.definitions.iter().cloned());
+            if !mcp.warnings.is_empty() {
+                messages.insert(1, serde_json::json!({"role":"system","content":format!(
+                    "Sebagian konektor MCP tidak dapat dijalankan dan tool-nya tidak tersedia: {}",
+                    mcp.warnings.join("; ")
+                )}));
+            }
             with_storage(&app, &app.state::<AppState>(), |s| s.creative_stage(&request_id,"streaming",None))?;
             let content = run_connected(&app,&request_id,&provider,&lease,true,|active,_seconds| {
                 let mut cp = checkpoint_for(&app,&request_id,active,&messages,!definitions.is_empty(),true)?;
                 let tokens = cp.budget.output_tokens;
-                crate::ai::execute_agent_checkpoint(active, &lease, &definitions, tokens, &mut cp, |_| Ok(()), |call| {
+                // Live preview only: each account attempt starts a fresh draft, and the
+                // persisted assistant message (not this stream) completes the turn.
+                emit_chat_chunk(&app, &thread_id, &request_id, "", false, true);
+                let stream = |chunk: &str| { emit_chat_chunk(&app, &thread_id, &request_id, chunk, false, false); Ok(()) };
+                crate::ai::execute_agent_checkpoint(active, &lease, &definitions, tokens, &mut cp, stream, |call| {
                     if crate::studio::luau_checks::handles(call) { return run_luau_check(&app,&request_id,call); }
                     if crate::model3d::blender::handles(call) { return run_blender_tool(&app,&request_id,&user_content,active,call,&lease); }
                     if call.name.starts_with("forgekit_studio_") {
                         return run_studio_tool(&app,&request_id,frozen.as_ref().ok_or("Tidak ada target Studio.")?,call,&lease,true,mode == "auto");
+                    }
+                    if crate::mcp::handles(call) {
+                        with_storage(&app, &app.state::<AppState>(), |s| s.creative_stage(&request_id,"tool_running",None)).map_err(|e|e.message)?;
+                        let output = mcp.call(call, &|| lease.is_cancelled());
+                        with_storage(&app, &app.state::<AppState>(), |s| s.creative_stage(&request_id,"streaming",None)).map_err(|e|e.message)?;
+                        return output;
                     }
                     use tauri::Emitter;
                     let snapshot = context.as_ref().ok_or("Tidak ada snapshot map.")?;
@@ -1516,6 +1540,7 @@ pub async fn send_chat_message(
             if let Some(target) = frozen.as_ref() { crate::studio::current(target).map_err(native_error)?; }
             with_storage(&app, &app.state::<AppState>(), |s| s.complete_chat_turn(&request_id,&content))
         })();
+        emit_chat_chunk(&app, &thread_id, &request_id, "", true, false);
         if let Err(ref error) = result {
             with_storage(&app, &app.state::<AppState>(), |s| s.creative_stage(
                 &request_id, if lease.is_cancelled() {"cancelled"} else {"failed"}, Some(&error.message),
@@ -1524,6 +1549,15 @@ pub async fn send_chat_message(
         publish_activity(&app, &request_id);
         result
     }).await.map_err(native_error)?
+}
+
+/// Best-effort live text for the chat UI. Losing an event never affects the saved turn.
+fn emit_chat_chunk(app: &AppHandle, thread_id: &str, request_id: &str, chunk: &str, done: bool, reset: bool) {
+    use tauri::Emitter;
+    let _ = app.emit(
+        "forgekit:ai-chunk",
+        serde_json::json!({"threadId":thread_id,"requestId":request_id,"chunk":chunk,"done":done,"reset":reset}),
+    );
 }
 
 #[tauri::command]
@@ -1869,8 +1903,39 @@ pub async fn toggle_mcp_connector(
 }
 
 #[tauri::command]
-pub fn list_available_mcp_tools() -> Vec<crate::connectors::McpToolInfo> {
-    crate::connectors::get_available_mcp_tools()
+pub async fn delete_mcp_connector(app: AppHandle, id: String) -> Result<(), CommandError> {
+    tauri::async_runtime::spawn_blocking(move || {
+        with_storage(&app, &app.state::<AppState>(), |storage| storage.delete_mcp_connector(&id))
+    })
+    .await
+    .map_err(native_error)?
+}
+
+/// Starts the given connector (or every enabled one) and reports the tools it really exposes.
+#[tauri::command]
+pub async fn list_available_mcp_tools(
+    app: AppHandle,
+    config: Option<crate::connectors::McpConnectorConfig>,
+) -> Result<Vec<crate::connectors::McpToolInfo>, CommandError> {
+    tauri::async_runtime::spawn_blocking(move || {
+        let configs = match config {
+            Some(config) => {
+                crate::connectors::validate(&config).map_err(|e| native_error(e.to_string()))?;
+                vec![config]
+            }
+            None => with_storage(&app, &app.state::<AppState>(), Storage::list_mcp_connectors)?
+                .into_iter()
+                .filter(|c| c.is_enabled)
+                .collect(),
+        };
+        let mut tools = Vec::new();
+        for config in &configs {
+            tools.extend(crate::mcp::discover(config).map_err(native_error)?);
+        }
+        Ok(tools)
+    })
+    .await
+    .map_err(native_error)?
 }
 
 #[tauri::command]

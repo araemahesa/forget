@@ -55,6 +55,7 @@ export function ChatPage(_props: Pick<WorkspacePageProps, 'onOpenVersion'>) {
   const [notice, setNotice] = useState('');
   const [nearBottom, setNearBottom] = useState(true);
   const [toolReceipts, setToolReceipts] = useState<SnapshotToolReceipt[]>([]);
+  const [streamText, setStreamText] = useState('');
   const selection = useFeatureProviderSelection('chat');
   const { profiles, defaultProvider, connectionProfiles, modelSelection, choice: providerId } = selection;
   const provider = modelSelection.provider;
@@ -82,6 +83,19 @@ export function ChatPage(_props: Pick<WorkspacePageProps, 'onOpenVersion'>) {
         || !validateSnapshotToolReceipt(payload.receipt)) return;
       const receipt = payload.receipt;
       setToolReceipts((items) => items.some((item) => item.callId === receipt.callId) ? items : [...items, receipt]);
+    }).then((stop) => { if (disposed) stop(); else unlisten = stop; }).catch((error: unknown) => { if (!disposed) setError(failureMessage(error)); });
+    return () => { disposed = true; unlisten?.(); };
+  }, []);
+  useEffect(() => {
+    if (!isTauri()) return;
+    let disposed = false;
+    let unlisten: (() => void) | undefined;
+    // Live draft only. The task completes when the persisted native response arrives, never on `done`.
+    void listen<{ threadId: string; requestId: string; chunk: string; done: boolean; reset?: boolean }>('forgekit:ai-chunk', ({ payload }) => {
+      const request = activeRequest.current;
+      if (!alive.current || !request || request.cancelled || payload.threadId !== request.threadId || payload.requestId !== request.requestId) return;
+      if (payload.reset) setStreamText('');
+      else if (payload.chunk) setStreamText((text) => text + payload.chunk);
     }).then((stop) => { if (disposed) stop(); else unlisten = stop; }).catch((error: unknown) => { if (!disposed) setError(failureMessage(error)); });
     return () => { disposed = true; unlisten?.(); };
   }, []);
@@ -125,7 +139,7 @@ export function ChatPage(_props: Pick<WorkspacePageProps, 'onOpenVersion'>) {
     if (!log.current) return;
     if (!messages.length) log.current.scrollTop = 0;
     else if (follow.current) log.current.scrollTop = log.current.scrollHeight;
-  }, [messages]);
+  }, [messages, streamText]);
 
   function toggle(next: Panel) { setPanel((value) => value === next ? null : next); }
   function newConversation() { if (activeRequest.current || running || recovering) return; setActiveThreadId(null); setMessages([]); setInput(''); setPanel(null); setError(''); composer.current?.focus(); }
@@ -151,7 +165,7 @@ export function ChatPage(_props: Pick<WorkspacePageProps, 'onOpenVersion'>) {
     setMessages((items) => retry ? items : [...items, { id: `pending-${request.requestId}`, threadId: request.threadId ?? '', sequence: items.length + 1, role: 'user', content: text, createdAt: String(Date.now()) }]);
     setInput('');
     setAttemptTaskId(request.requestId);
-    setRunning(true); setStopping(false); setError(''); setNotice(''); setToolReceipts([]);
+    setRunning(true); setStopping(false); setError(''); setNotice(''); setToolReceipts([]); setStreamText('');
     try {
       if (!request.threadId) {
         const thread = await createChatThread(text.slice(0, 80), capturedProvider.model, capturedProvider.id);
@@ -185,6 +199,7 @@ export function ChatPage(_props: Pick<WorkspacePageProps, 'onOpenVersion'>) {
       void refreshUsageAfterTask(profiles, request.requestId, capturedProvider);
       activeRequest.current = null;
       if (alive.current) {
+        setStreamText('');
         if (request.cancelled) setNotice('Stop diterima. Riwayat menampilkan pesan yang sudah tersimpan; respons parsial bukan hasil selesai.');
         setRunning(false); setStopping(false);
       }
@@ -222,6 +237,10 @@ export function ChatPage(_props: Pick<WorkspacePageProps, 'onOpenVersion'>) {
           <MessageAvatar user={message.role === 'user'} profile={account.profile} /><div className="chat-message-body"><header className="chat-message-author"><strong>{message.role === 'user' ? account.profile?.displayName ?? 'Kamu' : 'ForgeKit AI'}</strong><span>{message.role === 'user' ? account.profile ? 'Discord' : 'Pengguna' : message.role === 'assistant' ? 'Asisten' : 'Aktivitas'}</span></header><MessageContent content={message.content} plain={message.role === 'user'} />
           </div>
         </article>)}
+        {running && streamText.trim() && <article className="chat-message-row is-streaming" aria-busy="true">
+          <MessageAvatar user={false} profile={account.profile} /><div className="chat-message-body"><header className="chat-message-author"><strong>ForgeKit AI</strong><span>Sedang menulis · draf belum tersimpan</span></header><MessageContent content={streamText} />
+          </div>
+        </article>}
         {!!toolReceipts.length && <details className="prompt-process"><summary>Diagnostik pembacaan</summary>{renderReceipts(toolReceipts)}</details>}
         <TaskAttempts taskId={running ? attemptTaskId : lastTurn?.id ?? null} running={running} />
       </div>

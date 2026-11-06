@@ -137,3 +137,17 @@
   .settings-page .account-card, .settings-page .router-gateway-card { padding: 16px; }
 }
 @media (max-width: 560px) { .settings-page .router-gateway-meta { grid-template-columns: minmax(0,1fr); } }
+
+/* MCP connectors */
+.mcp-settings .mcp-list { list-style: none; margin: 12px 0; padding: 0; display: grid; gap: 10px; }
+.mcp-settings .mcp-connector { border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; display: grid; gap: 8px; }
+.mcp-settings .mcp-connector small { display: block; color: var(--text-secondary); overflow-wrap: anywhere; }
+.mcp-settings .mcp-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.mcp-settings .mcp-toggle { display: inline-flex; align-items: center; gap: 6px; }
+.mcp-settings .mcp-tools { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.mcp-settings .mcp-tools li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px; }
+.mcp-settings .mcp-tools small { flex-basis: 100%; color: var(--text-secondary); }
+.mcp-settings .mcp-badge { font-size: 11px; padding: 1px 6px; border-radius: 999px; border: 1px solid var(--border); color: var(--text-secondary); }
+.mcp-settings .mcp-badge.is-write { color: var(--accent); border-color: var(--accent); }
+.mcp-settings .mcp-empty { color: var(--text-secondary); }
+.mcp-settings .mcp-form textarea { font-family: var(--font-mono, ui-monospace, monospace); resize: vertical; }

@@ -285,6 +285,12 @@
           "markdownDescription": "Enables the delete_connection_profile command without any pre-configured scope."
         },
         {
+          "description": "Enables the delete_mcp_connector command without any pre-configured scope.",
+          "type": "string",
+          "const": "allow-delete-mcp-connector",
+          "markdownDescription": "Enables the delete_mcp_connector command without any pre-configured scope."
+        },
+        {
           "description": "Enables the export_creative_audio command without any pre-configured scope.",
           "type": "string",
           "const": "allow-export-creative-audio",
@@ -931,6 +937,12 @@
           "type": "string",
           "const": "deny-delete-connection-profile",
           "markdownDescription": "Denies the delete_connection_profile command without any pre-configured scope."
+        },
+        {
+          "description": "Denies the delete_mcp_connector command without any pre-configured scope.",
+          "type": "string",
+          "const": "deny-delete-mcp-connector",
+          "markdownDescription": "Denies the delete_mcp_connector command without any pre-configured scope."
         },
         {
           "description": "Denies the export_creative_audio command without any pre-configured scope.",

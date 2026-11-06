@@ -339,14 +339,14 @@ fn both_schema14_variants_upgrade_without_losing_accounts_or_history() {
         assert_eq!(upgraded.connection.query_row("SELECT enabled FROM fallback_policy LIMIT 1", [], |r| r.get::<_, i64>(0)).unwrap(), 0);
         upgraded.connection.prepare("SELECT task_id,checkpoint_json,updated_at FROM ai_checkpoint").unwrap();
         assert!(upgraded.connection.prepare("PRAGMA foreign_key_check").unwrap().query([]).unwrap().next().unwrap().is_none());
-        let snapshots: Vec<_> = fs::read_dir(&root).unwrap().flatten().filter(|e| e.file_name().to_string_lossy().starts_with("forgekit-before-schema-15-")).collect();
+        let snapshots: Vec<_> = fs::read_dir(&root).unwrap().flatten().filter(|e| e.file_name().to_string_lossy().starts_with("forgekit-before-schema-16-")).collect();
         assert_eq!(snapshots.len(), 1);
         let backup = rusqlite::Connection::open(snapshots[0].path()).unwrap();
         assert_eq!(backup.pragma_query_value::<i64, _>(None, "user_version", |r| r.get(0)).unwrap(), 14);
         drop(backup);
         drop(upgraded);
         Storage::open(&database).unwrap();
-        assert_eq!(fs::read_dir(&root).unwrap().flatten().filter(|e| e.file_name().to_string_lossy().starts_with("forgekit-before-schema-15-")).count(), 1);
+        assert_eq!(fs::read_dir(&root).unwrap().flatten().filter(|e| e.file_name().to_string_lossy().starts_with("forgekit-before-schema-16-")).count(), 1);
         fs::remove_dir_all(root).unwrap();
     }
 }

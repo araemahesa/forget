@@ -906,12 +906,17 @@ const AGENT_READ: &[&str] = &[
     "skill",
 ];
 const AGENT_WRITE: &[&str] = &["execute_luau", "multi_edit"];
+/// Writes that cannot carry an in-Studio identity guard stay unavailable to the agent.
+/// `multi_edit` edits script text directly, so the map cannot be re-checked at apply time.
+const UNGUARDED_WRITE: &[&str] = &["multi_edit"];
 pub fn is_write(name: &str) -> bool {
     AGENT_WRITE.contains(&name.strip_prefix("forgekit_studio_").unwrap_or(name))
 }
 fn agent_schema(entry: &Value, writable: bool) -> Option<crate::tools::ToolDefinition> {
     let name = entry["name"].as_str()?;
-    if !AGENT_READ.contains(&name) && !(writable && AGENT_WRITE.contains(&name)) {
+    if UNGUARDED_WRITE.contains(&name)
+        || (!AGENT_READ.contains(&name) && !(writable && AGENT_WRITE.contains(&name)))
+    {
         return None;
     }
     let mut schema = entry["inputSchema"].clone();
@@ -946,7 +951,7 @@ fn agent_schema(entry: &Value, writable: bool) -> Option<crate::tools::ToolDefin
             "{} Target Studio dikunci ForgeKit. {}",
             entry["description"].as_str().unwrap_or(name),
             if is_write(name) {
-                "Operasi mengubah map; baca keadaan awal dan verifikasi hasil."
+                "Operasi mengubah map dalam satu recording undo milik ForgeKit (rollback otomatis bila error); jangan membuat recording sendiri. Baca keadaan awal dan verifikasi hasil."
             } else {
                 "Pembacaan live pada map tujuan."
             }
@@ -957,7 +962,7 @@ fn agent_schema(entry: &Value, writable: bool) -> Option<crate::tools::ToolDefin
 }
 pub fn agent_catalog(
     stamp: &TargetStamp,
-    _writable: bool,
+    writable: bool,
 ) -> Result<Vec<crate::tools::ToolDefinition>, String> {
     current(stamp)?;
     let _guard = SESSION_LOCK
@@ -972,11 +977,11 @@ pub fn agent_catalog(
     if verify(&mut session, &tools, target)? != *stamp {
         return Err("Identitas map tugas berubah.".into());
     }
-    // Current official protocol supplies no document incarnation/revision. Same-name
-    // local place replacement cannot be proved. Do not expose risky writes.
+    // The protocol has no document revision, so writes are only exposed as execute_luau,
+    // which agent_call wraps in an identity guard evaluated inside Studio at run time.
     Ok(tools
         .iter()
-        .filter_map(|entry| agent_schema(entry, false))
+        .filter_map(|entry| agent_schema(entry, writable))
         .collect())
 }
 pub fn freeze(
@@ -1080,6 +1085,7 @@ pub fn agent_call(
         .strip_prefix("forgekit_studio_")
         .ok_or_else(|| AgentCallError::NotExecuted("Tool Studio tidak terdaftar.".into()))?;
     if !valid_id(studio_id)
+        || UNGUARDED_WRITE.contains(&name)
         || (!AGENT_READ.contains(&name) && !(writable && AGENT_WRITE.contains(&name)))
     {
         return Err(AgentCallError::NotExecuted("Tool atau target di luar izin tugas.".into()));
@@ -1088,9 +1094,6 @@ pub fn agent_call(
         return Err(AgentCallError::NotExecuted(
             "Menunggu mode Edit. Perubahan permanen memerlukan mode Edit (hentikan Play).".into(),
         ));
-    }
-    if is_write(name) {
-        return Err(AgentCallError::NotExecuted("Penulisan dihentikan: protokol Studio belum memberi identitas dokumen/revisi yang cukup untuk menjamin map tidak berganti.".into()));
     }
     let _guard = SESSION_LOCK
         .try_lock()
@@ -1111,13 +1114,77 @@ pub fn agent_call(
     if agent_schema(entry, writable).is_none() {
         return Err(AgentCallError::NotExecuted("Tool tidak mendukung target eksplisit.".into()));
     }
-    let arguments = agent_arguments(entry, studio_id, &call.arguments).map_err(AgentCallError::NotExecuted)?;
+    let mut arguments = agent_arguments(entry, studio_id, &call.arguments).map_err(AgentCallError::NotExecuted)?;
+    if is_write(name) {
+        // Probe the document identity right now, then make the write itself re-check it
+        // inside Studio before touching anything. A switched map aborts with no change.
+        let identity = probe_identity(&mut session, entry, studio_id).map_err(AgentCallError::NotExecuted)?;
+        let code = arguments["code"]
+            .as_str()
+            .ok_or_else(|| AgentCallError::NotExecuted("execute_luau memerlukan field code.".into()))?;
+        arguments["code"] = json!(guarded_luau(code, &identity).map_err(AgentCallError::NotExecuted)?);
+    }
     let result = session
         .request("tools/call", json!({"name":name,"arguments":arguments}))
         .map_err(AgentCallError::Unknown)?;
     verify_after(&mut session, &tools, stamp).map_err(AgentCallError::Unknown)?;
     // isError is returned to the model as evidence, never converted to a success claim.
     Ok(crate::agent::bounded_result(result))
+}
+
+#[derive(Debug, Clone, PartialEq, Eq)]
+struct DocumentIdentity {
+    document_id: String,
+    place_id: String,
+}
+
+const IDENTITY_PROBE: &str = "local run = game:GetService('RunService')\nreturn game:GetService('HttpService'):JSONEncode({running = run:IsRunning(), documentId = game:GetDebugId(32) .. ':' .. workspace:GetDebugId(32), placeId = tostring(game.PlaceId)})";
+
+fn probe_identity(session: &mut Session, entry: &Value, studio_id: &str) -> Result<DocumentIdentity, String> {
+    let input = json!({"code": IDENTITY_PROBE}).to_string();
+    let arguments = agent_arguments(entry, studio_id, &input)?;
+    let result = session.request("tools/call", json!({"name":"execute_luau","arguments":arguments}))?;
+    let value = text_result(&result).map_err(|_| "Identitas map tidak dapat dibaca; penulisan tidak dijalankan.".to_string())?;
+    identity_from(&value)
+}
+
+fn identity_from(value: &Value) -> Result<DocumentIdentity, String> {
+    if value["running"] != false {
+        return Err("[NEEDS_EDIT][TOOL_NOT_DISPATCHED] Hentikan Play di Studio sebelum perubahan.".into());
+    }
+    let document_id = value["documentId"].as_str().unwrap_or("");
+    let place_id = value["placeId"].as_str().unwrap_or("");
+    let safe = |text: &str, extra: &str| !text.is_empty() && text.len() <= 256
+        && text.chars().all(|c| c.is_ascii_alphanumeric() || extra.contains(c));
+    if !safe(document_id, "{}-:_") || !safe(place_id, "") {
+        return Err("Identitas map tidak sah; penulisan tidak dijalankan.".into());
+    }
+    Ok(DocumentIdentity { document_id: document_id.into(), place_id: place_id.into() })
+}
+
+/// Wraps provider Luau so it only runs on the probed document, outside Play, inside one
+/// ChangeHistory recording that commits on success and is cancelled (rolled back) on error.
+/// If another plugin already holds a recording, the code runs inside that one instead.
+fn guarded_luau(code: &str, identity: &DocumentIdentity) -> Result<String, String> {
+    if code.trim().is_empty() || code.len() > 60_000 {
+        return Err("Kode Luau kosong atau terlalu besar.".into());
+    }
+    Ok(format!(
+        "local __fk_run = game:GetService('RunService')\n\
+assert(not __fk_run:IsRunning(), 'ForgeKit: hentikan Play sebelum menulis.')\n\
+assert(game:GetDebugId(32) .. ':' .. workspace:GetDebugId(32) == \"{document}\", 'ForgeKit: map berganti; penulisan dibatalkan tanpa perubahan.')\n\
+assert(tostring(game.PlaceId) == \"{place}\", 'ForgeKit: place berubah; penulisan dibatalkan tanpa perubahan.')\n\
+local __fk_history = game:GetService('ChangeHistoryService')\n\
+local __fk_recording = __fk_history:TryBeginRecording('ForgeKit AI')\n\
+local __fk_ok, __fk_result = pcall(function(...)\n{code}\nend)\n\
+if __fk_recording then\n\
+\t__fk_history:FinishRecording(__fk_recording, if __fk_ok then Enum.FinishRecordingOperation.Commit else Enum.FinishRecordingOperation.Cancel)\n\
+end\n\
+if not __fk_ok then error(__fk_result, 0) end\n\
+return __fk_result\n",
+        document = identity.document_id,
+        place = identity.place_id,
+    ))
 }
 
 /// Narrow trusted mesh import. General provider writes remain disabled. Every
@@ -1207,15 +1274,16 @@ mod tests {
         // Same-name local document replacements without a server incarnation are
         // unobservable. Demonstrate the limitation and refuse writes before launch.
         assert_eq!(observe(&changed, "Edit".into()).unwrap(), reconnected);
+        // Writes are refused before any Studio session when the task is read-only,
+        // and multi_edit (no in-Studio guard possible) is never dispatched.
         let call = crate::tools::ToolCall {
             id: "fixture-write".into(),
             name: "forgekit_studio_execute_luau".into(),
             arguments: "{}".into(),
         };
-        assert!(agent_call(&reconnected, &call, true)
-            .unwrap_err()
-            .message()
-            .contains("Penulisan dihentikan"));
+        assert!(agent_call(&reconnected, &call, false).unwrap_err().is_not_executed());
+        let edit = crate::tools::ToolCall { name: "forgekit_studio_multi_edit".into(), ..call };
+        assert!(agent_call(&reconnected, &edit, true).unwrap_err().is_not_executed());
         assert!(freeze(&target.studio_id, None).is_err());
     }
 
@@ -1464,4 +1532,48 @@ pub(crate) fn stop_play_for_resume(expected: &TargetStamp) -> Result<TargetStamp
     let observed = verify(&mut session, &tools, target)?;
     if observed.mode != "Edit" || observed.studio_id != expected.studio_id || observed.place_id != expected.place_id || observed.name != expected.name { return Err("Target Edit belum cocok dengan target tugas.".into()); }
     Ok(observed)
+}
+
+#[cfg(test)]
+mod write_guard_tests {
+    use super::*;
+
+    fn identity() -> DocumentIdentity {
+        identity_from(&json!({"running": false, "documentId": "{a1b2}:{c3d4}", "placeId": "12345"})).unwrap()
+    }
+
+    #[test]
+    fn guarded_luau_checks_identity_and_wraps_one_undo_recording() {
+        let code = guarded_luau("workspace.Part.Color = Color3.new(1, 0, 0)\nreturn 'ok'", &identity()).unwrap();
+        let checks = code.find("map berganti").unwrap();
+        let place = code.find("place berubah").unwrap();
+        let body = code.find("workspace.Part.Color").unwrap();
+        assert!(checks < body && place < body, "identity is verified before provider code runs");
+        assert!(code.contains("== \"{a1b2}:{c3d4}\"") && code.contains("== \"12345\""));
+        assert!(code.contains("TryBeginRecording") && code.contains("FinishRecordingOperation.Cancel"));
+        assert!(code.contains("pcall(function(...)"));
+        assert!(guarded_luau("  ", &identity()).is_err());
+    }
+
+    #[test]
+    fn identity_probe_refuses_play_mode_and_unsafe_values() {
+        assert!(identity_from(&json!({"running": true, "documentId": "{a}:{b}", "placeId": "1"})).unwrap_err().contains("NEEDS_EDIT"));
+        assert!(identity_from(&json!({"running": false, "documentId": "\" .. os.exit() .. \"", "placeId": "1"})).is_err());
+        assert!(identity_from(&json!({"running": false, "documentId": "{a}:{b}", "placeId": "1; drop"})).is_err());
+        assert!(identity_from(&json!({"documentId": "{a}:{b}", "placeId": "1"})).is_err());
+    }
+
+    #[test]
+    fn catalog_exposes_guarded_execute_luau_only_when_writable() {
+        let entry = |name: &str| json!({"name": name, "description": "d", "inputSchema": {"type": "object",
+            "properties": {"studio_id": {"type": "string"}, "code": {"type": "string"}, "datamodel_type": {"type": "string"}},
+            "required": ["studio_id", "code"]}});
+        assert!(agent_schema(&entry("execute_luau"), false).is_none());
+        let tool = agent_schema(&entry("execute_luau"), true).unwrap();
+        assert_eq!(tool.wire_name, "forgekit_studio_execute_luau");
+        assert!(tool.input_schema["properties"].get("studio_id").is_none());
+        assert!(tool.input_schema["properties"].get("datamodel_type").is_none());
+        assert!(agent_schema(&entry("multi_edit"), true).is_none());
+        assert!(is_write("forgekit_studio_multi_edit"), "multi_edit stays classified as a write");
+    }
 }

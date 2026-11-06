@@ -113,6 +113,7 @@
     "allow-save-mcp-connector",
     "allow-toggle-mcp-connector",
     "allow-list-available-mcp-tools",
+    "allow-delete-mcp-connector",
     "allow-obsidian-status",
     "allow-open-blender-model"
   ]

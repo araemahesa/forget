@@ -215,7 +215,7 @@ fn validate_draft(spec: &serde_json::Value) -> Result<(), StorageError> {
     Ok(())
 }
 
-pub const SCHEMA_VERSION: i64 = 15;
+pub const SCHEMA_VERSION: i64 = 16;
 
 impl Storage {
     pub fn open(path: impl AsRef<Path>) -> Result<Self, StorageError> {
@@ -288,6 +288,18 @@ impl Storage {
         }
         if version < 15 {
             connection.execute_batch(include_str!("../../migrations/0016_connection_compatibility.sql"))?;
+        }
+        if version < 16 {
+            // SQLite has no ADD COLUMN IF NOT EXISTS; a database that already has the
+            // columns (e.g. its user_version was rolled back) only needs the version bump.
+            let has_command = connection
+                .prepare("SELECT 1 FROM pragma_table_info('mcp_connector_config') WHERE name='command'")?
+                .exists([])?;
+            if has_command {
+                connection.execute_batch("UPDATE mcp_connector_config SET is_enabled=0 WHERE command=''; PRAGMA user_version=16;")?;
+            } else {
+                connection.execute_batch(include_str!("../../migrations/0017_mcp_connector_launch.sql"))?;
+            }
         }
         let recovery = connection.unchecked_transaction()?;
         let stamp = now_string();
@@ -867,6 +879,10 @@ impl Storage {
 
     pub fn toggle_mcp_connector(&self, id: &str, enabled: bool) -> Result<(), StorageError> {
         crate::connectors::toggle_connector(&self.connection, id, enabled)
+    }
+
+    pub fn delete_mcp_connector(&self, id: &str) -> Result<(), StorageError> {
+        crate::connectors::delete_connector(&self.connection, id)
     }
 }
 

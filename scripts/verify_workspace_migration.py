@@ -8,7 +8,7 @@ import time
 
 ROOT = Path(__file__).resolve().parents[1]
 NATIVE = ROOT / "apps/desktop/src-tauri"
-TARGET_SCHEMA = 15
+TARGET_SCHEMA = 16
 SOURCE = Path.home() / "Library/Application Support/dev.forgekit.studio/forgekit.sqlite"
 DESTINATION = NATIVE / "target/migration-copies" / str(time.time_ns()) / "forgekit.sqlite"
 DESTINATION.parent.mkdir(parents=True)
@@ -27,6 +27,8 @@ def preserved_rows(connection):
             "connection_profile": {"access_state", "fallback_eligible"},
             "fallback_policy": {"enabled"},
             "router_connection": {"management_access", "routing_owner"},
+            # Schema 16 adds launch columns and disables connectors that never had a command.
+            "mcp_connector_config": {"is_enabled", "command", "args_json"},
         }.get(name, set())
         columns = [row[1] for row in connection.execute(f"PRAGMA table_info({quoted})") if row[1] not in changed_columns]
         selection = ",".join('"' + column.replace('"', '""') + '"' for column in columns)
@@ -61,7 +63,7 @@ report = {
     "preservedTables": before, "preMigrationSnapshotVerified": bool(snapshots),
     "taskReconciliation": "Active task/attempt status and unverified connection metadata may be reset; excluded from immutable hashes",
 }
-output = ROOT / "docs/test-evidence/2026-10-31/recovery-build/workspace-migration.json"
+output = ROOT / "docs/test-evidence/2026-11-06/mcp-streaming-studio-writes/workspace-migration.json"
 output.parent.mkdir(parents=True, exist_ok=True)
 output.write_text(json.dumps(report, indent=2))
 print(f"PASS schema {original_version} to {TARGET_SCHEMA}; {len(before)} existing tables preserved")

@@ -1,7 +1,7 @@
 ---
 schemaVersion: 1
 id: scene-editing
-version: 1.4.0
+version: 1.5.0
 allowedTools: [scene.plan, scene.create, scene.update, scene.move, scene.remove]
 ---
 
@@ -13,7 +13,7 @@ Allowed operation: scene.plan, scene.create, scene.update, scene.move, scene.rem
 
 Aturan manipulasi scene:
 - Target eksplisit wajib tervalidasi sebelum melakukan perubahan.
-- Gunakan ChangeHistoryService untuk perubahan. Periksa IsRecordingInProgress() dalam konteks tool Assistant; jika recording aktif, jangan membuat recording nested atau menutup recording milik tool. Jika tidak aktif, TryBeginRecording harus berhasil sebelum write dan FinishRecording hanya untuk ID yang dimulai operasi sendiri.
+- ForgeKit membungkus setiap execute_luau: memeriksa identitas map dan mode Edit di dalam Studio, lalu menjalankan kode dalam satu recording ChangeHistoryService yang di-commit bila sukses dan dibatalkan (rollback) bila error. Jangan memanggil TryBeginRecording/FinishRecording sendiri; lempar error untuk membatalkan seluruh perubahan. multi_edit tidak tersedia; ubah script lewat execute_luau.
 - Simpan status recording pada receipt dan verifikasi undo/read-back bila tersedia.
 - Referensi API: https://create.roblox.com/docs/reference/engine/classes/ChangeHistoryService (satu recording aktif per plugin).
 - Jangan menghapus objek massal tanpa konfirmasi rencana spesifik.

@@ -1993,6 +1993,8 @@ textarea.text-input {
 .chat-message-row { display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 14px; min-width: 0; padding: 0; border: 0; }
 .chat-message-row > strong { color: var(--accent); font-size: 12px; }
 .chat-message-row.is-user > strong { color: var(--text-secondary); }
+.chat-message-row.is-streaming .chat-message-body { opacity: 0.82; }
+.chat-message-row.is-streaming .chat-message-author span { font-style: italic; }
 .chat-message-row pre { white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; line-height: 1.8; margin: 8px 0 0; }
 .chat-composer { flex-shrink: 0; padding: 8px 0 12px; }
 .chat-context-pills label { display: inline-flex; gap: 6px; align-items: center; }
@@ -2365,7 +2367,8 @@ textarea.text-input {
   font-size: 13px;
   color: var(--text-secondary);
 }
-.provider-modal-form input {
+.provider-modal-form input,
+.provider-modal-form textarea {
   background: var(--surface);
   color: var(--text);
   border: 1px solid var(--border-control);

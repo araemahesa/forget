@@ -109,6 +109,7 @@ macro_rules! app_commands {
             save_mcp_connector,
             toggle_mcp_connector,
             list_available_mcp_tools,
+            delete_mcp_connector,
             $($extra,)*
         ]
     };
@@ -131,6 +132,7 @@ pub mod editor_ai;
 mod gfx_assets;
 pub mod images;
 mod model3d;
+pub mod mcp;
 pub mod model_catalog;
 mod obsidian;
 pub mod provider_usage;
