@@ -75,25 +75,6 @@
 @keyframes forgekit-spin { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .model-refresh.is-loading .icon { animation: none; } }
 
-/* Status of the Obsidian vault: one quiet line with a state dot, wherever it appears. */
-.obsidian-context {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 0;
-  color: var(--text-muted);
-  font-size: 11px;
-  line-height: 1.5;
-}
-.obsidian-context::before {
-  content: "";
-  flex: 0 0 6px;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--success);
-}
-
 /* Section titles inside panels share one size. */
 .hunyuan-section-heading h2,
 .model-history h2,
