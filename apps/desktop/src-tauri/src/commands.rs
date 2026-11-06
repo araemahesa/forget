@@ -774,6 +774,12 @@ pub async fn save_connection_profile(
         let (existing, router) = with_storage(&app, &app.state::<AppState>(), |s| {
             Ok((s.list_connection_profiles()?, s.get_router_connection()?))
         })?;
+        // Migrations 0015/0016 retired local inference; never let a save re-enable it.
+        if profile.provider_id == "local-llm" || profile.auth_method == "local_runtime" {
+            return Err(native_error(
+                "Inferensi lokal sudah dihentikan. Pilih akun provider AI.",
+            ));
+        }
         let old = existing.iter().find(|p| p.id == profile.id);
         if let Some(old) = old {
             crate::connections::validate_destination(old, &profile).map_err(native_error)?;
@@ -874,7 +880,12 @@ pub async fn delete_connection_profile(app: AppHandle, id: String) -> Result<(),
         if let Some(p) = profiles.into_iter().find(|item| item.id == id) {
             if p.connection_mode == "direct" {
                 if let Some(key_ref) = p.credential_ref {
-                    crate::ai::delete_keychain_secret(&key_ref).map_err(native_error)?;
+                    if p.auth_method == "codex_oauth" {
+                        // Codex tokens live in the account's private CODEX_HOME, not the Keychain.
+                        crate::auth::codex::disconnect(&key_ref).map_err(native_error)?;
+                    } else {
+                        crate::ai::delete_keychain_secret(&key_ref).map_err(native_error)?;
+                    }
                 }
             }
         }

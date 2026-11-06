@@ -575,7 +575,8 @@ pub fn list_models(workspace: &Path) -> Result<Value, String> {
         let entry = entry.map_err(|_| "Daftar model tidak lengkap.")?;
         let id = entry.file_name().to_string_lossy().into_owned();
         if job_id(&id).is_ok() {
-            if let Some(receipt) = manifest(workspace, &id)? {
+            // Skip a corrupt manifest instead of failing the whole library.
+            if let Ok(Some(receipt)) = manifest(workspace, &id) {
                 receipts.push(receipt);
             }
         }

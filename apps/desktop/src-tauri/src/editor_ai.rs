@@ -266,9 +266,8 @@ pub fn validate_editor_recipe(kind: &str, recipe: &mut Value) -> Result<(), Stri
             recipe["background"] = json!(bg);
             recipe["accent"] = json!(accent);
             let layout = recipe.get("layout").and_then(|v| v.as_str()).unwrap_or("centered");
-            if !matches!(layout, "centered" | "split" | "stacked") {
-                recipe["layout"] = json!("centered");
-            }
+            let layout = if matches!(layout, "centered" | "split" | "stacked") { layout } else { "centered" }.to_string();
+            recipe["layout"] = json!(layout);
             let w = recipe.get("width").and_then(|v| v.as_u64()).unwrap_or(1200).clamp(400, 3840);
             let h = recipe.get("height").and_then(|v| v.as_u64()).unwrap_or(800).clamp(300, 2160);
             recipe["width"] = json!(w);
@@ -286,43 +285,37 @@ pub fn validate_editor_recipe(kind: &str, recipe: &mut Value) -> Result<(), Stri
                 "sword", "shield", "bow", "axe", "skull", "potion", "coin", "gem", "chest",
                 "key", "bag", "heart", "star", "spark", "flame", "bolt", "compass", "crown",
             ];
-            if !valid_glyphs.contains(&glyph) {
-                recipe["glyph"] = json!("sword");
-            }
+            let glyph = if valid_glyphs.contains(&glyph) { glyph } else { "sword" }.to_string();
+            recipe["glyph"] = json!(glyph);
             let shape = recipe.get("shape").and_then(|v| v.as_str()).unwrap_or("circle");
-            if !matches!(shape, "none" | "circle" | "rounded" | "squircle" | "hexagon" | "shield") {
-                recipe["shape"] = json!("circle");
-            }
+            let shape = if matches!(shape, "none" | "circle" | "rounded" | "squircle" | "hexagon" | "shield") { shape } else { "circle" }.to_string();
+            recipe["shape"] = json!(shape);
             let style = recipe.get("style").and_then(|v| v.as_str()).unwrap_or("duotone");
-            if !matches!(style, "outline" | "solid" | "duotone") {
-                recipe["style"] = json!("duotone");
-            }
+            let style = if matches!(style, "outline" | "solid" | "duotone") { style } else { "duotone" }.to_string();
+            recipe["style"] = json!(style);
             recipe["background"] = json!(sanitize_color(recipe.get("background"), "#171417"));
             recipe["primaryColor"] = json!(sanitize_color(recipe.get("primaryColor"), "#ff405f"));
             recipe["secondaryColor"] = json!(sanitize_color(recipe.get("secondaryColor"), "#ffd166"));
-            recipe["strokeWidth"] = json!(recipe.get("strokeWidth").and_then(|v| v.as_u64()).unwrap_or(2).clamp(1, 8));
-            recipe["padding"] = json!(recipe.get("padding").and_then(|v| v.as_u64()).unwrap_or(6).clamp(0, 24));
-            recipe["size"] = json!(recipe.get("size").and_then(|v| v.as_u64()).unwrap_or(64));
+            recipe["strokeWidth"] = json!(recipe.get("strokeWidth").and_then(|v| v.as_u64()).unwrap_or(2).clamp(1, 6));
+            recipe["padding"] = json!(recipe.get("padding").and_then(|v| v.as_u64()).unwrap_or(6).clamp(0, 20));
+            recipe["size"] = json!(recipe.get("size").and_then(|v| v.as_u64()).unwrap_or(64).clamp(24, 1024));
             if recipe.get("name").and_then(|v| v.as_str()).map_or(true, |s| s.trim().is_empty()) {
                 recipe["name"] = json!("Ikon Baru");
             }
         }
         "clothing" => {
             let ckind = recipe.get("kind").and_then(|v| v.as_str()).unwrap_or("shirt");
-            if !matches!(ckind, "shirt" | "pants" | "tshirt") {
-                recipe["kind"] = json!("shirt");
-            }
+            let ckind = if matches!(ckind, "shirt" | "pants" | "tshirt") { ckind } else { "shirt" }.to_string();
+            recipe["kind"] = json!(ckind);
             recipe["baseColor"] = json!(sanitize_color(recipe.get("baseColor"), "#1a1c23"));
             recipe["accentColor"] = json!(sanitize_color(recipe.get("accentColor"), "#e02444"));
             recipe["cuffColor"] = json!(sanitize_color(recipe.get("cuffColor"), "#1a1c23"));
             let pattern = recipe.get("pattern").and_then(|v| v.as_str()).unwrap_or("solid");
-            if !matches!(pattern, "solid" | "stripes" | "denim" | "camo" | "hoodie" | "plaid") {
-                recipe["pattern"] = json!("solid");
-            }
+            let pattern = if matches!(pattern, "solid" | "stripes" | "denim" | "camo" | "hoodie" | "plaid") { pattern } else { "solid" }.to_string();
+            recipe["pattern"] = json!(pattern);
             let neck = recipe.get("neckStyle").and_then(|v| v.as_str()).unwrap_or("round");
-            if !matches!(neck, "round" | "v_neck" | "collar" | "crew") {
-                recipe["neckStyle"] = json!("round");
-            }
+            let neck = if matches!(neck, "round" | "v_neck" | "collar" | "crew") { neck } else { "round" }.to_string();
+            recipe["neckStyle"] = json!(neck);
             recipe["pocket"] = json!(recipe.get("pocket").and_then(|v| v.as_bool()).unwrap_or(false));
             recipe["shading"] = json!(recipe.get("shading").and_then(|v| v.as_bool()).unwrap_or(true));
             recipe["templateGuide"] = json!(recipe.get("templateGuide").and_then(|v| v.as_bool()).unwrap_or(false));
@@ -332,15 +325,15 @@ pub fn validate_editor_recipe(kind: &str, recipe: &mut Value) -> Result<(), Stri
         }
         "texture" => {
             let pat = recipe.get("pattern").and_then(|v| v.as_str()).unwrap_or("noise");
-            if !matches!(pat, "noise" | "bricks" | "wood" | "metal_grid" | "hex_tiles" | "fabric" | "stone") {
-                recipe["pattern"] = json!("noise");
-            }
+            let pat = if matches!(pat, "noise" | "bricks" | "wood" | "metal_grid" | "hex_tiles" | "fabric" | "stone") { pat } else { "noise" }.to_string();
+            recipe["pattern"] = json!(pat);
             recipe["baseColor"] = json!(sanitize_color(recipe.get("baseColor"), "#4a5568"));
             recipe["accentColor"] = json!(sanitize_color(recipe.get("accentColor"), "#2d3748"));
             recipe["roughness"] = json!(recipe.get("roughness").and_then(|v| v.as_f64()).unwrap_or(0.6).clamp(0.0, 1.0));
             recipe["metalness"] = json!(recipe.get("metalness").and_then(|v| v.as_f64()).unwrap_or(0.1).clamp(0.0, 1.0));
-            recipe["scale"] = json!(recipe.get("scale").and_then(|v| v.as_f64()).unwrap_or(2.0).clamp(0.1, 20.0));
-            recipe["seed"] = json!(recipe.get("seed").and_then(|v| v.as_i64()).unwrap_or(42));
+            // Ranges mirror images.rs so an accepted AI spec can always be saved.
+            recipe["scale"] = json!(recipe.get("scale").and_then(|v| v.as_f64()).unwrap_or(2.0).round().clamp(1.0, 16.0) as u64);
+            recipe["seed"] = json!(recipe.get("seed").and_then(|v| v.as_i64()).unwrap_or(42).clamp(0, 999_999));
             let res = recipe.get("resolution").and_then(|v| v.as_u64()).unwrap_or(512);
             recipe["resolution"] = json!(if res <= 128 { 128 } else if res <= 256 { 256 } else { 512 });
             if recipe.get("name").and_then(|v| v.as_str()).map_or(true, |s| s.trim().is_empty()) {
@@ -350,25 +343,27 @@ pub fn validate_editor_recipe(kind: &str, recipe: &mut Value) -> Result<(), Stri
         "sfx" => {
             let cat = recipe.get("category").and_then(|v| v.as_str()).unwrap_or("laser");
             let valid_cats = ["coin", "laser", "explosion", "jump", "powerup", "hit", "ui_click", "footstep"];
-            if !valid_cats.contains(&cat) {
-                recipe["category"] = json!("laser");
-            }
+            let cat = if valid_cats.contains(&cat) { cat } else { "laser" }.to_string();
+            recipe["category"] = json!(cat);
             let wave = recipe.get("waveform").and_then(|v| v.as_str()).unwrap_or("sawtooth");
-            if !matches!(wave, "sine" | "square" | "sawtooth" | "triangle" | "noise") {
-                recipe["waveform"] = json!("sawtooth");
-            }
-            recipe["durationMs"] = json!(recipe.get("durationMs").and_then(|v| v.as_u64()).unwrap_or(240).clamp(20, 5000));
-            recipe["frequencyStart"] = json!(recipe.get("frequencyStart").and_then(|v| v.as_f64()).unwrap_or(1200.0).clamp(20.0, 10000.0));
-            recipe["frequencyEnd"] = json!(recipe.get("frequencyEnd").and_then(|v| v.as_f64()).unwrap_or(200.0).clamp(20.0, 10000.0));
+            let wave = if matches!(wave, "sine" | "square" | "sawtooth" | "triangle" | "noise") { wave } else { "sawtooth" }.to_string();
+            recipe["waveform"] = json!(wave);
+            // Ranges mirror SfxRecipe::validate in sfx.rs so an accepted AI spec can always be saved.
+            recipe["durationMs"] = json!(recipe.get("durationMs").and_then(|v| v.as_u64()).unwrap_or(240).clamp(50, 3000));
+            recipe["frequencyStart"] = json!(recipe.get("frequencyStart").and_then(|v| v.as_f64()).unwrap_or(1200.0).clamp(20.0, 4000.0));
+            recipe["frequencyEnd"] = json!(recipe.get("frequencyEnd").and_then(|v| v.as_f64()).unwrap_or(200.0).clamp(20.0, 4000.0));
             recipe["attackMs"] = json!(recipe.get("attackMs").and_then(|v| v.as_u64()).unwrap_or(5).clamp(0, 1000));
             recipe["decayMs"] = json!(recipe.get("decayMs").and_then(|v| v.as_u64()).unwrap_or(40).clamp(0, 2000));
             recipe["sustain"] = json!(recipe.get("sustain").and_then(|v| v.as_f64()).unwrap_or(0.2).clamp(0.0, 1.0));
-            recipe["releaseMs"] = json!(recipe.get("releaseMs").and_then(|v| v.as_u64()).unwrap_or(100).clamp(0, 3000));
-            recipe["filterCutoff"] = json!(recipe.get("filterCutoff").and_then(|v| v.as_f64()).unwrap_or(4000.0).clamp(20.0, 20000.0));
+            recipe["releaseMs"] = json!(recipe.get("releaseMs").and_then(|v| v.as_u64()).unwrap_or(100).clamp(10, 2000));
+            recipe["filterCutoff"] = json!(recipe.get("filterCutoff").and_then(|v| v.as_f64()).unwrap_or(4000.0).clamp(100.0, 12000.0));
             recipe["noiseMix"] = json!(recipe.get("noiseMix").and_then(|v| v.as_f64()).unwrap_or(0.0).clamp(0.0, 1.0));
             recipe["volume"] = json!(recipe.get("volume").and_then(|v| v.as_f64()).unwrap_or(0.8).clamp(0.05, 1.0));
             recipe["loop"] = json!(recipe.get("loop").and_then(|v| v.as_bool()).unwrap_or(false));
-            recipe["seed"] = json!(recipe.get("seed").and_then(|v| v.as_i64()).unwrap_or(42));
+            recipe["seed"] = json!(recipe.get("seed").and_then(|v| v.as_i64()).unwrap_or(42).clamp(0, 999_999));
+            // SfxRecipe uses deny_unknown_fields; drop anything the model invented.
+            const SFX_FIELDS: [&str; 16] = ["schemaVersion", "name", "category", "waveform", "durationMs", "frequencyStart", "frequencyEnd", "attackMs", "decayMs", "sustain", "releaseMs", "filterCutoff", "noiseMix", "volume", "loop", "seed"];
+            if let Some(map) = recipe.as_object_mut() { map.retain(|key, _| SFX_FIELDS.contains(&key.as_str())); }
             if recipe.get("name").and_then(|v| v.as_str()).map_or(true, |s| s.trim().is_empty()) {
                 recipe["name"] = json!("Efek Suara");
             }
@@ -478,6 +473,29 @@ mod tests {
         assert_eq!(gfx["layout"], "centered");
         assert_eq!(gfx["width"], 3840);
         assert_eq!(gfx["height"], 300);
+    }
+
+    #[test]
+    fn extreme_ai_specs_stay_within_save_validators() {
+        let mut sfx = json!({
+            "name": "Uji", "durationMs": 9000, "frequencyStart": 9000, "frequencyEnd": 5,
+            "releaseMs": 0, "filterCutoff": 19000, "seed": 5_000_000, "reverb": 0.4
+        });
+        validate_editor_recipe("sfx", &mut sfx).unwrap();
+        let recipe: crate::sfx::SfxRecipe = serde_json::from_value(sfx.clone()).expect("no unknown fields");
+        assert_eq!(recipe.duration_ms, 3000.0);
+        assert_eq!(recipe.frequency_start, 4000.0);
+        assert_eq!(recipe.release_ms, 10.0);
+        assert_eq!(recipe.filter_cutoff, 12000.0);
+        assert_eq!(recipe.seed, 999_999);
+
+        let mut icon = json!({"strokeWidth": 8, "padding": 24, "size": 4096});
+        validate_editor_recipe("icon", &mut icon).unwrap();
+        assert_eq!((icon["strokeWidth"].as_u64(), icon["padding"].as_u64(), icon["size"].as_u64()), (Some(6), Some(20), Some(1024)));
+
+        let mut texture = json!({"scale": 0.2, "seed": -3});
+        validate_editor_recipe("texture", &mut texture).unwrap();
+        assert_eq!((texture["scale"].as_u64(), texture["seed"].as_i64()), (Some(1), Some(0)));
     }
 }
 

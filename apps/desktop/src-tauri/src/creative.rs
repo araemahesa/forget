@@ -1382,9 +1382,11 @@ impl Storage {
             .prepare("SELECT id FROM creative_version WHERE kind=?1 ORDER BY rowid DESC LIMIT 100")?
             .query_map([kind], |r| r.get::<_, String>(0))?
             .collect::<Result<Vec<_>, _>>()?;
-        ids.iter()
-            .map(|id| self.load_creative_version(id))
-            .collect()
+        // One corrupt or legacy row must not hide every other saved version.
+        Ok(ids
+            .iter()
+            .filter_map(|id| self.load_creative_version(id).ok())
+            .collect())
     }
     pub fn verify_creative_artifact(
         &self,
