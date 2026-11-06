@@ -312,7 +312,15 @@ impl StreamDecoder {
             return Err("[RESPONSE_INCOMPLETE] Stream berhenti sebelum respons lengkap diterima.".into());
         }
         let calls: Vec<_> = self.calls.into_values().collect();
+        Turn::assembled(text, calls, self.output)
+    }
+}
+
+impl Turn {
+    /// Builds a turn from already decoded parts (e.g. Claude Code), with the same call checks.
+    pub(crate) fn assembled(text: String, calls: Vec<ToolCall>, native_output: Vec<Value>) -> Result<Turn, String> {
         let mut ids = std::collections::HashSet::new();
+        if calls.len() > MAX_CALLS { return Err("Permintaan tool melampaui izin atau batas panggilan.".into()); }
         for call in &calls {
             if call.id.is_empty()
                 || call.id.len() > 128
@@ -325,11 +333,7 @@ impl StreamDecoder {
                 return Err("Tool call provider tidak sah atau ID berulang.".into());
             }
         }
-        Ok(Turn {
-            text,
-            calls,
-            native_output: self.output,
-        })
+        Ok(Turn { text, calls, native_output })
     }
 }
 

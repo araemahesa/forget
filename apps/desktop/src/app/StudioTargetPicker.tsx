@@ -1,7 +1,7 @@
 import { Dropdown } from '../design-system/Dropdown';
 import { selectStudioTarget, useStudioDiscovery, useStudioSnapshot } from '../services/studioState';
 
-/** Shown only when several Studio maps are open, so the target is never guessed. */
+/** Shown only when several Studio maps are open; ForgeKit connects to one automatically and this switches it. */
 export function StudioTargetPicker() {
   const discovery = useStudioDiscovery();
   const snapshot = useStudioSnapshot();

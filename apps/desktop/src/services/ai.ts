@@ -5,8 +5,6 @@ import type {
   ChatTurn,
   ConnectionProfile,
   FallbackPolicy,
-  McpConnectorConfig,
-  McpToolInfo,
   ProviderConnectSession,
   ProviderTestResult,
   RouterConnection,
@@ -42,6 +40,8 @@ export const testConnectionProfile = (profile: ConnectionProfile) =>
 export const connectProviderBrowser = (providerId: string, routerBaseUrl?: string, sessionId?: string) =>
   call<ProviderConnectSession>('connect_provider_browser', { providerId, routerBaseUrl, sessionId });
 export const cancelProviderBrowser = (sessionId: string) => call<void>('cancel_provider_browser', { sessionId });
+export const submitProviderLoginCode = (sessionId: string, code: string) => call<void>('submit_provider_login_code', { sessionId, code });
+export const openProviderLoginLink = (sessionId: string) => call<void>('open_provider_login_link', { sessionId });
 
 
 
@@ -59,20 +59,6 @@ export const sendChatMessage = (threadId: string, userContent: string, provider:
   call<ChatMessage>('send_chat_message', { threadId, userContent, provider, requestId, mode, contextSnapshotId, studioId, referenceImages });
 export const cancelChatStream = (threadId: string) =>
   call<void>('cancel_chat_stream', { threadId });
-
-export const listMcpConnectors = () => call<McpConnectorConfig[]>('list_mcp_connectors', {});
-export const saveMcpConnector = (config: McpConnectorConfig) =>
-  call<void>('save_mcp_connector', { config });
-export const toggleMcpConnector = (id: string, enabled: boolean) =>
-  call<void>('toggle_mcp_connector', { id, enabled });
-export type ToolApprovalRequest = { taskId: string; callId: string; tool: string; title: string; preview: string; truncated: boolean };
-export const listToolApprovals = () => call<ToolApprovalRequest[]>('list_tool_approvals', {});
-export const resolveToolApproval = (taskId: string, callId: string, approved: boolean) =>
-  call<void>('resolve_tool_approval', { taskId, callId, approved });
-export const deleteMcpConnector = (id: string) => call<void>('delete_mcp_connector', { id });
-/** Starts the connector (or every enabled one) and returns the tools it really exposes. */
-export const listAvailableMcpTools = (config?: McpConnectorConfig) =>
-  call<McpToolInfo[]>('list_available_mcp_tools', { config: config ?? null });
 
 export const probeRouterModels = () => call<RouterProbe>('probe_router_models', {});
 export const listProviderModels = (profileId: string) => call<string[]>('list_provider_models', { profileId });

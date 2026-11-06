@@ -62,6 +62,8 @@ fn main() {
         "logout_discord",
         "connect_provider_browser",
         "cancel_provider_browser",
+        "submit_provider_login_code",
+        "open_provider_login_link",
         "list_chat_threads",
         "create_chat_thread",
         "rename_chat_thread",
@@ -102,13 +104,6 @@ fn main() {
         "generate_editor_recipe",
         "export_creative_geometry",
         "export_creative_audio",
-        "list_mcp_connectors",
-        "save_mcp_connector",
-        "toggle_mcp_connector",
-        "list_available_mcp_tools",
-        "delete_mcp_connector",
-        "resolve_tool_approval",
-        "list_tool_approvals",
     ];
     if std::env::var_os("CARGO_FEATURE_RUNTIME_ACCEPTANCE").is_some() {
         commands.push("record_runtime_acceptance");

@@ -285,12 +285,6 @@
           "markdownDescription": "Enables the delete_connection_profile command without any pre-configured scope."
         },
         {
-          "description": "Enables the delete_mcp_connector command without any pre-configured scope.",
-          "type": "string",
-          "const": "allow-delete-mcp-connector",
-          "markdownDescription": "Enables the delete_mcp_connector command without any pre-configured scope."
-        },
-        {
           "description": "Enables the export_creative_audio command without any pre-configured scope.",
           "type": "string",
           "const": "allow-export-creative-audio",
@@ -489,12 +483,6 @@
           "markdownDescription": "Enables the list_ai_providers command without any pre-configured scope."
         },
         {
-          "description": "Enables the list_available_mcp_tools command without any pre-configured scope.",
-          "type": "string",
-          "const": "allow-list-available-mcp-tools",
-          "markdownDescription": "Enables the list_available_mcp_tools command without any pre-configured scope."
-        },
-        {
           "description": "Enables the list_chat_threads command without any pre-configured scope.",
           "type": "string",
           "const": "allow-list-chat-threads",
@@ -537,12 +525,6 @@
           "markdownDescription": "Enables the list_library command without any pre-configured scope."
         },
         {
-          "description": "Enables the list_mcp_connectors command without any pre-configured scope.",
-          "type": "string",
-          "const": "allow-list-mcp-connectors",
-          "markdownDescription": "Enables the list_mcp_connectors command without any pre-configured scope."
-        },
-        {
           "description": "Enables the list_provider_models command without any pre-configured scope.",
           "type": "string",
           "const": "allow-list-provider-models",
@@ -559,12 +541,6 @@
           "type": "string",
           "const": "allow-list-task-attempts",
           "markdownDescription": "Enables the list_task_attempts command without any pre-configured scope."
-        },
-        {
-          "description": "Enables the list_tool_approvals command without any pre-configured scope.",
-          "type": "string",
-          "const": "allow-list-tool-approvals",
-          "markdownDescription": "Enables the list_tool_approvals command without any pre-configured scope."
         },
         {
           "description": "Enables the list_work_tasks command without any pre-configured scope.",
@@ -657,6 +633,12 @@
           "markdownDescription": "Enables the open_blender_model command without any pre-configured scope."
         },
         {
+          "description": "Enables the open_provider_login_link command without any pre-configured scope.",
+          "type": "string",
+          "const": "allow-open-provider-login-link",
+          "markdownDescription": "Enables the open_provider_login_link command without any pre-configured scope."
+        },
+        {
           "description": "Enables the prepare_attachment command without any pre-configured scope.",
           "type": "string",
           "const": "allow-prepare-attachment",
@@ -697,12 +679,6 @@
           "type": "string",
           "const": "allow-rename-chat-thread",
           "markdownDescription": "Enables the rename_chat_thread command without any pre-configured scope."
-        },
-        {
-          "description": "Enables the resolve_tool_approval command without any pre-configured scope.",
-          "type": "string",
-          "const": "allow-resolve-tool-approval",
-          "markdownDescription": "Enables the resolve_tool_approval command without any pre-configured scope."
         },
         {
           "description": "Enables the restore_workspace_backup command without any pre-configured scope.",
@@ -771,12 +747,6 @@
           "markdownDescription": "Enables the save_image_version command without any pre-configured scope."
         },
         {
-          "description": "Enables the save_mcp_connector command without any pre-configured scope.",
-          "type": "string",
-          "const": "allow-save-mcp-connector",
-          "markdownDescription": "Enables the save_mcp_connector command without any pre-configured scope."
-        },
-        {
           "description": "Enables the save_router_connection command without any pre-configured scope.",
           "type": "string",
           "const": "allow-save-router-connection",
@@ -807,6 +777,12 @@
           "markdownDescription": "Enables the set_primary_profile command without any pre-configured scope."
         },
         {
+          "description": "Enables the submit_provider_login_code command without any pre-configured scope.",
+          "type": "string",
+          "const": "allow-submit-provider-login-code",
+          "markdownDescription": "Enables the submit_provider_login_code command without any pre-configured scope."
+        },
+        {
           "description": "Enables the test_ai_provider command without any pre-configured scope.",
           "type": "string",
           "const": "allow-test-ai-provider",
@@ -823,12 +799,6 @@
           "type": "string",
           "const": "allow-test-router-connection",
           "markdownDescription": "Enables the test_router_connection command without any pre-configured scope."
-        },
-        {
-          "description": "Enables the toggle_mcp_connector command without any pre-configured scope.",
-          "type": "string",
-          "const": "allow-toggle-mcp-connector",
-          "markdownDescription": "Enables the toggle_mcp_connector command without any pre-configured scope."
         },
         {
           "description": "Enables the update_work_task command without any pre-configured scope.",
@@ -949,12 +919,6 @@
           "type": "string",
           "const": "deny-delete-connection-profile",
           "markdownDescription": "Denies the delete_connection_profile command without any pre-configured scope."
-        },
-        {
-          "description": "Denies the delete_mcp_connector command without any pre-configured scope.",
-          "type": "string",
-          "const": "deny-delete-mcp-connector",
-          "markdownDescription": "Denies the delete_mcp_connector command without any pre-configured scope."
         },
         {
           "description": "Denies the export_creative_audio command without any pre-configured scope.",
@@ -1155,12 +1119,6 @@
           "markdownDescription": "Denies the list_ai_providers command without any pre-configured scope."
         },
         {
-          "description": "Denies the list_available_mcp_tools command without any pre-configured scope.",
-          "type": "string",
-          "const": "deny-list-available-mcp-tools",
-          "markdownDescription": "Denies the list_available_mcp_tools command without any pre-configured scope."
-        },
-        {
           "description": "Denies the list_chat_threads command without any pre-configured scope.",
           "type": "string",
           "const": "deny-list-chat-threads",
@@ -1203,12 +1161,6 @@
           "markdownDescription": "Denies the list_library command without any pre-configured scope."
         },
         {
-          "description": "Denies the list_mcp_connectors command without any pre-configured scope.",
-          "type": "string",
-          "const": "deny-list-mcp-connectors",
-          "markdownDescription": "Denies the list_mcp_connectors command without any pre-configured scope."
-        },
-        {
           "description": "Denies the list_provider_models command without any pre-configured scope.",
           "type": "string",
           "const": "deny-list-provider-models",
@@ -1225,12 +1177,6 @@
           "type": "string",
           "const": "deny-list-task-attempts",
           "markdownDescription": "Denies the list_task_attempts command without any pre-configured scope."
-        },
-        {
-          "description": "Denies the list_tool_approvals command without any pre-configured scope.",
-          "type": "string",
-          "const": "deny-list-tool-approvals",
-          "markdownDescription": "Denies the list_tool_approvals command without any pre-configured scope."
         },
         {
           "description": "Denies the list_work_tasks command without any pre-configured scope.",
@@ -1323,6 +1269,12 @@
           "markdownDescription": "Denies the open_blender_model command without any pre-configured scope."
         },
         {
+          "description": "Denies the open_provider_login_link command without any pre-configured scope.",
+          "type": "string",
+          "const": "deny-open-provider-login-link",
+          "markdownDescription": "Denies the open_provider_login_link command without any pre-configured scope."
+        },
+        {
           "description": "Denies the prepare_attachment command without any pre-configured scope.",
           "type": "string",
           "const": "deny-prepare-attachment",
@@ -1363,12 +1315,6 @@
           "type": "string",
           "const": "deny-rename-chat-thread",
           "markdownDescription": "Denies the rename_chat_thread command without any pre-configured scope."
-        },
-        {
-          "description": "Denies the resolve_tool_approval command without any pre-configured scope.",
-          "type": "string",
-          "const": "deny-resolve-tool-approval",
-          "markdownDescription": "Denies the resolve_tool_approval command without any pre-configured scope."
         },
         {
           "description": "Denies the restore_workspace_backup command without any pre-configured scope.",
@@ -1437,12 +1383,6 @@
           "markdownDescription": "Denies the save_image_version command without any pre-configured scope."
         },
         {
-          "description": "Denies the save_mcp_connector command without any pre-configured scope.",
-          "type": "string",
-          "const": "deny-save-mcp-connector",
-          "markdownDescription": "Denies the save_mcp_connector command without any pre-configured scope."
-        },
-        {
           "description": "Denies the save_router_connection command without any pre-configured scope.",
           "type": "string",
           "const": "deny-save-router-connection",
@@ -1473,6 +1413,12 @@
           "markdownDescription": "Denies the set_primary_profile command without any pre-configured scope."
         },
         {
+          "description": "Denies the submit_provider_login_code command without any pre-configured scope.",
+          "type": "string",
+          "const": "deny-submit-provider-login-code",
+          "markdownDescription": "Denies the submit_provider_login_code command without any pre-configured scope."
+        },
+        {
           "description": "Denies the test_ai_provider command without any pre-configured scope.",
           "type": "string",
           "const": "deny-test-ai-provider",
@@ -1489,12 +1435,6 @@
           "type": "string",
           "const": "deny-test-router-connection",
           "markdownDescription": "Denies the test_router_connection command without any pre-configured scope."
-        },
-        {
-          "description": "Denies the toggle_mcp_connector command without any pre-configured scope.",
-          "type": "string",
-          "const": "deny-toggle-mcp-connector",
-          "markdownDescription": "Denies the toggle_mcp_connector command without any pre-configured scope."
         },
         {
           "description": "Denies the update_work_task command without any pre-configured scope.",

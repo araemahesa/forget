@@ -1,4 +1,5 @@
 pub(crate) mod protocol;
+mod claude_code;
 
 use crate::artifacts::sha256_hex;
 use crate::ai::protocol::{StreamDecoder, Turn};
@@ -256,8 +257,9 @@ if ((url.host_str() == Some("api.openai.com")
                 && url.port().is_none() => {}
         "openai" => return Err("Adapter OpenAI resmi memakai https://api.openai.com/v1.".into()),
         "anthropic"
-            if url.host_str() == Some("api.anthropic.com")
-                && url.path().trim_end_matches('/') == "/v1"
+            if ((url.host_str() == Some("api.anthropic.com")
+                && url.path().trim_end_matches('/') == "/v1")
+                || profile.base_url.trim_end_matches('/') == crate::auth::claude::BASE_URL)
                 && url.port().is_none() => {}
         "anthropic" => {
             return Err("Adapter Claude resmi memakai https://api.anthropic.com/v1.".into())
@@ -769,6 +771,10 @@ where
     if !(1..=600).contains(&duration_seconds) || !(16..=32768).contains(&output_tokens) {
         return Err("Batas request tidak sah.".into());
     }
+    validate_profile(profile)?;
+    if crate::auth::claude::is_claude_code(profile) {
+        return claude_code::execute_turn(profile, lease, messages, tools, duration_seconds, &mut on_chunk);
+    }
     let (url, mut payload) = request(profile, messages)?;
     if !crate::auth::codex::is_codex(profile) {
         payload[if profile.provider_type == "openai" { "max_output_tokens" } else { "max_tokens" }] = json!(output_tokens);
@@ -1253,7 +1259,7 @@ pub fn validate_connection_profile(profile: &ConnectionProfile) -> Result<(), St
             (
                 "direct",
                 "forgekit",
-"api_key" | "local_runtime" | "oauth_browser" | "codex_oauth"
+"api_key" | "local_runtime" | "oauth_browser" | "codex_oauth" | "claude_code"
             ) | ("router", "router", "router_dashboard")
         )
     {
@@ -1262,6 +1268,10 @@ pub fn validate_connection_profile(profile: &ConnectionProfile) -> Result<(), St
     if (profile.auth_method == "codex_oauth") != (profile.base_url.trim_end_matches('/') == crate::auth::codex::BASE_URL)
         || (profile.auth_method == "codex_oauth" && profile.provider_id != "openai") {
         return Err("Login Codex harus memakai endpoint dan profil Codex milik ForgeKit.".into());
+    }
+    if (profile.auth_method == "claude_code") != (profile.base_url.trim_end_matches('/') == crate::auth::claude::BASE_URL)
+        || (profile.auth_method == "claude_code" && profile.provider_id != "claude") {
+        return Err("Login Claude Code harus memakai profil Claude Code milik ForgeKit.".into());
     }
     if profile.auth_method == "oauth_browser" && profile.provider_id != "google-gemini"
     {
@@ -1701,7 +1711,6 @@ pub fn create_connect_session(
 ) -> Result<ProviderConnectSession, String> {
     if provider_id != "antigravity-9router" {
         let (url, message) = match provider_id {
-            "claude" => ("https://platform.claude.com/settings/keys", "Claude Console resmi dibuka. Aplikasi pihak ketiga seperti ForgeKit memakai API resmi Claude; login website saja belum memberikan akses AI. Hubungkan kunci melalui tombol Koneksi API."),
             "google-gemini" => ("https://aistudio.google.com/", "Google AI Studio dibuka. OAuth Google memerlukan registrasi client ForgeKit dan project Google Cloud. Login website belum menyambungkan AI; koneksi API tersedia di pengaturan lanjutan."),
             _ => return Err("Provider browser tidak didukung.".into()),
         };
@@ -2516,6 +2525,9 @@ pub(crate) fn authorize_provider_access(profile: &AiProviderProfile) -> Result<(
     if crate::auth::codex::is_codex(profile) {
         // Managed Codex sessions use their own private profile, not an API-key store.
         crate::auth::codex::account_id(&profile.key_reference).map(|_| ())
+    } else if crate::auth::claude::is_claude_code(profile) {
+        // Claude Code keeps its own login in the account's private profile.
+        crate::auth::claude::account_home(&profile.key_reference).map(|_| ())
     } else {
         authorize_keychain_access(&profile.key_reference)
     }

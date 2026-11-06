@@ -361,6 +361,11 @@ impl Storage {
             }
             stage(&transaction, id, "planning", None)?;
         } else {
+            // A thread remembered by an older window may be gone; say so instead of a raw SQLite error.
+            let exists: bool = transaction.query_row("SELECT EXISTS(SELECT 1 FROM chat_thread WHERE id=?1)", [thread], |r| r.get(0))?;
+            if !exists {
+                return Err(invalid("Percakapan ini sudah tidak tersedia. Mulai percakapan baru lalu kirim ulang pesannya."));
+            }
             let references = (!images.is_empty()).then(|| json!(images));
             let user = ai::add_message(&transaction, thread, "user", prompt, None, references.as_ref(), None)?;
             begin(&transaction, id, &snapshot)?;
@@ -730,6 +735,10 @@ mod tests {
         let thread = storage
             .create_chat_thread("Test", None, "fixture", None)
             .unwrap();
+        let missing = storage
+            .begin_chat_turn("orphan", "thread-from-a-wiped-database", "Halo", &profile, "ask", None)
+            .unwrap_err().to_string();
+        assert!(missing.contains("tidak tersedia") && !missing.contains("FOREIGN KEY"));
         assert!(storage
             .begin_chat_turn("request", &thread.id, "Halo", &profile, "ask", None)
             .unwrap()

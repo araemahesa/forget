@@ -261,14 +261,38 @@ describe('ProviderSettings Component', () => {
   });
 });
 
-it('opens a new Claude API account form from the main action, preserving saved accounts', async () => {
-  render(<ProviderSettings />);
+it('signs in to Claude through Claude Code, with a pasted-code fallback, preserving saved accounts', async () => {
+  let complete!: (value: Awaited<ReturnType<typeof aiServices.connectProviderBrowser>>) => void;
+  vi.mocked(aiServices.connectProviderBrowser).mockReturnValue(new Promise((resolve) => { complete = resolve; }));
+  const submit = vi.spyOn(aiServices, 'submitProviderLoginCode').mockResolvedValue();
+  const open = vi.spyOn(aiServices, 'openProviderLoginLink').mockResolvedValue();
+  const user = userEvent.setup(); render(<ProviderSettings />);
   await screen.findByText('OpenAI Akun Utama');
   const card = screen.getByText('Claude', { exact: true }).closest('.provider-card') as HTMLElement;
-  await userEvent.click(within(card).getByRole('button', { name: 'Connect' }));
-  expect(screen.getByLabelText('Nama akun')).toHaveValue('Claude · Akun 1');
-  expect(screen.getByLabelText('Kunci API (disimpan di Keychain)')).toBeInTheDocument();
-  expect(screen.getByRole('button', { name: 'Buka Claude Console' })).toBeInTheDocument();
+  await user.click(within(card).getByRole('button', { name: 'Connect' }));
+  expect(aiServices.connectProviderBrowser).toHaveBeenCalledWith('claude', undefined, expect.any(String));
+  const session = vi.mocked(aiServices.connectProviderBrowser).mock.calls[0][2];
+  expect(screen.getByText(/login Claude melalui Claude Code/)).toBeInTheDocument();
+  expect(screen.queryByLabelText('Kunci API (disimpan di Keychain)')).not.toBeInTheDocument();
+  await user.click(screen.getByText('Browser tidak kembali ke ForgeKit?'));
+  await user.click(screen.getByRole('button', { name: 'Buka login manual' }));
+  expect(open).toHaveBeenCalledWith(session);
+  await user.type(screen.getByLabelText('Kode login Claude'), 'fixture-code#state');
+  await user.click(screen.getByRole('button', { name: 'Kirim kode' }));
+  expect(submit).toHaveBeenCalledWith(session, 'fixture-code#state');
+  complete({ sessionId: 'fixture', providerId: 'claude', mode: 'direct', authUrl: '', status: 'connected', expiresAt: '', message: 'Akun tersambung dan respons AI berhasil diuji.' });
+  expect(await screen.findByText('Akun tersambung dan respons AI berhasil diuji.')).toBeInTheDocument();
+  expect(screen.queryByText('Browser tidak kembali ke ForgeKit?')).not.toBeInTheDocument();
   expect(screen.getByText('OpenAI Akun Utama')).toBeInTheDocument();
   expect(aiServices.deleteConnectionProfile).not.toHaveBeenCalled();
+});
+
+it('keeps the Claude API key form behind the advanced action', async () => {
+  render(<ProviderSettings />);
+  await screen.findByText('OpenAI Akun Utama');
+  await userEvent.click(screen.getByRole('button', { name: 'Koneksi API lanjutan untuk Claude' }));
+  expect(screen.getByLabelText('Nama akun')).toHaveValue('Claude · Akun 1');
+  expect(screen.getByLabelText('Kunci API (disimpan di Keychain)')).toBeInTheDocument();
+  expect(screen.getByText(/Untuk memakai langganan Claude, gunakan tombol Connect/)).toBeInTheDocument();
+  expect(aiServices.connectProviderBrowser).not.toHaveBeenCalled();
 });

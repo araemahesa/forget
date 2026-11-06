@@ -1,0 +1,131 @@
+/* Layout consistency layer, loaded after every other stylesheet. It gives all pages one title
+   scale, one header rhythm, one left edge and one panel treatment, so pages built at different
+   times read as one app. Keep page-specific rules in their own files. */
+
+/* Page titles: same size, weight and spacing on every page. */
+.chat-header h1,
+.procedural-heading h1,
+.editor-mode-bar h1,
+.catalog-heading h1,
+.skybox-page > .gfx-page-header h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+.chat-header-info > span,
+.procedural-heading p,
+.catalog-heading > p,
+.skybox-page > .gfx-page-header .page-description {
+  margin: 6px 0 0;
+  max-width: 760px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* Page headers: title block, divider, then content, at the same height on every page. */
+.chat-header,
+.procedural-heading,
+.catalog-heading,
+.editor-mode-bar,
+.skybox-page > .gfx-page-header {
+  min-height: 64px;
+  margin: 0 0 24px;
+  padding: 0 0 20px;
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+}
+/* Chat fills the height without page padding; its header adds the same top space other pages get. */
+.chat-header { padding-top: 28px; }
+
+/* One left edge: Settings no longer floats in the middle while other pages start at the inset. */
+.settings-page { margin-inline: 0; }
+
+/* Visual/Audio: the creator name sits under the page title, so it is a section title, not a second page title. */
+.page-title-line h1 { font-size: 17px; font-weight: 600; letter-spacing: 0; }
+
+/* "Jenis output" and its picker stay on one line. */
+.editor-mode-bar label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+/* Creative pages: a wider brief column, and the brief no longer draws a card inside the column's card. */
+@media (min-width: 1051px) {
+  .procedural-layout { grid-template-columns: clamp(320px, 26vw, 392px) minmax(0, 1fr); gap: 24px; }
+}
+.generator-inspector > .prompt-composer,
+.panel.inspector > .prompt-composer {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+.generator-inspector > .prompt-composer .prompt-input { min-height: 132px; }
+
+/* The refresh button turns while the account's models load (no extra status text). */
+.model-refresh.is-loading .icon { animation: forgekit-spin 900ms linear infinite; }
+@keyframes forgekit-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .model-refresh.is-loading .icon { animation: none; } }
+
+/* Section titles inside panels share one size. */
+.hunyuan-section-heading h2,
+.model-history h2,
+.canvas-label h2 {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* Settings: every section is the same card, and form actions end on the right (primary last). */
+.settings-page .settings-content > .settings-section {
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+}
+.settings-page .settings-content > .settings-section > p {
+  max-width: 760px;
+  margin: 0 0 20px;
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.65;
+}
+.settings-page .settings-section .action-row {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+@media (max-width: 760px) {
+  .settings-page .settings-content > .settings-section { padding: 16px; }
+}
+
+/* Settings footer: brand on the left edge like every section above it. */
+.settings-page .settings-about .brand-mark { margin: 0; }
+
+/* Short page notes ("Rig Roblox R15 · Dialog bercabang") stay on one line beside the title. */
+@media (min-width: 1051px) { .procedural-heading .capability-note { max-width: none; white-space: nowrap; } }
+
+/* Page-level action bars group their buttons at the end instead of spreading them across the page. */
+.skybox-page > .editor-toolbar { justify-content: flex-end; flex-wrap: wrap; gap: 8px; }
+
+/* Disclosure rows at the foot of a preview share the preview's inner padding. */
+.procedural-canvas > .preview-runtime-details { margin: 0; padding: 12px 20px; border-top: 1px solid var(--border); }
+.procedural-canvas > .preview-runtime-details > summary { cursor: pointer; color: var(--text-secondary); font-size: 12px; }
+
+/* Narrow windows stack the title and its note; both stay on the left edge. */
+@media (max-width: 1050px) {
+  .procedural-heading,
+  .skybox-page > .gfx-page-header { align-items: flex-start; }
+}

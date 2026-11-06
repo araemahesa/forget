@@ -2,30 +2,33 @@ import { Icon } from '../../design-system/Icon';
 import type { ProviderUsage } from '../../services/providerUsage';
 
 const sources: Record<ProviderUsage['source'], string> = {
-  codex: 'ChatGPT', provider_api: 'ChatGPT', google_monitoring: 'Google Monitoring',
+  codex: 'ChatGPT', claude_code: 'Claude Code', provider_api: 'ChatGPT', google_monitoring: 'Google Monitoring',
   router_api: '9router', api_headers: 'Respons API', none: 'Provider',
 };
 export function ProviderUsageDetails({ data, loading, error, compact = false }: { compact?: boolean; data: ProviderUsage | null; loading: boolean; error: string }) {
   const available = data?.status === 'available';
   return <span className={`provider-usage${compact ? ' is-compact' : ''}`} aria-busy={loading}>
-    <span className="provider-usage-heading"><Icon name="gauge" /><span>Sisa penggunaan</span>{loading && <span className="provider-usage-note">Memperbarui…</span>}</span>
+    <span className="provider-usage-heading"><Icon name="gauge" /><span>Penggunaan</span>{loading && <span className="provider-usage-note">Memperbarui…</span>}</span>
     {available ? data.windows.map((window) => {
-      const remaining = Math.max(0, Math.min(100, 100 - window.usedPercent));
+      // Same reading as the account usage panel: how much of each window is used, in the accent colour.
+      const used = Math.max(0, Math.min(100, window.usedPercent));
+      const level = used >= 90 ? ' is-critical' : used >= 75 ? ' is-warn' : '';
       const reset = window.resetsAt ? new Date(window.resetsAt * 1000) : null;
       const expired = reset != null && reset.getTime() <= Date.now();
       const sameDay = reset?.toDateString() === new Date().toDateString();
       const resetLabel = sameDay ? reset?.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }) : reset?.toLocaleDateString('id-ID', { day: 'numeric', month: 'short' });
-      const showScope = window.scope && (!['ChatGPT', 'codex'].includes(window.scope) || window.remaining != null || expired);
+      const showScope = window.scope && !window.label.toLocaleLowerCase('id').includes(window.scope.toLocaleLowerCase('id'))
+        && (!['ChatGPT', 'codex', 'claude'].includes(window.scope) || window.remaining != null || expired);
       return <span className="provider-usage-window" key={window.id}>
         <span className="provider-usage-row">
           <strong>{window.label === '5 jam' ? '5h' : window.label}</strong>
-          <span className={`provider-usage-percent${remaining <= 10 && !expired ? ' is-low' : ''}`} aria-label={expired ? 'Menunggu data terbaru' : `${Number(remaining.toFixed(1))}% tersisa`}>
-            {expired ? '—' : `${Number(remaining.toFixed(1))}%`}
+          <span className={`provider-usage-percent${expired ? '' : level}`} aria-label={expired ? 'Menunggu data terbaru' : `${Number(used.toFixed(1))}% terpakai`}>
+            {expired ? '—' : `${Number(used.toFixed(1))}% terpakai`}
           </span>
           {reset ? <time dateTime={reset.toISOString()} title={`Reset ${reset.toLocaleString('id-ID')}${expired ? ' · menunggu data terbaru' : ''}`}>{resetLabel}</time>
             : <span className="provider-usage-reset" title="Provider belum mengirim waktu reset">—</span>}
         </span>
-        {compact && <span className={`provider-usage-bar${remaining <= 10 && !expired ? ' is-low' : remaining <= 35 && !expired ? ' is-mid' : ''}`} aria-hidden="true"><span style={{ width: `${expired ? 0 : remaining}%` }} /></span>}
+        {compact && <span className={`provider-usage-bar${expired ? '' : level}`} aria-hidden="true"><span style={{ width: `${expired ? 0 : used}%` }} /></span>}
         {showScope && <span className="provider-usage-scope">{window.scope}{window.remaining != null && window.limit != null && !expired ? ` · ${window.remaining.toLocaleString('id-ID')} / ${window.limit.toLocaleString('id-ID')} tersisa` : ''}{expired ? ' · menunggu data terbaru' : ''}</span>}
       </span>;
     }) : <span className="provider-usage-note">{loading ? 'Membaca limit akun…' : error || data?.message || 'Data kuota belum tersedia.'}</span>}

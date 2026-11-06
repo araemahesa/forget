@@ -78,3 +78,21 @@ it('requests macOS authorization only on explicit recovery and keeps the same ac
   expect(result.current.error).toBe('');
   expect(result.current.provider).toMatchObject({ id: profile.id, model: profile.model });
 });
+
+it('keeps the last known models usable after a restart while the list is read again, and only the refresh button re-reads the provider', async () => {
+  const profile = account('restart-account');
+  localStorage.setItem(`forgekit:model-catalog:${profile.id}`, JSON.stringify({ models: [{ id: profile.model, displayName: 'Saved model', reasoningEfforts: ['high'] }] }));
+  let finish!: (value: unknown) => void;
+  invoke.mockReturnValueOnce(new Promise((resolve) => { finish = resolve; }));
+  const { result } = renderHook(() => useModelSelection(profile));
+  await waitFor(() => expect(result.current.loading).toBe(true));
+  expect(result.current.selected?.displayName).toBe('Saved model');
+  expect(result.current.provider).toMatchObject({ id: profile.id, model: profile.model });
+  expect(invoke).toHaveBeenLastCalledWith('get_provider_model_catalog', { profileId: profile.id });
+  await act(async () => { finish([{ id: profile.model, displayName: 'Fresh model', reasoningEfforts: ['high'] }]); });
+  expect(result.current.selected?.displayName).toBe('Fresh model');
+  invoke.mockResolvedValueOnce([{ id: profile.model, displayName: 'Re-read model', reasoningEfforts: ['high'] }]);
+  await act(async () => result.current.refresh());
+  expect(invoke).toHaveBeenLastCalledWith('get_provider_model_catalog', { profileId: profile.id, refresh: true });
+  expect(JSON.parse(localStorage.getItem(`forgekit:model-catalog:${profile.id}`)!).models[0].displayName).toBe('Re-read model');
+});

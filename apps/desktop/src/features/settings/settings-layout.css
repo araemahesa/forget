@@ -77,9 +77,9 @@
 .settings-page .provider-usage.is-compact .provider-usage-percent { font-weight: 600; color: var(--text); }
 .settings-page .provider-usage.is-compact .provider-usage-row time, .settings-page .provider-usage.is-compact .provider-usage-reset { min-width: 48px; color: var(--text-muted); font-size: 11px; }
 .settings-page .provider-usage-bar { display: block; height: 5px; border-radius: 999px; background: var(--surface-hover); overflow: hidden; }
-.settings-page .provider-usage-bar > span { display: block; height: 100%; border-radius: inherit; background: var(--success); transition: width .3s ease; }
-.settings-page .provider-usage-bar.is-mid > span { background: var(--warning); }
-.settings-page .provider-usage-bar.is-low > span { background: var(--error); }
+.settings-page .provider-usage-bar > span { display: block; height: 100%; border-radius: inherit; background: var(--accent); transition: width .3s ease; }
+.settings-page .provider-usage-bar.is-warn > span { background: var(--warning); }
+.settings-page .provider-usage-bar.is-critical > span { background: var(--error); }
 .settings-page .account-models { display: flex; flex-direction: column; justify-content: center; gap: 8px; min-width: 0; margin: 0; padding: 14px 16px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); }
 .settings-page .account-models > small { color: var(--text-muted); font-size: 10px; }
 .settings-page .account-models .model-controls { width: 100%; }
@@ -139,15 +139,3 @@
 @media (max-width: 560px) { .settings-page .router-gateway-meta { grid-template-columns: minmax(0,1fr); } }
 
 /* MCP connectors */
-.mcp-settings .mcp-list { list-style: none; margin: 12px 0; padding: 0; display: grid; gap: 10px; }
-.mcp-settings .mcp-connector { border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; display: grid; gap: 8px; }
-.mcp-settings .mcp-connector small { display: block; color: var(--text-secondary); overflow-wrap: anywhere; }
-.mcp-settings .mcp-actions { display: flex; flex-wrap: wrap; gap: 8px; }
-.mcp-settings .mcp-toggle { display: inline-flex; align-items: center; gap: 6px; }
-.mcp-settings .mcp-tools { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
-.mcp-settings .mcp-tools li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px; }
-.mcp-settings .mcp-tools small { flex-basis: 100%; color: var(--text-secondary); }
-.mcp-settings .mcp-badge { font-size: 11px; padding: 1px 6px; border-radius: 999px; border: 1px solid var(--border); color: var(--text-secondary); }
-.mcp-settings .mcp-badge.is-write { color: var(--accent); border-color: var(--accent); }
-.mcp-settings .mcp-empty { color: var(--text-secondary); }
-.mcp-settings .mcp-form textarea { font-family: var(--font-mono, ui-monospace, monospace); resize: vertical; }

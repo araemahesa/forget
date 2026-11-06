@@ -61,6 +61,10 @@ fn unavailable(profile: &AiProviderProfile, message: &str) -> ProviderUsage {
     }
 }
 fn key(profile: &AiProviderProfile) -> String {
+    // A Claude Code account is the same plan however its saved profile is edited.
+    if crate::auth::claude::is_claude_code(profile) {
+        return format!("claude-code|{}", profile.key_reference);
+    }
     format!(
         "{}|{}|{}|{}|{}",
         profile.id,
@@ -348,6 +352,9 @@ pub fn read(profile: &AiProviderProfile) -> Result<ProviderUsage, String> {
             return Ok(usage);
         }
         return Ok(cached_after_failure(profile, usage));
+    }
+    if crate::auth::claude::is_claude_code(profile) {
+        return Ok(read_claude_code(profile));
     }
     if profile.provider_type != "openai" {
         return Ok(unavailable(
@@ -653,6 +660,58 @@ pub fn observe_event(profile: &AiProviderProfile, payload: &str) {
     }
 }
 
+/// Plan usage straight from Claude Code's `/usage` (no model request); reused for a minute so
+/// several panels opening together do not start several CLI processes.
+fn read_claude_code(profile: &AiProviderProfile) -> ProviderUsage {
+    if let Some(usage) = HEADERS.lock().ok().and_then(|c| c.get(&key(profile)).cloned())
+        .filter(|u| u.status == "available" && u.observed_at.is_some_and(|at| now().saturating_sub(at) < 60)) {
+        return usage;
+    }
+    match crate::auth::claude::usage(&profile.key_reference) {
+        Ok((windows, plan)) => {
+            let mut usage = unavailable(profile, "");
+            usage.windows = windows.into_iter().map(|w| UsageWindow {
+                id: w.id, label: w.label, scope: w.scope, used_percent: w.used_percent,
+                window_duration_mins: Some(w.window_minutes), resets_at: w.resets_at,
+                remaining: None, limit: None, unit: None,
+            }).collect();
+            let mut usage = available(usage, "claude_code");
+            usage.plan_type = plan;
+            if let Ok(mut cache) = HEADERS.lock() { cache.insert(key(profile), usage.clone()); }
+            usage
+        }
+        Err(message) => cached_after_failure(profile, unavailable(profile, &message)),
+    }
+}
+
+/// Claude Code also reports the 5-hour and weekly windows (Anthropic's unified rate-limit headers,
+/// utilization 0..1) on every turn; they refresh the matching windows read from `/usage`.
+pub fn observe_claude_code(profile: &AiProviderProfile, info: &Value) {
+    let mut usage = cached(profile).filter(|u| u.source == "claude_code").unwrap_or_else(|| unavailable(profile, ""));
+    for (part, id, label, minutes) in [("five_hour", "claude:session", "5 jam", 300_u64), ("seven_day", "claude:week", "Mingguan", 10_080)] {
+        let w = &info["unifiedWindows"][part];
+        let Some(utilization) = w["utilization"].as_f64().filter(|v| v.is_finite() && *v >= 0.) else { continue };
+        let rejected = w["status"] == "rejected" || (info["status"] == "rejected" && info["rateLimitType"] == part);
+        let window = UsageWindow {
+            id: id.into(), label: label.into(), scope: "claude".into(),
+            used_percent: if rejected { 100. } else { (utilization * 100.).clamp(0., 100.) },
+            window_duration_mins: Some(minutes),
+            resets_at: w["resetsAt"].as_u64().filter(|v| *v > 0 && *v <= 8_640_000_000_000),
+            remaining: None, limit: None, unit: None,
+        };
+        match usage.windows.iter_mut().find(|existing| existing.id == id) {
+            Some(existing) => *existing = window,
+            None => usage.windows.push(window),
+        }
+    }
+    let plan = usage.plan_type.clone();
+    let mut usage = available(usage, "claude_code");
+    if usage.status == "available" {
+        usage.plan_type = plan;
+        if let Ok(mut cache) = HEADERS.lock() { cache.insert(key(profile), usage); }
+    }
+}
+
 fn cached(profile: &AiProviderProfile) -> Option<ProviderUsage> {
     HEADERS
         .lock()
@@ -714,7 +773,7 @@ pub fn blocked_until_ms(profile: &AiProviderProfile) -> u64 {
 fn exhausted_until(usage: &ProviderUsage, model: &str, current: u64) -> u64 {
     if usage.status != "available" || usage.observed_at.is_none_or(|at| current.saturating_sub(at) > 90) { return 0; }
     usage.windows.iter().filter(|w| {
-        (w.scope == model || (usage.source == "codex" && w.scope == "codex"))
+        (w.scope == model || (usage.source == "codex" && w.scope == "codex") || (usage.source == "claude_code" && w.scope == "claude"))
             && w.used_percent >= 100. && w.resets_at.is_some_and(|at| at > current)
     }).filter_map(|w| w.resets_at).max().unwrap_or(0).saturating_mul(1000)
 }

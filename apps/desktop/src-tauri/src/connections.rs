@@ -285,6 +285,10 @@ pub fn models(profile: &AiProviderProfile) -> Result<Vec<String>, String> {
         return crate::auth::codex::models(&profile.key_reference)
             .map(|rows| rows.into_iter().map(|row| row.id).collect());
     }
+    if crate::auth::claude::is_claude_code(profile) {
+        return crate::auth::claude::models(&profile.key_reference, false)
+            .map(|rows| rows.into_iter().map(|row| row.id).collect());
+    }
     let key = ai::optional_keychain_secret(&profile.key_reference)?
         .map(|_| ai::get_keychain_secret(&profile.key_reference))
         .transpose()?;

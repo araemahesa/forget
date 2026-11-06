@@ -23,8 +23,6 @@ import { useProviders } from '../../services/providerState';
 import { acquireStudioTask, refreshStudioContext, useStudioSnapshot } from '../../services/studioState';
 import { StudioExplorer } from '../shared/StudioExplorer';
 import { TaskAttempts } from '../shared/TaskAttempts';
-import { Dropdown } from '../../design-system/Dropdown';
-import { safeGetItem, safeSetItem } from '../../services/safeStorage';
 
 export const starterPrompts = [
   'Jelaskan struktur map ini dan script yang mengatur gameplay.',
@@ -33,12 +31,6 @@ export const starterPrompts = [
   'Buat animasi serangan untuk rig yang sedang dipilih.',
 ];
 type Panel = 'history' | 'explorer' | null;
-type ChatMode = 'auto' | 'ask' | 'plan';
-const chatModes: { value: ChatMode; label: string }[] = [
-  { value: 'auto', label: 'Kerjakan · perubahan perlu izin' },
-  { value: 'ask', label: 'Tanya · baca saja' },
-  { value: 'plan', label: 'Rencanakan · baca saja' },
-];
 const failureMessage = (error: unknown) => error instanceof Error ? error.message : 'Percakapan gagal. Input dan riwayat tetap tersedia.';
 
 export function ChatPage(_props: Pick<WorkspacePageProps, 'onOpenVersion'>) {
@@ -63,8 +55,6 @@ export function ChatPage(_props: Pick<WorkspacePageProps, 'onOpenVersion'>) {
   const [notice, setNotice] = useState('');
   const [nearBottom, setNearBottom] = useState(true);
   const [toolReceipts, setToolReceipts] = useState<SnapshotToolReceipt[]>([]);
-  const [chatMode, setChatMode] = useState<ChatMode>(() => { const saved = safeGetItem('forgekit:chat-mode'); return saved === 'ask' || saved === 'plan' ? saved : 'auto'; });
-  useEffect(() => { safeSetItem('forgekit:chat-mode', chatMode); }, [chatMode]);
   const [streamText, setStreamText] = useState('');
   const selection = useFeatureProviderSelection('chat');
   const { profiles, defaultProvider, connectionProfiles, modelSelection, choice: providerId } = selection;
@@ -76,11 +66,18 @@ export function ChatPage(_props: Pick<WorkspacePageProps, 'onOpenVersion'>) {
   const log = useRef<HTMLDivElement>(null);
   const follow = useRef(true);
   const alive = useRef(true);
+  // Saved thread IDs once loaded; a remembered thread that no longer exists is never sent to.
+  const knownThreads = useRef<Set<string> | null>(null);
 
   useEffect(() => {
     alive.current = true;
     let current = true;
-    void listChatThreads().then((items) => { if (current) setThreads(items); }).catch((error: unknown) => { if (current) setNotice(failureMessage(error)); });
+    void listChatThreads().then((items) => {
+      if (!current) return;
+      knownThreads.current = new Set(items.map((thread) => thread.id));
+      setThreads(items);
+      setActiveThreadId((id) => id && !knownThreads.current?.has(id) ? null : id);
+    }).catch((error: unknown) => { if (current) setNotice(failureMessage(error)); });
     return () => { current = false; alive.current = false; };
   }, []);
   useEffect(() => {
@@ -157,6 +154,7 @@ export function ChatPage(_props: Pick<WorkspacePageProps, 'onOpenVersion'>) {
     if (activeRequest.current || recovering || !window.confirm(`Hapus percakapan "${thread.title}" beserta pesannya?`)) return;
     try {
       await deleteChatThread(thread.id);
+      knownThreads.current?.delete(thread.id);
       setThreads((items) => items.filter((item) => item.id !== thread.id));
       if (activeThreadId === thread.id) newConversation();
     } catch (error) { setError(failureMessage(error)); }
@@ -167,10 +165,12 @@ export function ChatPage(_props: Pick<WorkspacePageProps, 'onOpenVersion'>) {
     if (!provider) { window.location.hash = 'settings?section=providers'; return; }
     const capturedProvider = { ...provider };
     const contextId = context?.id;
-    // Ask/Plan never receive write tools; the backend enforces this, not only the UI.
-    const mode = chatMode;
+    // One mode: the model infers from the prompt whether to answer, plan or act; every map
+    // change still needs the user's approval in the backend.
+    const mode = 'auto' as const;
     const retry = false;
-    const request = { threadId: activeThreadId, requestId: crypto.randomUUID(), cancelled: false };
+    const stale = !!activeThreadId && !!knownThreads.current && !knownThreads.current.has(activeThreadId);
+    const request = { threadId: stale ? null : activeThreadId, requestId: crypto.randomUUID(), cancelled: false };
     activeRequest.current = request;
     const releaseStudio = acquireStudioTask();
     setMessages((items) => retry ? items : [...items, { id: `pending-${request.requestId}`, threadId: request.threadId ?? '', sequence: items.length + 1, role: 'user', content: text, createdAt: String(Date.now()) }]);
@@ -181,6 +181,7 @@ export function ChatPage(_props: Pick<WorkspacePageProps, 'onOpenVersion'>) {
       if (!request.threadId) {
         const thread = await createChatThread(text.slice(0, 80), capturedProvider.model, capturedProvider.id);
         request.threadId = thread.id;
+        knownThreads.current?.add(thread.id);
         localStorage.setItem('forgekit:active-chat', thread.id);
         if (alive.current) { setThreads((items) => [thread, ...items]); setActiveThreadId(thread.id); }
       }
@@ -278,7 +279,6 @@ export function ChatPage(_props: Pick<WorkspacePageProps, 'onOpenVersion'>) {
               onOpenUsage={() => setUsageOpen(true)}
             />
             <ModelControls selection={modelSelection} disabled={running} />
-            <Dropdown aria-label="Mode kerja" value={chatMode} disabled={running} onChange={(event) => setChatMode(event.target.value as ChatMode)}>{chatModes.map((item) => <option key={item.value} value={item.value}>{item.label}</option>)}</Dropdown>
           </div>
             {running ? <button className="button secondary-button" type="button" disabled={stopping} onClick={() => void stop()}><Icon name="close" />{stopping ? 'Menghentikan...' : 'Stop'}</button> : <button className="button primary-button" type="button" disabled={attachmentsBusy || recovering || !input.trim() || !provider || !modelSelection.modelId} onClick={() => void send()}>Kirim<Icon name="arrow" /></button>}
           </div>

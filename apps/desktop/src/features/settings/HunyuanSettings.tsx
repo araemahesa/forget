@@ -46,8 +46,8 @@ export function HunyuanSettings() {
       <label>Token akses<input type="password" autoComplete="off" value={token} disabled={busy || !config} minLength={32} maxLength={256}
         placeholder={config?.hasToken ? 'Kosongkan untuk mempertahankan token tersimpan' : '32–256 karakter'} onChange={(e) => setToken(e.target.value)} /></label>
       <div className="action-row">
-        <button className="button primary-button" type="submit" disabled={busy || !config}>{busy ? 'Memproses...' : 'Simpan koneksi'}</button>
         <button className="button secondary-button" type="button" disabled={busy || !config?.configured} onClick={check}>Tes koneksi</button>
+        <button className="button primary-button" type="submit" disabled={busy || !config}>{busy ? 'Memproses...' : 'Simpan koneksi'}</button>
       </div>
     </form>
   </section>;

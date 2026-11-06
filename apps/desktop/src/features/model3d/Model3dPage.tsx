@@ -79,7 +79,7 @@ export function Model3dPage({ mode }: { mode?: string } = {}) {
   return <section className="procedural-workspace model-workspace">
     <div className="procedural-heading">
       <div>
-        <h1 aria-label="Model 3D">Generator</h1>
+        <h1>Model 3D</h1>
         <p>Dari referensi ke Blender dan Roblox Studio.</p>
       </div>
       <BlenderConnection />

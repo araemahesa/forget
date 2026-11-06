@@ -2431,6 +2431,12 @@ textarea.text-input {
 .provider-advanced-button .icon { width: 16px; height: 16px; }
 .provider-browser-status { display: flex; align-items: center; gap: 16px; margin-block: 16px; }
 .provider-browser-status .provider-status-message { margin: 0; flex: 1; }
+.provider-browser-status { flex-wrap: wrap; }
+.claude-login-fallback { flex-basis: 100%; display: grid; gap: 8px; }
+.claude-login-fallback summary { cursor: pointer; color: var(--text-secondary); }
+.claude-login-fallback p { margin: 0; color: var(--text-secondary); }
+.claude-login-fallback form { display: flex; align-items: flex-end; gap: 8px; flex-wrap: wrap; }
+.claude-login-fallback label { display: grid; gap: 4px; flex: 1 1 260px; }
 @media (max-width: 639px) { .provider-browser-status { align-items: flex-start; flex-direction: column; } }
 
 /* A single chat rhythm: avatar column, readable content, aligned composer. */
@@ -2548,15 +2554,6 @@ textarea.text-input {
 .model-input-mode button[aria-pressed="true"] { color:var(--accent); border-color:var(--accent); }
 .model-input-mode button:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
 .model-input-mode button:disabled { opacity:.5; cursor:default; }
-.approval-dialog { width: min(720px, calc(100vw - 32px)); margin-top: 10vh; }
-.approval-header { padding: 18px 20px 0; }
-.approval-header h2 { margin: 4px 0 6px; font-size: 16px; }
-.approval-header p:last-child { margin: 0; color: var(--text-secondary); font-size: 12px; }
-.approval-preview { margin: 14px 20px 0; max-height: 45dvh; overflow: auto; padding: 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); font: 12px/1.6 ui-monospace, SFMono-Regular, Menlo, monospace; white-space: pre-wrap; overflow-wrap: anywhere; }
-.approval-note { margin: 8px 20px 0; color: var(--text-muted); font-size: 11px; }
-.approval-dialog .status-error { margin: 8px 20px 0; }
-.approval-actions { display: flex; justify-content: flex-end; gap: 8px; padding: 16px 20px 18px; }
-.approval-toast { position: fixed; right: 16px; bottom: 16px; z-index: 50; max-width: min(420px, calc(100vw - 32px)); margin: 0; padding: 10px 12px; border: 1px solid var(--border-control); border-radius: 8px; background: var(--surface-raised); color: var(--text); font-size: 12px; box-shadow: 0 12px 40px var(--shadow); }
 
 /* Animation Studio */
 .animation-modes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 0 0 18px; }

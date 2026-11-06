@@ -21,15 +21,21 @@ it('starts discovery automatically, selects a single map without a picker and ca
   expect(captureStudioContext).toHaveBeenCalledWith('one', 'game', 3);
   stop();
 });
-it('does not guess between multiple maps and discards context when target disappears', async () => {
-  vi.mocked(probeStudio).mockResolvedValue({ ...report, studios: [...report.studios, { studioId: 'two', name: 'Map dua', placeId: 456 }] });
+it('connects to a map automatically when several are open, remembers a switch, and drops context when maps close', async () => {
+  localStorage.removeItem('forgekit:studio-target');
+  const two = { ...report, studios: [...report.studios, { studioId: 'two', name: 'Map dua', placeId: 456 }] };
+  vi.mocked(probeStudio).mockResolvedValue(two);
   render(<Status />);
   await act(async () => { await refreshStudioContext(); });
   expect(screen.getByLabelText('Map tujuan')).toBeVisible();
-  expect(screen.getByTestId('target')).toHaveTextContent('none');
-  expect(captureStudioContext).not.toHaveBeenCalled();
-  await act(async () => { selectStudioTarget('one'); await refreshStudioContext(); });
   expect(screen.getByTestId('target')).toHaveTextContent('Map satu');
+  await act(async () => { selectStudioTarget('two'); await refreshStudioContext(); });
+  expect(screen.getByTestId('target')).toHaveTextContent('Map dua');
+  expect(JSON.parse(localStorage.getItem('forgekit:studio-target')!)).toEqual({ name: 'Map dua', placeId: '456' });
+  // After a restart the instance IDs change; the map used last is picked again by place.
+  vi.mocked(probeStudio).mockResolvedValue({ ...two, studios: [{ studioId: 'one-b', name: 'Map satu', placeId: 123 }, { studioId: 'two-b', name: 'Map dua', placeId: 456 }] });
+  await act(async () => { await refreshStudioContext(); });
+  expect(screen.getByTestId('target')).toHaveTextContent('Map dua');
   vi.mocked(probeStudio).mockResolvedValue({ ...report, studios: [] });
   await act(async () => { await refreshStudioContext(); });
   expect(screen.getByTestId('target')).toHaveTextContent('none');

@@ -1,7 +1,0 @@
-.obsidian-context { min-width: 0; color: var(--text-secondary); font-size: var(--text-body); line-height: 1.5; margin-block: var(--space-2); }
-.obsidian-context summary { cursor: pointer; padding-block: var(--space-2); }
-.obsidian-context summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
-.obsidian-context p { margin-block: var(--space-2); overflow-wrap: anywhere; }
-.obsidian-context label { display: block; margin-block: var(--space-3) var(--space-2); }
-.obsidian-context select { width: 100%; min-width: 0; min-height: var(--control-height); padding-inline: var(--space-3); border: 1px solid var(--border-control); border-radius: var(--radius-control); color: var(--text); background: var(--surface-raised); font: inherit; }
-.obsidian-context select:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }

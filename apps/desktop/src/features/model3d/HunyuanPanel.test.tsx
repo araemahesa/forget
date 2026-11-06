@@ -65,7 +65,8 @@ it('blocks generation when worker is not ready; never falls back to procedural',
 it('uploads one PNG, persists completed job until model is saved, and loads native GLB', async () => {
   await loaded(); await selectImage();
   expect(screen.queryByRole('checkbox', { name: 'Buat tekstur' })).toBeNull();
-  expect(await screen.findByText(/Obsidian terhubung/)).toBeInTheDocument();
+  await waitFor(() => expect(call).toHaveBeenCalledWith('obsidian_status', {}));
+  expect(screen.queryByText(/Obsidian terhubung/)).toBeNull();
   fireEvent.submit(screen.getByRole('button', { name: 'Buat 3D dengan Hunyuan' }).closest('form')!);
   const save = await screen.findByRole('button', { name: 'Simpan & pratinjau GLB' });
   expect(call).toHaveBeenCalledWith('hunyuan_start', { imageBase64: 'UE5H', seed: 0, steps: 30, texture: true });

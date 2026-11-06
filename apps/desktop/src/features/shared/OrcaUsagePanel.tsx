@@ -245,6 +245,7 @@ export function OrcaUsagePanel({
                       <span className="orca-provider-name">
                         {providerName(profile.providerType)}
                         {connection?.authMethod === 'codex_oauth' && ' · Codex'}
+                        {connection?.authMethod === 'claude_code' && ' · Claude Code'}
                       </span>
                       <span className="orca-provider-sub">{subtitle}</span>
                     </span>
@@ -401,6 +402,8 @@ export function OrcaUsagePanel({
                               ? 'Gateway 9router'
                               : selectedConnection?.authMethod === 'codex_oauth'
                                 ? 'ChatGPT · Codex'
+                              : selectedConnection?.authMethod === 'claude_code'
+                                ? 'Claude · Claude Code'
                               : selectedConnection?.authMethod === 'oauth_browser'
                                 ? 'Sign in with ChatGPT'
                                 : 'API Key'}
