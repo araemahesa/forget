@@ -109,7 +109,7 @@ Direktori bukti: `docs/test-evidence/2026-10-28/provider-only/`.
 
 Perintah: `pnpm typecheck`, `pnpm test --run`, `pnpm build`, `cargo test --manifest-path apps/desktop/src-tauri/Cargo.toml`. Native harness memerlukan build opt-in `pnpm tauri build --debug --features runtime-acceptance,custom-protocol --no-bundle`. Siapkan DB terpisah memakai example `provider_only_prepare` (source dibuka readonly; destination wajib berbeda), lalu jalankan binary dengan `FORGEKIT_ACCEPTANCE_PHASE=provider-only-live`. Ini memanggil akun nyata dan dapat memakai kuotanya. Routing fixture: `python3 apps/desktop/src-tauri/tests/verify_connections_runtime.py`.
 
-Harness `creative-acceptance.js` lama menggunakan fixture planner lokal dan merupakan bukti historis sebelum provider-only; jangan menjalankannya sebagai acceptance implementasi ini. Harness acceptance tidak disertakan pada build release biasa. Paket release diperiksa codesign ad-hoc, CRC DMG, executable mounted identik dan marker harness absen; bukan notarization atau uji instalasi mesin bersih.
+Harness `creative-acceptance.js` dan `runtime-acceptance.js` lama (fixture planner lokal, bukti historis sebelum provider-only) sudah dihapus beserta fase `creative-*`, `workspace-*`, `save`/`reopen`, `mismatch`, `wide`, `images-*` dan `sfx-*`; skripnya tidak ikut terpulihkan. Harness acceptance tidak disertakan pada build release biasa. Paket release diperiksa codesign ad-hoc, CRC DMG, executable mounted identik dan marker harness absen; bukan notarization atau uji instalasi mesin bersih.
 
 ## Hasil Studio live dan batas yang tersisa
 

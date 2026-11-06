@@ -93,20 +93,27 @@ it('captures provider for running request and waits for native persistence', asy
   expect(screen.getByLabelText('Input pesan chat')).toHaveValue('');
 });
 
-it('ignores events from old requests and terminal events without a native receipt', async () => {
+it('streams a live draft for the active request only and completes on the native receipt', async () => {
   const pending = deferred<typeof answer>(); mocks.send.mockReturnValue(pending.promise);
   await start();
   const requestId = mocks.send.mock.calls[0][3] as string;
   act(() => {
     mocks.chunk?.({ payload: { threadId: 'thread-one', requestId: 'stale', chunk: 'Salah', done: false } });
-    mocks.chunk?.({ payload: { threadId: 'thread-one', requestId, chunk: 'Sedang streaming', done: false } });
-    mocks.chunk?.({ payload: { threadId: 'thread-one', requestId, chunk: '', done: true } });
+    mocks.chunk?.({ payload: { threadId: 'thread-one', requestId, chunk: 'Akun lama', done: false } });
+    mocks.chunk?.({ payload: { threadId: 'thread-one', requestId, chunk: '', done: false, reset: true } });
+    mocks.chunk?.({ payload: { threadId: 'thread-one', requestId, chunk: 'Sedang ', done: false } });
+    mocks.chunk?.({ payload: { threadId: 'thread-one', requestId, chunk: 'streaming', done: false } });
   });
   expect(screen.queryByText('Salah')).toBeNull();
-  expect(screen.queryByText('Sedang streaming')).toBeNull();
+  expect(screen.queryByText('Akun lama')).toBeNull();
+  expect(screen.getByText('Sedang streaming')).toBeVisible();
+  expect(screen.getByText(/draf belum tersimpan/)).toBeVisible();
+  act(() => { mocks.chunk?.({ payload: { threadId: 'thread-one', requestId, chunk: '', done: true } }); });
+  // A terminal stream event alone never completes the task.
   expect(screen.getByRole('button', { name: 'Stop' })).toBeEnabled();
   await act(async () => pending.resolve(answer));
   expect(await screen.findByText('Jawaban tersimpan')).toBeVisible();
+  expect(screen.queryByText('Sedang streaming')).toBeNull();
 });
 
 it('reloads committed messages when Stop races with a completed native response', async () => {
@@ -257,4 +264,12 @@ it('opens the live map explorer from the folder beside new chat without a duplic
   await waitFor(() => expect(call).toHaveBeenCalledWith('read_studio_explorer', expect.objectContaining({ studioId: 'live-map', query: expect.objectContaining({ action: 'children', path: [] }) })));
   expect(screen.getByRole('tree', { name: 'Hierarki Studio live' })).toBeVisible();
   expect(screen.queryByRole('button', { name: 'Explorer map bersama' })).toBeNull();
+});
+
+it('sends plain chat without a Studio target when the map snapshot is not verified', async () => {
+  mocks.send.mockResolvedValue(answer);
+  setStudioSnapshot({ studio: { studioId: 'unverified-map', name: 'Place', placeId: null }, checkedAt: '1' });
+  await start();
+  expect(mocks.send.mock.calls[0][5]).toBeUndefined();
+  expect(mocks.send.mock.calls[0][6]).toBeUndefined();
 });

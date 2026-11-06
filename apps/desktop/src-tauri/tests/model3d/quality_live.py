@@ -10,9 +10,9 @@ def part(id, primitive='cube', position=(0,0,0), size=(1,1,1), color='#246bb3', 
 
 def build(recipe, folder):
     folder.mkdir(parents=True, exist_ok=True)
-    shutil.copyfile(ROOT/'apps/desktop/src-tauri/src/blender_build.py', folder/'build.py')
-    shutil.copyfile(ROOT/'apps/desktop/src-tauri/src/blender_reference.py', folder/'blender_reference.py')
-    shutil.copyfile(ROOT/'apps/desktop/src-tauri/src/blender_reconstruction.py', folder/'blender_reconstruction.py')
+    shutil.copyfile(ROOT/'apps/desktop/src-tauri/scripts/blender/blender_build.py', folder/'build.py')
+    shutil.copyfile(ROOT/'apps/desktop/src-tauri/scripts/blender/blender_reference.py', folder/'blender_reference.py')
+    shutil.copyfile(ROOT/'apps/desktop/src-tauri/scripts/blender/blender_reconstruction.py', folder/'blender_reconstruction.py')
     (folder/'references.json').write_text('[]')
     shutil.copyfile(ROOT/'packages/contracts/src/model3d-materials.json', folder/'model3d-materials.json')
     (folder/'recipe.json').write_text(json.dumps(recipe))

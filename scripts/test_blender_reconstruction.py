@@ -21,7 +21,7 @@ ROOT = Path(__file__).resolve().parents[1]
 RUNNER = Path(sys.argv[sys.argv.index('--')+1]).resolve()/'runner'
 RUNNER.mkdir(parents=True, exist_ok=True)
 for name in ['blender_build.py','blender_reference.py','blender_reconstruction.py', 'blender_texture.py']:
-    shutil.copy2(ROOT/'apps/desktop/src-tauri/src'/name, RUNNER/name)
+    shutil.copy2(ROOT/'apps/desktop/src-tauri/scripts/blender'/name, RUNNER/name)
 shutil.copy2(ROOT/'packages/contracts/src/model3d-materials.json', RUNNER/'model3d-materials.json')
 sys.path.insert(0, str(RUNNER))
 from blender_build import build

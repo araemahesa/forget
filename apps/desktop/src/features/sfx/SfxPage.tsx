@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import type { SfxRecipe, ValidationIssue } from '@forgekit/contracts';
 import { hasBlockingSfxErrors, validateSfxRecipe } from '@forgekit/contracts';
 import { isEditorRoute } from '../../app/featureRegistry';
-import { useCreatorDraft } from '../useCreatorDraft';
+import { useCreatorDraft } from '../shared/useCreatorDraft';
 import { runCreatorTask, type CreatorTaskContext } from '../../services/creatorTasks';
 import { Button } from '../../design-system/Button';
 import { Icon } from '../../design-system/Icon';

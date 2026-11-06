@@ -10,6 +10,6 @@
     "test": "vitest run"
   },
   "devDependencies": {
-    "vitest": "latest"
+    "vitest": "5.0.5"
   }
 }

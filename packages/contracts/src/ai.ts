@@ -101,8 +101,12 @@ export type ProviderTestResult = {
 export type McpConnectorConfig = {
   id: string;
   name: string;
-  transport: 'stdio' | 'sse';
+  transport: 'stdio';
+  /** Executable started over stdio: a bare name on PATH (e.g. `npx`) or an absolute path. */
+  command: string;
+  args: string[];
   isEnabled: boolean;
+  /** Empty means every tool the server lists. */
   allowedTools: string[];
   createdAt: string;
   updatedAt: string;

@@ -10,7 +10,7 @@ import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / 'apps/desktop/src-tauri/src'
+SOURCE = ROOT / 'apps/desktop/src-tauri/scripts/blender'
 BLENDER = shutil.which('blender') or '/Applications/Blender.app/Contents/MacOS/Blender'
 FIXTURE = r'''
 import bpy

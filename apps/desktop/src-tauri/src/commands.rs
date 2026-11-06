@@ -774,6 +774,12 @@ pub async fn save_connection_profile(
         let (existing, router) = with_storage(&app, &app.state::<AppState>(), |s| {
             Ok((s.list_connection_profiles()?, s.get_router_connection()?))
         })?;
+        // Migrations 0015/0016 retired local inference; never let a save re-enable it.
+        if profile.provider_id == "local-llm" || profile.auth_method == "local_runtime" {
+            return Err(native_error(
+                "Inferensi lokal sudah dihentikan. Pilih akun provider AI.",
+            ));
+        }
         let old = existing.iter().find(|p| p.id == profile.id);
         if let Some(old) = old {
             crate::connections::validate_destination(old, &profile).map_err(native_error)?;
@@ -874,7 +880,12 @@ pub async fn delete_connection_profile(app: AppHandle, id: String) -> Result<(),
         if let Some(p) = profiles.into_iter().find(|item| item.id == id) {
             if p.connection_mode == "direct" {
                 if let Some(key_ref) = p.credential_ref {
-                    crate::ai::delete_keychain_secret(&key_ref).map_err(native_error)?;
+                    if p.auth_method == "codex_oauth" {
+                        // Codex tokens live in the account's private CODEX_HOME, not the Keychain.
+                        crate::auth::codex::disconnect(&key_ref).map_err(native_error)?;
+                    } else {
+                        crate::ai::delete_keychain_secret(&key_ref).map_err(native_error)?;
+                    }
                 }
             }
         }
@@ -1142,7 +1153,7 @@ pub async fn test_connection_profile(
 
 #[tauri::command]
 pub fn cancel_provider_browser(session_id: String) {
-    crate::browser_auth::cancel(&session_id);
+    crate::auth::browser::cancel(&session_id);
 }
 
 #[tauri::command]
@@ -1162,10 +1173,10 @@ pub async fn connect_provider_browser(
             return Ok(session);
         }
         let mut profile = if provider_id == "openai" {
-            crate::browser_auth::sign_in(&id)
+            crate::auth::codex::sign_in(&id)
         } else {
             if provider_id != "google-gemini" { return Err(native_error("Provider browser tidak didukung.")); }
-            crate::google_auth::sign_in(&id)
+            crate::auth::google::sign_in(&id)
         }.map_err(native_error)?;
         let result = with_storage(&app, &app.state::<AppState>(), |storage| {
             profile.is_default = storage.list_connection_profiles()?.is_empty();
@@ -1477,18 +1488,42 @@ pub async fn send_chat_message(
                 messages.push(value);
             }
             if mode == "auto" {
-                definitions.extend(crate::luau_checks::definitions());
-                definitions.extend(crate::blender::definitions());
+                definitions.extend(crate::studio::luau_checks::definitions());
+                definitions.extend(crate::model3d::blender::definitions());
+            }
+            // User-configured MCP servers live only for this request; dropping the set stops them.
+            let connectors = with_storage(&app, &app.state::<AppState>(), Storage::list_mcp_connectors)?;
+            let mut mcp = if connectors.iter().any(|c| c.is_enabled) {
+                crate::mcp::Toolset::start(&connectors, mode == "auto", &|| lease.is_cancelled())
+            } else {
+                crate::mcp::Toolset::default()
+            };
+            definitions.extend(mcp.definitions.iter().cloned());
+            if !mcp.warnings.is_empty() {
+                messages.insert(1, serde_json::json!({"role":"system","content":format!(
+                    "Sebagian konektor MCP tidak dapat dijalankan dan tool-nya tidak tersedia: {}",
+                    mcp.warnings.join("; ")
+                )}));
             }
             with_storage(&app, &app.state::<AppState>(), |s| s.creative_stage(&request_id,"streaming",None))?;
             let content = run_connected(&app,&request_id,&provider,&lease,true,|active,_seconds| {
                 let mut cp = checkpoint_for(&app,&request_id,active,&messages,!definitions.is_empty(),true)?;
                 let tokens = cp.budget.output_tokens;
-                crate::ai::execute_agent_checkpoint(active, &lease, &definitions, tokens, &mut cp, |_| Ok(()), |call| {
-                    if crate::luau_checks::handles(call) { return run_luau_check(&app,&request_id,call); }
-                    if crate::blender::handles(call) { return run_blender_tool(&app,&request_id,&user_content,active,call,&lease); }
+                // Live preview only: each account attempt starts a fresh draft, and the
+                // persisted assistant message (not this stream) completes the turn.
+                emit_chat_chunk(&app, &thread_id, &request_id, "", false, true);
+                let stream = |chunk: &str| { emit_chat_chunk(&app, &thread_id, &request_id, chunk, false, false); Ok(()) };
+                crate::ai::execute_agent_checkpoint(active, &lease, &definitions, tokens, &mut cp, stream, |call| {
+                    if crate::studio::luau_checks::handles(call) { return run_luau_check(&app,&request_id,call); }
+                    if crate::model3d::blender::handles(call) { return run_blender_tool(&app,&request_id,&user_content,active,call,&lease); }
                     if call.name.starts_with("forgekit_studio_") {
                         return run_studio_tool(&app,&request_id,frozen.as_ref().ok_or("Tidak ada target Studio.")?,call,&lease,true,mode == "auto");
+                    }
+                    if crate::mcp::handles(call) {
+                        with_storage(&app, &app.state::<AppState>(), |s| s.creative_stage(&request_id,"tool_running",None)).map_err(|e|e.message)?;
+                        let output = mcp.call(call, &|| lease.is_cancelled());
+                        with_storage(&app, &app.state::<AppState>(), |s| s.creative_stage(&request_id,"streaming",None)).map_err(|e|e.message)?;
+                        return output;
                     }
                     use tauri::Emitter;
                     let snapshot = context.as_ref().ok_or("Tidak ada snapshot map.")?;
@@ -1505,6 +1540,7 @@ pub async fn send_chat_message(
             if let Some(target) = frozen.as_ref() { crate::studio::current(target).map_err(native_error)?; }
             with_storage(&app, &app.state::<AppState>(), |s| s.complete_chat_turn(&request_id,&content))
         })();
+        emit_chat_chunk(&app, &thread_id, &request_id, "", true, false);
         if let Err(ref error) = result {
             with_storage(&app, &app.state::<AppState>(), |s| s.creative_stage(
                 &request_id, if lease.is_cancelled() {"cancelled"} else {"failed"}, Some(&error.message),
@@ -1513,6 +1549,15 @@ pub async fn send_chat_message(
         publish_activity(&app, &request_id);
         result
     }).await.map_err(native_error)?
+}
+
+/// Best-effort live text for the chat UI. Losing an event never affects the saved turn.
+fn emit_chat_chunk(app: &AppHandle, thread_id: &str, request_id: &str, chunk: &str, done: bool, reset: bool) {
+    use tauri::Emitter;
+    let _ = app.emit(
+        "forgekit:ai-chunk",
+        serde_json::json!({"threadId":thread_id,"requestId":request_id,"chunk":chunk,"done":done,"reset":reset}),
+    );
 }
 
 #[tauri::command]
@@ -1588,7 +1633,7 @@ pub async fn generate_creative(
             with_storage(&app, &app.state::<AppState>(), |s| {
                 s.creative_stage(&request.task_id, "planning", None)
             })?;
-            if request.kind == "model3d" && crate::blender::binary().is_none() { return Err(native_error("Blender belum ditemukan. Pasang Blender lalu lanjutkan tugas; provider belum dijalankan.")); }
+            if request.kind == "model3d" && crate::model3d::blender::binary().is_none() { return Err(native_error("Blender belum ditemukan. Pasang Blender lalu lanjutkan tugas; provider belum dijalankan.")); }
             let context = context_snapshot_id.as_deref().map(|id| with_storage(&app,&app.state::<AppState>(),|s|s.context_for_chat(id))).transpose()?;
             if let (Some(snapshot), Some(target)) = (context.as_ref(), studio_id.as_deref()) {
                 if snapshot.studio_id != target { return Err(native_error("Snapshot dan map tujuan berbeda. Kirim ulang dengan konteks map yang aktif.")); }
@@ -1613,8 +1658,8 @@ pub async fn generate_creative(
                                 |cp| persist_checkpoint(&app,&request.task_id,active,cp),
                                 |raw| crate::creative::parse(&request,raw))?
                         };
-                        if request.kind=="model3d" && !crate::blender::visual_references(&request.reference_images).is_empty() {
-                            crate::reference_model::refine(&workspace_root(&app).map_err(|e|e.message)?,&request,active,&lease,&mut cp,document,|cp|persist_checkpoint(&app,&request.task_id,active,cp))
+                        if request.kind=="model3d" && !crate::model3d::blender::visual_references(&request.reference_images).is_empty() {
+                            crate::model3d::reference_model::refine(&workspace_root(&app).map_err(|e|e.message)?,&request,active,&lease,&mut cp,document,|cp|persist_checkpoint(&app,&request.task_id,active,cp))
                         } else {Ok(document)}
                     },
                 )
@@ -1631,7 +1676,7 @@ pub async fn generate_creative(
             })?;
             if let Some(target) = frozen.as_ref() { crate::studio::current(target).map_err(native_error)?; }
             let root = workspace_root(&app)?;
-            if request.kind == "model3d" { crate::blender::build(&root, &document, &request.reference_images, || lease.is_cancelled()).map_err(native_error)?; }
+            if request.kind == "model3d" { crate::model3d::blender::build(&root, &document, &request.reference_images, || lease.is_cancelled()).map_err(native_error)?; }
             if lease.is_cancelled() { return Err(native_error("Permintaan dibatalkan.")); }
             with_storage(&app, &app.state::<AppState>(), |s| {
                 s.save_creative_result(&root, &request, &document)
@@ -1736,7 +1781,7 @@ pub async fn save_creative_revision(
             Ok(())
         })?;
         let result = (|| {
-            if request.kind == "model3d" { crate::blender::build(&root, &document, &request.reference_images, || lease.is_cancelled()).map_err(native_error)?; }
+            if request.kind == "model3d" { crate::model3d::blender::build(&root, &document, &request.reference_images, || lease.is_cancelled()).map_err(native_error)?; }
             if lease.is_cancelled() { return Err(native_error("[CANCELLED] Revisi dibatalkan; versi sebelumnya dipertahankan.")); }
             with_storage(&app, &app.state::<AppState>(), |s| s.save_creative_result(&root, &request, &document))
         })();
@@ -1858,8 +1903,38 @@ pub async fn toggle_mcp_connector(
 }
 
 #[tauri::command]
-pub fn list_available_mcp_tools() -> Vec<crate::connectors::McpToolInfo> {
-    crate::connectors::get_available_mcp_tools()
+pub async fn delete_mcp_connector(app: AppHandle, id: String) -> Result<(), CommandError> {
+    tauri::async_runtime::spawn_blocking(move || {
+        with_storage(&app, &app.state::<AppState>(), |storage| storage.delete_mcp_connector(&id))
+    })
+    .await
+    .map_err(native_error)?
+}
+
+/// Starts the given connector (or every enabled one) and reports the tools it really exposes.
+#[tauri::command]
+pub async fn list_available_mcp_tools(
+    app: AppHandle,
+    config: Option<crate::connectors::McpConnectorConfig>,
+) -> Result<Vec<crate::connectors::McpToolInfo>, CommandError> {
+    tauri::async_runtime::spawn_blocking(move || {
+        if let Some(config) = config {
+            // Testing one connector reports its exact error to the settings UI.
+            crate::connectors::validate(&config).map_err(native_error)?;
+            return crate::mcp::discover(&config).map_err(native_error);
+        }
+        // Across all enabled connectors a broken server must not hide the working ones,
+        // matching how chat skips a connector that fails to start.
+        let configs = with_storage(&app, &app.state::<AppState>(), Storage::list_mcp_connectors)?;
+        Ok(configs
+            .iter()
+            .filter(|c| c.is_enabled)
+            .filter_map(|config| crate::mcp::discover(config).ok())
+            .flatten()
+            .collect())
+    })
+    .await
+    .map_err(native_error)?
 }
 
 #[tauri::command]
@@ -1892,8 +1967,8 @@ pub async fn logout_discord() -> Result<crate::discord::Status, CommandError> {
 }
 
 #[tauri::command]
-pub async fn get_google_oauth_config() -> Result<crate::google_auth::Status, CommandError> {
-    tauri::async_runtime::spawn_blocking(crate::google_auth::status)
+pub async fn get_google_oauth_config() -> Result<crate::auth::google::Status, CommandError> {
+    tauri::async_runtime::spawn_blocking(crate::auth::google::status)
         .await
         .map_err(native_error)?
         .map_err(native_error)
@@ -1903,9 +1978,9 @@ pub async fn configure_google_oauth(
     client_id: String,
     client_secret: String,
     project_id: String,
-) -> Result<crate::google_auth::Status, CommandError> {
+) -> Result<crate::auth::google::Status, CommandError> {
     tauri::async_runtime::spawn_blocking(move || {
-        crate::google_auth::configure(client_id, client_secret, project_id)
+        crate::auth::google::configure(client_id, client_secret, project_id)
     })
     .await
     .map_err(native_error)?
@@ -1913,18 +1988,18 @@ pub async fn configure_google_oauth(
 }
 
 #[tauri::command]
-pub async fn read_studio_explorer(studio_id: String, query: crate::explorer::Query) -> Result<serde_json::Value, CommandError> {
-    tauri::async_runtime::spawn_blocking(move || crate::explorer::read(&studio_id, &query)).await.map_err(native_error)?.map_err(studio_error)
+pub async fn read_studio_explorer(studio_id: String, query: crate::studio::explorer::Query) -> Result<serde_json::Value, CommandError> {
+    tauri::async_runtime::spawn_blocking(move || crate::studio::explorer::read(&studio_id, &query)).await.map_err(native_error)?.map_err(studio_error)
 }
 
 fn run_blender_tool(app:&AppHandle,task_id:&str,prompt:&str,provider:&crate::ai::AiProviderProfile,call:&crate::tools::ToolCall,lease:&crate::ai::StreamLease)->Result<serde_json::Value,String>{
-    let document=crate::blender::input(call)?;
+    let document=crate::model3d::blender::input(call)?;
     with_storage(app,&app.state::<AppState>(),|s|s.creative_stage(task_id,"tool_running",None)).map_err(|e|e.message)?;
     let result=(|| {
         let root=workspace_root(app).map_err(|e|e.message)?;
         let deadline=with_storage(app,&app.state::<AppState>(),|s|s.ai_checkpoint(task_id)).map_err(|e|e.message)?.map(|cp|cp.deadline_ms).unwrap_or(0);
         let references:Vec<crate::references::ReferenceImage>=with_storage(app,&app.state::<AppState>(),|s|s.get_creative_task(task_id)).map_err(|e|e.message).and_then(|task|serde_json::from_value(task.get("referenceImages").cloned().unwrap_or_else(||serde_json::json!([]))).map_err(|e|e.to_string()))?;
-        let receipt=crate::blender::build(&root,&document,&references,||lease.is_cancelled() || crate::routing::now_ms()>=deadline)?;
+        let receipt=crate::model3d::blender::build(&root,&document,&references,||lease.is_cancelled() || crate::routing::now_ms()>=deadline)?;
         let id=format!("blender-{}",crate::artifacts::sha256_hex(format!("{task_id}:{}",call.id).as_bytes()));
         let version=with_storage(app,&app.state::<AppState>(),|s| {
             if let Ok(task)=s.get_creative_task(&id) { if let Some(version)=task["versionId"].as_str() {return s.load_creative_version(version);} }
@@ -1932,7 +2007,7 @@ fn run_blender_tool(app:&AppHandle,task_id:&str,prompt:&str,provider:&crate::ai:
             s.create_creative_task(&request,Some(provider))?;s.creative_stage(&request.task_id,"planning",None)?;s.creative_stage(&request.task_id,"validating",None)?;
             s.save_blender_tool_result(&root,&request,&document,task_id,call)
         }).map_err(|e|e.message)?;
-        Ok(serde_json::json!({"versionId":version["id"],"name":document["recipe"]["name"],"bundle":receipt,"openInForgeKit":"#create/model-3d","comparisonImages":crate::blender::comparison_images(&root,&document,&references)?,"notice":"File .blend dan referensi tersimpan. Periksa render yang dikembalikan terhadap gambar asli lalu perbaiki perbedaan melalui Blender. Belum dipasang ke Roblox; tidak ada sertifikasi kemiripan 100%."}))
+        Ok(serde_json::json!({"versionId":version["id"],"name":document["recipe"]["name"],"bundle":receipt,"openInForgeKit":"#create/model-3d","comparisonImages":crate::model3d::blender::comparison_images(&root,&document,&references)?,"notice":"File .blend dan referensi tersimpan. Periksa render yang dikembalikan terhadap gambar asli lalu perbaiki perbedaan melalui Blender. Belum dipasang ke Roblox; tidak ada sertifikasi kemiripan 100%."}))
     })();
     with_storage(app,&app.state::<AppState>(),|s|s.creative_stage(task_id,"streaming",None)).map_err(|e|e.message)?;
     result
@@ -1954,13 +2029,13 @@ fn blender_references(app:&AppHandle,id:&str)->Result<Vec<crate::references::Ref
     })
 }
 #[tauri::command]
-pub fn blender_status()->serde_json::Value {crate::blender::status()}
+pub fn blender_status()->serde_json::Value {crate::model3d::blender::status()}
 #[tauri::command]
 pub async fn build_blender_model(app:AppHandle,version_id:String)->Result<serde_json::Value,CommandError>{
     tauri::async_runtime::spawn_blocking(move || {
         let lease=crate::ai::begin_stream(&format!("blender:{version_id}")).map_err(native_error)?;
         let document=blender_document(&app,&version_id)?;
-        crate::blender::build(&workspace_root(&app)?,&document,&blender_references(&app,&version_id)?,||lease.is_cancelled()).map_err(native_error)
+        crate::model3d::blender::build(&workspace_root(&app)?,&document,&blender_references(&app,&version_id)?,||lease.is_cancelled()).map_err(native_error)
     }).await.map_err(native_error)?
 }
 #[tauri::command]
@@ -1980,7 +2055,7 @@ pub async fn get_model_build_progress(app:AppHandle,task_id:Option<String>,versi
             let id=version_id.unwrap();
             (blender_document(&app,&id)?,blender_references(&app,&id)?,"building".into())
         };
-        let mut result=crate::blender::build_progress(&workspace_root(&app)?,&document,&references,known_preview.as_deref()).map_err(native_error)?;
+        let mut result=crate::model3d::blender::build_progress(&workspace_root(&app)?,&document,&references,known_preview.as_deref()).map_err(native_error)?;
         if result["phase"]=="waiting" || result["phase"]=="ready" {result["phase"]=serde_json::json!(phase);}
         Ok(result)
     }).await.map_err(native_error)?
@@ -1989,10 +2064,10 @@ pub async fn get_model_build_progress(app:AppHandle,task_id:Option<String>,versi
 pub async fn load_blender_bundle(app:AppHandle,version_id:String)->Result<serde_json::Value,CommandError>{
     tauri::async_runtime::spawn_blocking(move || {
         let document=blender_document(&app,&version_id)?;
-        let mut preview=crate::blender::preview(&workspace_root(&app)?,&document,&blender_references(&app,&version_id)?).map_err(native_error)?;
+        let mut preview=crate::model3d::blender::preview(&workspace_root(&app)?,&document,&blender_references(&app,&version_id)?).map_err(native_error)?;
         let report=with_storage(&app,&app.state::<AppState>(),|s| {
             let version=s.load_creative_version(&version_id)?;
-            Ok(s.ai_checkpoint(version["taskId"].as_str().unwrap_or(""))?.and_then(|cp|crate::reference_model::report(&cp,&document)))
+            Ok(s.ai_checkpoint(version["taskId"].as_str().unwrap_or(""))?.and_then(|cp|crate::model3d::reference_model::report(&cp,&document)))
         })?;
         if let Some(report)=report {if preview.is_object(){preview["receipt"]["referenceReview"]=report;}}
         Ok(preview)
@@ -2003,7 +2078,7 @@ pub async fn insert_blender_model(app:AppHandle,version_id:String,studio_id:Stri
     tauri::async_runtime::spawn_blocking(move || {
         let document=blender_document(&app,&version_id)?;
         let root=workspace_root(&app)?;
-        let bundle=crate::blender::preview(&root,&document,&blender_references(&app,&version_id)?).map_err(native_error)?;
+        let bundle=crate::model3d::blender::preview(&root,&document,&blender_references(&app,&version_id)?).map_err(native_error)?;
         if bundle.is_null() {return Err(native_error("Bangun hasil Blender terlebih dahulu."));}
         let snapshot=with_storage(&app,&app.state::<AppState>(),|s|s.context_for_chat(&context_snapshot_id))?;
         let target=crate::studio::freeze(&studio_id,Some(&snapshot)).map_err(native_error)?;
@@ -2014,14 +2089,14 @@ pub async fn insert_blender_model(app:AppHandle,version_id:String,studio_id:Stri
 pub async fn reveal_blender_model(app:AppHandle,version_id:String)->Result<(),CommandError>{
     tauri::async_runtime::spawn_blocking(move || {
         let document=blender_document(&app,&version_id)?;
-        crate::blender::reveal(&workspace_root(&app)?,&document,&blender_references(&app,&version_id)?).map_err(native_error)
+        crate::model3d::blender::reveal(&workspace_root(&app)?,&document,&blender_references(&app,&version_id)?).map_err(native_error)
     }).await.map_err(native_error)?
 }
 #[tauri::command]
 pub async fn open_blender_model(app:AppHandle,version_id:String)->Result<(),CommandError>{
     tauri::async_runtime::spawn_blocking(move || {
         let document=blender_document(&app,&version_id)?;
-        crate::blender::open_model(&workspace_root(&app)?,&document,&blender_references(&app,&version_id)?).map_err(native_error)
+        crate::model3d::blender::open_model(&workspace_root(&app)?,&document,&blender_references(&app,&version_id)?).map_err(native_error)
     }).await.map_err(native_error)?
 }
 #[tauri::command]
@@ -2068,7 +2143,7 @@ pub async fn resume_ai_task(
             }
         }
         let mut verify_tools=if verify || resume_edit {crate::studio::agent_catalog(frozen.as_ref().unwrap(),resume_edit).map_err(native_error)?}else{vec![]};
-        if resume_edit {verify_tools.extend(crate::luau_checks::definitions());}
+        if resume_edit {verify_tools.extend(crate::studio::luau_checks::definitions());}
         with_storage(&app,&app.state::<AppState>(),|s|s.resume_checkpoint_task(&id,verify))?;
         if verify {cp.final_text=None;cp.candidate_hash=None;}
         if task["kind"] == "model3d" { cp.budget.request_seconds = 600; }
@@ -2079,7 +2154,7 @@ pub async fn resume_ai_task(
             let kind=task["kind"].as_str().ok_or_else(||native_error("Jenis checkpoint tidak sah."))?;
             if kind=="chat" {
                 with_storage(&app,&app.state::<AppState>(),|s|s.creative_stage(&id,"streaming",None))?;
-                let content=run_connected(&app,&id,&provider,&lease,false,|active,_|crate::ai::execute_agent_checkpoint(active,&lease,&verify_tools,8192,&mut cp,|_| Ok(()),|call|{ if resume_edit && crate::luau_checks::handles(call) {return run_luau_check(&app, &id, call);} if !resume_edit && (!verify || crate::studio::is_write(&call.name)){return Err("[SAFETY] Pemulihan tidak menjalankan write.".into());} run_studio_tool(&app,&id,frozen.as_ref().ok_or("Target tidak tersedia.")?,call,&lease,true,resume_edit) },|cp|persist_checkpoint(&app,&id,active,cp))).map_err(native_error)?;
+                let content=run_connected(&app,&id,&provider,&lease,false,|active,_|crate::ai::execute_agent_checkpoint(active,&lease,&verify_tools,8192,&mut cp,|_| Ok(()),|call|{ if resume_edit && crate::studio::luau_checks::handles(call) {return run_luau_check(&app, &id, call);} if !resume_edit && (!verify || crate::studio::is_write(&call.name)){return Err("[SAFETY] Pemulihan tidak menjalankan write.".into());} run_studio_tool(&app,&id,frozen.as_ref().ok_or("Target tidak tersedia.")?,call,&lease,true,resume_edit) },|cp|persist_checkpoint(&app,&id,active,cp))).map_err(native_error)?;
                 if lease.is_cancelled(){return Err(native_error("[CANCELLED] Finalisasi dibatalkan."));}
                 let message=with_storage(&app,&app.state::<AppState>(),|s|s.complete_chat_turn(&id,&content))?;
                 return Ok(serde_json::json!({"message":message}));
@@ -2088,7 +2163,7 @@ pub async fn resume_ai_task(
             let request=crate::creative::CreativeRequest{task_id:id.clone(),kind:kind.into(),prompt:task["prompt"].as_str().unwrap_or("").into(),quality:task["quality"].as_str().unwrap_or("balanced").into(),provider_id:Some(provider.id.clone()),model_id:Some(provider.model.clone()),reasoning_effort:provider.reasoning_effort.clone(),parent_version_id:task["parentVersionId"].as_str().map(str::to_owned),reference_images:serde_json::from_value(task.get("referenceImages").cloned().unwrap_or_else(||serde_json::json!([]))).map_err(native_error)?,blender:false};
             let value=run_connected(&app,&id,&provider,&lease,false,|active,_|{
                 let value=if let Some(state)=cp.model_review.as_ref(){state.candidate.clone()}else{crate::ai::execute_recipe_checkpoint(active,&lease,&[],crate::creative::output_tokens(&request.kind,&request.quality),&mut cp,|_|Err("Tools tidak tersedia pada finalisasi.".into()),|cp|persist_checkpoint(&app,&id,active,cp),|raw|if editor{crate::editor_ai::parse(kind,raw)}else{crate::creative::parse(&request,raw)})?};
-                if kind=="model3d" && !crate::blender::visual_references(&request.reference_images).is_empty(){crate::reference_model::refine(&workspace_root(&app).map_err(|e|e.message)?,&request,active,&lease,&mut cp,value,|cp|persist_checkpoint(&app,&id,active,cp))}else{Ok(value)}
+                if kind=="model3d" && !crate::model3d::blender::visual_references(&request.reference_images).is_empty(){crate::model3d::reference_model::refine(&workspace_root(&app).map_err(|e|e.message)?,&request,active,&lease,&mut cp,value,|cp|persist_checkpoint(&app,&id,active,cp))}else{Ok(value)}
             }).map_err(native_error)?;
             if lease.is_cancelled(){return Err(native_error("[CANCELLED] Finalisasi dibatalkan."));}
             if editor {
@@ -2097,7 +2172,7 @@ pub async fn resume_ai_task(
             }else{
                 with_storage(&app,&app.state::<AppState>(),|s|s.creative_stage(&id,"validating",None))?;
                 let root=workspace_root(&app)?;
-                if request.kind == "model3d" { crate::blender::build(&root, &value, &request.reference_images, || lease.is_cancelled()).map_err(native_error)?; }
+                if request.kind == "model3d" { crate::model3d::blender::build(&root, &value, &request.reference_images, || lease.is_cancelled()).map_err(native_error)?; }
                 if lease.is_cancelled() { return Err(native_error("Permintaan dibatalkan.")); }
                 with_storage(&app,&app.state::<AppState>(),|s|s.save_creative_result(&root,&request,&value))
             }
@@ -2243,7 +2318,7 @@ fn run_luau_check(
         s.creative_stage(task_id, "validating", None)
     })
     .map_err(|e| e.message)?;
-    let result = crate::luau_checks::execute(call);
+    let result = crate::studio::luau_checks::execute(call);
     with_storage(app, &app.state::<AppState>(), |s| {
         s.creative_stage(task_id, "streaming", None)
     })
@@ -2284,7 +2359,7 @@ pub async fn obsidian_status(app: AppHandle) -> Result<serde_json::Value, Comman
 #[tauri::command]
 pub async fn hunyuan_load_config(app: AppHandle, ) -> Result<serde_json::Value, CommandError> {
     tauri::async_runtime::spawn_blocking(move || {
-        crate::hunyuan_remote::load_config(&data_directory(&app)?).map_err(native_error)
+        crate::model3d::hunyuan_remote::load_config(&data_directory(&app)?).map_err(native_error)
     })
     .await
     .map_err(native_error)?
@@ -2293,7 +2368,7 @@ pub async fn hunyuan_load_config(app: AppHandle, ) -> Result<serde_json::Value, 
 #[tauri::command]
 pub async fn hunyuan_save_config(app: AppHandle, endpoint: String, token: Option<String>,) -> Result<serde_json::Value, CommandError> {
     tauri::async_runtime::spawn_blocking(move || {
-        crate::hunyuan_remote::save_config(&data_directory(&app)?, &endpoint, token.as_deref()).map_err(native_error)
+        crate::model3d::hunyuan_remote::save_config(&data_directory(&app)?, &endpoint, token.as_deref()).map_err(native_error)
     })
     .await
     .map_err(native_error)?
@@ -2302,7 +2377,7 @@ pub async fn hunyuan_save_config(app: AppHandle, endpoint: String, token: Option
 #[tauri::command]
 pub async fn hunyuan_health(app: AppHandle, ) -> Result<serde_json::Value, CommandError> {
     tauri::async_runtime::spawn_blocking(move || {
-        crate::hunyuan_remote::health(&data_directory(&app)?).map_err(native_error)
+        crate::model3d::hunyuan_remote::health(&data_directory(&app)?).map_err(native_error)
     })
     .await
     .map_err(native_error)?
@@ -2311,7 +2386,7 @@ pub async fn hunyuan_health(app: AppHandle, ) -> Result<serde_json::Value, Comma
 #[tauri::command]
 pub async fn hunyuan_start(app: AppHandle, image_base64: String, seed: u32, steps: u32, texture: bool,) -> Result<serde_json::Value, CommandError> {
     tauri::async_runtime::spawn_blocking(move || {
-        crate::hunyuan_remote::start(&data_directory(&app)?, &image_base64, seed, steps, texture).map_err(native_error)
+        crate::model3d::hunyuan_remote::start(&data_directory(&app)?, &image_base64, seed, steps, texture).map_err(native_error)
     })
     .await
     .map_err(native_error)?
@@ -2320,7 +2395,7 @@ pub async fn hunyuan_start(app: AppHandle, image_base64: String, seed: u32, step
 #[tauri::command]
 pub async fn hunyuan_poll(app: AppHandle, id: String,) -> Result<serde_json::Value, CommandError> {
     tauri::async_runtime::spawn_blocking(move || {
-        crate::hunyuan_remote::poll(&data_directory(&app)?, &id).map_err(native_error)
+        crate::model3d::hunyuan_remote::poll(&data_directory(&app)?, &id).map_err(native_error)
     })
     .await
     .map_err(native_error)?
@@ -2329,7 +2404,7 @@ pub async fn hunyuan_poll(app: AppHandle, id: String,) -> Result<serde_json::Val
 #[tauri::command]
 pub async fn hunyuan_cancel(app: AppHandle, id: String,) -> Result<serde_json::Value, CommandError> {
     tauri::async_runtime::spawn_blocking(move || {
-        crate::hunyuan_remote::cancel(&data_directory(&app)?, &id).map_err(native_error)
+        crate::model3d::hunyuan_remote::cancel(&data_directory(&app)?, &id).map_err(native_error)
     })
     .await
     .map_err(native_error)?
@@ -2338,7 +2413,7 @@ pub async fn hunyuan_cancel(app: AppHandle, id: String,) -> Result<serde_json::V
 #[tauri::command]
 pub async fn hunyuan_download(app: AppHandle, id: String,) -> Result<serde_json::Value, CommandError> {
     tauri::async_runtime::spawn_blocking(move || {
-        crate::hunyuan_remote::download(&data_directory(&app)?, &workspace_root(&app)?, &id).map_err(native_error)
+        crate::model3d::hunyuan_remote::download(&data_directory(&app)?, &workspace_root(&app)?, &id).map_err(native_error)
     })
     .await
     .map_err(native_error)?
@@ -2347,7 +2422,7 @@ pub async fn hunyuan_download(app: AppHandle, id: String,) -> Result<serde_json:
 #[tauri::command]
 pub async fn hunyuan_load_model(app: AppHandle, relative_path: String,) -> Result<serde_json::Value, CommandError> {
     tauri::async_runtime::spawn_blocking(move || {
-        crate::hunyuan_remote::load_model(&workspace_root(&app)?, &relative_path).map_err(native_error)
+        crate::model3d::hunyuan_remote::load_model(&workspace_root(&app)?, &relative_path).map_err(native_error)
     })
     .await
     .map_err(native_error)?
@@ -2356,7 +2431,7 @@ pub async fn hunyuan_load_model(app: AppHandle, relative_path: String,) -> Resul
 #[tauri::command]
 pub async fn hunyuan_list_models(app: AppHandle, ) -> Result<serde_json::Value, CommandError> {
     tauri::async_runtime::spawn_blocking(move || {
-        crate::hunyuan_remote::list_models(&workspace_root(&app)?).map_err(native_error)
+        crate::model3d::hunyuan_remote::list_models(&workspace_root(&app)?).map_err(native_error)
     })
     .await
     .map_err(native_error)?
@@ -2365,7 +2440,7 @@ pub async fn hunyuan_list_models(app: AppHandle, ) -> Result<serde_json::Value, 
 #[tauri::command]
 pub async fn hunyuan_open_blender(app: AppHandle, relative_path: String,) -> Result<(), CommandError> {
     tauri::async_runtime::spawn_blocking(move || {
-        crate::hunyuan_remote::open_blender(&workspace_root(&app)?, &relative_path).map_err(native_error)
+        crate::model3d::hunyuan_remote::open_blender(&workspace_root(&app)?, &relative_path).map_err(native_error)
     })
     .await
     .map_err(native_error)?
@@ -2374,7 +2449,7 @@ pub async fn hunyuan_open_blender(app: AppHandle, relative_path: String,) -> Res
 #[tauri::command]
 pub async fn hunyuan_reveal_model(app: AppHandle, relative_path: String) -> Result<(), CommandError> {
     tauri::async_runtime::spawn_blocking(move || {
-        crate::hunyuan_remote::reveal_models(&workspace_root(&app)?, &relative_path).map_err(native_error)
+        crate::model3d::hunyuan_remote::reveal_models(&workspace_root(&app)?, &relative_path).map_err(native_error)
     })
     .await
     .map_err(native_error)?
@@ -2392,11 +2467,11 @@ pub async fn hunyuan_edit_model(
     if prompt.trim().is_empty() || prompt.len()>16000 || provider_id.trim().is_empty() || model_id.trim().is_empty() || provider_id.len()>200 || model_id.len()>200 {
         return Err(native_error("Pilih provider/model aktif dan prompt edit 1..16000 byte."));
     }
-    crate::hunyuan_remote::model_path(&relative_path).map_err(native_error)?;
+    crate::model3d::hunyuan_remote::model_path(&relative_path).map_err(native_error)?;
     let lease=crate::ai::begin_stream("hunyuan-edit").map_err(native_error)?;
     tauri::async_runtime::spawn_blocking(move || {
         let saved=saved_ai_profile(&app,&provider_id)?;
         let provider=crate::model_catalog::select(saved,Some(&model_id),reasoning_effort.as_deref()).map_err(native_error)?;
-        crate::hunyuan_edit::edit(&workspace_root(&app)?,&relative_path,&prompt,&provider,&lease).map_err(native_error)
+        crate::model3d::hunyuan_edit::edit(&workspace_root(&app)?,&relative_path,&prompt,&provider,&lease).map_err(native_error)
     }).await.map_err(native_error)?
 }

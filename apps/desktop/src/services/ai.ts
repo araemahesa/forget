@@ -65,7 +65,10 @@ export const saveMcpConnector = (config: McpConnectorConfig) =>
   call<void>('save_mcp_connector', { config });
 export const toggleMcpConnector = (id: string, enabled: boolean) =>
   call<void>('toggle_mcp_connector', { id, enabled });
-export const listAvailableMcpTools = () => call<McpToolInfo[]>('list_available_mcp_tools', {});
+export const deleteMcpConnector = (id: string) => call<void>('delete_mcp_connector', { id });
+/** Starts the connector (or every enabled one) and returns the tools it really exposes. */
+export const listAvailableMcpTools = (config?: McpConnectorConfig) =>
+  call<McpToolInfo[]>('list_available_mcp_tools', { config: config ?? null });
 
 export const probeRouterModels = () => call<RouterProbe>('probe_router_models', {});
 export const listProviderModels = (profileId: string) => call<string[]>('list_provider_models', { profileId });

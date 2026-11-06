@@ -4,7 +4,7 @@ import type { ClothingSpec } from '@forgekit/contracts';
 import { Button } from '../../design-system/Button';
 import { Icon } from '../../design-system/Icon';
 import { Status } from '../../design-system/Status';
-import { ImageHistory, useImageDocument } from '../useImageDocument';
+import { ImageHistory, useImageDocument } from '../shared/useImageDocument';
 import { clothingDimensions } from '@forgekit/contracts';
 import type { ClothingViewMode } from '../../engines/clothing/render';
 import { ClothingForm } from './ClothingForm';

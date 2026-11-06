@@ -281,15 +281,15 @@ pub fn probe_router(router: &RouterConnection) -> Result<RouterProbe, String> {
 
 pub fn models(profile: &AiProviderProfile) -> Result<Vec<String>, String> {
     ai::validate_profile(profile)?;
-    if crate::codex_auth::is_codex(profile) {
-        return crate::codex_auth::models(&profile.key_reference)
+    if crate::auth::codex::is_codex(profile) {
+        return crate::auth::codex::models(&profile.key_reference)
             .map(|rows| rows.into_iter().map(|row| row.id).collect());
     }
     let key = ai::optional_keychain_secret(&profile.key_reference)?
         .map(|_| ai::get_keychain_secret(&profile.key_reference))
         .transpose()?;
     let project = if profile.provider_type == "gemini" {
-        crate::google_auth::quota_project(&profile.key_reference)?
+        crate::auth::google::quota_project(&profile.key_reference)?
     } else {
         None
     };

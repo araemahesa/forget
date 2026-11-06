@@ -1,5 +1,5 @@
 import { selectChoice } from '../../tests/selectChoice';
-import { resetImageMocks } from '../imageTestSupport';
+import { resetImageMocks } from '../shared/imageTestSupport';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it, vi } from 'vitest';

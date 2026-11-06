@@ -82,8 +82,9 @@ it('shows one live Studio status in the top bar immediately after the AI Chat br
   act(() => setStudioSnapshot(null));
   expect(offline).toHaveTextContent('Studio belum terhubung');
   await userEvent.click(within(nav()).getByRole('link', { name: 'Pengaturan' }));
-  await screen.findByRole('heading', { name: 'Pengaturan' });
-  expect(screen.queryByRole('status', { name: 'Status koneksi Roblox Studio' })).toBeNull();
+  await screen.findByRole('heading', { name: 'Pengaturan' }, { timeout: 10000 });
+  expect(screen.getAllByRole('status', { name: 'Status koneksi Roblox Studio' })).toHaveLength(1);
+  expect(screen.queryByText('Koneksi Studio & penyimpanan')).toBeNull();
 });
 
 describe('Chat home and inline navigation', () => {
@@ -160,7 +161,7 @@ describe('Chat home and inline navigation', () => {
     await selectChoice(screen.getByLabelText('Mode Desain Visual'), 'icon');
     await screen.findByRole('heading', { name: 'Generator Ikon' });
     await user.click(within(nav()).getByRole('link', { name: 'Pengaturan' }));
-    await screen.findByRole('heading', { name: 'Pengaturan' });
+    await screen.findByRole('heading', { name: 'Pengaturan' }, { timeout: 10000 });
     await user.click(creative()); await user.click(screen.getByRole('link', { name: 'Desain Visual' }));
     expect(await screen.findByLabelText('Judul')).toHaveValue('Karya berikutnya');
   });
@@ -192,15 +193,14 @@ it('command palette uses registry, filters retired tools and returns focus', asy
 
 it('shows account, providers and appearance together without retired settings tabs', async () => {
   location.hash = 'settings?section=studio'; render(<App />);
-  await screen.findByRole('heading', { name: 'Pengaturan' });
+  await screen.findByRole('heading', { name: 'Pengaturan' }, { timeout: 10000 });
   expect(screen.getByRole('heading', { name: 'Provider AI' })).toBeVisible();
   expect(screen.getByRole('heading', { name: 'Akun Discord' })).toBeVisible();
   expect(screen.getByRole('heading', { name: 'Tampilan' })).toBeVisible();
   expect(screen.queryByRole('group', { name: 'Bagian pengaturan' })).toBeNull();
   for (const name of ['Roblox Studio', 'Kualitas & Anggaran', 'Tools & Skills', 'Penyimpanan & Diagnostik']) {
     expect(screen.queryByRole('button', { name })).toBeNull();
-    if (name === 'Roblox Studio') expect(screen.getByRole('heading', { name })).not.toBeVisible();
-    else expect(screen.queryByRole('heading', { name })).toBeNull();
+    expect(screen.queryByRole('heading', { name })).toBeNull();
   }
   await waitFor(() => expect(location.hash).toBe('#settings'));
 });

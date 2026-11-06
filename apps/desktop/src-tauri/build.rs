@@ -106,6 +106,7 @@ fn main() {
         "save_mcp_connector",
         "toggle_mcp_connector",
         "list_available_mcp_tools",
+        "delete_mcp_connector",
     ];
     if std::env::var_os("CARGO_FEATURE_RUNTIME_ACCEPTANCE").is_some() {
         commands.push("record_runtime_acceptance");

@@ -34,7 +34,7 @@ pub static SKILL_REGISTRY: &[SkillEntry] = &[
     SkillEntry {
         id: "scene-editing",
         domain: "scene",
-        version: "1.4.0",
+        version: "1.5.0",
         keywords: &["map", "scene", "objek", "instance", "workspace", "hapus", "ubah", "taruh"],
         content: include_str!("../../../../skills/scene-editing/SKILL.md"),
     },

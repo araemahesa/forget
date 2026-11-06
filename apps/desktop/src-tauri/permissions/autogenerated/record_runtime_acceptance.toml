@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-record-runtime-acceptance"
+description = "Enables the record_runtime_acceptance command without any pre-configured scope."
+commands.allow = ["record_runtime_acceptance"]
+
+[[permission]]
+identifier = "deny-record-runtime-acceptance"
+description = "Denies the record_runtime_acceptance command without any pre-configured scope."
+commands.deny = ["record_runtime_acceptance"]

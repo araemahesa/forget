@@ -13,22 +13,40 @@ pub fn data_directory() -> Option<PathBuf> {
         .then(|| PathBuf::from(env!("CARGO_MANIFEST_DIR")).join(if std::env::var("FORGEKIT_ACCEPTANCE_PHASE").as_deref()==Ok("provider-only-live") {"target/runtime-acceptance/provider-only-live-data"}else{"target/runtime-acceptance/data"}))
 }
 
+/// Appends one Studio IPC observation (command, latency, result) for the acceptance
+/// report. No-op outside an acceptance run, so a feature build behaves like release.
+pub fn studio_observation(command: &str, elapsed_ms: u128, result: Value) {
+    if !requested() {
+        return;
+    }
+    let directory = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("target/runtime-acceptance");
+    let line = serde_json::json!({
+        "command": command,
+        "elapsedMs": elapsed_ms,
+        "observedAt": std::time::SystemTime::now()
+            .duration_since(std::time::UNIX_EPOCH)
+            .map(|d| d.as_millis())
+            .unwrap_or_default(),
+        "result": result,
+    });
+    let write = || -> std::io::Result<()> {
+        use std::io::Write;
+        std::fs::create_dir_all(&directory)?;
+        let mut file = std::fs::OpenOptions::new()
+            .create(true)
+            .append(true)
+            .open(directory.join("studio-observations.jsonl"))?;
+        writeln!(file, "{line}")
+    };
+    if let Err(error) = write() {
+        eprintln!("runtime acceptance: studio observation not recorded: {error}");
+    }
+}
+
 #[tauri::command]
 fn record_runtime_acceptance(app: tauri::AppHandle, result: Value) -> Result<(), String> {
     let phase = std::env::var("FORGEKIT_ACCEPTANCE_PHASE").map_err(|error| error.to_string())?;
     let file = match phase.as_str() {
-        "workspace-crash" => "workspace-crash.json",
-        "workspace-recover" => "workspace-recover.json",
-        "save" => "save.json",
-        "reopen" => "reopen.json",
-        "mismatch" => "mismatch.json",
-        "wide" => "wide.json",
-        "images-save" => "images-save.json",
-        "images-reopen" => "images-reopen.json",
-        "sfx-save" => "sfx-save.json",
-        "sfx-reopen" => "sfx-reopen.json",
-        "creative-save" => "creative-save.json",
-        "creative-reopen" => "creative-reopen.json",
         "connections" => "connections.json",
         "provider-only-live" => "provider-only-live.json",
         "provider-all-domains" => "provider-all-domains.json",
@@ -67,19 +85,7 @@ pub fn run(mut context: tauri::Context<tauri::Wry>) {
     assert!(
         matches!(
             phase.as_str(),
-            "workspace-crash"
-                | "workspace-recover"
-                | "save"
-                | "reopen"
-                | "mismatch"
-                | "wide"
-                | "sfx-save"
-                | "sfx-reopen"
-                | "images-save"
-                | "images-reopen"
-                | "creative-save"
-                | "creative-reopen"
-                | "visual-review"
+            "visual-review"
                 | "connections"
                 | "provider-only-live"
                 | "provider-only-review"
@@ -110,91 +116,15 @@ pub fn run(mut context: tauri::Context<tauri::Wry>) {
             include_str!("../tests/provider-all-domains.js")
         } else if phase == "provider-only-live" {
             include_str!("../tests/provider-only-live.js")
-        } else if phase == "connections" {
-            include_str!("../tests/connections-acceptance.js")
-        } else if phase.starts_with("creative-") {
-            include_str!("../tests/creative-acceptance.js")
         } else {
-            include_str!("../tests/runtime-acceptance.js")
+            // "connections"
+            include_str!("../tests/connections-acceptance.js")
         }
     );
     context.config_mut().app.windows.clear();
     tauri::Builder::default()
         .manage(AppState::default())
-        .invoke_handler(tauri::generate_handler![
-            load_creator_draft,
-            save_creator_draft,
-            create_work_task,
-            update_work_task,
-            list_work_tasks,
-            list_library,
-            set_library_deleted,
-            create_gfx_task,
-            save_gfx_version,
-            cancel_gfx_task,
-            get_gfx_task,
-            list_gfx_tasks,
-            list_gfx_versions,
-            load_gfx_version,
-            export_gfx_artifact,
-            get_workspace_info,
-            load_gfx_draft,
-            save_gfx_draft,
-            create_workspace_backup,
-            list_workspace_backups,
-            verify_workspace_backup,
-            restore_workspace_backup,
-            finish_app_exit,
-            probe_studio,
-            read_studio,
-            read_studio_explorer,
-            capture_studio_context,
-            save_image_version,
-            list_image_versions,
-            load_image_version,
-            export_image_artifact,
-            save_sfx_version,
-            list_sfx_versions,
-            load_sfx_version,
-            export_sfx_version,
-            list_ai_providers,
-            save_ai_provider,
-            delete_ai_provider,
-            test_ai_provider,
-            list_connection_profiles,
-            save_connection_profile,
-            delete_connection_profile,
-            set_primary_profile,
-            get_fallback_policy,
-            save_fallback_policy,
-            get_router_connection,
-            save_router_connection,
-            test_router_connection,
-            probe_router_models,
-            get_provider_usage,
-            list_provider_models,
-            get_provider_model_catalog,
-            list_task_attempts,
-            test_connection_profile,
-            connect_provider_browser,
-            list_chat_threads,
-            create_chat_thread,
-            load_chat_thread,
-            latest_chat_turn,
-            send_chat_message,
-            cancel_chat_stream,
-            generate_creative,
-            generate_editor_recipe,
-            resume_ai_task,
-            get_creative_task,
-            list_creative_versions,
-            load_creative_version,
-            cancel_creative,
-            save_creative_revision,
-            export_creative_geometry,
-            export_creative_audio,
-            record_runtime_acceptance,
-        ])
+        .invoke_handler(app_commands!(record_runtime_acceptance))
         .setup(move |app| {
             app.add_capability(
                 CapabilityBuilder::new("runtime-acceptance")
@@ -209,8 +139,7 @@ pub fn run(mut context: tauri::Context<tauri::Wry>) {
             .title("ForgeKit runtime acceptance")
             .inner_size(
                 match phase.as_str() {
-                    "wide" => 1440.0,
-                    "creative-save" | "creative-reopen" | "visual-review" | "provider-only-live" | "provider-only-review" | "provider-only-studio"
+                    "visual-review" | "provider-only-live" | "provider-only-review" | "provider-only-studio"
                 | "provider-all-domains" => 1280.0,
                     _ => 800.0,
                 },
@@ -228,8 +157,6 @@ pub fn run(mut context: tauri::Context<tauri::Wry>) {
                             2400
                         } else if phase == "provider-only-live" || phase == "provider-only-studio" {
                             600
-                        } else if phase.starts_with("creative-") {
-                            180
                         } else {
                             90
                         },

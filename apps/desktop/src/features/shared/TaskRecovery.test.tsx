@@ -65,3 +65,10 @@ it('offers stop Play only for an explicitly resumable native checkpoint', async 
   await userEvent.click(await screen.findByRole('button', { name: 'Hentikan Play dan lanjutkan' }));
   expect(call).toHaveBeenCalledWith('resume_ai_task', { id: 'task-one', mode: 'stop_play' });
 });
+
+it('shows the native failure reason instead of a generic unfinished status', async () => {
+  vi.mocked(call).mockResolvedValue({ ...task, status: 'failed', error: 'Konteks map terverifikasi diperlukan.', recovery: undefined });
+  render(<TaskRecovery taskId="task-one" onRecovered={vi.fn()} />);
+  expect(await screen.findByText(/Tugas gagal: Konteks map terverifikasi diperlukan\./)).toBeVisible();
+  expect(screen.queryByText(/Tugas belum selesai/)).toBeNull();
+});

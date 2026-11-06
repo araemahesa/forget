@@ -1,12 +1,11 @@
 import { getFeatureChoice, selectAccountForFeatures } from '../../services/featureSelection';
 import { Dropdown } from '../../design-system/Dropdown';
-import { useModelSelection } from '../../services/modelCatalog';
-import { ModelControls } from '../shared/ModelControls';
 import { useEffect, useRef, useState } from 'react';
 import type { ConnectionProfile, RouterProbe } from '@forgekit/contracts';
 import { connectionToLegacyProfile, DEFAULT_PROVIDER_CATALOG } from '@forgekit/contracts';
 import { GoogleOAuthSetup } from './GoogleOAuthSetup';
-import { ProviderUsageDetails } from '../shared/ProviderUsageDetails';
+import { ConnectedAccountCard } from './ConnectedAccountCard';
+import { RouterGatewayCard, RouterGatewayForm } from './RouterGateway';
 import { loadProviderUsage, useProviderUsage } from '../../services/providerUsage';
 import { Icon } from '../../design-system/Icon';
 import { ProviderLogo } from '../shared/ProviderLogo';
@@ -22,13 +21,7 @@ const endpoints: Record<string, string> = {
   gemini: 'https://generativelanguage.googleapis.com/v1beta/openai', 'local-llm': 'http://127.0.0.1:11434/v1',
 };
 const providerHints: Record<string, string> = { openai: 'Login ChatGPT', claude: 'Koneksi API Claude', 'antigravity-9router': 'Gateway 9router', 'google-gemini': 'Login Google' };
-const accessLabels = { pending: 'Akses belum diperiksa', ready: 'Respons teks teruji', identity_only: 'Akses AI belum tersedia', reauth_required: 'Hubungkan ulang', revoked: 'Akses dicabut' };
 const message = (error: unknown) => error instanceof Error ? error.message : 'Koneksi belum dapat diperiksa.';
-
-function AccountModels({ account, disabled }: { account: ConnectionProfile; disabled: boolean }) {
-  const selection = useModelSelection(account.enabled && !['revoked', 'identity_only', 'reauth_required'].includes(account.accessState) ? connectionToLegacyProfile(account) : null);
-  return <div className="account-models"><ModelControls selection={selection} disabled={disabled} />{selection.models.length > 0 && <small>{selection.models.length} model tersedia</small>}</div>;
-}
 
 export function ProviderSettings() {
   const { profiles, routerConnection, loading, error } = useConnectionProfiles();
@@ -126,14 +119,12 @@ export function ProviderSettings() {
   const knownModels = probe?.models.filter((id) => id.startsWith('ag/')) ?? [];
 
 
-  const gatewayForm = <form className="provider-modal-form" onSubmit={saveGateway}>
-    <label>URL 9router<input type="url" value={routerUrl} onChange={(e) => setRouterUrl(e.target.value)} required disabled={busy} /></label>
-    <label>Kunci inference router (bila diwajibkan)<input name="routerSecret" type="password" autoComplete="off" disabled={busy} /></label>
-    <small>Credential ini milik gateway. Token login Antigravity tetap di 9router. Server remote menerima konteks tugas; gunakan HTTPS.</small>
-    <div className="action-row"><button className="button secondary-button" disabled={busy} type="submit">Kaitkan router</button>
-      <button className="button secondary-button" disabled={busy} type="button" onClick={() => void act(checkRouter)}>Periksa koneksi</button></div>
-    {routerStatus && <p role="status">{routerStatus}</p>}
-  </form>;
+  const openRouterDashboard = () => void act(async () => {
+    const session = await connectProviderBrowser('antigravity-9router');
+    setDashboardOpened(true); setStatus(session.message ?? 'Selesaikan login di dashboard, lalu kembali dan periksa koneksi.');
+  });
+  const gatewayForm = (withDashboard: boolean) => <RouterGatewayForm url={routerUrl} onUrlChange={setRouterUrl} busy={busy} status={routerStatus}
+    onSave={saveGateway} onCheck={() => void act(checkRouter)} onOpenDashboard={withDashboard ? openRouterDashboard : undefined} />;
 
   return <section className="settings-section" id="settings-providers" aria-labelledby="providers-heading">
     <div className="section-header"><h2 id="providers-heading">Provider AI</h2><span className="settings-section-caption">Chat & kreasi</span></div>
@@ -155,17 +146,12 @@ export function ProviderSettings() {
         <button type="button" className="button secondary-button" disabled={busy} onClick={close}>Batalkan</button></div>
       {routerDraft ? <>
         <p>1. Kaitkan gateway. 2. Tambah akun di dashboard 9router. 3. Kembali, periksa katalog, lalu uji model.</p>
-        {gatewayForm}
-        <div className="action-row"><button className="button secondary-button" type="button" disabled={busy} onClick={() => void act(async () => {
-          const session = await connectProviderBrowser('antigravity-9router');
-          setDashboardOpened(true); setStatus(session.message ?? 'Selesaikan login di dashboard, lalu kembali dan periksa koneksi.');
-        })}>Buka 9router di Browser</button></div>
+        {gatewayForm(true)}
         {dashboardOpened && <p role="status">Dashboard dibuka. Menutup browser tidak membuktikan login atau pembatalan. Tekan Periksa koneksi setelah selesai.</p>}
         <p>Akun dikelola 9router. Identitas upstream belum tersedia. Urutan akun, Add Connection, dan fallback upstream diatur pada dashboard. ForgeKit tidak menjalankan rotasi kedua.</p>
       </> : <p>{['oauth_browser', 'codex_oauth'].includes(draft.authMethod) ? 'Akun ini menggunakan login browser. Token dikelola otomatis oleh ForgeKit.' : `Pengaturan lanjutan · ${draft.providerId === 'local-llm' ? 'runtime lokal' : 'koneksi API'}. Credential disimpan di Keychain perangkat.`}</p>}
       {draft.providerId === 'claude' && <button className="button secondary-button" type="button" disabled={busy} onClick={() => void act(async () => { const result = await connectProviderBrowser('claude'); setStatus(result.message ?? 'Claude Console dibuka.'); })}>Buka Claude Console</button>}
       <form className="provider-modal-form" onSubmit={submitConnection}>
-        {['openai-compatible', 'local-llm'].includes(draft.providerId) && <label>Jenis koneksi<Dropdown value={draft.providerId} disabled={busy} onChange={(e) => setDraft({ ...draft, providerId: e.target.value, authMethod: e.target.value === 'local-llm' ? 'local_runtime' : 'api_key', baseUrl: endpoints[e.target.value] ?? '' })}><option value="openai-compatible">OpenAI compatible</option><option value="local-llm">Runtime lokal</option></Dropdown></label>}
         <label>Nama akun<input value={draft.label} maxLength={100} required disabled={busy} onChange={(e) => setDraft({ ...draft, label: e.target.value })} /></label>
         {routerDraft ? <label>Model tersedia<Dropdown value={draft.model} disabled={busy || !probe} required onChange={(e) => setDraft({ ...draft, model: e.target.value })}><option value="">Pilih model dari katalog</option>{knownModels.map((id) => <option key={id} value={id}>{id}</option>)}</Dropdown></label>
           : <label>Model<input value={draft.model} maxLength={200} required disabled={busy} placeholder="ID model yang tersedia pada akun" onChange={(e) => setDraft({ ...draft, model: e.target.value })} /></label>}
@@ -185,28 +171,18 @@ export function ProviderSettings() {
     <div className="connected-accounts-section"><div className="section-header"><h3>Akun tersambung</h3><button className="button secondary-button" type="button" disabled={accountUsage.some((entry) => entry.loading) || !usageProfiles.length} onClick={() => usageProfiles.forEach((profile) => void loadProviderUsage(profile, true))}><Icon name="refresh" />Perbarui usage</button></div>
       {loading && <p role="status">Memuat akun…</p>}
       {!loading && !profiles.length && <p>Hubungkan akun untuk mulai menggunakan AI.</p>}
-      <div className="accounts-list">{profiles.map((account) => <div className="account-row" key={account.id}>
-        <div className="account-info"><div className="account-tag-row"><ProviderLogo provider={account.providerId} /><div className="account-name-block"><strong>{account.identity?.displayName ?? account.label}</strong><span className="account-mode-tag">{account.connectionMode === 'router' ? 'via 9router' : account.authMethod === 'codex_oauth' ? 'ChatGPT · Codex' : account.authMethod === 'oauth_browser' ? 'Login browser' : 'Koneksi API'}</span></div><span className="account-role-badge">{selectedAccount === account.id ? 'Dipilih' : 'Tersimpan'}</span></div>
-          {account.accessState !== 'ready' && <small className="account-access-state">{accessLabels[account.accessState]}</small>}
-          {(() => { const entry = accountUsage.find((item) => item.profile.id === account.id); return entry ? <ProviderUsageDetails data={entry.data} loading={entry.loading} error={entry.error} compact /> : <small>Aktifkan atau hubungkan ulang akun untuk membaca kuota.</small>; })()}
-          <AccountModels account={account} disabled={busy} />
-          <details className="account-access-details"><summary>Detail akses</summary><p>{account.providerId} · {account.model} · {accessLabels[account.accessState]}</p><p>{account.connectionMode === 'router' ? 'Otomatis via 9router · Akun upstream tidak diketahui' : account.authMethod === 'codex_oauth' ? 'Login dan pembaruan token dikelola Codex dalam profil khusus ForgeKit. Usage dibaca dari akun ini.' : (account.authMethod === 'oauth_browser') ? `Identitas akun diverifikasi saat login resmi ${account.providerId === 'google-gemini' ? 'Google' : account.providerId === 'claude' ? 'Claude' : 'ChatGPT'}.` : 'Identitas akun belum diverifikasi; nama adalah label lokal.'}</p><p>{account.baseUrl}</p><p>Tools dan media belum dibuktikan oleh uji teks.</p></details>
-        </div>
-        <div className="action-row">
-          <button className="button secondary-button" type="button" disabled={busy || !account.enabled || account.accessState !== 'ready'} aria-pressed={selectedAccount === account.id} onClick={() => { selectAccountForFeatures(account.id); setSelectedAccount(account.id); setStatus('Akun dipilih untuk tugas baru.'); }}>{selectedAccount === account.id ? 'Dipilih' : 'Pakai akun'}</button>
-          <button className="button secondary-button" type="button" disabled={busy} onClick={(e) => connect(account.providerId, e.currentTarget, account)}>Kelola</button>
-          <button className="button secondary-button" type="button" disabled={busy} onClick={() => void act(async () => { const result = await testConnectionProfile(account); await refreshProviders(true); setStatus(`${result.ok ? 'Uji koneksi berhasil' : 'Uji gagal'} (${result.latencyMs}ms): ${result.message}`); })}>Uji koneksi</button>
-          <button className="button secondary-button" type="button" disabled={busy} onClick={() => void act(async () => { await deleteConnectionProfile(account.id); await refreshProviders(true); setStatus(`Koneksi ${account.label} dilepas. Riwayat dan akun upstream tetap tersedia.`); })}>Putuskan</button>
-        </div>
-      </div>)}</div>
+      <div className="accounts-list">{profiles.map((account) => <ConnectedAccountCard key={account.id} account={account} busy={busy}
+        selected={selectedAccount === account.id}
+        usage={accountUsage.find((item) => item.profile.id === account.id)}
+        onUse={() => { selectAccountForFeatures(account.id); setSelectedAccount(account.id); setStatus('Akun dipilih untuk tugas baru.'); }}
+        onManage={(button) => connect(account.providerId, button, account)}
+        onTest={() => void act(async () => { const result = await testConnectionProfile(account); await refreshProviders(true); setStatus(`${result.ok ? 'Uji koneksi berhasil' : 'Uji gagal'} (${result.latencyMs}ms): ${result.message}`); })}
+        onDisconnect={() => { if (!window.confirm(`Putuskan ${account.identity?.displayName ?? account.label}? Login akun ini dihapus dari ForgeKit dan harus dihubungkan ulang.`)) return; void act(async () => { await deleteConnectionProfile(account.id); await refreshProviders(true); setStatus(`Koneksi ${account.label} dilepas. Riwayat dan akun upstream tetap tersedia.`); }); }} />)}</div>
     </div>
 
-    <div className="fallback-control-card">
-      <div className="fallback-header"><strong>Pergantian akun</strong><span>Otomatis pada provider yang sama</span></div>
-      <p>Saat akun mencapai limit, ForgeKit mencoba akun terhubung berikutnya pada provider dan model yang sama. Akun dengan kuota bersama dilewati.</p>
-      <p>Pilih provider dan akun melalui pemilih pada setiap generator atau AI Chat. Gunakan Pakai akun untuk memilih akun bagi tugas baru.</p>
-      <small>Pergantian otomatis berlaku sebelum hasil atau operasi tool diterima. Maksimum lima percobaan. Jika seluruh akun tidak tersedia, proses berhenti dengan pesan. Akun upstream 9router dikelola oleh router.</small>
-    </div>
-    <details className="advanced-disclosure"><summary>Pengaturan lanjutan</summary><div className="advanced-body"><GoogleOAuthSetup /><h3>Gateway 9router</h3><details><summary>Akun dan kuota</summary><p>Pilih akun lain pada composer untuk tugas baru. Tugas berjalan tetap memakai akun semula. Kunci API dalam project yang sama dapat berbagi kuota.</p></details>{!routerDraft && gatewayForm}<p>Kuota upstream dibaca melalui API dashboard jika akses tersedia. Kelola akun dan izin dashboard melalui 9router. Putuskan dari ForgeKit hanya melepas profil lokal.</p><p>Keychain macOS menyimpan credential per koneksi. Login Discord, provider AI, dan map Studio terpisah.</p></div></details>
+    <RouterGatewayCard connection={routerConnection} probe={probe} accounts={profiles.filter((p) => p.connectionMode === 'router').length}>
+      {routerDraft ? <p className="router-gateway-status">Konfigurasi gateway sedang dibuka pada form Hubungkan Antigravity di atas.</p> : gatewayForm(true)}
+    </RouterGatewayCard>
+    <details className="advanced-disclosure"><summary>Pengaturan lanjutan</summary><div className="advanced-body"><GoogleOAuthSetup /><p>Keychain macOS menyimpan credential per koneksi. Login Discord, provider AI, dan map Studio terpisah.</p></div></details>
   </section>;
 }

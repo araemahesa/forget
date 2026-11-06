@@ -104,7 +104,7 @@ export function useCreativeTask(kind: ProceduralKind, session?: { id: string; in
       }
       activeThread.current = (value as CreativeTask & { threadId?: string }).threadId ?? null;
       if (value.status === 'completed' && activeThread.current) {
-        const messages = await call<{ role: string; content: string }[]>('load_chat_thread', { id: activeThread.current });
+        const messages = await call<{ role: string; content: string }[]>('load_chat_thread', { threadId: activeThread.current });
         if (current && !active.current) setApplicationResult(messages.filter(message => message.role === 'assistant').at(-1)?.content ?? 'Hasil tugas tersedia di AI Chat.');
       }
       if (['queued', 'planning', 'reading_context', 'streaming', 'tool_running', 'validating'].includes(value.status)) {
@@ -131,7 +131,7 @@ export function useCreativeTask(kind: ProceduralKind, session?: { id: string; in
               try {
                 const threadId = (value as CreativeTask & { threadId?: string }).threadId;
                 if (threadId && value.status === 'completed') {
-                  const messages = await call<{ role: string; content: string }[]>('load_chat_thread', { id: threadId });
+                  const messages = await call<{ role: string; content: string }[]>('load_chat_thread', { threadId });
                   if (!stopped && active.current === id) setApplicationResult(messages.filter(message => message.role === 'assistant').at(-1)?.content ?? 'Hasil tugas tersedia di AI Chat.');
                 }
                 if (value.versionId) {
@@ -193,7 +193,7 @@ export function useCreativeTask(kind: ProceduralKind, session?: { id: string; in
       const studio = document ? null : await refreshStudioContext();
       if (active.current !== id || cancelled.current) return;
       if (applyVersionId) {
-        if (!studio) throw new Error('Hubungkan dan verifikasi map tujuan di Roblox Studio terlebih dahulu.');
+        if (!studio?.context) throw new Error('Hubungkan dan verifikasi map tujuan di Roblox Studio terlebih dahulu.');
         const thread = await call<{ id: string }>('create_chat_thread', { title: `Terapkan ${kind}`, providerId: choiceSnapshot.providerId, model: choiceSnapshot.modelId, systemPrompt: null });
         activeThread.current = thread.id;
         if (cancelled.current || active.current !== id) return;

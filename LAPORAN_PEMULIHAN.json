@@ -649,7 +649,7 @@
       "sha256": "836076edf055f3d251bfa208a52b0d81737b787c1da3df35e9558c34a94ebdb8",
       "bytes": 144
     },
-    "docs/CONNECTION_REPAIR_2026_10_29.md": {
+    "docs/changelog/CONNECTION_REPAIR_2026_10_29.md": {
       "session": "/Users/ariardianto/.codex/sessions/2026/10/28/rollout-2026-10-28T10-07-51-01a1807a-75af-7862-bfb2-4dcec2d5ab35.jsonl",
       "time": "2026-10-29T06:43:37.103Z",
       "kind": "python-write",
@@ -677,7 +677,7 @@
       "sha256": "25e94460531673c1b0823d124d6aeee1bb5446f5ed7ecf5364c28c8894cdb1d0",
       "bytes": 6942
     },
-    "docs/PROMPT_QUALITY_2026_10_29.md": {
+    "docs/changelog/PROMPT_QUALITY_2026_10_29.md": {
       "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
       "time": "2026-10-29T13:41:43.533Z",
       "kind": "python-write",
@@ -817,14 +817,14 @@
       "sha256": "f10e37b15157173ebed3a4c590add8f9a207f50c5effb3990fe5248917c2a3e3",
       "bytes": 1911
     },
-    "docs/MULTI_ACCOUNT_2026_10_30.md": {
+    "docs/changelog/MULTI_ACCOUNT_2026_10_30.md": {
       "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
       "time": "2026-10-30T08:21:03.223Z",
       "kind": "python-write",
       "sha256": "9464026baebd4b14c7a6d2c4863d52e950d701917f554e62adcf99d40b2dc943",
       "bytes": 4499
     },
-    "docs/LOGIN_REPAIR_2026_10_30.md": {
+    "docs/changelog/LOGIN_REPAIR_2026_10_30.md": {
       "session": "/Users/ariardianto/.codex/sessions/2026/10/29/rollout-2026-10-29T14-07-25-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a1867c-2498-73f0-8f03-bdc75cd17387.jsonl",
       "time": "2026-10-30T09:01:33.088Z",
       "kind": "python-write",
@@ -838,7 +838,7 @@
       "sha256": "4d27702a04810324cbe7f457acb255360a9604374456527d2202e7ee2794713d",
       "bytes": 2612
     },
-    "docs/AUTOMATIC_ACCOUNT_ACCESS_2026_10_30.md": {
+    "docs/changelog/AUTOMATIC_ACCOUNT_ACCESS_2026_10_30.md": {
       "session": "/Users/ariardianto/.codex/sessions/2026/10/30/rollout-2026-10-30T16-11-24-01a1807a-75af-7862-bfb2-4dcec2d5ab35_01a18c14-02b0-7392-b230-97577d4ddc19.jsonl",
       "time": "2026-10-30T09:27:52.859Z",
       "kind": "python-write",
@@ -852,7 +852,7 @@
       "sha256": "af683214ec2ae5148fae3815823bfb184110140b77c79c272bc690eda96ec912",
       "bytes": 6142
     },
-    "docs/MATERIAL_3D_REMOVAL_2026_10_30.md": {
+    "docs/changelog/MATERIAL_3D_REMOVAL_2026_10_30.md": {
       "session": "/Users/ariardianto/.codex-2/sessions/2026/10/28/rollout-2026-10-28T14-18-51-01a18160-3f53-7c20-8488-5686e7b359cd.jsonl",
       "time": "2026-10-30T10:19:08.801Z",
       "kind": "python-write",
@@ -866,7 +866,7 @@
       "sha256": "bd5c287286eda523bd98e1cbb2f56579ec3b6a0e9782ed3463b20f39da6c9f50",
       "bytes": 320
     },
-    "docs/TEXTURE_REMOVAL_2026_10_30.md": {
+    "docs/changelog/TEXTURE_REMOVAL_2026_10_30.md": {
       "session": "/Users/ariardianto/.codex-2/sessions/2026/10/28/rollout-2026-10-28T14-18-51-01a18160-3f53-7c20-8488-5686e7b359cd.jsonl",
       "time": "2026-10-30T10:53:45.467Z",
       "kind": "python-write",
@@ -880,14 +880,14 @@
       "sha256": "4605ec48972af96319f0bf2815d5119751d960884d2f99071044ae3abb4287e5",
       "bytes": 4412
     },
-    "docs/CHAT_STUDIO_STATUS_2026_10_30.md": {
+    "docs/changelog/CHAT_STUDIO_STATUS_2026_10_30.md": {
       "session": "/Users/ariardianto/.codex-2/sessions/2026/10/28/rollout-2026-10-28T14-18-51-01a18160-3f53-7c20-8488-5686e7b359cd.jsonl",
       "time": "2026-10-30T11:16:44.186Z",
       "kind": "python-write",
       "sha256": "1674f9f7d1fcec3402a5a42230bafe6c3c0f055c4f496bd7e210245126fc069d",
       "bytes": 2917
     },
-    "docs/STUDIO_STATUS_POSITION_2026_10_30.md": {
+    "docs/changelog/STUDIO_STATUS_POSITION_2026_10_30.md": {
       "session": "/Users/ariardianto/.codex-2/sessions/2026/10/28/rollout-2026-10-28T14-18-51-01a18160-3f53-7c20-8488-5686e7b359cd.jsonl",
       "time": "2026-10-30T11:24:16.483Z",
       "kind": "python-write",
@@ -976,7 +976,7 @@
           "sha256": "287bc66efd5796cf7586def10d5b9a6ac8325db95ff51ba7626ee48162ee1ac4"
         }
       ],
-      "verificationReport": "docs/PROMPT_LAYOUT_2026_10_30.json",
+      "verificationReport": "docs/changelog/PROMPT_LAYOUT_2026_10_30.json",
       "deployed": false
     }
   ]
