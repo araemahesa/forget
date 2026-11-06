@@ -1494,7 +1494,7 @@ pub async fn send_chat_message(
             // User-configured MCP servers live only for this request; dropping the set stops them.
             let connectors = with_storage(&app, &app.state::<AppState>(), Storage::list_mcp_connectors)?;
             let mut mcp = if connectors.iter().any(|c| c.is_enabled) {
-                crate::mcp::Toolset::start(&connectors, mode == "auto")
+                crate::mcp::Toolset::start(&connectors, mode == "auto", &|| lease.is_cancelled())
             } else {
                 crate::mcp::Toolset::default()
             };
@@ -1918,21 +1918,20 @@ pub async fn list_available_mcp_tools(
     config: Option<crate::connectors::McpConnectorConfig>,
 ) -> Result<Vec<crate::connectors::McpToolInfo>, CommandError> {
     tauri::async_runtime::spawn_blocking(move || {
-        let configs = match config {
-            Some(config) => {
-                crate::connectors::validate(&config).map_err(|e| native_error(e.to_string()))?;
-                vec![config]
-            }
-            None => with_storage(&app, &app.state::<AppState>(), Storage::list_mcp_connectors)?
-                .into_iter()
-                .filter(|c| c.is_enabled)
-                .collect(),
-        };
-        let mut tools = Vec::new();
-        for config in &configs {
-            tools.extend(crate::mcp::discover(config).map_err(native_error)?);
+        if let Some(config) = config {
+            // Testing one connector reports its exact error to the settings UI.
+            crate::connectors::validate(&config).map_err(native_error)?;
+            return crate::mcp::discover(&config).map_err(native_error);
         }
-        Ok(tools)
+        // Across all enabled connectors a broken server must not hide the working ones,
+        // matching how chat skips a connector that fails to start.
+        let configs = with_storage(&app, &app.state::<AppState>(), Storage::list_mcp_connectors)?;
+        Ok(configs
+            .iter()
+            .filter(|c| c.is_enabled)
+            .filter_map(|config| crate::mcp::discover(config).ok())
+            .flatten()
+            .collect())
     })
     .await
     .map_err(native_error)?

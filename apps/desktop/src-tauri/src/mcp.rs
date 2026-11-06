@@ -105,7 +105,7 @@ pub struct Client {
 }
 
 impl Client {
-    pub fn start(config: &McpConnectorConfig) -> Result<Self, String> {
+    pub fn start(config: &McpConnectorConfig, cancelled: &dyn Fn() -> bool) -> Result<Self, String> {
         let path = search_path();
         let executable = resolve(config.command.trim(), &path)?;
         let mut command = Command::new(&executable);
@@ -151,7 +151,7 @@ impl Client {
                 "clientInfo": {"name": "ForgeKit Studio", "version": env!("CARGO_PKG_VERSION")}
             }),
             START_TIMEOUT,
-            &|| false,
+            cancelled,
         )?;
         client.notify("notifications/initialized", json!({}))?;
         Ok(client)
@@ -225,7 +225,7 @@ impl Client {
         }
     }
 
-    pub fn list_tools(&mut self) -> Result<Vec<Value>, String> {
+    pub fn list_tools(&mut self, cancelled: &dyn Fn() -> bool) -> Result<Vec<Value>, String> {
         let mut tools = Vec::new();
         let mut cursor: Option<String> = None;
         for _ in 0..10 {
@@ -233,7 +233,7 @@ impl Client {
                 Some(c) => json!({"cursor": c}),
                 None => json!({}),
             };
-            let result = self.request("tools/list", params, START_TIMEOUT, &|| false)?;
+            let result = self.request("tools/list", params, START_TIMEOUT, cancelled)?;
             if let Some(items) = result["tools"].as_array() {
                 tools.extend(items.iter().cloned());
             }
@@ -276,9 +276,9 @@ fn sanitize(name: &str) -> String {
 
 /// Tool info for the settings UI; starts the server, lists its tools, then stops it.
 pub fn discover(config: &McpConnectorConfig) -> Result<Vec<crate::connectors::McpToolInfo>, String> {
-    let mut client = Client::start(config)?;
+    let mut client = Client::start(config, &|| false)?;
     Ok(client
-        .list_tools()?
+        .list_tools(&|| false)?
         .iter()
         .filter_map(|tool| {
             Some(crate::connectors::McpToolInfo {
@@ -302,11 +302,15 @@ pub struct Toolset {
 
 impl Toolset {
     /// `writable=false` (ask/plan mode) exposes only tools the server marks read-only.
-    pub fn start(configs: &[McpConnectorConfig], writable: bool) -> Self {
+    /// `cancelled` lets Stop interrupt a slow server start instead of waiting it out.
+    pub fn start(configs: &[McpConnectorConfig], writable: bool, cancelled: &dyn Fn() -> bool) -> Self {
         let mut set = Toolset::default();
         for config in configs.iter().filter(|c| c.is_enabled) {
-            let started = Client::start(config).and_then(|mut client| {
-                let tools = client.list_tools()?;
+            if cancelled() {
+                break;
+            }
+            let started = Client::start(config, cancelled).and_then(|mut client| {
+                let tools = client.list_tools(cancelled)?;
                 Ok((client, tools))
             });
             let (client, tools) = match started {
@@ -440,11 +444,11 @@ done
 
     #[test]
     fn exposes_tools_by_mode_and_routes_calls() {
-        let read_only = Toolset::start(&[fixture(SERVER)], false);
+        let read_only = Toolset::start(&[fixture(SERVER)], false, &|| false);
         assert!(read_only.warnings.is_empty(), "{:?}", read_only.warnings);
         assert_eq!(read_only.definitions.iter().map(|d| d.wire_name.as_str()).collect::<Vec<_>>(), ["mcp_r0_read_notes"]);
 
-        let mut set = Toolset::start(&[fixture(SERVER)], true);
+        let mut set = Toolset::start(&[fixture(SERVER)], true, &|| false);
         let wires: Vec<_> = set.definitions.iter().map(|d| d.wire_name.clone()).collect();
         assert_eq!(wires, ["mcp_r0_read_notes", "mcp_w0_write_note"]);
         assert!(is_write("mcp_w0_write_note") && !is_write("mcp_r0_read_notes"));
@@ -459,10 +463,16 @@ done
     fn allowed_tools_filter_and_broken_servers_only_warn() {
         let mut config = fixture(SERVER);
         config.allowed_tools = vec!["write_note".into()];
-        let set = Toolset::start(&[config, fixture("exit 0")], true);
+        let set = Toolset::start(&[config, fixture("exit 0")], true, &|| false);
         assert_eq!(set.definitions.len(), 1);
         assert_eq!(set.definitions[0].name, "write_note");
         assert_eq!(set.warnings.len(), 1);
+    }
+
+    #[test]
+    fn stop_skips_starting_servers() {
+        let set = Toolset::start(&[fixture(SERVER)], true, &|| true);
+        assert!(set.definitions.is_empty() && set.warnings.is_empty());
     }
 
     #[test]

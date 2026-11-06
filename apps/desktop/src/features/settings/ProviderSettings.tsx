@@ -177,7 +177,7 @@ export function ProviderSettings() {
         onUse={() => { selectAccountForFeatures(account.id); setSelectedAccount(account.id); setStatus('Akun dipilih untuk tugas baru.'); }}
         onManage={(button) => connect(account.providerId, button, account)}
         onTest={() => void act(async () => { const result = await testConnectionProfile(account); await refreshProviders(true); setStatus(`${result.ok ? 'Uji koneksi berhasil' : 'Uji gagal'} (${result.latencyMs}ms): ${result.message}`); })}
-        onDisconnect={() => void act(async () => { await deleteConnectionProfile(account.id); await refreshProviders(true); setStatus(`Koneksi ${account.label} dilepas. Riwayat dan akun upstream tetap tersedia.`); })} />)}</div>
+        onDisconnect={() => { if (!window.confirm(`Putuskan ${account.identity?.displayName ?? account.label}? Login akun ini dihapus dari ForgeKit dan harus dihubungkan ulang.`)) return; void act(async () => { await deleteConnectionProfile(account.id); await refreshProviders(true); setStatus(`Koneksi ${account.label} dilepas. Riwayat dan akun upstream tetap tersedia.`); }); }} />)}</div>
     </div>
 
     <RouterGatewayCard connection={routerConnection} probe={probe} accounts={profiles.filter((p) => p.connectionMode === 'router').length}>

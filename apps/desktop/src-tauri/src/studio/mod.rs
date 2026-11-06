@@ -1118,15 +1118,20 @@ pub fn agent_call(
     if is_write(name) {
         // Probe the document identity right now, then make the write itself re-check it
         // inside Studio before touching anything. A switched map aborts with no change.
+        session.deadline = Instant::now() + Duration::from_secs(20);
         let identity = probe_identity(&mut session, entry, studio_id).map_err(AgentCallError::NotExecuted)?;
         let code = arguments["code"]
             .as_str()
             .ok_or_else(|| AgentCallError::NotExecuted("execute_luau memerlukan field code.".into()))?;
         arguments["code"] = json!(guarded_luau(code, &identity).map_err(AgentCallError::NotExecuted)?);
+        // discover()'s 20s budget covers reads; a write may build or load content for longer.
+        // Losing the response mid-write would leave the outcome unknown, so match insert_blender.
+        session.deadline = Instant::now() + WRITE_TIMEOUT;
     }
     let result = session
         .request("tools/call", json!({"name":name,"arguments":arguments}))
         .map_err(AgentCallError::Unknown)?;
+    session.deadline = Instant::now() + Duration::from_secs(20);
     verify_after(&mut session, &tools, stamp).map_err(AgentCallError::Unknown)?;
     // isError is returned to the model as evidence, never converted to a success claim.
     Ok(crate::agent::bounded_result(result))
@@ -1138,6 +1143,7 @@ struct DocumentIdentity {
     place_id: String,
 }
 
+const WRITE_TIMEOUT: Duration = Duration::from_secs(120);
 const IDENTITY_PROBE: &str = "local run = game:GetService('RunService')\nreturn game:GetService('HttpService'):JSONEncode({running = run:IsRunning(), documentId = game:GetDebugId(32) .. ':' .. workspace:GetDebugId(32), placeId = tostring(game.PlaceId)})";
 
 fn probe_identity(session: &mut Session, entry: &Value, studio_id: &str) -> Result<DocumentIdentity, String> {

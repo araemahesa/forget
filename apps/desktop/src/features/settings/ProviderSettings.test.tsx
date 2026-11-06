@@ -170,9 +170,13 @@ describe('ProviderSettings Component', () => {
       expect(screen.getByText('Antigravity Cadangan')).toBeInTheDocument();
     });
 
+    const confirm = vi.spyOn(window, 'confirm').mockReturnValueOnce(false).mockReturnValueOnce(true);
     const disconnectButtons = screen.getAllByRole('button', { name: 'Putuskan' });
     await user.click(disconnectButtons[1]);
+    expect(aiServices.deleteConnectionProfile).not.toHaveBeenCalled();
 
+    await user.click(disconnectButtons[1]);
+    expect(confirm).toHaveBeenCalledTimes(2);
     expect(aiServices.deleteConnectionProfile).toHaveBeenCalledWith('prof-2');
   });
 
