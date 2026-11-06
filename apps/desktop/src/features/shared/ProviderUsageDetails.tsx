@@ -25,6 +25,7 @@ export function ProviderUsageDetails({ data, loading, error, compact = false }: 
           {reset ? <time dateTime={reset.toISOString()} title={`Reset ${reset.toLocaleString('id-ID')}${expired ? ' · menunggu data terbaru' : ''}`}>{resetLabel}</time>
             : <span className="provider-usage-reset" title="Provider belum mengirim waktu reset">—</span>}
         </span>
+        {compact && <span className={`provider-usage-bar${remaining <= 10 && !expired ? ' is-low' : remaining <= 35 && !expired ? ' is-mid' : ''}`} aria-hidden="true"><span style={{ width: `${expired ? 0 : remaining}%` }} /></span>}
         {showScope && <span className="provider-usage-scope">{window.scope}{window.remaining != null && window.limit != null && !expired ? ` · ${window.remaining.toLocaleString('id-ID')} / ${window.limit.toLocaleString('id-ID')} tersisa` : ''}{expired ? ' · menunggu data terbaru' : ''}</span>}
       </span>;
     }) : <span className="provider-usage-note">{loading ? 'Membaca limit akun…' : error || data?.message || 'Data kuota belum tersedia.'}</span>}

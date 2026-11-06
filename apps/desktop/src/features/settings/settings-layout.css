@@ -38,46 +38,102 @@
 .settings-page .connected-accounts-section { margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--border); }
 .settings-page .connected-accounts-section .section-header { margin-bottom: 16px; }
 .settings-page .connected-accounts-section .section-header .button { min-height: 32px; font-size: 11px; }
-.settings-page .accounts-list { display: grid; gap: 16px; }
-.settings-page .account-row { padding: 20px; gap: 16px; background: var(--surface-raised); }
-.settings-page .account-info { width: 100%; min-width: 0; }
-.settings-page .account-tag-row { display: flex; align-items: flex-start; flex-wrap: nowrap; gap: 10px; margin-bottom: 16px; }
-.settings-page .account-tag-row > .provider-logo { margin-top: 2px; }
-.settings-page .account-name-block { display: flex; flex: 1; min-width: 0; flex-direction: column; gap: 5px; }
-.settings-page .account-name-block strong { overflow-wrap: anywhere; font-size: 12px; line-height: 1.5; }
-.settings-page .account-mode-tag { color: var(--text-muted); font-size: 10px; }
-.settings-page .account-role-badge { flex-shrink: 0; padding: 3px 6px; border-radius: 4px; background: var(--accent-subtle); font-size: 9px; white-space: nowrap; }
-.settings-page .account-access-state { display: block; margin: 0 0 12px; color: var(--warning); }
-.settings-page .provider-usage.is-compact { padding: 12px; margin: 0; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; font-size: 11px; }
-.settings-page .provider-usage.is-compact .provider-usage-heading { font-size: 11px; color: var(--text-muted); }
-.settings-page .provider-usage.is-compact .provider-usage-heading .icon { width: 14px; height: 14px; }
-.settings-page .provider-usage.is-compact .provider-usage-row { grid-template-columns: minmax(55px,1fr) 50px 60px; gap: 8px; }
-.settings-page .account-models { margin: 16px 0 12px; }
-.settings-page .account-models > small { display: none; }
-.settings-page .account-models .model-controls { width: 100%; }
-.settings-page .account-access-details { padding-top: 12px; margin-top: 12px; border-top: 1px solid var(--border); font-size: 11px; color: var(--text-muted); }
-.settings-page .account-access-details p { margin: 10px 0 0; font-size: 11px; line-height: 1.7; overflow-wrap: anywhere; }
-.settings-page .account-row > .action-row { padding-top: 0; margin: 0; gap: 6px; }
-.settings-page .account-row > .action-row .button { min-height: 30px; padding-inline: 10px; font-size: 10px; }
 
-.settings-page .advanced-disclosure { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
 .settings-page .settings-about { display: flex; align-items: center; gap: 10px; margin-top: 24px; padding: 0 0 8px; font-size: 11px; color: var(--text-muted); }
 .settings-page .settings-about .brand-mark { width: 24px; height: 24px; flex-basis: 24px; }
 .settings-page .settings-about > span { margin-left: auto; }
 @media (min-width: 1000px) {
   .settings-page .settings-preferences { grid-template-columns: minmax(0,.8fr) minmax(0,1.2fr); }
-  .settings-page .accounts-list { grid-template-columns: repeat(2,minmax(0,1fr)); }
 }
 @media (min-width: 1100px) { .settings-page .provider-cards-grid { grid-template-columns: repeat(4,minmax(0,1fr)); } }
 @media (max-width: 999px) {
-  .settings-page .settings-preferences, .settings-page .accounts-list { grid-template-columns: minmax(0,1fr); }
+  .settings-page .settings-preferences { grid-template-columns: minmax(0,1fr); }
   .settings-page .account-settings .oauth-setup { margin-top: 0; }
 }
 @media (max-width: 760px) {
   .settings-page .settings-preferences > .settings-section, .settings-page #settings-providers { padding: 16px; }
-  .settings-page .account-row { padding: 16px; }
 }
-.settings-page .account-models .ai-model-controls { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(0,1fr) 30px; gap: 8px; }
-.settings-page .account-models .ai-model-controls label { font-size: 11px; }
-.settings-page .account-models .ai-model-controls .dropdown-trigger { min-height: 36px; font-size: 11px; }
+
+/* Connected accounts: one full-width card per account, usage beside model controls. */
+.settings-page .accounts-list { display: grid; grid-template-columns: minmax(0,1fr); gap: 14px; }
+.settings-page .account-card { display: flex; flex-direction: column; gap: 16px; padding: 18px 20px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface-raised); min-width: 0; }
+.settings-page .account-card.is-selected { border-color: color-mix(in srgb, var(--accent) 45%, var(--border)); box-shadow: inset 3px 0 0 var(--accent); }
+.settings-page .account-card-header { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.settings-page .account-card-header > .provider-logo { width: 28px; height: 28px; flex-shrink: 0; }
+.settings-page .account-name-block { display: flex; flex: 1; min-width: 0; flex-direction: column; gap: 2px; }
+.settings-page .account-name-block strong { font-size: 13px; font-weight: 600; line-height: 1.4; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.settings-page .account-mode-tag { color: var(--text-muted); font-size: 11px; }
+.settings-page .account-role-badge { flex-shrink: 0; padding: 3px 10px; border: 1px solid var(--border); border-radius: 999px; background: var(--surface); color: var(--text-secondary); font-size: 10px; font-weight: 600; letter-spacing: .02em; text-transform: none; white-space: nowrap; }
+.settings-page .account-role-badge.is-selected { border-color: transparent; background: var(--accent-subtle); color: var(--accent); }
+.settings-page .account-access-state { margin: -6px 0 0; padding: 8px 12px; border-radius: 8px; background: color-mix(in srgb, var(--warning) 12%, transparent); color: var(--warning); font-size: 11px; }
+.settings-page .account-card-body { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.15fr); gap: 16px; align-items: stretch; }
+.settings-page .account-card-usage { min-width: 0; }
+.settings-page .account-card-empty { margin: 0; padding: 14px; border: 1px dashed var(--border); border-radius: 10px; color: var(--text-muted); font-size: 11px; }
+.settings-page .provider-usage.is-compact { height: 100%; margin: 0; padding: 14px 16px; gap: 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); font-size: 12px; box-sizing: border-box; }
+.settings-page .provider-usage.is-compact .provider-usage-heading { font-size: 11px; color: var(--text-muted); }
+.settings-page .provider-usage.is-compact .provider-usage-heading .icon { width: 14px; height: 14px; }
+.settings-page .provider-usage.is-compact .provider-usage-window { gap: 6px; }
+.settings-page .provider-usage.is-compact .provider-usage-row { grid-template-columns: minmax(0,1fr) auto auto; gap: 14px; }
+.settings-page .provider-usage.is-compact .provider-usage-percent { font-weight: 600; color: var(--text); }
+.settings-page .provider-usage.is-compact .provider-usage-row time, .settings-page .provider-usage.is-compact .provider-usage-reset { min-width: 48px; color: var(--text-muted); font-size: 11px; }
+.settings-page .provider-usage-bar { display: block; height: 5px; border-radius: 999px; background: var(--surface-hover); overflow: hidden; }
+.settings-page .provider-usage-bar > span { display: block; height: 100%; border-radius: inherit; background: var(--success); transition: width .3s ease; }
+.settings-page .provider-usage-bar.is-mid > span { background: var(--warning); }
+.settings-page .provider-usage-bar.is-low > span { background: var(--error); }
+.settings-page .account-models { display: flex; flex-direction: column; justify-content: center; gap: 8px; min-width: 0; margin: 0; padding: 14px 16px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); }
+.settings-page .account-models > small { color: var(--text-muted); font-size: 10px; }
+.settings-page .account-models .model-controls { width: 100%; }
+.settings-page .account-models .ai-model-controls { display: grid; grid-template-columns: minmax(0,1.3fr) minmax(0,1fr) 32px; align-items: end; gap: 8px; }
+.settings-page .account-models .ai-model-controls label { font-size: 11px; color: var(--text-muted); }
+.settings-page .account-models .ai-model-controls .dropdown-trigger { min-height: 36px; font-size: 12px; }
 .settings-page .account-models .ai-model-controls > small { grid-column: 1 / -1; font-size: 11px; }
+.settings-page .account-card-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.settings-page .account-card-footer .action-row { margin: 0; padding: 0; gap: 8px; flex-wrap: wrap; }
+.settings-page .account-card-footer .button { min-height: 32px; padding-inline: 14px; font-size: 11px; }
+.settings-page .account-card-footer .account-disconnect { margin-left: auto; color: var(--error); }
+.settings-page .account-card-footer .account-disconnect:hover:not(:disabled) { background: color-mix(in srgb, var(--error) 12%, transparent); }
+.settings-page .account-access-details { margin: 0; padding-top: 12px; border-top: 1px solid var(--border); font-size: 11px; color: var(--text-muted); }
+.settings-page .account-access-details summary { cursor: pointer; width: fit-content; }
+.settings-page .account-access-details dl { display: grid; grid-template-columns: max-content minmax(0,1fr); gap: 6px 16px; margin: 12px 0 0; }
+.settings-page .account-access-details dt { color: var(--text-muted); }
+.settings-page .account-access-details dd { margin: 0; color: var(--text-secondary); overflow-wrap: anywhere; }
+.settings-page .account-access-details p { margin: 10px 0 0; font-size: 11px; line-height: 1.6; }
+
+/* 9router gateway setup card. */
+.settings-page .router-gateway-card { display: flex; flex-direction: column; gap: 18px; margin-top: 24px; padding: 20px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface-raised); }
+.settings-page .router-gateway-header { display: flex; align-items: center; gap: 12px; }
+.settings-page .router-gateway-header > .provider-logo { width: 28px; height: 28px; flex-shrink: 0; }
+.settings-page .router-gateway-title { display: flex; flex: 1; min-width: 0; flex-direction: column; gap: 2px; }
+.settings-page .router-gateway-title h3 { margin: 0; font-size: 14px; }
+.settings-page .router-gateway-title span { color: var(--text-muted); font-size: 11px; }
+.settings-page .router-gateway-pill { flex-shrink: 0; padding: 4px 10px; border: 1px solid var(--border); border-radius: 999px; color: var(--text-muted); font-size: 10px; font-weight: 600; white-space: nowrap; }
+.settings-page .router-gateway-pill.is-ok { border-color: transparent; background: color-mix(in srgb, var(--success) 15%, transparent); color: var(--success); }
+.settings-page .router-gateway-meta { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 10px; margin: 0; }
+.settings-page .router-gateway-meta > div { min-width: 0; padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); }
+.settings-page .router-gateway-meta dt { color: var(--text-muted); font-size: 10px; }
+.settings-page .router-gateway-meta dd { margin: 4px 0 0; font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.settings-page .router-gateway-steps { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 10px; margin: 0; padding: 0; list-style: none; }
+.settings-page .router-gateway-steps li { display: flex; align-items: flex-start; gap: 10px; min-width: 0; }
+.settings-page .router-gateway-steps li > span:last-child { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.settings-page .router-gateway-steps strong { font-size: 12px; font-weight: 600; }
+.settings-page .router-gateway-steps small { color: var(--text-muted); font-size: 11px; line-height: 1.5; }
+.settings-page .router-gateway-step-index { display: grid; place-items: center; width: 22px; height: 22px; flex-shrink: 0; border: 1px solid var(--border); border-radius: 50%; color: var(--text-muted); font-size: 11px; font-weight: 600; }
+.settings-page .router-gateway-steps li.is-done .router-gateway-step-index { border-color: transparent; color: var(--success); }
+.settings-page .router-gateway-step-index .icon { width: 22px; height: 22px; }
+.settings-page .router-gateway-form { display: flex; flex-direction: column; gap: 12px; max-width: none; padding: 16px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); }
+.settings-page .router-gateway-fields { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(0,1fr); gap: 12px; }
+.settings-page .router-gateway-fields label { display: flex; flex-direction: column; gap: 6px; color: var(--text-muted); font-size: 11px; }
+.settings-page .router-gateway-hint { color: var(--text-muted); font-size: 11px; line-height: 1.6; }
+.settings-page .router-gateway-form .action-row { justify-content: flex-start; margin: 0; padding: 0; gap: 8px; flex-wrap: wrap; }
+.settings-page .router-gateway-form .button { min-height: 34px; padding-inline: 14px; font-size: 11px; gap: 6px; }
+.settings-page .router-gateway-form .button .icon { width: 14px; height: 14px; }
+.settings-page .router-gateway-status { margin: 0; padding: 10px 12px; border-radius: 8px; background: var(--surface-hover); color: var(--text-secondary); font-size: 11px; line-height: 1.6; }
+.settings-page .router-gateway-notes { font-size: 11px; color: var(--text-muted); }
+.settings-page .router-gateway-notes summary { cursor: pointer; width: fit-content; }
+.settings-page .router-gateway-notes p { margin: 8px 0 0; line-height: 1.6; }
+.settings-page .advanced-disclosure { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
+@media (max-width: 860px) {
+  .settings-page .account-card-body, .settings-page .router-gateway-fields, .settings-page .router-gateway-steps { grid-template-columns: minmax(0,1fr); }
+  .settings-page .account-card, .settings-page .router-gateway-card { padding: 16px; }
+}
+@media (max-width: 560px) { .settings-page .router-gateway-meta { grid-template-columns: minmax(0,1fr); } }
