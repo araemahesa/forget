@@ -54,7 +54,26 @@ export const R15_JOINTS = ['LowerTorso', 'UpperTorso', 'Head', 'LeftUpperArm', '
 export const R6_JOINTS = ['Torso', 'Head', 'Left Arm', 'Right Arm', 'Left Leg', 'Right Leg'] as const;
 /** Character root (HumanoidRootPart); only a position track under root_motion. */
 export const ROOT_TARGET = 'Root';
+const ROOT_TARGET_NAME = ROOT_TARGET;
 export const ANIMATION_LIMITS = { clips: 4, duration: 120, tracksPerClip: 64, keysPerTrack: 240, totalKeys: 4000, parts: 32, requirements: 40, markers: 32, position: 2048, size: 512 } as const;
+
+const R15_PARENTS: Record<string, string | null> = {
+  LowerTorso: ROOT_TARGET_NAME, UpperTorso: 'LowerTorso', Head: 'UpperTorso',
+  LeftUpperArm: 'UpperTorso', LeftLowerArm: 'LeftUpperArm', LeftHand: 'LeftLowerArm',
+  RightUpperArm: 'UpperTorso', RightLowerArm: 'RightUpperArm', RightHand: 'RightLowerArm',
+  LeftUpperLeg: 'LowerTorso', LeftLowerLeg: 'LeftUpperLeg', LeftFoot: 'LeftLowerLeg',
+  RightUpperLeg: 'LowerTorso', RightLowerLeg: 'RightUpperLeg', RightFoot: 'RightLowerLeg',
+};
+const R6_PARENTS: Record<string, string | null> = { Torso: ROOT_TARGET_NAME, Head: 'Torso', 'Left Arm': 'Torso', 'Right Arm': 'Torso', 'Left Leg': 'Torso', 'Right Leg': 'Torso' };
+/** Every ancestor of a target (nearest first): motion there moves the target in the world. */
+export function targetAncestors(doc: AnimationDocument, targetId: string): string[] {
+  const parentOf = doc.animationMode === 'character'
+    ? (id: string) => (doc.character.rigType === 'R15' ? R15_PARENTS : R6_PARENTS)[id] ?? null
+    : (id: string) => doc.object.parts.find((p) => p.id === id)?.parentId ?? null;
+  const chain: string[] = []; let cursor = parentOf(targetId);
+  while (cursor && !chain.includes(cursor)) { chain.push(cursor); cursor = parentOf(cursor); }
+  return chain;
+}
 
 export function characterTargets(rig: 'R6' | 'R15'): readonly string[] {
   return rig === 'R6' ? R6_JOINTS : R15_JOINTS;
@@ -122,8 +141,10 @@ export function sampleTrack(track: AnimationTrack, t: number): number[] {
   if (t <= keys[0].timeSeconds) return [...keys[0].value];
   const last = keys[keys.length - 1];
   if (t >= last.timeSeconds) return [...last.value];
-  let i = 1;
-  while (keys[i].timeSeconds < t) i++;
+  // Binary search for the first key at or after t (keys are strictly increasing).
+  let lo = 1; let hi = keys.length - 1;
+  while (lo < hi) { const mid = (lo + hi) >> 1; if (keys[mid].timeSeconds < t) lo = mid + 1; else hi = mid; }
+  const i = lo;
   const a = keys[i - 1]; const b = keys[i];
   const f = (t - a.timeSeconds) / (b.timeSeconds - a.timeSeconds);
   if (track.interpolation === 'step') return [...a.value];
@@ -239,6 +260,14 @@ export function validateAnimationDocument(input: unknown, requestedMode?: Animat
       });
     });
     if (doc.animationMode === 'character' && (doc.character as CharacterTarget | undefined)?.rootPolicy === 'in_place' && clip.tracks.some((t) => t.targetId === ROOT_TARGET)) fail(at, 'Mode in_place tidak boleh menggerakkan Root.');
+    // Same hard rule as the backend: a loop ends where it starts (held values make first/last keys the seam).
+    if (clip.loopMode === 'loop') clip.tracks.forEach((track, ti) => {
+      const keys = Array.isArray(track?.keys) ? track.keys : [];
+      if (keys.length < 2 || !Array.isArray(keys[0]?.value) || !Array.isArray(keys[keys.length - 1]?.value)) return;
+      const a = keys[0].value; const b = keys[keys.length - 1].value;
+      const gap = track.property === 'rotation' ? quatAngle(a, b) : Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
+      if (gap > (track.property === 'rotation' ? 1 : 0.01)) fail(`${at}.tracks[${ti}]`, `Loop: pose awal dan akhir ${track.targetId} berbeda; samakan agar loop tidak meloncat.`);
+    });
     const markers = clip.markers ?? [];
     if (!Array.isArray(markers) || markers.length > ANIMATION_LIMITS.markers) fail(`${at}.markers`, 'Terlalu banyak marker.');
     else {
@@ -270,7 +299,15 @@ export function validateAnimationDocument(input: unknown, requestedMode?: Animat
       if (!clip) { fail(`${at}.binding`, 'Clip binding tidak ditemukan.'); return; }
       if (!Array.isArray(r.binding.targetIds) || !r.binding.targetIds.length || r.binding.targetIds.some((t) => !targets.has(t))) fail(`${at}.binding`, 'Target binding tidak ada pada rig/objek.');
       const w = r.binding.window;
-      if (!vec(w, 2) || w[0] < 0 || w[1] > clip.durationSeconds + 1e-9 || w[0] >= w[1]) fail(`${at}.binding.window`, 'Jendela waktu harus [mulai, selesai] di dalam durasi clip.');
+      if (!vec(w, 2) || w[0] < 0 || w[1] > clip.durationSeconds + 1e-9 || w[0] >= w[1]) { fail(`${at}.binding.window`, 'Jendela waktu harus [mulai, selesai] di dalam durasi clip.'); return; }
+      // Same hard rule as the backend: a prohibited part keeps its value inside the window.
+      if (r.kind === 'prohibition') for (const track of clip.tracks ?? []) {
+        if (!r.binding.targetIds.includes(track?.targetId) || !Array.isArray(track.keys) || !track.keys.length) continue;
+        const held = [...track.keys].reverse().find((k) => k.timeSeconds <= w[0] + 1e-9) ?? track.keys[0];
+        const moved = track.keys.some((k) => k.timeSeconds > w[0] + 1e-9 && k.timeSeconds <= w[1] + 1e-9
+          && (track.property === 'rotation' ? quatAngle(k.value, held.value) > 0.5 : Math.hypot(k.value[0] - held.value[0], k.value[1] - held.value[1], k.value[2] - held.value[2]) > 0.005));
+        if (moved) fail(`${at}.binding`, `Kebutuhan "${r.id}" melarang ${track.targetId} bergerak, tetapi track-nya berubah di dalam jendela.`);
+      }
     });
   }
   return issues;

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import {
-  analyzeAnimation, evaluateClip, isAnimationDocument, migrateAnimationRecipe, validateAnimationDocument,
+  analyzeAnimation, clipTime, evaluateClip, isAnimationDocument, migrateAnimationRecipe, validateAnimationDocument,
   type AnimationDocument, type AnimationMode, type AnimationQualityProfile, type AnimationQualityReport, type AnimationRecipe, type LoopMode,
 } from '@forgekit/contracts';
 import { StudioApply } from '../create/StudioApply';
@@ -67,7 +67,8 @@ export function AnimationPage() {
     if (clip.loopMode === 'once' && cursor.current >= clip.durationSeconds) { cursor.current = clip.durationSeconds; setPlaying(false); }
     setTime(cursor.current);
   }
-  const shown = clip ? (clip.loopMode === 'once' ? Math.min(time, clip.durationSeconds) : time % (clip.loopMode === 'pingpong' ? 2 * clip.durationSeconds : clip.durationSeconds)) : 0;
+  // Same mapping the pose evaluation uses, so the scrubber follows ping-pong playback back as well.
+  const shown = clip ? clipTime(clip, time) : 0;
   function seek(value: number) { cursor.current = Math.max(0, value); setTime(cursor.current); setPlaying(false); }
 
   const report: AnimationQualityReport | null = useMemo(() => {

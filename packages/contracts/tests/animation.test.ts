@@ -135,3 +135,32 @@ describe('quality report', () => {
     expect(analyzeAnimation(broken).checks.find((c) => c.id === 'loop-seam')!.status).toBe('fail');
   });
 });
+
+describe('review fixes', () => {
+  it('treats a part held in a non-rest pose as still, and flags parts carried by a moving parent', () => {
+    const doc = door();
+    // Handle is locked raised for the whole clip, while its parent panel swings open.
+    doc.clips[0].tracks[0] = { targetId: 'handle', property: 'rotation', interpolation: 'linear', keys: [{ timeSeconds: 0, value: eulerXYZToQuat([0, 0, -45]) }, { timeSeconds: 1.2, value: eulerXYZToQuat([0, 0, -45]) }] };
+    doc.motionIntent.requirements[0] = { id: 'handle-still', kind: 'prohibition', text: 'Gagang tidak berputar', excerpt: 'gagang tetap', binding: { clipId: 'open', targetIds: ['handle'], window: [0, 1.2] } };
+    expect(validateAnimationDocument(doc)).toEqual([]);
+    const result = analyzeAnimation(doc).requirements.find((r) => r.id === 'handle-still')!;
+    expect(result.status).toBe('partial');
+    expect(result.evidence).toContain('panel');
+    expect(analyzeAnimation(doc).requirements.find((r) => r.id === 'frame-still')!.status).toBe('satisfied');
+  });
+
+  it('rejects in the UI validator what the backend rejects on save', () => {
+    const looped = door();
+    looped.clips[0].loopMode = 'loop';
+    expect(validateAnimationDocument(looped).map((i) => i.message).join()).toContain('pose awal dan akhir');
+    const moving = door();
+    moving.clips[0].tracks.push({ targetId: 'frame', property: 'position', interpolation: 'linear', keys: [{ timeSeconds: 0, value: [0, 0, 0] }, { timeSeconds: 1, value: [0, 0.5, 0] }] });
+    expect(validateAnimationDocument(moving).map((i) => i.message).join()).toContain('melarang frame');
+  });
+
+  it('samples many keys correctly with the binary search', () => {
+    const keys = Array.from({ length: 200 }, (_, i) => ({ timeSeconds: i / 10, value: [i, 0, 0] }));
+    const track = { targetId: 'panel', property: 'position' as const, interpolation: 'linear' as const, keys };
+    for (const t of [0, 0.05, 7.33, 19.9, 25]) expect(sampleTrack(track, t)[0]).toBeCloseTo(Math.min(t, 19.9) * 10, 9);
+  });
+});

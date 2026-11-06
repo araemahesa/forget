@@ -73,3 +73,14 @@ it('still opens legacy v1 recipes through the migration', () => {
   expect(screen.getByText(/dimigrasikan dari v1/)).toBeInTheDocument();
   expect(screen.getByRole('img', { name: 'Viewport animasi karakter' })).toBeInTheDocument();
 });
+
+it('shows the clip-local time for ping-pong playback on the way back', async () => {
+  const pingpong = structuredClone(door);
+  pingpong.clips[0].loopMode = 'pingpong';
+  mocks.task = task(pingpong);
+  render(<AnimationPage />);
+  const scrubber = screen.getByRole('slider', { name: 'Waktu animasi' });
+  await userEvent.click(screen.getByRole('button', { name: 'door_open' }));
+  expect(screen.getByText('1.20 / 1.20 s')).toBeInTheDocument();
+  expect(scrubber).toHaveValue('1.2');
+});

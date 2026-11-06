@@ -1,7 +1,7 @@
 // Deterministic quality checks for AnimationDocument v2. They measure the saved motion; they never
 // claim artistic quality. "partial" means motion was detected where the prompt asked for it, but
 // whether it reads as the requested action still needs visual review.
-import { clipTime, quatAngle, sampleTrack, type AnimationClipV2, type AnimationDocument, type AnimationTrack, type MotionRequirement } from './animation';
+import { clipTime, quatAngle, sampleTrack, targetAncestors, type AnimationClipV2, type AnimationDocument, type AnimationTrack, type MotionRequirement } from './animation';
 
 export type CheckStatus = 'pass' | 'warn' | 'fail' | 'not_checked';
 export type QualityCheck = { id: string; label: string; status: CheckStatus; detail: string };
@@ -96,7 +96,14 @@ function requirementResult(doc: AnimationDocument, r: MotionRequirement): Requir
   const span = `${r.binding.targetIds.join(', ')} · ${window[0].toFixed(2)}–${window[1].toFixed(2)} s`;
   if (r.kind === 'prohibition') {
     const still = motion.rotation <= STILL_ROTATION_DEG && motion.position <= STILL_POSITION;
-    return { ...base, status: still ? 'satisfied' : 'unsatisfied', evidence: `${span}: gerak maks ${motion.rotation.toFixed(2)}° / ${motion.position.toFixed(3)} stud (batas diam ${STILL_ROTATION_DEG}° / ${STILL_POSITION} stud).` };
+    const limits = `gerak maks ${motion.rotation.toFixed(2)}° / ${motion.position.toFixed(3)} stud (batas diam ${STILL_ROTATION_DEG}° / ${STILL_POSITION} stud)`;
+    if (!still) return { ...base, status: 'unsatisfied', evidence: `${span}: ${limits}.` };
+    // Locally still, but a moving ancestor (torso, door panel…) still carries it through the world.
+    const movingAncestors = [...new Set(r.binding.targetIds.flatMap((id) => targetAncestors(doc, id)))]
+      .filter((id) => { const m = motionIn(clip, [id], window); return m.rotation > STILL_ROTATION_DEG || m.position > STILL_POSITION; });
+    return movingAncestors.length
+      ? { ...base, status: 'partial', evidence: `${span}: diam relatif induknya (${limits}), tetapi ikut bergerak di dunia karena ${movingAncestors.join(', ')} bergerak. Perlu tinjauan: apakah diam yang dimaksud relatif tubuh/induk atau terhadap dunia.` }
+      : { ...base, status: 'satisfied', evidence: `${span}: ${limits}; induknya juga diam.` };
   }
   const moved = motion.rotation > MOTION_ROTATION_DEG || motion.position > MOTION_POSITION;
   if (!moved) return { ...base, status: 'unsatisfied', evidence: `${span}: tidak ada gerak terukur pada target yang diikat.` };
