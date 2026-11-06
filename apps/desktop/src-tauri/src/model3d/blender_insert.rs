@@ -37,7 +37,7 @@ pub(crate) fn plan(document: &Value, preview: &Value) -> Result<Vec<Value>, Stri
         for (mesh_chunk,(positions, normals)) in positions.chunks(MESH_TRIANGLES*9).zip(normals.chunks(MESH_TRIANGLES*9)).enumerate() {
             index += 1;
             let mut low = [f64::INFINITY;3]; let mut high = [f64::NEG_INFINITY;3];
-            for point in positions.chunks_exact(3) { for i in 0..3 {low[i]=low[i].min(point[i]);high[i]=high[i].max(point[i]);} }
+            for point in positions.as_chunks::<3>().0 { for i in 0..3 {low[i]=low[i].min(point[i]);high[i]=high[i].max(point[i]);} }
             let center: Vec<f64> = (0..3).map(|i|(low[i]+high[i])/2.).collect();
             let size: Vec<f64> = (0..3).map(|i|(high[i]-low[i]).max(0.001)).collect();
             let centered: Vec<f64> = positions.iter().enumerate().map(|(i,n)|n-center[i%3]).collect();

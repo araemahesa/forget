@@ -273,3 +273,16 @@ it('sends plain chat without a Studio target when the map snapshot is not verifi
   expect(mocks.send.mock.calls[0][5]).toBeUndefined();
   expect(mocks.send.mock.calls[0][6]).toBeUndefined();
 });
+
+it('sends the chosen read-only mode and remembers it', async () => {
+  mocks.send.mockResolvedValue(answer);
+  localStorage.removeItem('forgekit:chat-mode');
+  render(<ChatPage onOpenVersion={vi.fn()} />);
+  const user = userEvent.setup();
+  await selectChoice(screen.getByRole('combobox', { name: 'Mode kerja' }), 'ask');
+  await user.type(screen.getByLabelText('Input pesan chat'), 'Jelaskan map ini');
+  await user.click(screen.getByRole('button', { name: 'Kirim' }));
+  await waitFor(() => expect(mocks.send).toHaveBeenCalledTimes(1));
+  expect(mocks.send.mock.calls[0][4]).toBe('ask');
+  expect(localStorage.getItem('forgekit:chat-mode')).toBe('ask');
+});

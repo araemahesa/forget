@@ -112,11 +112,14 @@ export function ThreeViewport({ object, wireframe = false, onSelect, onFrame, la
       // Timer fallback replaces a stalled frame; never leave both clocks queued.
       cancelAnimationFrame(handle); clearTimeout(backup);
       const elapsed = Math.min((now - last) / 1000, .1); last = now;
-      if (element.getClientRects().length) {
-        reveal.current?.update(elapsed); frame.current?.(elapsed); controls.update(); grid.visible = settings.current.gridVisible;
-        box.visible = !!selected; if (selected) selectionBounds.setFromObject(selected);
-        renderer.render(scene, previewCamera ?? camera);
+      if (!element.getClientRects().length) {
+        // Hidden page (another feature is open): only check twice a second whether it is back.
+        backup = setTimeout(() => render(performance.now()), 500);
+        return;
       }
+      reveal.current?.update(elapsed); frame.current?.(elapsed); controls.update(); grid.visible = settings.current.gridVisible;
+      box.visible = !!selected; if (selected) selectionBounds.setFromObject(selected);
+      renderer.render(scene, previewCamera ?? camera);
       handle = requestAnimationFrame(render); backup = setTimeout(() => render(performance.now()), 100);
     }
     handle = requestAnimationFrame(render); backup = setTimeout(() => render(performance.now()), 100);
