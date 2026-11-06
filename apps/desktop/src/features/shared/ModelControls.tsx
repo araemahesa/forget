@@ -18,10 +18,9 @@ export function ModelControls({ selection, disabled = false }: { selection: Retu
       <option value="">Otomatis{selection.selected?.defaultReasoningEffort ? ` · ${selection.selected.defaultReasoningEffort}` : ''}</option>
       {levels.map((level) => <option key={level} value={level}>{level[0].toUpperCase() + level.slice(1)}</option>)}
     </Dropdown></label>
-    <button type="button" className="theme-button model-refresh" aria-label="Muat ulang model AI" title={needsAccess ? 'Izinkan akses akun untuk memuat model' : selection.error || 'Muat ulang model dari akun ini'} disabled={disabled || selection.loading} onClick={() => void (needsAccess ? selection.authorize() : selection.refresh())}><Icon name="refresh" /></button>
+    <button type="button" className={`theme-button model-refresh${selection.loading ? ' is-loading' : ''}`} aria-busy={selection.loading} aria-label="Muat ulang model AI" title={needsAccess ? 'Izinkan akses akun untuk memuat model' : selection.error || 'Muat ulang model dari akun ini'} disabled={disabled || selection.loading} onClick={() => void (needsAccess ? selection.authorize() : selection.refresh())}><Icon name="refresh" /></button>
     {selection.selectionError && <small role="alert">{selection.selectionError}</small>}
     {selection.selected?.toolCalling === 'unsupported' && <small role="status">Model ini tidak mendukung tools. Penyusunan recipe teks tetap tersedia.</small>}
-    {selection.loading && <small role="status">Memuat model akun… Jika dialog macOS muncul, setujui akses di sana.</small>}
     {selection.error && <small role="status" className={`model-catalog-error${needsAccess ? ' needs-access' : ''}`}>{needsAccess ? 'Akun tersimpan. Izinkan akses macOS untuk memuat dan memakai model.' : `Daftar model belum diperbarui: ${readableError(selection.error)}`} <button type="button" disabled={disabled || selection.loading} onClick={() => void (needsAccess ? selection.authorize() : selection.refresh())}>{needsAccess ? 'Izinkan akses akun' : 'Coba lagi'}</button></small>}
   </div>;
 }
