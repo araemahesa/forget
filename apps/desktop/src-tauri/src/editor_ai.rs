@@ -272,7 +272,7 @@ pub fn validate_editor_recipe(kind: &str, recipe: &mut Value) -> Result<(), Stri
             let h = recipe.get("height").and_then(|v| v.as_u64()).unwrap_or(800).clamp(300, 2160);
             recipe["width"] = json!(w);
             recipe["height"] = json!(h);
-            if recipe.get("title").and_then(|v| v.as_str()).map_or(true, |s| s.trim().is_empty()) {
+            if recipe.get("title").and_then(|v| v.as_str()).is_none_or(|s| s.trim().is_empty()) {
                 recipe["title"] = json!("ForgeKit GFX");
             }
             if recipe.get("subtitle").is_none() {
@@ -299,7 +299,7 @@ pub fn validate_editor_recipe(kind: &str, recipe: &mut Value) -> Result<(), Stri
             recipe["strokeWidth"] = json!(recipe.get("strokeWidth").and_then(|v| v.as_u64()).unwrap_or(2).clamp(1, 6));
             recipe["padding"] = json!(recipe.get("padding").and_then(|v| v.as_u64()).unwrap_or(6).clamp(0, 20));
             recipe["size"] = json!(recipe.get("size").and_then(|v| v.as_u64()).unwrap_or(64).clamp(24, 1024));
-            if recipe.get("name").and_then(|v| v.as_str()).map_or(true, |s| s.trim().is_empty()) {
+            if recipe.get("name").and_then(|v| v.as_str()).is_none_or(|s| s.trim().is_empty()) {
                 recipe["name"] = json!("Ikon Baru");
             }
         }
@@ -319,7 +319,7 @@ pub fn validate_editor_recipe(kind: &str, recipe: &mut Value) -> Result<(), Stri
             recipe["pocket"] = json!(recipe.get("pocket").and_then(|v| v.as_bool()).unwrap_or(false));
             recipe["shading"] = json!(recipe.get("shading").and_then(|v| v.as_bool()).unwrap_or(true));
             recipe["templateGuide"] = json!(recipe.get("templateGuide").and_then(|v| v.as_bool()).unwrap_or(false));
-            if recipe.get("name").and_then(|v| v.as_str()).map_or(true, |s| s.trim().is_empty()) {
+            if recipe.get("name").and_then(|v| v.as_str()).is_none_or(|s| s.trim().is_empty()) {
                 recipe["name"] = json!("Pakaian Baru");
             }
         }
@@ -336,7 +336,7 @@ pub fn validate_editor_recipe(kind: &str, recipe: &mut Value) -> Result<(), Stri
             recipe["seed"] = json!(recipe.get("seed").and_then(|v| v.as_i64()).unwrap_or(42).clamp(0, 999_999));
             let res = recipe.get("resolution").and_then(|v| v.as_u64()).unwrap_or(512);
             recipe["resolution"] = json!(if res <= 128 { 128 } else if res <= 256 { 256 } else { 512 });
-            if recipe.get("name").and_then(|v| v.as_str()).map_or(true, |s| s.trim().is_empty()) {
+            if recipe.get("name").and_then(|v| v.as_str()).is_none_or(|s| s.trim().is_empty()) {
                 recipe["name"] = json!("Tekstur Baru");
             }
         }
@@ -364,7 +364,7 @@ pub fn validate_editor_recipe(kind: &str, recipe: &mut Value) -> Result<(), Stri
             // SfxRecipe uses deny_unknown_fields; drop anything the model invented.
             const SFX_FIELDS: [&str; 16] = ["schemaVersion", "name", "category", "waveform", "durationMs", "frequencyStart", "frequencyEnd", "attackMs", "decayMs", "sustain", "releaseMs", "filterCutoff", "noiseMix", "volume", "loop", "seed"];
             if let Some(map) = recipe.as_object_mut() { map.retain(|key, _| SFX_FIELDS.contains(&key.as_str())); }
-            if recipe.get("name").and_then(|v| v.as_str()).map_or(true, |s| s.trim().is_empty()) {
+            if recipe.get("name").and_then(|v| v.as_str()).is_none_or(|s| s.trim().is_empty()) {
                 recipe["name"] = json!("Efek Suara");
             }
         }

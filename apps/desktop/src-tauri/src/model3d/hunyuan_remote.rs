@@ -429,7 +429,7 @@ pub(crate) fn validate_glb(bytes: &[u8]) -> Result<(), String> {
         let size = u32::from_le_bytes(bytes[offset..offset + 4].try_into().unwrap()) as usize;
         let kind = &bytes[offset + 4..offset + 8];
         offset += 8;
-        if size % 4 != 0 || offset + size > bytes.len() {
+        if !size.is_multiple_of(4) || offset + size > bytes.len() {
             return Err(bad());
         }
         if document.is_none() {
@@ -492,7 +492,7 @@ pub(crate) fn manifest(workspace: &Path, id: &str) -> Result<Option<Value>, Stri
         || !value["byteLength"]
             .as_u64()
             .is_some_and(|n| n <= MAX_GLB as u64)
-        || value["sha256"].as_str().map_or(true, |s| {
+        || value["sha256"].as_str().is_none_or(|s| {
             s.len() != 64 || !s.bytes().all(|b| b.is_ascii_hexdigit())
         })
     {

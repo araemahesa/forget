@@ -2362,9 +2362,18 @@ fn run_luau_check(
 
 fn publish_activity(app: &AppHandle, id: &str) {
     use tauri::Emitter;
-    if let Ok(task) = with_storage(app, &app.state::<AppState>(), |s| s.get_creative_task(id)) {
+    let task = with_storage(app, &app.state::<AppState>(), |s| s.get_creative_task(id)).ok();
+    if let Some(task) = &task {
         // Delivery is optional: the exact same revision is available from durable task reads.
         let _ = app.emit("forgekit:task-event", &task["activity"]);
+    }
+    // Learning only reads finished tasks, so syncing the vault on every checkpoint (while
+    // holding the storage lock) is wasted work; run it once the task reaches an outcome.
+    let finished = task.as_ref().and_then(|t| t["status"].as_str()).is_some_and(|status| {
+        matches!(status, "completed" | "preview_ready" | "failed" | "cancelled" | "interrupted")
+    });
+    if !finished {
+        return;
     }
     let _ = with_storage(app,&app.state::<AppState>(),|s| {
         if let Err(error)=crate::obsidian::sync_learning(&s.connection) {
